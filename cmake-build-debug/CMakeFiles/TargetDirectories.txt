@@ -1,0 +1,3 @@
+D:/Cprojects/deflate/cmake-build-debug/CMakeFiles/deflate.dir
+D:/Cprojects/deflate/cmake-build-debug/CMakeFiles/edit_cache.dir
+D:/Cprojects/deflate/cmake-build-debug/CMakeFiles/rebuild_cache.dir
