@@ -49,8 +49,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "D:/Cprojects/deflate/cmake-build-debug",
-		"source" : "D:/Cprojects/deflate"
+		"build" : "C:/Users/Attila/Documents/GitHub/deflate/cmake-build-debug",
+		"source" : "C:/Users/Attila/Documents/GitHub/deflate"
 	},
 	"version" : 
 	{

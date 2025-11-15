@@ -88,35 +88,42 @@ static void readFileWithBuffer(const char *filename, unsigned char *buffer, uint
         return;
     }
 
-    uint16_t bytes_read = (uint16_t) fread(buffer, 1, BUFFER_SIZE, file);
+    size_t bytes_read = fread(buffer, 1, BUFFER_SIZE, file);
 
-    for (uint16_t i = 0; i < bytes_read - 3; i++) {
-        int distance = i - hashValue;
+    for (int i = 0; i < (int)bytes_read - 3; i++) {
+        const int distance = i - hashValue;
+        if (!matchFound) {
+            // Check 1: Is the hash table entry valid (not the empty index)?
+            if (hashValue != EMPTY_INDEX) {
 
-        // Check 1: Is the hash table entry valid (not the empty index)?
-        if (hashValue != EMPTY_INDEX) {
+                // Check 2: Is the distance within the 32KB window?
+                // Note: Since i and hashValue are within 0-65535, distance will be <= 65535.
+                if (distance <= WINDOW_SIZE) {
 
-            // Check 2: Is the distance within the 32KB window?
-            // Note: Since i and hashValue are within 0-65535, distance will be <= 65535.
-            if (distance <= WINDOW_SIZE) {
-
-                // Check 3: Is the distance greater than 0?
-                if (distance > 0) {
-                    length = processMatch((buffer+i),(buffer+hashValue));
-
+                    // Check 3: Is the distance greater than 0?
+                    if (distance > 0) {
+                        length = processMatch((buffer+i),(buffer+hashValue));
+                        if (length >=3) {
+                            printf("Match found! length=%d\n", length);
+                            matchFound = true;
+                        }
+                    }
                 }
+            }
+        } else {
+            length--;
+            if (length==0) {
+                matchFound = false;
             }
         }
 
+        hash_table[hashKey] = (uint16_t) i;
 
         //A végén
         hashKey = updateHashKey(hashKey, &buffer[i + 1]);
         hashValue = hash_table[hashKey];
-        length = 0;
     }
-
-    printf("%llu\n", bytes_read);
-
+    printf("beolvasva %llu\n", bytes_read);
 
     if (ferror(file)) {
         perror("\n\nError reading file");
@@ -133,7 +140,7 @@ int main(void) {
     uint16_t *hash_table = initHashTable();
     unsigned char *buffer = initBuffer();
 
-    readFileWithBuffer("D:\\Cprojects\\deflate\\_DSC5810-Enhanced-NR.jpg", buffer, hash_table);
+    readFileWithBuffer("C:\\Users\\Attila\\Documents\\GitHub\\deflate\\_DSC5810-Enhanced-NR.jpg", buffer, hash_table);
 
     free(hash_table);
     free(buffer);
