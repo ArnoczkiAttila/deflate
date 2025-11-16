@@ -12,11 +12,21 @@
 #define BUFFER_SIZE (WINDOW_SIZE * 2)
 #define EMPTY_INDEX 0xFFFF
 
-static void resetHashTable(uint16_t *hash_table) {
-    //Ha -1-re állítom az értékét minden hash_table element-nek, akkor mivel itt egy 2 byte-os
-    //(uint16_t)-ről beszéllünk, a -1 pedig az int méretével megfelelő 1-eseket jelent így binárisan
-    //mivel unsigned azaz nem kettes komplemenses képzett szám, így valami 65000 körüli értékre lesz beállítva,
-    //ami 32kb-os blokkoknál érvénytelen méret, hiszen 32kb-on a távolság maximum 32768 lehet
+
+
+/**
+ * @brief Reset Hash Table values
+ *
+ * The fnResetHashTable function takes an uint16_t pointer and uses the
+ * predefined variables (EMPTY_INDEX and HASH_SIZE) for setting a default value
+ * for the whole table.
+ *
+ * The default value defined in EMPTY_INDEX is 0xFFFF.
+ *
+ * @param uint16_t* hash_table
+ * @returns void
+ */
+static void fnResetHashTable(uint16_t *hash_table) {
     memset(hash_table, EMPTY_INDEX, 2 * HASH_SIZE);
 }
 
@@ -25,7 +35,7 @@ static uint16_t *initHashTable() {
     if (hash_table == NULL) {
         exit(-1);
     }
-    resetHashTable(hash_table);
+    fnResetHashTable(hash_table);
     return hash_table;
 }
 
