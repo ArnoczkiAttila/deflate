@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
+#include "LZ77.h"
 
 #define HASH_BITS 15
 #define HASH_SHIFT 5
@@ -28,6 +29,14 @@
  */
 static void fnResetHashTable(uint16_t *hash_table) {
     memset(hash_table, EMPTY_INDEX, 2 * HASH_SIZE);
+}
+
+static void notHardReset(uint16_t *hash_table) {
+    for (int i = 0; i<HASH_SIZE; i++) {
+        if (hash_table[i] >= WINDOW_SIZE) {
+            hash_table[i] -= WINDOW_SIZE;
+        }
+    }
 }
 
 static uint16_t *initHashTable() {
@@ -74,72 +83,146 @@ static unsigned char *initBuffer() {
     return buffer;
 }
 
-static int processMatch(const unsigned char *currentPointer, const unsigned char *oldPointer) {
+static int findMatchLength(const unsigned char *currentPointer,
+                           const unsigned char *oldPointer,
+                           const unsigned char *inputEndPointer) {
+
+    // 1. Calculate the number of bytes remaining in the input from the current position.
+    // This is the absolute limit for the match length (safety boundary).
+    ptrdiff_t availableBytes = inputEndPointer - currentPointer;
+
+    // 2. Determine the maximum match length to check (258 is the DEFLATE limit).
+    // The search is limited by the lesser of the DEFLATE maximum (258) and the buffer boundary.
+    int maxCheckLength = 258;
+    if (availableBytes < maxCheckLength) {
+        maxCheckLength = (int)availableBytes;
+    }
+
     int length = 0;
-    int index = 0;
-    while (currentPointer[index] == oldPointer[index++]) {
-        length++;
-        if (length == 258) {
-            return length;
+
+    // Loop until the length limit is reached or a mismatch is found.
+    // We use length as the offset for both pointers.
+    while (length < maxCheckLength) {
+        // Compare the byte at the current offset for both pointers.
+        if (currentPointer[length] == oldPointer[length]) {
+            length++;
+        } else {
+            // Mismatch found
+            break;
         }
     }
+
     return length;
 }
 
-static void readFileWithBuffer(const char *filename, unsigned char *buffer, uint16_t *hash_table) {
-    FILE *file = fopen(filename, "rb");
-    uint16_t hashKey = generateHashKey(buffer);
-    uint16_t hashValue = hash_table[hashKey];
-    bool matchFound = false;
-    int length = 0;
+void compress_data(const unsigned char *buffer, size_t bytes_read, uint16_t* hash_table, LZ77_buffer* output_buffer) {
 
-    if (file == NULL) {
-        perror("Error opening file");
-        return;
-    }
+    // --- Set the End Pointer ---
+    const unsigned char *inputEndPointer = buffer + bytes_read;
 
-    size_t bytes_read = fread(buffer, 1, BUFFER_SIZE, file);
+    // --- Loop Control ---
+    // Loop only up to (bytes_read - 2) because we need at least 3 bytes to hash/match.
+    int i;
+    for (i = 0; i < (int)bytes_read - 2; ) {
 
-    for (int i = 0; i < (int)bytes_read - 3; i++) {
-        const int distance = i - hashValue;
-        if (!matchFound) {
-            // Check 1: Is the hash table entry valid (not the empty index)?
-            if (hashValue != EMPTY_INDEX) {
+        // --- 1. HASH LOOKUP ---
+        uint16_t hashKey = generateHashKey(buffer + i);
+        uint16_t hashIndex = hash_table[hashKey];
 
-                // Check 2: Is the distance within the 32KB window?
-                // Note: Since i and hashValue are within 0-65535, distance will be <= 65535.
-                if (distance <= WINDOW_SIZE) {
+        // --- 2. TRY TO FIND A MATCH ---
+        int bestLength = 0;
+        int bestDistance = 0;
 
-                    // Check 3: Is the distance greater than 0?
-                    if (distance > 0) {
-                        length = processMatch((buffer+i),(buffer+hashValue));
-                        if (length >=3) {
-                            printf("Match found! length=%d\n", length);
-                            matchFound = true;
-                        }
-                    }
+        // Check 1: Is the hash table entry valid?
+        if (hashIndex != EMPTY_INDEX) {
+
+            // Check 2: Is the distance valid? (i - hashIndex must be positive)
+            int distance = i - hashIndex;
+
+            // Check 3: Is distance within the 32KB LZ77 window?
+            if (distance > 0 && distance <= WINDOW_SIZE) {
+
+                // Get the match length at this historical index
+                bestLength = findMatchLength(buffer + i, buffer + hashIndex, inputEndPointer);
+                bestDistance = distance;
+
+                // CRITICAL FIX: Ensure the match is actually worth taking (Length >= 3)
+                if (bestLength < 3) {
+                    bestLength = 0; // Discard match if too short
                 }
-            }
-        } else {
-            length--;
-            if (length==0) {
-                matchFound = false;
             }
         }
 
-        hash_table[hashKey] = (uint16_t) i;
+        // --- 3. PROCESS THE RESULT ---
 
-        //A végén
-        hashKey = updateHashKey(hashKey, &buffer[i + 1]);
-        hashValue = hash_table[hashKey];
+        // A. Update the hash table for the sequence starting at current position 'i'.
+        // This MUST happen *before* advancing the window.
+        hash_table[hashKey] = (uint16_t)i;
+
+        if (bestLength >= 3) {
+            // MATCH FOUND (Length >= 3)
+
+            // Output the match token
+            //printf("Match: (Distance: %d, Length: %d)\n", bestDistance, bestLength);
+            appendToken(output_buffer, createMatchLZ77(bestDistance, bestLength));
+
+            // CRITICAL FIX: Advance the window past the matched bytes.
+            i += bestLength;
+
+        } else {
+            // NO MATCH (Length < 3) or Invalid distance
+
+            // Output the literal byte at the current position 'i'.
+            //printf("Literal: %c\n", buffer[i]);
+            appendToken(output_buffer, createLiteralLZ77(buffer[i]));
+
+            // Advance the window by 1 byte (Literal case).
+            i++;
+        }
     }
-    printf("beolvasva %llu\n", bytes_read);
+
+    // --- 4. HANDLE REMAINING BYTES ---
+    // The loop ended at bytes_read - 2. Handle the last 1 or 2 bytes as literals.
+    for (; i < (int)bytes_read; i++) {
+        //printf("Literal: %c\n", buffer[i]);
+        appendToken(output_buffer, createLiteralLZ77(buffer[i]));
+    }
+}
+
+static void readFileWithBuffer(const char* filename, unsigned char* buffer, uint16_t* hash_table, LZ77_buffer* output_buffer) {
+    FILE *file = fopen(filename, "rb");
 
     if (ferror(file)) {
         perror("\n\nError reading file");
     } else {
         printf("\n\n--- Finished Reading ---\n");
     }
+    size_t records = 0;
+    size_t allbytes = 0;
+
+    size_t bytes_read =  fread(buffer, 1, BUFFER_SIZE, file);
+    compress_data(buffer,bytes_read,hash_table,output_buffer);
+    allbytes+= bytes_read;
+    records+=output_buffer->size;
+
+    memcpy(buffer,buffer+WINDOW_SIZE,WINDOW_SIZE);
+    notHardReset(hash_table);
+
+    while ((bytes_read = fread(buffer+WINDOW_SIZE, 1, WINDOW_SIZE, file)) > 0) {
+        allbytes+= bytes_read;
+        //printf("%llu\n",bytes_read);
+
+        compress_data(buffer+WINDOW_SIZE,bytes_read,hash_table,output_buffer);
+
+        memcpy(buffer,buffer+WINDOW_SIZE,WINDOW_SIZE);
+        notHardReset(hash_table);
+
+        records+=output_buffer->size;
+        freeLZ77Buffer(output_buffer);
+        output_buffer = initLZ77Buffer();
+    }
+    printf("Starting size: %llu, \nEnding size: %llu, \nDifference: %llu\n",allbytes,records,allbytes-records);
+
 
     // 5. Close the file
     fclose(file);
@@ -149,10 +232,23 @@ static void readFileWithBuffer(const char *filename, unsigned char *buffer, uint
 int main(void) {
     uint16_t *hash_table = initHashTable();
     unsigned char *buffer = initBuffer();
+    LZ77_buffer* outputBuffer = initLZ77Buffer();
 
-    readFileWithBuffer("C:\\Users\\Attila\\Documents\\GitHub\\deflate\\_DSC5810-Enhanced-NR.jpg", buffer, hash_table);
+    readFileWithBuffer("D:\\Cprojects\\deflate\\_DSC4947.ARW", buffer, hash_table, outputBuffer);
+
+    for (int i = 0; i < outputBuffer->size; i++) {
+        LZ77_compressed temp = outputBuffer->tokens[i];
+        if (temp.type == LITERAL) {
+            //printf("%c\n", temp.data.literal);
+        } else {
+            //printf("Distance: %d, Length: %d\n", temp.data.match.distance, temp.data.match.length);
+        }
+    }
+
+    //printf("%d\n", outputBuffer->size);
 
     free(hash_table);
     free(buffer);
+    freeLZ77Buffer(outputBuffer);
     return 0;
 }

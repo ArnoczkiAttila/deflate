@@ -56,6 +56,13 @@ build CMakeFiles/deflate.dir/main.c.obj: C_COMPILER__deflate_unscanned_Debug D$:
   OBJECT_DIR = CMakeFiles\deflate.dir
   OBJECT_FILE_DIR = CMakeFiles\deflate.dir
 
+build CMakeFiles/deflate.dir/LZ77.c.obj: C_COMPILER__deflate_unscanned_Debug D$:/Cprojects/deflate/LZ77.c || cmake_object_order_depends_target_deflate
+  CONFIG = Debug
+  DEP_FILE = CMakeFiles\deflate.dir\LZ77.c.obj.d
+  FLAGS = -g -std=gnu11 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\deflate.dir
+  OBJECT_FILE_DIR = CMakeFiles\deflate.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target deflate
@@ -64,7 +71,7 @@ build CMakeFiles/deflate.dir/main.c.obj: C_COMPILER__deflate_unscanned_Debug D$:
 #############################################
 # Link the executable deflate.exe
 
-build deflate.exe: C_EXECUTABLE_LINKER__deflate_Debug CMakeFiles/deflate.dir/main.c.obj
+build deflate.exe: C_EXECUTABLE_LINKER__deflate_Debug CMakeFiles/deflate.dir/main.c.obj CMakeFiles/deflate.dir/LZ77.c.obj
   CONFIG = Debug
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32

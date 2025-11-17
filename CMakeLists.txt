@@ -4,4 +4,5 @@ project(deflate C)
 set(CMAKE_C_STANDARD 11)
 
 add_executable(deflate main.c
-        LZ77.h)
+        LZ77.h
+        LZ77.c)
