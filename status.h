@@ -7,16 +7,14 @@
 
 typedef enum {
     COMPRESSION_SUCCESS,
-    COMPRESSION_FAILED
+    COMPRESSION_FAILED,
+    CANT_OPEN_FILE,
+    CANT_ALLOCATE_MEMORY
 } StatusCode;
 
 typedef struct {
-    char* message;
-} StatusMessage;
-
-typedef struct {
     StatusCode code;
-    StatusMessage message;
+    char* message;
 } Status;
 
 #endif //DEFLATE_STATUS_H

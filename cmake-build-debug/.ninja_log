@@ -1,6 +1,13 @@
 # ninja log v6
-3	97	7852631365479454	CMakeFiles/deflate.dir/main.c.obj	c60c60bb07e9fc76
-3	80	7852632390844057	CMakeFiles/deflate.dir/length.c.obj	4800cb7185df0230
-81	204	7852632391617222	deflate.exe	d1dbeb3dd75c30fd
-31	449	7850228114257740	CMakeFiles/deflate.dir/LZ77.c.obj	a248d39043b388ed
-9	160	7852629581225783	CMakeFiles/deflate.dir/distance.c.obj	b2544036cbad8e09
+5	118	7852695624751262	CMakeFiles/deflate.dir/main.c.obj	c60c60bb07e9fc76
+16	228	7852693925866387	CMakeFiles/deflate.dir/length.c.obj	4800cb7185df0230
+7	103	7852694098701957	CMakeFiles/deflate.dir/compress.c.obj	16ee80169bc74c8e
+119	275	7852695625887457	deflate.exe	e68788dc978dcb2c
+9	234	7852693925806421	CMakeFiles/deflate.dir/LZ77.c.obj	a248d39043b388ed
+13	227	7852693925836391	CMakeFiles/deflate.dir/distance.c.obj	b2544036cbad8e09
+20	249	7852693925911598	CMakeFiles/deflate.dir/node.c.obj	14fe73b29de9ce60
+3	144	7852696788366509	CMakeFiles/deflate.dir/main.c.obj	c60c60bb07e9fc76
+144	303	7852696789788194	deflate.exe	e68788dc978dcb2c
+3	103	7852698386464413	CMakeFiles/deflate.dir/main.c.obj	c60c60bb07e9fc76
+7	166	7852698386499498	CMakeFiles/deflate.dir/compress.c.obj	16ee80169bc74c8e
+171	327	7852698388144399	deflate.exe	e68788dc978dcb2c

@@ -12,4 +12,6 @@ add_executable(deflate main.c
         length.c
         node.c
         compress.h
-        status.h)
+        status.h
+        compress.c
+        debugmalloc.h)
