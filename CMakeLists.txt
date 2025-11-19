@@ -5,4 +5,11 @@ set(CMAKE_C_STANDARD 11)
 
 add_executable(deflate main.c
         LZ77.h
-        LZ77.c)
+        LZ77.c
+        distance.h
+        distance.c
+        length.h
+        length.c
+        node.c
+        compress.h
+        status.h)

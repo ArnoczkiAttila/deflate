@@ -78,6 +78,7 @@ extern LZ77_buffer* initLZ77Buffer(void) {
  * @brief Expands the buffer capacity by EXPAND_BY tokens.
  *
  * @param buffer The buffer to expand.
+ * @return void
  */
 extern void expandBuffer(LZ77_buffer* buffer) {
     const size_t new_capacity = buffer->capacity + EXPAND_BY;
@@ -98,6 +99,7 @@ extern void expandBuffer(LZ77_buffer* buffer) {
  * @brief Appends a token to the buffer.
  *
  * @param buffer The buffer to append the token to.
+ * @return void
  */
 extern void appendToken(LZ77_buffer* buffer, const LZ77_compressed token) {
     if (buffer->size >= buffer->capacity) {
@@ -112,16 +114,15 @@ extern void appendToken(LZ77_buffer* buffer, const LZ77_compressed token) {
  * @brief Frees all dynamically allocated memory associated with the buffer.
  *
  * @param buffer The buffer structure to be freed.
+ * @return void
  */
 extern void freeLZ77Buffer(LZ77_buffer* buffer) {
     if (buffer == NULL) return;
 
-    // 1. Free the contiguous array of tokens
     if (buffer->tokens != NULL) {
         free(buffer->tokens);
         buffer->tokens = NULL;
     }
 
-    // 2. Free the buffer structure itself
     free(buffer);
 }

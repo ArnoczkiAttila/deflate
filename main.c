@@ -4,6 +4,8 @@
 #include <string.h>
 #include <stdbool.h>
 #include "LZ77.h"
+#include "distance.h"
+#include "length.h"
 
 #define HASH_BITS 15
 #define HASH_SHIFT 5
@@ -165,7 +167,10 @@ void compress_data(const unsigned char *buffer, size_t bytes_read, uint16_t* has
             // Output the match token
             //printf("Match: (Distance: %d, Length: %d)\n", bestDistance, bestLength);
             appendToken(output_buffer, createMatchLZ77(bestDistance, bestLength));
-
+            DistanceCode dc = getDistanceCode(bestDistance);
+            LengthCode lc = getLengthCode(bestLength);
+            //printf("Length code: %d, required extra bits: %d, extra value: %d    -    ", lc.usSymbolID,lc.iExtraBits,lc.iExtraValue);
+            //printf("Distance code: %d, required extra bits: %d, extra value: %d\n", dc.usSymbolID,dc.iExtraBits,dc.iExtraValue);
             // CRITICAL FIX: Advance the window past the matched bytes.
             i += bestLength;
 
