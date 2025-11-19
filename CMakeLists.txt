@@ -14,4 +14,6 @@ add_executable(deflate main.c
         compress.h
         status.h
         compress.c
-        debugmalloc.h)
+        debugmalloc.h
+        bitwriter.c
+        bitwriter.h)

@@ -135,6 +135,126 @@ deflate/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\deflate.dir\build.make CMakeFiles/deflate.dir/build
 .PHONY : deflate/fast
 
+LZ77.obj: LZ77.c.obj
+.PHONY : LZ77.obj
+
+# target to build an object file
+LZ77.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\deflate.dir\build.make CMakeFiles/deflate.dir/LZ77.c.obj
+.PHONY : LZ77.c.obj
+
+LZ77.i: LZ77.c.i
+.PHONY : LZ77.i
+
+# target to preprocess a source file
+LZ77.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\deflate.dir\build.make CMakeFiles/deflate.dir/LZ77.c.i
+.PHONY : LZ77.c.i
+
+LZ77.s: LZ77.c.s
+.PHONY : LZ77.s
+
+# target to generate assembly for a file
+LZ77.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\deflate.dir\build.make CMakeFiles/deflate.dir/LZ77.c.s
+.PHONY : LZ77.c.s
+
+bitwriter.obj: bitwriter.c.obj
+.PHONY : bitwriter.obj
+
+# target to build an object file
+bitwriter.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\deflate.dir\build.make CMakeFiles/deflate.dir/bitwriter.c.obj
+.PHONY : bitwriter.c.obj
+
+bitwriter.i: bitwriter.c.i
+.PHONY : bitwriter.i
+
+# target to preprocess a source file
+bitwriter.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\deflate.dir\build.make CMakeFiles/deflate.dir/bitwriter.c.i
+.PHONY : bitwriter.c.i
+
+bitwriter.s: bitwriter.c.s
+.PHONY : bitwriter.s
+
+# target to generate assembly for a file
+bitwriter.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\deflate.dir\build.make CMakeFiles/deflate.dir/bitwriter.c.s
+.PHONY : bitwriter.c.s
+
+compress.obj: compress.c.obj
+.PHONY : compress.obj
+
+# target to build an object file
+compress.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\deflate.dir\build.make CMakeFiles/deflate.dir/compress.c.obj
+.PHONY : compress.c.obj
+
+compress.i: compress.c.i
+.PHONY : compress.i
+
+# target to preprocess a source file
+compress.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\deflate.dir\build.make CMakeFiles/deflate.dir/compress.c.i
+.PHONY : compress.c.i
+
+compress.s: compress.c.s
+.PHONY : compress.s
+
+# target to generate assembly for a file
+compress.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\deflate.dir\build.make CMakeFiles/deflate.dir/compress.c.s
+.PHONY : compress.c.s
+
+distance.obj: distance.c.obj
+.PHONY : distance.obj
+
+# target to build an object file
+distance.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\deflate.dir\build.make CMakeFiles/deflate.dir/distance.c.obj
+.PHONY : distance.c.obj
+
+distance.i: distance.c.i
+.PHONY : distance.i
+
+# target to preprocess a source file
+distance.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\deflate.dir\build.make CMakeFiles/deflate.dir/distance.c.i
+.PHONY : distance.c.i
+
+distance.s: distance.c.s
+.PHONY : distance.s
+
+# target to generate assembly for a file
+distance.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\deflate.dir\build.make CMakeFiles/deflate.dir/distance.c.s
+.PHONY : distance.c.s
+
+length.obj: length.c.obj
+.PHONY : length.obj
+
+# target to build an object file
+length.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\deflate.dir\build.make CMakeFiles/deflate.dir/length.c.obj
+.PHONY : length.c.obj
+
+length.i: length.c.i
+.PHONY : length.i
+
+# target to preprocess a source file
+length.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\deflate.dir\build.make CMakeFiles/deflate.dir/length.c.i
+.PHONY : length.c.i
+
+length.s: length.c.s
+.PHONY : length.s
+
+# target to generate assembly for a file
+length.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\deflate.dir\build.make CMakeFiles/deflate.dir/length.c.s
+.PHONY : length.c.s
+
 main.obj: main.c.obj
 .PHONY : main.obj
 
@@ -159,6 +279,30 @@ main.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\deflate.dir\build.make CMakeFiles/deflate.dir/main.c.s
 .PHONY : main.c.s
 
+node.obj: node.c.obj
+.PHONY : node.obj
+
+# target to build an object file
+node.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\deflate.dir\build.make CMakeFiles/deflate.dir/node.c.obj
+.PHONY : node.c.obj
+
+node.i: node.c.i
+.PHONY : node.i
+
+# target to preprocess a source file
+node.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\deflate.dir\build.make CMakeFiles/deflate.dir/node.c.i
+.PHONY : node.c.i
+
+node.s: node.c.s
+.PHONY : node.s
+
+# target to generate assembly for a file
+node.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\deflate.dir\build.make CMakeFiles/deflate.dir/node.c.s
+.PHONY : node.c.s
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -169,9 +313,27 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... deflate
+	@echo ... LZ77.obj
+	@echo ... LZ77.i
+	@echo ... LZ77.s
+	@echo ... bitwriter.obj
+	@echo ... bitwriter.i
+	@echo ... bitwriter.s
+	@echo ... compress.obj
+	@echo ... compress.i
+	@echo ... compress.s
+	@echo ... distance.obj
+	@echo ... distance.i
+	@echo ... distance.s
+	@echo ... length.obj
+	@echo ... length.i
+	@echo ... length.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
+	@echo ... node.obj
+	@echo ... node.i
+	@echo ... node.s
 .PHONY : help
 
 

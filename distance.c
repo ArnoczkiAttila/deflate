@@ -51,14 +51,11 @@ extern DistanceCode getDistanceCode(int distance) {
         distance = MAX_ALLOWED_DISTANCE;
     }
 
-    // Distances 1-4 are special (Symbol IDs 0-3 with 0 extra bits)
     if (distance >= 1 && distance <= 4) {
         result.usSymbolID = distance - 1; // 1 -> ID 0, 4 -> ID 3
         return result;
     }
 
-    // For distances 5 and up (Symbol IDs 4-29), search the table
-    // The loop starts at symbol ID 4 (index 4)
     for (int i = 4; i < NUM_DIST_CODES; i++) {
         int base = DISTANCE_BASE[i];
         int extra_bits = DISTANCE_EXTRA_BITS[i];
@@ -77,9 +74,6 @@ extern DistanceCode getDistanceCode(int distance) {
         }
     }
 
-    // This should only be reached if distance is 32769 and was truncated to 32768,
-    // which corresponds to the max range of Symbol ID 29 (24577 to 32768).
-    // The maximum possible distance for ID 29 is 24577 + (2^13 - 1) = 24577 + 8191 = 32768.
     if (distance == MAX_ALLOWED_DISTANCE) {
         result.usSymbolID = 29;
         result.iExtraBits = 13;

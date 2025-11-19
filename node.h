@@ -6,6 +6,7 @@
 #ifndef HUFFMAN_NODE_H
 #define HUFFMAN_NODE_H
 
+
 typedef struct {
     int iFrequency;
     unsigned short usSymbol;
@@ -26,6 +27,8 @@ void addToMinHeap(MinHeap* minHeap, Node* node);
 void printHeap(MinHeap* minHeap);
 
 Node* extractMin(MinHeap* minHeap);
+
+Node* buildHuffmanTree(MinHeap* minHeap);
 
 void buildMinHeap(MinHeap* minHeap);
 

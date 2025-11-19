@@ -5,9 +5,11 @@
 
 #include "node.h"
 
+#include <stdint.h>
 #include <stdlib.h>
 #include <stdio.h>
 
+#define INVALID_NODE_SYMBOL 286
 
 Node* createNode(unsigned short usSymbol, int freq) {
     Node* n = (Node*)malloc(sizeof(Node));
@@ -166,30 +168,42 @@ void insertMinHeap(MinHeap* minHeap, Node* newNode) {
  */
 Node* buildHuffmanTree(MinHeap* minHeap) {
     Node *pnLeft, *pnRight, *pnParent;
-
-    // Loop until only one node (the root) remains in the heap
     while (minHeap->iSize > 1) {
-        // 1. Extract the two nodes with the minimum frequency (lowest priority)
+
         pnLeft = extractMin(minHeap);
         pnRight = extractMin(minHeap);
 
-        // 2. Create a new internal node (the parent)
-        // Set the symbol to 286, which is outside the Deflate Literal/Length range (0-285)
         pnParent = createNode(286, 0);
 
-        // 3. Assign the extracted nodes as children
-        // The order of pnLeft/pnRight is arbitrary but consistent
         pnParent->pnLeft = pnLeft;
         pnParent->pnRight = pnRight;
 
-        // 4. Set the new node's frequency (sum of children)
         pnParent->iFrequency = pnLeft->iFrequency + pnRight->iFrequency;
 
-        // 5. Insert the new internal node back into the heap
         insertMinHeap(minHeap, pnParent);
     }
 
-    // The last remaining node is the root of the Huffman Tree
     return extractMin(minHeap);
 }
 
+/**
+ * @brief Traverses a Huffman tree to determine the bit length (depth) for every symbol.
+ * * @param current_node The current node in the traversal (start with the tree root).
+ * @param uiCurrentDepth The depth of the current node (start with 0 for the root).
+ * @param uiLengthCodes The array where the resulting code lengths are stored.
+ */
+extern void extract_code_lengths(Node* npCurrent, uint8_t uiCurrentDepth, uint8_t* uiLengthCodes) {
+
+    if (npCurrent == NULL) {
+        return;
+    }
+
+    if (npCurrent->usSymbol != INVALID_NODE_SYMBOL) { //tehát valid
+        uiLengthCodes[npCurrent->usSymbol] = uiCurrentDepth;
+        return;
+    }
+
+    extract_code_lengths(npCurrent->pnLeft, uiCurrentDepth + 1, uiLengthCodes);
+
+    extract_code_lengths(npCurrent->pnRight, uiCurrentDepth + 1, uiLengthCodes);
+}
