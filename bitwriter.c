@@ -57,7 +57,7 @@ extern void addData(BitWriter* bw, uint32_t value, uint8_t bitLength) {
 
         // 1. Create a mask to isolate the 'bits_to_transfer' LSBs from the input 'value'.
         //    Use a wider type for the mask calculation to ensure correct behavior if bits_to_transfer == 8.
-        uint32_t mask = (1U << bits_to_transfer) - 1;
+        uint32_t mask = (1 << bits_to_transfer) - 1;
 
         // 2. Extract the relevant LSB chunk from the input value.
         //    The snippet is now up to 8 bits, stored in a 32-bit container.
@@ -87,6 +87,18 @@ extern void addData(BitWriter* bw, uint32_t value, uint8_t bitLength) {
     }
 }
 
+static void addBytesFromMSB(BitWriter* bw, uint32_t value, uint8_t bytes) {
+    if (8-bw->currentPosition > 0 && bw->byte != 0) {
+        addData(bw,0,8-bw->currentPosition);
+    }
+    while (bytes > 0) {
+        uint32_t current_value = value;
+        bw->byte = current_value >> ((bytes-1)*8);
+        flushByte(bw);
+        bytes--;
+    }
+}
+
 extern void createFile(BitWriter* bw, char* fileName, char* extension) {
     char* newFileName = (char*) malloc(strlen(fileName) + strlen(extension) + 2);
     strcpy(newFileName, fileName);
@@ -97,19 +109,19 @@ extern void createFile(BitWriter* bw, char* fileName, char* extension) {
     bw->fileName = newFileName;
     bw->file = file;
 
-    addData(bw, MAGIC_NUMER, 16); //ID1 ID2
-    addData(bw, COMPRESSION_METHOD, 8); //CM
-    addData(bw, FLAG,8); //FLG
-    addData(bw, (uint32_t) time(NULL), 32); //MTIME
-    addData(bw, XFL,8); //XFL
-    addData(bw, OS, 8);
+    addBytesFromMSB(bw, MAGIC_NUMER, 2); //ID1 ID2
+    addBytesFromMSB(bw, COMPRESSION_METHOD, 1); //CM
+    addBytesFromMSB(bw, FLAG,1); //FLG
+    addBytesFromMSB(bw, (uint32_t) time(NULL), 4); //MTIME
+    addBytesFromMSB(bw, XFL,1); //XFL
+    addBytesFromMSB(bw, OS, 1);
     //No extra fields
 
     size_t len = strlen(fileName);
     for (size_t i = 0; i<len; i++) {
-        addData(bw, fileName[i], 8);
+        addBytesFromMSB(bw, fileName[i], 1);
     }
-    addData(bw,'\0',8);
+    addBytesFromMSB(bw,'\0',1);
 }
 
 extern void freeBitWriter(BitWriter* bw) {
