@@ -7,7 +7,7 @@
 #define HUFFMAN_NODE_H
 
 
-typedef struct {
+typedef struct Node {
     int iFrequency;
     unsigned short usSymbol;
     struct Node* pnLeft;

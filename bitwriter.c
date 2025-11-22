@@ -16,10 +16,11 @@
 #define XFL 0x00
 #define OS 0x00 //FAT filesystem
 
-static void flushBitWriterBuffer(BitWriter* bw) {
+static size_t flushBitWriterBuffer(BitWriter* bw) {
     size_t elementsWritten = fwrite(bw->buffer,1,bw->index,bw->file);
-
+    printf("Elements written to file: %llu \n", elementsWritten);
     bw->index = 0;
+    return elementsWritten;
 }
 
 extern BitWriter* initBitWriter(void) {

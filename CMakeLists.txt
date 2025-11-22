@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 4.0)
 project(deflate C)
 
-set(CMAKE_C_STANDARD 11)
+set(CMAKE_C_STANDARD 99)
 
 add_executable(deflate main.c
         LZ77.h
@@ -17,3 +17,5 @@ add_executable(deflate main.c
         debugmalloc.h
         bitwriter.c
         bitwriter.h)
+
+target_compile_options(deflate PRIVATE -Wall -Werror)

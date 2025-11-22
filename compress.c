@@ -280,6 +280,8 @@ extern void processBlock(BitWriter* bw, uint16_t* LLFrequency, uint16_t* distanc
     resetUint16_tArray(distanceCodeFrequency,DISTANCE_CODE_SIZE);
     freeMinHeap(literalTree);
     freeMinHeap(distanceTree);
+    free(distanceTop);
+    free(literalTop);
 }
 
 extern Status compress(char* filename) {

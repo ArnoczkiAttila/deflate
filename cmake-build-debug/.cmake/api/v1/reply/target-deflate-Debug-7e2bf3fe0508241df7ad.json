@@ -13,7 +13,8 @@
 	{
 		"commands" : 
 		[
-			"add_executable"
+			"add_executable",
+			"target_compile_options"
 		],
 		"files" : 
 		[
@@ -29,6 +30,12 @@
 				"file" : 0,
 				"line" : 6,
 				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 21,
+				"parent" : 0
 			}
 		]
 	},
@@ -38,7 +45,15 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "-g -std=gnu11 -fdiagnostics-color=always"
+					"fragment" : "-g -std=gnu99 -fdiagnostics-color=always"
+				},
+				{
+					"backtrace" : 2,
+					"fragment" : "-Wall"
+				},
+				{
+					"backtrace" : 2,
+					"fragment" : "-Werror"
 				}
 			],
 			"language" : "C",
@@ -48,7 +63,7 @@
 				[
 					1
 				],
-				"standard" : "11"
+				"standard" : "99"
 			},
 			"sourceIndexes" : 
 			[
