@@ -8,6 +8,7 @@
 #include <stdint.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include "debugmalloc.h"
 
 #define INVALID_NODE_SYMBOL 286
 
@@ -18,6 +19,110 @@ Node* createNode(unsigned short usSymbol, int freq) {
     n->usSymbol = usSymbol;
     n->pnLeft = n->pnRight = NULL;
     return n;
+}
+
+extern void compressCodeLengths(
+    const uint8_t* all_lengths,
+    size_t count,
+    uint8_t* compressed_lengths, // Output buffer for RLE symbols (0-18)
+    uint16_t* cl_frequencies,    // Output array of size 19
+    uint8_t* extra_bits_values,  // Output buffer for RLE extra bit values
+    size_t* compressed_count     // Final count of symbols generated
+) {
+    size_t output_idx = 0;
+
+    // Note: The maximum possible length of the output stream is 286+30 = 316.
+    // However, due to expansion via symbol 16 (where 3 raw lengths become 1 symbol + 2 extra bits),
+    // the output array size must be sufficient. We rely on the caller to provide a large enough buffer.
+
+    for (size_t i = 0; i < count; ) {
+        uint8_t current_len = all_lengths[i];
+        size_t run_start = i;
+
+        // 1. Calculate the length of the current run
+        while (i < count && all_lengths[i] == current_len) {
+            i++;
+        }
+        size_t run_length = i - run_start;
+
+        if (current_len == 0) {
+            // --- Run of Zeros (Symbols 17 and 18) ---
+            while (run_length > 0) {
+                if (run_length >= 11) {
+                    // Use Symbol 18: Repeat 0 for 11 to 138 times (7 extra bits)
+                    size_t repeat_count = run_length > 138 ? 138 : run_length;
+
+                    compressed_lengths[output_idx] = 18;
+                    extra_bits_values[output_idx] = repeat_count - 11; // 7-bit extra value
+                    cl_frequencies[18]++;
+                    output_idx++;
+                    run_length -= repeat_count;
+
+                } else if (run_length >= 3) {
+                    // Use Symbol 17: Repeat 0 for 3 to 10 times (3 extra bits)
+                    size_t repeat_count = run_length > 10 ? 10 : run_length;
+
+                    compressed_lengths[output_idx] = 17;
+                    extra_bits_values[output_idx] = repeat_count - 3; // 3-bit extra value
+                    cl_frequencies[17]++;
+                    output_idx++;
+                    run_length -= repeat_count;
+
+                } else {
+                    // Write 1 or 2 zeros as literal zeros (Symbol 0)
+                    for (size_t j = 0; j < run_length; ++j) {
+                        compressed_lengths[output_idx] = 0;
+                        extra_bits_values[output_idx] = 0; // No extra bits
+                        cl_frequencies[0]++;
+                        output_idx++;
+                    }
+                    run_length = 0;
+                }
+            }
+        } else {
+            // --- Run of Non-Zero Lengths (Symbol 16 and Literals) ---
+
+            // A. Write the first instance as a literal (0-15)
+            compressed_lengths[output_idx] = current_len;
+            extra_bits_values[output_idx] = 0; // No extra bits
+            cl_frequencies[current_len]++;
+            output_idx++;
+            run_length--;
+
+            // B. Use Symbol 16 for any remaining run (3 to 6 times)
+            while (run_length >= 3) {
+                // Use Symbol 16: Repeat previous length 3 to 6 times (2 extra bits)
+                size_t repeat_count = run_length > 6 ? 6 : run_length;
+
+                compressed_lengths[output_idx] = 16;
+                extra_bits_values[output_idx] = repeat_count - 3; // 2-bit extra value
+                cl_frequencies[16]++;
+                output_idx++;
+                run_length -= repeat_count;
+            }
+
+            // C. Write any remaining 1 or 2 instances as literals (0-15)
+            for (size_t j = 0; j < run_length; ++j) {
+                compressed_lengths[output_idx] = current_len;
+                extra_bits_values[output_idx] = 0; // No extra bits
+                cl_frequencies[current_len]++;
+                output_idx++;
+            }
+        }
+
+    }
+
+    *compressed_count = output_idx;
+}
+
+extern void findCodeLengthsInTree(Node* node, uint8_t* lengths, uint8_t depth) {
+    if (!node) return;
+    if (node->usSymbol != INVALID_NODE_SYMBOL) {
+        lengths[node->usSymbol] = depth;
+    } else {
+        findCodeLengthsInTree(node->pnLeft,lengths,depth+1);
+        findCodeLengthsInTree(node->pnRight,lengths,depth+1);
+    }
 }
 
 extern MinHeap* createMinHeap(int capacity) {

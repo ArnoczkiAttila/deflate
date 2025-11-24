@@ -16,6 +16,10 @@ add_executable(deflate main.c
         compress.c
         debugmalloc.h
         bitwriter.c
-        bitwriter.h)
+        bitwriter.h
+        HUFFMAN_TABLE.h
+        HUFFMAN_TABLE.c
+        CRC_CHECKSUM.h
+        CRC_CHECKSUM.c)
 
 target_compile_options(deflate PRIVATE -Wall -Werror)

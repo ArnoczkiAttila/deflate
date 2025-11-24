@@ -12,7 +12,7 @@
 #include "bitwriter.h"
 
 int main(int argc, char** argv) {
-
+    compress( "D:\\Cprojects\\deflate\\_DSC5810-Enhanced-NR.jpg");
     if (strcmp(argv[1],"compress")==0) {
         compress(argv[2]);
     }

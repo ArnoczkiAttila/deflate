@@ -51,8 +51,8 @@ static const int LENGTH_EXTRA_BITS[] = {
  * @param length The actual length between (3 and 258)
  * @return LengthCode struct which stores the length code, the required extra bits, and then the extra value in those extra bits,
  */
-extern LengthCode getLengthCode(int length) {
-    LengthCode result = {0, 0, 0};
+extern LENGTH_CODE getLengthCode(int length) {
+    LENGTH_CODE result = {0, 0, 0};
 
     if (length < MIN_MATCH_LENGTH) {
         fprintf(stderr, "Error: Length %d is too short (min is %d).\n", length, MIN_MATCH_LENGTH);

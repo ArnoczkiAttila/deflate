@@ -6,6 +6,7 @@
 #ifndef HUFFMAN_NODE_H
 #define HUFFMAN_NODE_H
 
+#include <stdint.h>
 
 typedef struct Node {
     int iFrequency;
@@ -20,21 +21,32 @@ typedef struct {
     Node** ppnArray;
 } MinHeap;
 
-MinHeap* createMinHeap(int capacity);
+extern void compressCodeLengths(
+    const uint8_t* all_lengths,
+    size_t count,
+    uint8_t* compressed_lengths, // Output buffer for RLE symbols (0-18)
+    uint16_t* cl_frequencies,    // Output array of size 19
+    uint8_t* extra_bits_values,  // Output buffer for RLE extra bit values
+    size_t* compressed_count     // Final count of symbols generated
+);
 
-void addToMinHeap(MinHeap* minHeap, Node* node);
+extern void findCodeLengthsInTree(Node* node, uint8_t* lengths, uint8_t depth);
 
-void printHeap(MinHeap* minHeap);
+extern MinHeap* createMinHeap(int capacity);
 
-Node* extractMin(MinHeap* minHeap);
+extern void addToMinHeap(MinHeap* minHeap, Node* node);
 
-Node* buildHuffmanTree(MinHeap* minHeap);
+extern void printHeap(MinHeap* minHeap);
 
-void buildMinHeap(MinHeap* minHeap);
+extern Node* extractMin(MinHeap* minHeap);
 
-void freeMinHeap(MinHeap* minHeap);
+extern Node* buildHuffmanTree(MinHeap* minHeap);
 
-Node* createNode(unsigned short usSymbol, int freq);
+extern void buildMinHeap(MinHeap* minHeap);
+
+extern void freeMinHeap(MinHeap* minHeap);
+
+extern Node* createNode(unsigned short usSymbol, int freq);
 
 
 #endif //HUFFMAN_NODE_H

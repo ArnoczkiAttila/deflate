@@ -17,6 +17,7 @@
 #define OS 0x00 //FAT filesystem
 
 static size_t flushBitWriterBuffer(BitWriter* bw) {
+    printf("index = %d\n",bw->index);
     size_t elementsWritten = fwrite(bw->buffer,1,bw->index,bw->file);
     printf("Elements written to file: %llu \n", elementsWritten);
     bw->index = 0;
@@ -29,16 +30,18 @@ extern BitWriter* initBitWriter(void) {
     bw->byte = 0;
     bw->buffer = (uint8_t*) malloc(BUFFER_SIZE);
     bw->currentPosition = 0;
+    bw->bufferSize = BUFFER_SIZE;
     bw->index = 0;
     return bw;
 }
 
 static void flushByte(BitWriter* bw) {
-    if (bw->index == bw->bufferSize) flushBitWriterBuffer(bw);
     bw->buffer[bw->index] = bw->byte;
     bw->index++;
     bw->byte = 0;
     bw->currentPosition = 0;
+    //printf("%d\t",bw->index);
+    if (bw->index == bw->bufferSize) flushBitWriterBuffer(bw);
 }
 
 
@@ -88,15 +91,31 @@ extern void addData(BitWriter* bw, uint32_t value, uint8_t bitLength) {
     }
 }
 
-static void addBytesFromMSB(BitWriter* bw, uint32_t value, uint8_t bytes) {
-    if (8-bw->currentPosition > 0 && bw->byte != 0) {
-        addData(bw,0,8-bw->currentPosition);
+extern void flush_bitstream_writer(BitWriter* bw) {
+    // Check if the current byte is only partially full (currentPosition is 1 to 7)
+    if (bw->currentPosition > 0) {
+        // Calculate the number of zero bits needed to fill the byte
+        uint8_t bits_to_pad = 8 - bw->currentPosition;
+
+        // Since the current value is 0, we can use addData to write 'bits_to_pad' zeros.
+        // addData handles the correct bit shifting and calls flushByte when done.
+        addData(bw, 0, bits_to_pad);
     }
-    while (bytes > 0) {
-        uint32_t current_value = value;
-        bw->byte = current_value >> ((bytes-1)*8);
-        flushByte(bw);
-        bytes--;
+
+    // After this, bw->currentPosition must be 0, and the last byte is flushed
+    // into the buffer (bw->buffer[bw->index] is the last padded byte).
+    // The final flush to disk (fwrite) is usually handled by closeBitWriter or a large buffer flush.
+}
+
+extern void addBytesFromMSB(BitWriter* bw, uint32_t value, uint8_t bytes) {
+    // 1. Ensure bitstream is aligned.
+    flush_bitstream_writer(bw);
+
+    // 2. Write the 4 bytes in LSB-first order (Little-Endian)
+    for (int i = 0; i < bytes; i++) {
+        // Extract byte i (0, 1, 2, 3). The LSB byte (i=0) is written first.
+        bw->byte = (uint8_t)((value >> (i * 8)) & 0xFF);
+        flushByte(bw); // Writes the byte and resets position to 0
     }
 }
 
@@ -124,6 +143,8 @@ extern void createFile(BitWriter* bw, char* fileName, char* extension) {
     }
     addBytesFromMSB(bw,'\0',1);
 }
+
+
 
 extern void freeBitWriter(BitWriter* bw) {
     flushBitWriterBuffer(bw);

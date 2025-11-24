@@ -9,7 +9,7 @@ typedef struct {
     unsigned short usSymbolID;
     int iExtraBits;
     int iExtraValue;
-} LengthCode;
+} LENGTH_CODE;
 
 
 /**
@@ -22,6 +22,6 @@ typedef struct {
  * @param length The actual length between (3 and 258)
  * @return LengthCode struct which stores the length code, the required extra bits, and then the extra value in those extra bits,
  */
-extern LengthCode getLengthCode(int length);
+extern LENGTH_CODE getLengthCode(int length);
 
 #endif //DEFLATE_LENGTH_H

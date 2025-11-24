@@ -39,8 +39,8 @@ static const int DISTANCE_EXTRA_BITS[] = {
 #define NUM_DIST_CODES 30
 #define MAX_ALLOWED_DISTANCE 32768
 
-extern DistanceCode getDistanceCode(int distance) {
-    DistanceCode result = {0, 0, 0};
+extern DISTANCE_CODE getDistanceCode(int distance) {
+    DISTANCE_CODE result = {0, 0, 0};
 
     if (distance < 1) {
         fprintf(stderr, "Error: Distance must be at least 1.\n");
