@@ -10,16 +10,16 @@
 
 #define BUFFER_SIZE 4096
 
-#define MAGIC_NUMER 0x1F8B
+#define MAGIC_NUMER 0x8B1F
 #define COMPRESSION_METHOD 0x08 //deflate
-#define FLAG 0b00001001 //RESERVED,RESERVED,RESERVED, FCOMMENT, FNAME, FEXTRA, FHCRC FTEXT
+#define FLAG 0b00000000 //RESERVED,RESERVED,RESERVED, FCOMMENT, FNAME, FEXTRA, FHCRC FTEXT
 #define XFL 0x00
-#define OS 0x00 //FAT filesystem
+#define OS 0x03 //FAT filesystem
 
-static size_t flushBitWriterBuffer(BitWriter* bw) {
-    printf("index = %d\n",bw->index);
+extern size_t flushBitWriterBuffer(BitWriter* bw) {
+    //printf("index = %d\n",bw->index);
     size_t elementsWritten = fwrite(bw->buffer,1,bw->index,bw->file);
-    printf("Elements written to file: %llu \n", elementsWritten);
+    //printf("Elements written to file: %llu \n", elementsWritten);
     bw->index = 0;
     return elementsWritten;
 }
@@ -119,6 +119,19 @@ extern void addBytesFromMSB(BitWriter* bw, uint32_t value, uint8_t bytes) {
     }
 }
 
+extern void addBytesFromMSB2(BitWriter* bw, uint32_t value, uint8_t bytes) {
+    // 1. Ensure bitstream is aligned.
+    flush_bitstream_writer(bw);
+
+    // 2. Write the 4 bytes in LSB-first order (Little-Endian)
+    for (int i = bytes; i >= 0; i--) {
+        // Extract byte i (0, 1, 2, 3). The LSB byte (i=0) is written first.
+        bw->byte = (uint8_t)((value >> (i * 8)) & 0xFF);
+        flushByte(bw); // Writes the byte and resets position to 0
+    }
+}
+
+
 extern void createFile(BitWriter* bw, char* fileName, char* extension) {
     char* newFileName = (char*) malloc(strlen(fileName) + strlen(extension) + 2);
     strcpy(newFileName, fileName);
@@ -135,13 +148,7 @@ extern void createFile(BitWriter* bw, char* fileName, char* extension) {
     addBytesFromMSB(bw, (uint32_t) time(NULL), 4); //MTIME
     addBytesFromMSB(bw, XFL,1); //XFL
     addBytesFromMSB(bw, OS, 1);
-    //No extra fields
 
-    size_t len = strlen(fileName);
-    for (size_t i = 0; i<len; i++) {
-        addBytesFromMSB(bw, fileName[i], 1);
-    }
-    addBytesFromMSB(bw,'\0',1);
 }
 
 

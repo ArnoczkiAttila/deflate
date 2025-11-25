@@ -21,6 +21,18 @@ Node* createNode(unsigned short usSymbol, int freq) {
     return n;
 }
 
+extern void freeTree(Node* top) {
+    if (top == NULL) {
+        return;
+    }
+
+    freeTree(top->pnLeft);
+
+    freeTree(top->pnRight);
+
+    free(top);
+}
+
 extern void compressCodeLengths(
     const uint8_t* all_lengths,
     size_t count,

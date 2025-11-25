@@ -20,6 +20,10 @@ add_executable(deflate main.c
         HUFFMAN_TABLE.h
         HUFFMAN_TABLE.c
         CRC_CHECKSUM.h
-        CRC_CHECKSUM.c)
+        CRC_CHECKSUM.c
+        decompress.c
+        bitreader.c
+        bitreader.h
+        decompress.h)
 
 target_compile_options(deflate PRIVATE -Wall -Werror)

@@ -5,8 +5,13 @@
 #ifndef DEFLATE_COMPRESS_H
 #define DEFLATE_COMPRESS_H
 
+#include <stddef.h>
+
+#include "bitwriter.h"
 #include "status.h"
 
-Status compress(char* fileName);
+extern Status compress(char* fileName);
+extern FILE* ffOpenFile(const char* filename);
+extern size_t flushBitWriterBuffer(BitWriter* bw);
 
 #endif //DEFLATE_COMPRESS_H

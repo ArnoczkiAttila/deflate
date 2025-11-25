@@ -311,6 +311,7 @@ extern void writeGzipTrailer(BitWriter* bw, uint32_t crc32_checksum, uint32_t to
 
     // The stream is now complete, ready for closeBitWriter() which handles the final buffer flush to disk.
 }
+static bool flag = true;
 
 extern void processBlock(BitWriter* bw, uint16_t* LLFrequency, uint16_t* distanceCodeFrequency, const LZ77_buffer* output_ucpBuffer, const bool lastBlock) {
     resetUint16_tArray(LLFrequency,LITERAL_LENGTH_SIZE);
@@ -377,13 +378,13 @@ extern void processBlock(BitWriter* bw, uint16_t* LLFrequency, uint16_t* distanc
 
     //HLIT 5bit
     addData(bw, highestLiteralInUse,5);
-    printf("highest literal in use: %d\n",highestLiteralInUse);
+    //printf("highest literal in use: %d\n",highestLiteralInUse);
     //HDIST 5bit
     addData(bw, highestDistanceCodeInUse,5);
-    printf("highest distance code in use: %d\n",highestDistanceCodeInUse);
+    //printf("highest distance code in use: %d\n",highestDistanceCodeInUse);
     //HCLEN 4bit
     addData(bw, highestCodeLengthInUse,4);
-    printf("highest code length in use: %d\n",highestCodeLengthInUse);
+    //printf("highest code length in use: %d\n",highestCodeLengthInUse);
 
     uint8_t cl_lengths[CODE_LENGTH_FREQUENCIES] = {0};
     findCodeLengthsInTree(clTop, cl_lengths, 0);
@@ -396,7 +397,11 @@ extern void processBlock(BitWriter* bw, uint16_t* LLFrequency, uint16_t* distanc
         // Each length is 3 bits
         uint8_t symbol = cl_order[i];
         addData(bw, cl_lengths[symbol], 3);
+        if (flag) {printf("%d %d\n",symbol,cl_lengths[symbol]);}
+
     }
+    flag = false;
+    printf("\n\n");
 
     HUFFMAN_CODE ll_table[LITERAL_LENGTH_SIZE] = {0};
     HUFFMAN_CODE distance_table[DISTANCE_CODE_SIZE] = {0};
@@ -461,6 +466,9 @@ extern void processBlock(BitWriter* bw, uint16_t* LLFrequency, uint16_t* distanc
     addData(bw, EOB.code, EOB.length);
 
     //Free up memory pointers
+    freeTree(clTop);
+    freeTree(distanceTop);
+    freeTree(literalTop);
 
     freeMinHeap(literalTree);
     freeMinHeap(distanceTree);
@@ -505,7 +513,7 @@ extern Status compress(char* filename) {
 
     // Bitstream writer
     BitWriter* bitWriter = initBitWriter();
-    createFile(bitWriter, "teszt", "gz"); // Use "gz" extension
+    createFile(bitWriter, filename, "gz"); // Use "gz" extension
 
     uint32_t crc32_checksum = 0xFFFFFFFF; // CRC32 is initialized to all ones
     uint32_t total_uncompressed_size = 0;
@@ -599,6 +607,7 @@ extern Status compress(char* filename) {
 
     addBytesFromMSB(bitWriter,crc32_checksum,4);
     addBytesFromMSB(bitWriter,total_uncompressed_size,4);
+
     // 5. Close the file
     fclose(file);
 

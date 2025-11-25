@@ -39,7 +39,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "deflate::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-deflate-Debug-88d2fb56e122bf042e5c.json",
+					"jsonFile" : "target-deflate-Debug-af40121f8851ff70673c.json",
 					"name" : "deflate",
 					"projectIndex" : 0
 				}
@@ -49,8 +49,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "D:/Cprojects/deflate/cmake-build-debug",
-		"source" : "D:/Cprojects/deflate"
+		"build" : "C:/Users/Attila/Documents/GitHub/deflate/cmake-build-debug",
+		"source" : "C:/Users/Attila/Documents/GitHub/deflate"
 	},
 	"version" : 
 	{

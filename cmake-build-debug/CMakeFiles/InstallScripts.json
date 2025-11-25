@@ -1,7 +1,7 @@
 {
 	"InstallScripts" : 
 	[
-		"D:/Cprojects/deflate/cmake-build-debug/cmake_install.cmake"
+		"C:/Users/Attila/Documents/GitHub/deflate/cmake-build-debug/cmake_install.cmake"
 	],
 	"Parallel" : false
 }

@@ -48,5 +48,6 @@ extern void freeMinHeap(MinHeap* minHeap);
 
 extern Node* createNode(unsigned short usSymbol, int freq);
 
+extern void freeTree(Node* top);
 
 #endif //HUFFMAN_NODE_H

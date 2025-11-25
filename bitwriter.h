@@ -28,6 +28,8 @@ void freeBitWriter(BitWriter* bw);
 
 extern void addBytesFromMSB(BitWriter* bw, uint32_t value, uint8_t bytes);
 
+extern void addBytesFromMSB2(BitWriter* bw, uint32_t value, uint8_t bytes);
+
 extern void flush_bitstream_writer(BitWriter* bw);
 
 #endif //DEFLATE_BITWRITER_H

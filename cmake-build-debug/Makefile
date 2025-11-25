@@ -135,6 +135,54 @@ deflate/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\deflate.dir\build.make CMakeFiles/deflate.dir/build
 .PHONY : deflate/fast
 
+CRC_CHECKSUM.obj: CRC_CHECKSUM.c.obj
+.PHONY : CRC_CHECKSUM.obj
+
+# target to build an object file
+CRC_CHECKSUM.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\deflate.dir\build.make CMakeFiles/deflate.dir/CRC_CHECKSUM.c.obj
+.PHONY : CRC_CHECKSUM.c.obj
+
+CRC_CHECKSUM.i: CRC_CHECKSUM.c.i
+.PHONY : CRC_CHECKSUM.i
+
+# target to preprocess a source file
+CRC_CHECKSUM.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\deflate.dir\build.make CMakeFiles/deflate.dir/CRC_CHECKSUM.c.i
+.PHONY : CRC_CHECKSUM.c.i
+
+CRC_CHECKSUM.s: CRC_CHECKSUM.c.s
+.PHONY : CRC_CHECKSUM.s
+
+# target to generate assembly for a file
+CRC_CHECKSUM.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\deflate.dir\build.make CMakeFiles/deflate.dir/CRC_CHECKSUM.c.s
+.PHONY : CRC_CHECKSUM.c.s
+
+HUFFMAN_TABLE.obj: HUFFMAN_TABLE.c.obj
+.PHONY : HUFFMAN_TABLE.obj
+
+# target to build an object file
+HUFFMAN_TABLE.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\deflate.dir\build.make CMakeFiles/deflate.dir/HUFFMAN_TABLE.c.obj
+.PHONY : HUFFMAN_TABLE.c.obj
+
+HUFFMAN_TABLE.i: HUFFMAN_TABLE.c.i
+.PHONY : HUFFMAN_TABLE.i
+
+# target to preprocess a source file
+HUFFMAN_TABLE.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\deflate.dir\build.make CMakeFiles/deflate.dir/HUFFMAN_TABLE.c.i
+.PHONY : HUFFMAN_TABLE.c.i
+
+HUFFMAN_TABLE.s: HUFFMAN_TABLE.c.s
+.PHONY : HUFFMAN_TABLE.s
+
+# target to generate assembly for a file
+HUFFMAN_TABLE.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\deflate.dir\build.make CMakeFiles/deflate.dir/HUFFMAN_TABLE.c.s
+.PHONY : HUFFMAN_TABLE.c.s
+
 LZ77.obj: LZ77.c.obj
 .PHONY : LZ77.obj
 
@@ -158,6 +206,30 @@ LZ77.s: LZ77.c.s
 LZ77.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\deflate.dir\build.make CMakeFiles/deflate.dir/LZ77.c.s
 .PHONY : LZ77.c.s
+
+bitreader.obj: bitreader.c.obj
+.PHONY : bitreader.obj
+
+# target to build an object file
+bitreader.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\deflate.dir\build.make CMakeFiles/deflate.dir/bitreader.c.obj
+.PHONY : bitreader.c.obj
+
+bitreader.i: bitreader.c.i
+.PHONY : bitreader.i
+
+# target to preprocess a source file
+bitreader.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\deflate.dir\build.make CMakeFiles/deflate.dir/bitreader.c.i
+.PHONY : bitreader.c.i
+
+bitreader.s: bitreader.c.s
+.PHONY : bitreader.s
+
+# target to generate assembly for a file
+bitreader.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\deflate.dir\build.make CMakeFiles/deflate.dir/bitreader.c.s
+.PHONY : bitreader.c.s
 
 bitwriter.obj: bitwriter.c.obj
 .PHONY : bitwriter.obj
@@ -206,6 +278,30 @@ compress.s: compress.c.s
 compress.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\deflate.dir\build.make CMakeFiles/deflate.dir/compress.c.s
 .PHONY : compress.c.s
+
+decompress.obj: decompress.c.obj
+.PHONY : decompress.obj
+
+# target to build an object file
+decompress.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\deflate.dir\build.make CMakeFiles/deflate.dir/decompress.c.obj
+.PHONY : decompress.c.obj
+
+decompress.i: decompress.c.i
+.PHONY : decompress.i
+
+# target to preprocess a source file
+decompress.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\deflate.dir\build.make CMakeFiles/deflate.dir/decompress.c.i
+.PHONY : decompress.c.i
+
+decompress.s: decompress.c.s
+.PHONY : decompress.s
+
+# target to generate assembly for a file
+decompress.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\deflate.dir\build.make CMakeFiles/deflate.dir/decompress.c.s
+.PHONY : decompress.c.s
 
 distance.obj: distance.c.obj
 .PHONY : distance.obj
@@ -313,15 +409,27 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... deflate
+	@echo ... CRC_CHECKSUM.obj
+	@echo ... CRC_CHECKSUM.i
+	@echo ... CRC_CHECKSUM.s
+	@echo ... HUFFMAN_TABLE.obj
+	@echo ... HUFFMAN_TABLE.i
+	@echo ... HUFFMAN_TABLE.s
 	@echo ... LZ77.obj
 	@echo ... LZ77.i
 	@echo ... LZ77.s
+	@echo ... bitreader.obj
+	@echo ... bitreader.i
+	@echo ... bitreader.s
 	@echo ... bitwriter.obj
 	@echo ... bitwriter.i
 	@echo ... bitwriter.s
 	@echo ... compress.obj
 	@echo ... compress.i
 	@echo ... compress.s
+	@echo ... decompress.obj
+	@echo ... decompress.i
+	@echo ... decompress.s
 	@echo ... distance.obj
 	@echo ... distance.i
 	@echo ... distance.s
