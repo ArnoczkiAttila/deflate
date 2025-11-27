@@ -1,0 +1,66 @@
+.TH "LZ77_compressed" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+LZ77_compressed \- The fundamental LZ77 token structure\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <LZ77\&.h>\fP
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "\fBLZ77_encoded_type\fP \fBtype\fP"
+.br
+.ti -1c
+.RI "union {"
+.br
+.ti -1c
+.RI "   uint8_t \fBliteral\fP"
+.br
+.ti -1c
+.RI "   struct {"
+.br
+.ti -1c
+.RI "      uint16_t \fBdistance\fP"
+.br
+.ti -1c
+.RI "      uint16_t \fBlength\fP"
+.br
+.ti -1c
+.RI "   } \fBmatch\fP"
+.br
+.ti -1c
+.RI "} \fBdata\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+The fundamental LZ77 token structure\&. 
+
+
+.IP "\(bu" 2
+Uses a struct for the match data to correctly store both distance and length\&. Uses a union to ensure the token only takes the size of the largest data type (the match struct)\&. 
+.PP
+
+.SH "Field Documentation"
+.PP 
+.SS "union  { \&.\&.\&. }  data"
+
+.SS "uint16_t distance"
+
+.SS "uint16_t length"
+
+.SS "uint8_t literal"
+
+.SS "struct  { \&.\&.\&. }  match"
+
+.SS "\fBLZ77_encoded_type\fP type"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

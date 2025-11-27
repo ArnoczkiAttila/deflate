@@ -1,0 +1,314 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="_h_u_f_f_m_a_n___t_a_b_l_e_8c" kind="file" language="C++">
+    <compoundname>HUFFMAN_TABLE.c</compoundname>
+    <includes refid="_h_u_f_f_m_a_n___t_a_b_l_e_8h" local="yes">HUFFMAN_TABLE.h</includes>
+    <includes refid="bitreader_8h" local="yes">bitreader.h</includes>
+    <includes refid="node_8h" local="yes">node.h</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>HUFFMAN_TABLE.c</label>
+        <link refid="_h_u_f_f_m_a_n___t_a_b_l_e_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>HUFFMAN_TABLE.h</label>
+        <link refid="_h_u_f_f_m_a_n___t_a_b_l_e_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>bitreader.h</label>
+        <link refid="bitreader_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>node.h</label>
+        <link refid="node_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>stdbool.h</label>
+      </node>
+      <node id="3">
+        <label>stdint.h</label>
+      </node>
+      <node id="6">
+        <label>stdio.h</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="define">
+      <memberdef kind="define" id="_h_u_f_f_m_a_n___t_a_b_l_e_8c_1a90344de9a45f0d60f23aff3fea165e05" prot="public" static="no">
+        <name>INVALID_NODE_SYMBOL</name>
+        <initializer>286</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HUFFMAN_TABLE.c" line="7" column="9" bodyfile="HUFFMAN_TABLE.c" bodystart="7" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_h_u_f_f_m_a_n___t_a_b_l_e_8c_1a51c241e7ad52441b8d4c1fd5f498b3b9" prot="public" static="no">
+        <name>MAX_BITS</name>
+        <initializer>15</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HUFFMAN_TABLE.c" line="12" column="9" bodyfile="HUFFMAN_TABLE.c" bodystart="12" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="_h_u_f_f_m_a_n___t_a_b_l_e_8c_1ac5c5c75eec8b54cf307c41e22253540f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uint16_t</type>
+        <definition>uint16_t decode_symbol</definition>
+        <argsstring>(BIT_READER *reader, const HuffmanTree *tree)</argsstring>
+        <name>decode_symbol</name>
+        <param>
+          <type><ref refid="struct_b_i_t___r_e_a_d_e_r" kindref="compound">BIT_READER</ref> *</type>
+          <declname>reader</declname>
+        </param>
+        <param>
+          <type>const <ref refid="struct_huffman_tree" kindref="compound">HuffmanTree</ref> *</type>
+          <declname>tree</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HUFFMAN_TABLE.c" line="15" column="10" bodyfile="HUFFMAN_TABLE.c" bodystart="15" bodyend="72"/>
+      </memberdef>
+      <memberdef kind="function" id="_h_u_f_f_m_a_n___t_a_b_l_e_8c_1a2499274512be997926ea1464b3d09628" prot="public" static="no" extern="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void buildFastLookupTable</definition>
+        <argsstring>(const HUFFMAN_CODE *canonical_codes, int total_symbols, HuffmanEntry *lookup_table)</argsstring>
+        <name>buildFastLookupTable</name>
+        <param>
+          <type>const <ref refid="struct_h_u_f_f_m_a_n___c_o_d_e" kindref="compound">HUFFMAN_CODE</ref> *</type>
+          <declname>canonical_codes</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>total_symbols</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_huffman_entry" kindref="compound">HuffmanEntry</ref> *</type>
+          <declname>lookup_table</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HUFFMAN_TABLE.c" line="74" column="13" bodyfile="HUFFMAN_TABLE.c" bodystart="74" bodyend="128" declfile="HUFFMAN_TABLE.c" declline="74" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="_h_u_f_f_m_a_n___t_a_b_l_e_8c_1a32e731d206254fe2aa33026e72d81cf0" prot="public" static="no" extern="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void buildCodeLookupTable</definition>
+        <argsstring>(Node *node, HUFFMAN_CODE *table, uint16_t current_code, int depth)</argsstring>
+        <name>buildCodeLookupTable</name>
+        <param>
+          <type><ref refid="struct_node" kindref="compound">Node</ref> *</type>
+          <declname>node</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_h_u_f_f_m_a_n___c_o_d_e" kindref="compound">HUFFMAN_CODE</ref> *</type>
+          <declname>table</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>current_code</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>depth</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HUFFMAN_TABLE.c" line="130" column="13" bodyfile="HUFFMAN_TABLE.c" bodystart="130" bodyend="150" declfile="HUFFMAN_TABLE.c" declline="130" declcolumn="13"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Created<sp/>by<sp/>Rendszergazda<sp/>on<sp/>11/23/2025.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_h_u_f_f_m_a_n___t_a_b_l_e_8h" kindref="compound">HUFFMAN_TABLE.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>INVALID_NODE_SYMBOL<sp/>286</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="bitreader_8h" kindref="compound">bitreader.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="node_8h" kindref="compound">node.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MAX_BITS<sp/>15<sp/></highlight><highlight class="comment">//<sp/>Max<sp/>code<sp/>length<sp/>in<sp/>Deflate</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal">uint16_t<sp/><ref refid="_h_u_f_f_m_a_n___t_a_b_l_e_8c_1ac5c5c75eec8b54cf307c41e22253540f" kindref="member">decode_symbol</ref>(<ref refid="struct_b_i_t___r_e_a_d_e_r" kindref="compound">BIT_READER</ref>*<sp/>reader,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="struct_huffman_tree" kindref="compound">HuffmanTree</ref>*<sp/>tree)<sp/>{</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>1.<sp/>Peek<sp/>the<sp/>next<sp/>FAST_BITS<sp/>(e.g.,<sp/>9<sp/>bits)<sp/>from<sp/>the<sp/>stream.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/>uint16_t<sp/>peeked_bits<sp/>=<sp/><ref refid="bitreader_8c_1ae4fcc275a9937dc610bc057cb9bcc919" kindref="member">peek_bits</ref>(reader,<sp/><ref refid="_h_u_f_f_m_a_n___t_a_b_l_e_8h_1add78822c51f4692289f2ce174bdf82b0" kindref="member">FAST_BITS</ref>);</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>2.<sp/>Use<sp/>the<sp/>peeked<sp/>bits<sp/>as<sp/>an<sp/>index<sp/>into<sp/>the<sp/>fast<sp/>lookup<sp/>table.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_huffman_entry" kindref="compound">HuffmanEntry</ref><sp/>entry<sp/>=<sp/>tree-&gt;<ref refid="struct_huffman_tree_1a972c94cb32177e802b2d8f97714e2968" kindref="member">lookup_table</ref>[peeked_bits];</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>---<sp/>Fast<sp/>Path<sp/>Check<sp/>---</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(entry.<ref refid="struct_huffman_entry_1a46a6da6b1936191571fd30b2a749f38c" kindref="member">bits</ref><sp/>&lt;=<sp/><ref refid="_h_u_f_f_m_a_n___t_a_b_l_e_8h_1add78822c51f4692289f2ce174bdf82b0" kindref="member">FAST_BITS</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>symbol<sp/>was<sp/>resolved<sp/>by<sp/>entry.bits<sp/>or<sp/>fewer.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Consume<sp/>the<sp/>bits<sp/>used<sp/>for<sp/>the<sp/>successful<sp/>decode.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bitreader_8c_1a06bc428e5e0fdf358c4d7aaf14498ce0" kindref="member">read_bits</ref>(reader,<sp/>entry.<ref refid="struct_huffman_entry_1a46a6da6b1936191571fd30b2a749f38c" kindref="member">bits</ref>);</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>entry.<ref refid="struct_huffman_entry_1aec17ee1083424a4709c461d47ff05a45" kindref="member">symbol</ref>;</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>---<sp/>Slow<sp/>Path<sp/>(The<sp/>code<sp/>is<sp/>longer<sp/>than<sp/>the<sp/>fast<sp/>lookup<sp/>size)<sp/>---</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>This<sp/>is<sp/>necessary<sp/>for<sp/>codes<sp/>10<sp/>bits<sp/>and<sp/>longer<sp/>(up<sp/>to<sp/>MAX_BITS).</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Since<sp/>the<sp/>fast<sp/>lookup<sp/>couldn&apos;t<sp/>resolve<sp/>it,<sp/>we<sp/>need<sp/>to<sp/>read<sp/>bit-by-bit</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>or<sp/>use<sp/>a<sp/>secondary<sp/>table/trie<sp/>structure.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Example:<sp/>Traversing<sp/>the<sp/>longer<sp/>codes<sp/>bit-by-bit<sp/>(SLOW,<sp/>but<sp/>works):</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Start<sp/>with<sp/>the<sp/>first<sp/>9<sp/>bits<sp/>already<sp/>peeked<sp/>(we&apos;ll<sp/>consume<sp/>1<sp/>bit<sp/>at<sp/>a<sp/>time).</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint16_t<sp/>current_code<sp/>=<sp/>peeked_bits;</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint8_t<sp/>bits_consumed<sp/>=<sp/><ref refid="_h_u_f_f_m_a_n___t_a_b_l_e_8h_1add78822c51f4692289f2ce174bdf82b0" kindref="member">FAST_BITS</ref>;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Loop<sp/>until<sp/>we<sp/>reach<sp/>MAX_BITS<sp/>(or<sp/>find<sp/>a<sp/>match<sp/>in<sp/>the<sp/>longer<sp/>code<sp/>structure)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(bits_consumed<sp/>&lt;<sp/><ref refid="decompress_8c_1a51c241e7ad52441b8d4c1fd5f498b3b9" kindref="member">MAX_BITS</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Read<sp/>one<sp/>more<sp/>bit</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint8_t<sp/>new_bit<sp/>=<sp/><ref refid="bitreader_8c_1a21ed250683802f09cc0375f8dbb5a125" kindref="member">read_bit</ref>(reader);</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>bits_consumed++;</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Append<sp/>the<sp/>new<sp/>bit<sp/>to<sp/>the<sp/>current<sp/>code<sp/>(left-shift<sp/>the<sp/>code,<sp/>add<sp/>the<sp/>bit)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>current_code<sp/>=<sp/>(current_code<sp/>&lt;&lt;<sp/>1)<sp/>|<sp/>new_bit;</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>---<sp/>Secondary<sp/>Lookup<sp/>/<sp/>Full<sp/>Match<sp/>Check<sp/>---</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>logic<sp/>here<sp/>is<sp/>highly<sp/>dependent<sp/>on<sp/>how<sp/>you<sp/>store<sp/>the<sp/>long<sp/>codes.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>You<sp/>must<sp/>search<sp/>your<sp/>full<sp/>list<sp/>of<sp/>canonical<sp/>codes<sp/>to<sp/>see<sp/>if</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>(current_code,<sp/>bits_consumed)<sp/>matches<sp/>a<sp/>known<sp/>symbol.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Assuming<sp/>you<sp/>have<sp/>an<sp/>auxiliary<sp/>array<sp/>of<sp/>ALL<sp/>canonical<sp/>codes:</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>if<sp/>(check_full_code_list(current_code,<sp/>bits_consumed,<sp/>&amp;symbol_found))<sp/>{</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>return<sp/>symbol_found;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>}</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Since<sp/>Deflate<sp/>is<sp/>LSB-first,<sp/>the<sp/>check<sp/>is<sp/>more<sp/>complex:</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>You<sp/>must<sp/>check<sp/>if<sp/>the<sp/>REVERSED<sp/>current_code<sp/>of<sp/>length<sp/>bits_consumed</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>matches<sp/>a<sp/>symbol&apos;s<sp/>canonical<sp/>code.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>If<sp/>the<sp/>loop<sp/>finishes<sp/>without<sp/>a<sp/>match<sp/>(should<sp/>not<sp/>happen<sp/>in<sp/>valid<sp/>data)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>return<sp/>ERROR_SYMBOL<sp/>or<sp/>handle<sp/>failure.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;<sp/></highlight><highlight class="comment">//<sp/>Placeholder<sp/>for<sp/>error<sp/>handling<sp/>or<sp/>final<sp/>symbol.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="72"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="_h_u_f_f_m_a_n___t_a_b_l_e_8c_1a2499274512be997926ea1464b3d09628" kindref="member">buildFastLookupTable</ref>(</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="struct_h_u_f_f_m_a_n___c_o_d_e" kindref="compound">HUFFMAN_CODE</ref>*<sp/>canonical_codes,</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>total_symbols,</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_huffman_entry" kindref="compound">HuffmanEntry</ref>*<sp/>lookup_table</highlight></codeline>
+<codeline lineno="78"><highlight class="normal">)<sp/>{</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Initialize<sp/>the<sp/>lookup<sp/>table</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>(Optional:<sp/>Initialize<sp/>to<sp/>a<sp/>safe<sp/>&apos;ERROR&apos;<sp/>state)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>for<sp/>(int<sp/>k<sp/>=<sp/>0;<sp/>k<sp/>&lt;<sp/>FAST_SIZE;<sp/>k++)<sp/>{<sp/>lookup_table[k].symbol<sp/>=<sp/>ERROR_SYMBOL;<sp/>}</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>total_symbols;<sp/>i++)<sp/>{</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint16_t<sp/>code<sp/>=<sp/>canonical_codes[i].<ref refid="struct_h_u_f_f_m_a_n___c_o_d_e_1a70008c0b7822b172472813e6730ea565" kindref="member">code</ref>;</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint8_t<sp/>length<sp/>=<sp/>canonical_codes[i].<ref refid="struct_h_u_f_f_m_a_n___c_o_d_e_1ab2b3adeb2a67e656ff030b56727fd0ac" kindref="member">length</ref>;</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(length<sp/>&gt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Deflate<sp/>codes<sp/>are<sp/>left-aligned<sp/>for<sp/>lookup.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>code<sp/>is<sp/>stored<sp/>in<sp/>the<sp/>MOST<sp/>SIGNIFICANT<sp/>bits<sp/>of<sp/>the<sp/>lookup<sp/>index.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(length<sp/>&lt;=<sp/><ref refid="_h_u_f_f_m_a_n___t_a_b_l_e_8h_1add78822c51f4692289f2ce174bdf82b0" kindref="member">FAST_BITS</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Case<sp/>1:<sp/>Code<sp/>is<sp/>short<sp/>enough<sp/>for<sp/>the<sp/>fast<sp/>table<sp/>(e.g.,<sp/>length<sp/>&lt;=<sp/>9)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>1.<sp/>Left-align<sp/>the<sp/>code<sp/>to<sp/>FAST_BITS</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>code<sp/>must<sp/>be<sp/>reversed<sp/>if<sp/>your<sp/>reader<sp/>reads<sp/>LSB-first<sp/>(standard<sp/>Deflate)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>***<sp/>CRITICAL<sp/>NOTE:<sp/>Deflate<sp/>codes<sp/>are<sp/>transmitted<sp/>LSB-first.<sp/>***</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Your<sp/>lookup<sp/>table<sp/>should<sp/>be<sp/>indexed<sp/>by<sp/>bits<sp/>in<sp/>the<sp/>order<sp/>they<sp/>appear.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Assuming<sp/>you&apos;ve<sp/>already<sp/>**bit-reversed**<sp/>the<sp/>Canonical<sp/>Code<sp/>if<sp/>needed</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>(or<sp/>your<sp/>reader<sp/>handles<sp/>LSB-first<sp/>directly):</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Use<sp/>the<sp/>canonical<sp/>code<sp/>&apos;code&apos;<sp/>as<sp/>the<sp/>start<sp/>of<sp/>the<sp/>index<sp/>block</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint16_t<sp/>index_base<sp/>=<sp/>code<sp/>&lt;&lt;<sp/>(<ref refid="_h_u_f_f_m_a_n___t_a_b_l_e_8h_1add78822c51f4692289f2ce174bdf82b0" kindref="member">FAST_BITS</ref><sp/>-<sp/>length);</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>2.<sp/>Calculate<sp/>the<sp/>number<sp/>of<sp/>entries<sp/>that<sp/>point<sp/>to<sp/>this<sp/>symbol</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint16_t<sp/>num_entries<sp/>=<sp/>1<sp/>&lt;&lt;<sp/>(<ref refid="_h_u_f_f_m_a_n___t_a_b_l_e_8h_1add78822c51f4692289f2ce174bdf82b0" kindref="member">FAST_BITS</ref><sp/>-<sp/>length);</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>3.<sp/>Populate<sp/>all<sp/>relevant<sp/>table<sp/>entries</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(uint16_t<sp/>j<sp/>=<sp/>0;<sp/>j<sp/>&lt;<sp/>num_entries;<sp/>j++)<sp/>{</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>lookup<sp/>index<sp/>is<sp/>the<sp/>base<sp/>plus<sp/>the<sp/>loop<sp/>offset</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint16_t<sp/>index<sp/>=<sp/>index_base<sp/>|<sp/>j;</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>lookup_table[index].<ref refid="struct_huffman_entry_1aec17ee1083424a4709c461d47ff05a45" kindref="member">symbol</ref><sp/>=<sp/>i;</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>lookup_table[index].<ref refid="struct_huffman_entry_1a46a6da6b1936191571fd30b2a749f38c" kindref="member">bits</ref><sp/>=<sp/>length;</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Case<sp/>2:<sp/>Code<sp/>is<sp/>longer<sp/>than<sp/>FAST_BITS<sp/>(e.g.,<sp/>length<sp/>&gt;<sp/>9)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>This<sp/>code<sp/>is<sp/>too<sp/>long<sp/>for<sp/>the<sp/>fast<sp/>lookup<sp/>table.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>It<sp/>must<sp/>be<sp/>handled<sp/>by<sp/>the<sp/>&apos;slow<sp/>path&apos;<sp/>in<sp/>decode_symbol.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>For<sp/>building<sp/>the<sp/>table,<sp/>you<sp/>can<sp/>stop<sp/>here.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"></highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Optional:<sp/>Store<sp/>a<sp/>pointer/reference<sp/>to<sp/>the<sp/>slow<sp/>path<sp/>data</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>in<sp/>the<sp/>table<sp/>entry<sp/>corresponding<sp/>to<sp/>the<sp/>first<sp/>FAST_BITS<sp/>of<sp/>the<sp/>long<sp/>code.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="128"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"></highlight></codeline>
+<codeline lineno="130"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="_h_u_f_f_m_a_n___t_a_b_l_e_8c_1a32e731d206254fe2aa33026e72d81cf0" kindref="member">buildCodeLookupTable</ref>(<ref refid="struct_node" kindref="compound">Node</ref>*<sp/>node,<sp/><ref refid="struct_h_u_f_f_m_a_n___c_o_d_e" kindref="compound">HUFFMAN_CODE</ref>*<sp/>table,<sp/>uint16_t<sp/>current_code,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>depth)<sp/>{</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!node)<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"></highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(node-&gt;<ref refid="struct_node_1aef34b594003aef090557c68fa0976aef" kindref="member">usSymbol</ref><sp/>!=<sp/><ref refid="_h_u_f_f_m_a_n___t_a_b_l_e_8c_1a90344de9a45f0d60f23aff3fea165e05" kindref="member">INVALID_NODE_SYMBOL</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(depth<sp/>&gt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>table[node-&gt;<ref refid="struct_node_1aef34b594003aef090557c68fa0976aef" kindref="member">usSymbol</ref>].<ref refid="struct_h_u_f_f_m_a_n___c_o_d_e_1a70008c0b7822b172472813e6730ea565" kindref="member">code</ref><sp/>=<sp/>current_code;</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>table[node-&gt;<ref refid="struct_node_1aef34b594003aef090557c68fa0976aef" kindref="member">usSymbol</ref>].<ref refid="struct_h_u_f_f_m_a_n___c_o_d_e_1ab2b3adeb2a67e656ff030b56727fd0ac" kindref="member">length</ref><sp/>=<sp/>(uint8_t)depth;</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"></highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>table[node-&gt;<ref refid="struct_node_1aef34b594003aef090557c68fa0976aef" kindref="member">usSymbol</ref>].<ref refid="struct_h_u_f_f_m_a_n___c_o_d_e_1a70008c0b7822b172472813e6730ea565" kindref="member">code</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>table[node-&gt;<ref refid="struct_node_1aef34b594003aef090557c68fa0976aef" kindref="member">usSymbol</ref>].<ref refid="struct_h_u_f_f_m_a_n___c_o_d_e_1ab2b3adeb2a67e656ff030b56727fd0ac" kindref="member">length</ref><sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"></highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint16_t<sp/>left_code<sp/>=<sp/>current_code<sp/>&lt;&lt;<sp/>1;</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_h_u_f_f_m_a_n___t_a_b_l_e_8c_1a32e731d206254fe2aa33026e72d81cf0" kindref="member">buildCodeLookupTable</ref>(node-&gt;<ref refid="struct_node_1a3fbc6e3132038d871c08e9b71391893f" kindref="member">pnLeft</ref>,<sp/>table,<sp/>left_code,<sp/>depth<sp/>+<sp/>1);</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"></highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint16_t<sp/>right_code<sp/>=<sp/>(current_code<sp/>&lt;&lt;<sp/>1)<sp/>|<sp/>1;</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_h_u_f_f_m_a_n___t_a_b_l_e_8c_1a32e731d206254fe2aa33026e72d81cf0" kindref="member">buildCodeLookupTable</ref>(node-&gt;<ref refid="struct_node_1a72a7b991ec60f48cd33a359fb0c00942" kindref="member">pnRight</ref>,<sp/>table,<sp/>right_code,<sp/>depth<sp/>+<sp/>1);</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="150"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="HUFFMAN_TABLE.c"/>
+  </compounddef>
+</doxygen>

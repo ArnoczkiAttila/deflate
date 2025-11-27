@@ -1,0 +1,173 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="_c_r_c___c_h_e_c_k_s_u_m_8h" kind="file" language="C++">
+    <compoundname>CRC_CHECKSUM.h</compoundname>
+    <includes local="no">stdint.h</includes>
+    <includedby refid="_c_r_c___c_h_e_c_k_s_u_m_8c" local="yes">CRC_CHECKSUM.c</includedby>
+    <includedby refid="compress_8c" local="yes">compress.c</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>CRC_CHECKSUM.h</label>
+        <link refid="_c_r_c___c_h_e_c_k_s_u_m_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>stdint.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2">
+        <label>CRC_CHECKSUM.c</label>
+        <link refid="_c_r_c___c_h_e_c_k_s_u_m_8c"/>
+      </node>
+      <node id="1">
+        <label>CRC_CHECKSUM.h</label>
+        <link refid="_c_r_c___c_h_e_c_k_s_u_m_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>compress.c</label>
+        <link refid="compress_8c"/>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="define">
+      <memberdef kind="define" id="_c_r_c___c_h_e_c_k_s_u_m_8h_1a32104fd66e8bf60867719c6b6c877b4b" prot="public" static="no">
+        <name>CRC32_POLYNOMIAL</name>
+        <initializer>0xEDB88320UL</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="CRC_CHECKSUM.h" line="9" column="9" bodyfile="CRC_CHECKSUM.h" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_c_r_c___c_h_e_c_k_s_u_m_8h_1a8948ca1a7705abf34d9732f06b2c4e45" prot="public" static="no">
+        <name>CRC32_INITIAL_VALUE</name>
+        <initializer>0xFFFFFFFFUL</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="CRC_CHECKSUM.h" line="12" column="9" bodyfile="CRC_CHECKSUM.h" bodystart="12" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="_c_r_c___c_h_e_c_k_s_u_m_8h_1a949564d32e176c6849b5ccc68c4947f3" prot="public" static="no" extern="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uint32_t</type>
+        <definition>uint32_t calculate_crc32</definition>
+        <argsstring>(uint32_t current_crc, const uint8_t *data, size_t length)</argsstring>
+        <name>calculate_crc32</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>current_crc</declname>
+        </param>
+        <param>
+          <type>const uint8_t *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>length</declname>
+        </param>
+        <briefdescription>
+<para>Updates a running CRC32 checksum based on a block of data. The CRC32 algorithm used is the standard IEEE 802.3 (used in Gzip and Zlib). </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>current_crc</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The current running CRC value (should be 0xFFFFFFFF for the start). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to the buffer containing the data chunk. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>length</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The number of bytes in the data chunk. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>uint32_t The updated CRC value.</para>
+</simplesect>
+Updates a running CRC32 checksum based on a block of data. The CRC32 algorithm used is the standard IEEE 802.3 (used in Gzip and Zlib).</para>
+<para><itemizedlist>
+<listitem><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>current_crc</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The current running CRC value (initial value 0xFFFFFFFF). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to the buffer containing the data chunk. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>length</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The number of bytes in the data chunk. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>uint32_t The updated CRC value. </para>
+</simplesect>
+</para>
+</listitem></itemizedlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="CRC_CHECKSUM.h" line="24" column="17" bodyfile="CRC_CHECKSUM.c" bodystart="45" bodyend="64" declfile="CRC_CHECKSUM.h" declline="24" declcolumn="17"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Created<sp/>by<sp/>Rendszergazda<sp/>on<sp/>11/24/2025.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>DEFLATE_CRC_CHECKSUM_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DEFLATE_CRC_CHECKSUM_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="comment">//<sp/>The<sp/>standard<sp/>polynomial<sp/>used<sp/>for<sp/>Gzip/Zlib<sp/>(IEEE<sp/>802.3)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9" refid="_c_r_c___c_h_e_c_k_s_u_m_8h_1a32104fd66e8bf60867719c6b6c877b4b" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CRC32_POLYNOMIAL<sp/>0xEDB88320UL</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">//<sp/>The<sp/>initial<sp/>value<sp/>for<sp/>the<sp/>CRC32<sp/>calculation<sp/>in<sp/>Gzip/Zlib<sp/>is<sp/>0xFFFFFFFF</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12" refid="_c_r_c___c_h_e_c_k_s_u_m_8h_1a8948ca1a7705abf34d9732f06b2c4e45" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CRC32_INITIAL_VALUE<sp/>0xFFFFFFFFUL</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdint.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/>uint32_t<sp/><ref refid="_c_r_c___c_h_e_c_k_s_u_m_8h_1a949564d32e176c6849b5ccc68c4947f3" kindref="member">calculate_crc32</ref>(uint32_t<sp/>current_crc,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>uint8_t*<sp/>data,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>length);</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//DEFLATE_CRC_CHECKSUM_H</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="CRC_CHECKSUM.h"/>
+  </compounddef>
+</doxygen>

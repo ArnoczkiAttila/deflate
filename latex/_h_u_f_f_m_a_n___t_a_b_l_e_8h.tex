@@ -1,0 +1,82 @@
+\doxysection{HUFFMAN\+\_\+\+TABLE.\+h File Reference}
+\label{_h_u_f_f_m_a_n___t_a_b_l_e_8h}\index{HUFFMAN\_TABLE.h@{HUFFMAN\_TABLE.h}}
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include "{}bitreader.\+h"{}}\newline
+{\ttfamily \#include "{}node.\+h"{}}\newline
+Include dependency graph for HUFFMAN\+\_\+\+TABLE.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \textbf{ HUFFMAN\+\_\+\+CODE}
+\item 
+struct \textbf{ Huffman\+Entry}
+\item 
+struct \textbf{ Canonical\+Code}
+\item 
+struct \textbf{ Huffman\+Tree}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \textbf{ FAST\+\_\+\+BITS}~9
+\item 
+\#define \textbf{ FAST\+\_\+\+SIZE}~(1 $<$$<$ \textbf{ FAST\+\_\+\+BITS})
+\item 
+\#define \textbf{ MAX\+\_\+\+CODE\+\_\+\+SYMBOLS}~286
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \textbf{ build\+Code\+Lookup\+Table} (\textbf{ Node} $\ast$node, \textbf{ HUFFMAN\+\_\+\+CODE} $\ast$table, uint16\+\_\+t current\+\_\+code, int depth)
+\item 
+void \textbf{ build\+Fast\+Lookup\+Table} (const \textbf{ HUFFMAN\+\_\+\+CODE} $\ast$canonical\+\_\+codes, int total\+\_\+symbols, \textbf{ Huffman\+Entry} $\ast$lookup\+\_\+table)
+\item 
+uint16\+\_\+t \textbf{ decode\+\_\+symbol} (\textbf{ BIT\+\_\+\+READER} $\ast$reader, const \textbf{ Huffman\+Tree} $\ast$tree)
+\end{DoxyCompactItemize}
+
+
+\label{doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\index{HUFFMAN\_TABLE.h@{HUFFMAN\_TABLE.h}!FAST\_BITS@{FAST\_BITS}}
+\index{FAST\_BITS@{FAST\_BITS}!HUFFMAN\_TABLE.h@{HUFFMAN\_TABLE.h}}
+\doxysubsubsection{FAST\_BITS}
+{\footnotesize\ttfamily \label{_h_u_f_f_m_a_n___t_a_b_l_e_8h_add78822c51f4692289f2ce174bdf82b0} 
+\#define FAST\+\_\+\+BITS~9}
+
+\index{HUFFMAN\_TABLE.h@{HUFFMAN\_TABLE.h}!FAST\_SIZE@{FAST\_SIZE}}
+\index{FAST\_SIZE@{FAST\_SIZE}!HUFFMAN\_TABLE.h@{HUFFMAN\_TABLE.h}}
+\doxysubsubsection{FAST\_SIZE}
+{\footnotesize\ttfamily \label{_h_u_f_f_m_a_n___t_a_b_l_e_8h_aa9e6595da72a8ad3543d033dbf737db2} 
+\#define FAST\+\_\+\+SIZE~(1 $<$$<$ \textbf{ FAST\+\_\+\+BITS})}
+
+\index{HUFFMAN\_TABLE.h@{HUFFMAN\_TABLE.h}!MAX\_CODE\_SYMBOLS@{MAX\_CODE\_SYMBOLS}}
+\index{MAX\_CODE\_SYMBOLS@{MAX\_CODE\_SYMBOLS}!HUFFMAN\_TABLE.h@{HUFFMAN\_TABLE.h}}
+\doxysubsubsection{MAX\_CODE\_SYMBOLS}
+{\footnotesize\ttfamily \label{_h_u_f_f_m_a_n___t_a_b_l_e_8h_a8e78a9fcd1b3afab6bff573299f76ed1} 
+\#define MAX\+\_\+\+CODE\+\_\+\+SYMBOLS~286}
+
+
+
+\label{doc-func-members}
+\doxysubsection{Function Documentation}
+\index{HUFFMAN\_TABLE.h@{HUFFMAN\_TABLE.h}!buildCodeLookupTable@{buildCodeLookupTable}}
+\index{buildCodeLookupTable@{buildCodeLookupTable}!HUFFMAN\_TABLE.h@{HUFFMAN\_TABLE.h}}
+\doxysubsubsection{buildCodeLookupTable()}
+{\footnotesize\ttfamily \label{_h_u_f_f_m_a_n___t_a_b_l_e_8h_a32e731d206254fe2aa33026e72d81cf0} 
+void build\+Code\+Lookup\+Table (\begin{DoxyParamCaption}\item[{\textbf{ Node} $\ast$}]{node}{, }\item[{\textbf{ HUFFMAN\+\_\+\+CODE} $\ast$}]{table}{, }\item[{uint16\+\_\+t}]{current\+\_\+code}{, }\item[{int}]{depth}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+
+\index{HUFFMAN\_TABLE.h@{HUFFMAN\_TABLE.h}!buildFastLookupTable@{buildFastLookupTable}}
+\index{buildFastLookupTable@{buildFastLookupTable}!HUFFMAN\_TABLE.h@{HUFFMAN\_TABLE.h}}
+\doxysubsubsection{buildFastLookupTable()}
+{\footnotesize\ttfamily \label{_h_u_f_f_m_a_n___t_a_b_l_e_8h_a2499274512be997926ea1464b3d09628} 
+void build\+Fast\+Lookup\+Table (\begin{DoxyParamCaption}\item[{const \textbf{ HUFFMAN\+\_\+\+CODE} $\ast$}]{canonical\+\_\+codes}{, }\item[{int}]{total\+\_\+symbols}{, }\item[{\textbf{ Huffman\+Entry} $\ast$}]{lookup\+\_\+table}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+
+\index{HUFFMAN\_TABLE.h@{HUFFMAN\_TABLE.h}!decode\_symbol@{decode\_symbol}}
+\index{decode\_symbol@{decode\_symbol}!HUFFMAN\_TABLE.h@{HUFFMAN\_TABLE.h}}
+\doxysubsubsection{decode\_symbol()}
+{\footnotesize\ttfamily \label{_h_u_f_f_m_a_n___t_a_b_l_e_8h_ac5c5c75eec8b54cf307c41e22253540f} 
+uint16\+\_\+t decode\+\_\+symbol (\begin{DoxyParamCaption}\item[{\textbf{ BIT\+\_\+\+READER} $\ast$}]{reader}{, }\item[{const \textbf{ Huffman\+Tree} $\ast$}]{tree}{}\end{DoxyParamCaption})}
+

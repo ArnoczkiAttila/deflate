@@ -1,0 +1,38 @@
+\doxysection{length.\+h File Reference}
+\label{length_8h}\index{length.h@{length.h}}
+This graph shows which files directly or indirectly include this file\+:
+% FIG 0
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \textbf{ LENGTH\+\_\+\+CODE}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ LENGTH\+\_\+\+CODE} \textbf{ get\+Length\+Code} (int length)
+\begin{DoxyCompactList}\small\item\em Length\+Code. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\doxysubsection{Function Documentation}
+\index{length.h@{length.h}!getLengthCode@{getLengthCode}}
+\index{getLengthCode@{getLengthCode}!length.h@{length.h}}
+\doxysubsubsection{getLengthCode()}
+{\footnotesize\ttfamily \label{length_8h_ac1708113f9ba2b598b57c0290f24ddd2} 
+\textbf{ LENGTH\+\_\+\+CODE} get\+Length\+Code (\begin{DoxyParamCaption}\item[{int}]{length}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Length\+Code. 
+
+The get\+Length\+Code function calculates the Length Code for each match length, and returns a struct with the necessary data in it. For more information on Length Code\textquotesingle{}s check out the official rfc1951 standard documentation. ({\texttt{https\+://datatracker.\+ietf.\+org/doc/html/rfc1951\#page-\/11}})
+
+
+\begin{DoxyParams}{Parameters}
+{\em length} & The actual length between (3 and 258) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Length\+Code struct which stores the length code, the required extra bits, and then the extra value in those extra bits, 
+\end{DoxyReturn}

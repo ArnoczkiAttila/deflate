@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="struct_status" kind="struct" language="C++" prot="public">
+    <compoundname>Status</compoundname>
+    <includes refid="status_8h" local="no">status.h</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="struct_status_1a0ecce7ac25584e143ec56590e89efacd" prot="public" static="no" mutable="no">
+        <type><ref refid="status_8h_1ae98a46f4ea1a43ca48acaf15d2eb7113" kindref="member">StatusCode</ref></type>
+        <definition>StatusCode code</definition>
+        <argsstring></argsstring>
+        <name>code</name>
+        <qualifiedname>Status::code</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="status.h" line="18" column="16" bodyfile="status.h" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_status_1a0b2e8c7f76df48129f994ecc46d5c66c" prot="public" static="no" mutable="no">
+        <type>char *</type>
+        <definition>char* message</definition>
+        <argsstring></argsstring>
+        <name>message</name>
+        <qualifiedname>Status::message</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="status.h" line="19" column="10" bodyfile="status.h" bodystart="19" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="status.h" line="17" column="1" bodyfile="status.h" bodystart="17" bodyend="20"/>
+    <listofallmembers>
+      <member refid="struct_status_1a0ecce7ac25584e143ec56590e89efacd" prot="public" virt="non-virtual"><scope>Status</scope><name>code</name></member>
+      <member refid="struct_status_1a0b2e8c7f76df48129f994ecc46d5c66c" prot="public" virt="non-virtual"><scope>Status</scope><name>message</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

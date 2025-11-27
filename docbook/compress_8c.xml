@@ -1,0 +1,230 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_compress_8c" xml:lang="en-US">
+<title>compress.c File Reference</title>
+<indexterm><primary>compress.c</primary></indexterm>
+<programlisting linenumbering="unnumbered">#include &quot;compress.h&quot;<?linebreak?>#include &quot;debugmalloc.h&quot;<?linebreak?>#include &lt;stdio.h&gt;<?linebreak?>#include &lt;string.h&gt;<?linebreak?>#include &quot;bitwriter.h&quot;<?linebreak?>#include &quot;CRC_CHECKSUM.h&quot;<?linebreak?>#include &quot;distance.h&quot;<?linebreak?>#include &quot;HUFFMAN_TABLE.h&quot;<?linebreak?>#include &quot;length.h&quot;<?linebreak?>#include &quot;LZ77.h&quot;<?linebreak?>#include &quot;node.h&quot;<?linebreak?>#include &quot;status.h&quot;<?linebreak?></programlisting>Include dependency graph for compress.c:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="compress_8c__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Macros    </title>
+        <itemizedlist>
+            <listitem><para>#define <link linkend="_compress_8c_1ab0bc977d3fec2517ebda1a77e1cfaecc">HASH_BITS</link>&#160;&#160;&#160;15</para>
+</listitem>
+            <listitem><para>#define <link linkend="_compress_8c_1a52f7ff3c0f79c8692dbd2fab70256529">HASH_SHIFT</link>&#160;&#160;&#160;5</para>
+</listitem>
+            <listitem><para>#define <link linkend="_compress_8c_1a8ba578169aad59095035a05d2f7323a7">HASH_MASK</link>&#160;&#160;&#160;0x7FFF</para>
+</listitem>
+            <listitem><para>#define <link linkend="_compress_8c_1ad6074dd11ab3c97c8135c43aab03ae95">HASH_SIZE</link>&#160;&#160;&#160;(1 &lt;&lt; <link linkend="_compress_8c_1ab0bc977d3fec2517ebda1a77e1cfaecc">HASH_BITS</link>)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_compress_8c_1ab3f68d59e815ea166f8c983bc6e85c5b">WINDOW_SIZE</link>&#160;&#160;&#160;32768</para>
+</listitem>
+            <listitem><para>#define <link linkend="_compress_8c_1a6b20d41d6252e9871430c242cb1a56e7">BUFFER_SIZE</link>&#160;&#160;&#160;(<link linkend="_compress_8c_1ab3f68d59e815ea166f8c983bc6e85c5b">WINDOW_SIZE</link> * 2)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_compress_8c_1a76660d8139575e05671801dbe5a5af50">EMPTY_INDEX</link>&#160;&#160;&#160;0xFFFF</para>
+</listitem>
+            <listitem><para>#define <link linkend="_compress_8c_1a7c4eca8fe59888352807b89daed94258">LITERAL_LENGTH_SIZE</link>&#160;&#160;&#160;286</para>
+</listitem>
+            <listitem><para>#define <link linkend="_compress_8c_1a351ed2b19cd87022ef91920a102312d8">END_OF_BLOCK</link>&#160;&#160;&#160;256</para>
+</listitem>
+            <listitem><para>#define <link linkend="_compress_8c_1ad30337fb0318fd2705318081158a6f7b">DISTANCE_CODE_SIZE</link>&#160;&#160;&#160;30</para>
+</listitem>
+            <listitem><para>#define <link linkend="_compress_8c_1a5f9bb71c82ea3fa727a1dff9447dff20">CODE_LENGTH_FREQUENCIES</link>&#160;&#160;&#160;19</para>
+</listitem>
+            <listitem><para>#define <link linkend="_compress_8c_1aec93e83855ac17c3c25c55c37ca186dd">BYTE</link>&#160;&#160;&#160;uint8_t</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Functions    </title>
+        <itemizedlist>
+            <listitem><para>FILE * <link linkend="_compress_8c_1af23a493c40a7e0aff72b6ecf7f54c06b">ffOpenFile</link> (const char *filename)</para>
+
+<para>Opens a file in rb (read binary) mode. </para>
+</listitem>
+            <listitem><para>void <link linkend="_compress_8c_1a8dfb153692ba68896af5936e482d6493">compressData</link> (const unsigned char *ucpBuffer, const size_t bytesRead, uint16_t *hash_table, <link linkend="_struct_l_z77__buffer">LZ77_buffer</link> *output_ucpBuffer)</para>
+
+<para>Compress Data. </para>
+</listitem>
+            <listitem><para>void <link linkend="_compress_8c_1a56b0820315da001b8d577ec83574dad7">writeGzipTrailer</link> (<link linkend="_struct_bit_writer">BitWriter</link> *bw, uint32_t crc32_checksum, uint32_t total_uncompressed_size)</para>
+</listitem>
+            <listitem><para>void <link linkend="_compress_8c_1aa7597901166c3301bf52047091ed5d59">processBlock</link> (<link linkend="_struct_bit_writer">BitWriter</link> *bw, uint16_t *LLFrequency, uint16_t *distanceCodeFrequency, const <link linkend="_struct_l_z77__buffer">LZ77_buffer</link> *output_ucpBuffer, const bool lastBlock)</para>
+</listitem>
+            <listitem><para><link linkend="_struct_status">Status</link> <link linkend="_compress_8c_1a79cadd96d56d3aa879adb002a68d07d7">compress</link> (char *filename)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Macro Definition Documentation</title>
+<anchor xml:id="_compress_8c_1a6b20d41d6252e9871430c242cb1a56e7"/><section>
+    <title>BUFFER_SIZE</title>
+<indexterm><primary>BUFFER_SIZE</primary><secondary>compress.c</secondary></indexterm>
+<indexterm><primary>compress.c</primary><secondary>BUFFER_SIZE</secondary></indexterm>
+<para><computeroutput>#define BUFFER_SIZE&#160;&#160;&#160;(<link linkend="_compress_8c_1ab3f68d59e815ea166f8c983bc6e85c5b">WINDOW_SIZE</link> * 2)</computeroutput></para></section>
+<anchor xml:id="_compress_8c_1aec93e83855ac17c3c25c55c37ca186dd"/><section>
+    <title>BYTE</title>
+<indexterm><primary>BYTE</primary><secondary>compress.c</secondary></indexterm>
+<indexterm><primary>compress.c</primary><secondary>BYTE</secondary></indexterm>
+<para><computeroutput>#define BYTE&#160;&#160;&#160;uint8_t</computeroutput></para></section>
+<anchor xml:id="_compress_8c_1a5f9bb71c82ea3fa727a1dff9447dff20"/><section>
+    <title>CODE_LENGTH_FREQUENCIES</title>
+<indexterm><primary>CODE_LENGTH_FREQUENCIES</primary><secondary>compress.c</secondary></indexterm>
+<indexterm><primary>compress.c</primary><secondary>CODE_LENGTH_FREQUENCIES</secondary></indexterm>
+<para><computeroutput>#define CODE_LENGTH_FREQUENCIES&#160;&#160;&#160;19</computeroutput></para></section>
+<anchor xml:id="_compress_8c_1ad30337fb0318fd2705318081158a6f7b"/><section>
+    <title>DISTANCE_CODE_SIZE</title>
+<indexterm><primary>DISTANCE_CODE_SIZE</primary><secondary>compress.c</secondary></indexterm>
+<indexterm><primary>compress.c</primary><secondary>DISTANCE_CODE_SIZE</secondary></indexterm>
+<para><computeroutput>#define DISTANCE_CODE_SIZE&#160;&#160;&#160;30</computeroutput></para></section>
+<anchor xml:id="_compress_8c_1a76660d8139575e05671801dbe5a5af50"/><section>
+    <title>EMPTY_INDEX</title>
+<indexterm><primary>EMPTY_INDEX</primary><secondary>compress.c</secondary></indexterm>
+<indexterm><primary>compress.c</primary><secondary>EMPTY_INDEX</secondary></indexterm>
+<para><computeroutput>#define EMPTY_INDEX&#160;&#160;&#160;0xFFFF</computeroutput></para></section>
+<anchor xml:id="_compress_8c_1a351ed2b19cd87022ef91920a102312d8"/><section>
+    <title>END_OF_BLOCK</title>
+<indexterm><primary>END_OF_BLOCK</primary><secondary>compress.c</secondary></indexterm>
+<indexterm><primary>compress.c</primary><secondary>END_OF_BLOCK</secondary></indexterm>
+<para><computeroutput>#define END_OF_BLOCK&#160;&#160;&#160;256</computeroutput></para></section>
+<anchor xml:id="_compress_8c_1ab0bc977d3fec2517ebda1a77e1cfaecc"/><section>
+    <title>HASH_BITS</title>
+<indexterm><primary>HASH_BITS</primary><secondary>compress.c</secondary></indexterm>
+<indexterm><primary>compress.c</primary><secondary>HASH_BITS</secondary></indexterm>
+<para><computeroutput>#define HASH_BITS&#160;&#160;&#160;15</computeroutput></para></section>
+<anchor xml:id="_compress_8c_1a8ba578169aad59095035a05d2f7323a7"/><section>
+    <title>HASH_MASK</title>
+<indexterm><primary>HASH_MASK</primary><secondary>compress.c</secondary></indexterm>
+<indexterm><primary>compress.c</primary><secondary>HASH_MASK</secondary></indexterm>
+<para><computeroutput>#define HASH_MASK&#160;&#160;&#160;0x7FFF</computeroutput></para></section>
+<anchor xml:id="_compress_8c_1a52f7ff3c0f79c8692dbd2fab70256529"/><section>
+    <title>HASH_SHIFT</title>
+<indexterm><primary>HASH_SHIFT</primary><secondary>compress.c</secondary></indexterm>
+<indexterm><primary>compress.c</primary><secondary>HASH_SHIFT</secondary></indexterm>
+<para><computeroutput>#define HASH_SHIFT&#160;&#160;&#160;5</computeroutput></para></section>
+<anchor xml:id="_compress_8c_1ad6074dd11ab3c97c8135c43aab03ae95"/><section>
+    <title>HASH_SIZE</title>
+<indexterm><primary>HASH_SIZE</primary><secondary>compress.c</secondary></indexterm>
+<indexterm><primary>compress.c</primary><secondary>HASH_SIZE</secondary></indexterm>
+<para><computeroutput>#define HASH_SIZE&#160;&#160;&#160;(1 &lt;&lt; <link linkend="_compress_8c_1ab0bc977d3fec2517ebda1a77e1cfaecc">HASH_BITS</link>)</computeroutput></para></section>
+<anchor xml:id="_compress_8c_1a7c4eca8fe59888352807b89daed94258"/><section>
+    <title>LITERAL_LENGTH_SIZE</title>
+<indexterm><primary>LITERAL_LENGTH_SIZE</primary><secondary>compress.c</secondary></indexterm>
+<indexterm><primary>compress.c</primary><secondary>LITERAL_LENGTH_SIZE</secondary></indexterm>
+<para><computeroutput>#define LITERAL_LENGTH_SIZE&#160;&#160;&#160;286</computeroutput></para></section>
+<anchor xml:id="_compress_8c_1ab3f68d59e815ea166f8c983bc6e85c5b"/><section>
+    <title>WINDOW_SIZE</title>
+<indexterm><primary>WINDOW_SIZE</primary><secondary>compress.c</secondary></indexterm>
+<indexterm><primary>compress.c</primary><secondary>WINDOW_SIZE</secondary></indexterm>
+<para><computeroutput>#define WINDOW_SIZE&#160;&#160;&#160;32768</computeroutput></para></section>
+</section>
+<section>
+<title>Function Documentation</title>
+<anchor xml:id="_compress_8c_1a79cadd96d56d3aa879adb002a68d07d7"/><section>
+    <title>compress()</title>
+<indexterm><primary>compress</primary><secondary>compress.c</secondary></indexterm>
+<indexterm><primary>compress.c</primary><secondary>compress</secondary></indexterm>
+<para><computeroutput><link linkend="_struct_status">Status</link> compress (char * filename)<computeroutput>[extern]</computeroutput></computeroutput></para></section>
+<anchor xml:id="_compress_8c_1a8dfb153692ba68896af5936e482d6493"/><section>
+    <title>compressData()</title>
+<indexterm><primary>compressData</primary><secondary>compress.c</secondary></indexterm>
+<indexterm><primary>compress.c</primary><secondary>compressData</secondary></indexterm>
+<para><computeroutput>void compressData (const unsigned char * ucpBuffer, const size_t bytesRead, uint16_t * hash_table, <link linkend="_struct_l_z77__buffer">LZ77_buffer</link> * output_ucpBuffer)<computeroutput>[extern]</computeroutput></computeroutput></para><para>
+
+<para>Compress Data. </para>
+</para>
+
+<para>This function takes in a BUFFER SIZED buffer containing BYTES from a file, and fills up an <link linkend="_struct_l_z77__buffer">LZ77_buffer</link> containing match/literal distance/length codes which will be used later in the processBlock function.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>ucpBuffer</entry><entry>
+<para>The start of the buffer (pointer). </para>
+</entry>
+                            </row>
+                            <row>
+<entry>bytesRead</entry><entry>
+<para>The bytes processed in this function. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>hash_table</entry><entry>
+<para>The hash lookup table for matches. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>output_ucpBuffer</entry><entry>
+<para>The <link linkend="_struct_l_z77__buffer">LZ77_buffer</link> containing the matches/literals.</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>void </para>
+</formalpara>
+</para>
+</section>
+<anchor xml:id="_compress_8c_1af23a493c40a7e0aff72b6ecf7f54c06b"/><section>
+    <title>ffOpenFile()</title>
+<indexterm><primary>ffOpenFile</primary><secondary>compress.c</secondary></indexterm>
+<indexterm><primary>compress.c</primary><secondary>ffOpenFile</secondary></indexterm>
+<para><computeroutput>FILE * ffOpenFile (const char * filename)<computeroutput>[extern]</computeroutput></computeroutput></para><para>
+
+<para>Opens a file in rb (read binary) mode. </para>
+</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>filename</entry><entry>
+<para>The name of the file. (probably with absolute path)</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>FILE* or NULL </para>
+</formalpara>
+</para>
+</section>
+<anchor xml:id="_compress_8c_1aa7597901166c3301bf52047091ed5d59"/><section>
+    <title>processBlock()</title>
+<indexterm><primary>processBlock</primary><secondary>compress.c</secondary></indexterm>
+<indexterm><primary>compress.c</primary><secondary>processBlock</secondary></indexterm>
+<para><computeroutput>void processBlock (<link linkend="_struct_bit_writer">BitWriter</link> * bw, uint16_t * LLFrequency, uint16_t * distanceCodeFrequency, const <link linkend="_struct_l_z77__buffer">LZ77_buffer</link> * output_ucpBuffer, const bool lastBlock)<computeroutput>[extern]</computeroutput></computeroutput></para></section>
+<anchor xml:id="_compress_8c_1a56b0820315da001b8d577ec83574dad7"/><section>
+    <title>writeGzipTrailer()</title>
+<indexterm><primary>writeGzipTrailer</primary><secondary>compress.c</secondary></indexterm>
+<indexterm><primary>compress.c</primary><secondary>writeGzipTrailer</secondary></indexterm>
+<para><computeroutput>void writeGzipTrailer (<link linkend="_struct_bit_writer">BitWriter</link> * bw, uint32_t crc32_checksum, uint32_t total_uncompressed_size)<computeroutput>[extern]</computeroutput></computeroutput></para></section>
+</section>
+</section>

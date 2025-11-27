@@ -1,0 +1,381 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="node_8h" kind="file" language="C++">
+    <compoundname>node.h</compoundname>
+    <includes local="no">stdint.h</includes>
+    <includedby refid="_h_u_f_f_m_a_n___t_a_b_l_e_8c" local="yes">HUFFMAN_TABLE.c</includedby>
+    <includedby refid="_h_u_f_f_m_a_n___t_a_b_l_e_8h" local="yes">HUFFMAN_TABLE.h</includedby>
+    <includedby refid="compress_8c" local="yes">compress.c</includedby>
+    <includedby refid="node_8c" local="yes">node.c</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>node.h</label>
+        <link refid="node_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>stdint.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2">
+        <label>HUFFMAN_TABLE.c</label>
+        <link refid="_h_u_f_f_m_a_n___t_a_b_l_e_8c"/>
+      </node>
+      <node id="3">
+        <label>HUFFMAN_TABLE.h</label>
+        <link refid="_h_u_f_f_m_a_n___t_a_b_l_e_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>compress.c</label>
+        <link refid="compress_8c"/>
+      </node>
+      <node id="5">
+        <label>decompress.c</label>
+        <link refid="decompress_8c"/>
+      </node>
+      <node id="6">
+        <label>node.c</label>
+        <link refid="node_8c"/>
+      </node>
+      <node id="1">
+        <label>node.h</label>
+        <link refid="node_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="struct_node" prot="public">Node</innerclass>
+    <innerclass refid="struct_min_heap" prot="public">MinHeap</innerclass>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="node_8h_1a3b09f37e675bcd48a01bf22155996872" prot="public" static="no">
+        <type>struct Node</type>
+        <definition>typedef struct Node Node</definition>
+        <argsstring></argsstring>
+        <name>Node</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="node.h" line="16" column="6"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="node_8h_1aa1c5f84fe9f09a17b82d2ed396c1e1ad" prot="public" static="no" extern="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void compressCodeLengths</definition>
+        <argsstring>(const uint8_t *all_lengths, size_t count, uint8_t *compressed_lengths, uint16_t *cl_frequencies, uint8_t *extra_bits_values, size_t *compressed_count)</argsstring>
+        <name>compressCodeLengths</name>
+        <param>
+          <type>const uint8_t *</type>
+          <declname>all_lengths</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>count</declname>
+        </param>
+        <param>
+          <type>uint8_t *</type>
+          <declname>compressed_lengths</declname>
+        </param>
+        <param>
+          <type>uint16_t *</type>
+          <declname>cl_frequencies</declname>
+        </param>
+        <param>
+          <type>uint8_t *</type>
+          <declname>extra_bits_values</declname>
+        </param>
+        <param>
+          <type>size_t *</type>
+          <declname>compressed_count</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="node.h" line="24" column="13" bodyfile="node.c" bodystart="36" bodyend="128" declfile="node.h" declline="24" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="node_8h_1a25107a4508c2ffd75825c42e1239fa90" prot="public" static="no" extern="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void findCodeLengthsInTree</definition>
+        <argsstring>(Node *node, uint8_t *lengths, uint8_t depth)</argsstring>
+        <name>findCodeLengthsInTree</name>
+        <param>
+          <type><ref refid="struct_node" kindref="compound">Node</ref> *</type>
+          <declname>node</declname>
+        </param>
+        <param>
+          <type>uint8_t *</type>
+          <declname>lengths</declname>
+        </param>
+        <param>
+          <type>uint8_t</type>
+          <declname>depth</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="node.h" line="33" column="13" bodyfile="node.c" bodystart="130" bodyend="138" declfile="node.h" declline="33" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="node_8h_1a86c7eb4d5e202d4087bde685ae659e52" prot="public" static="no" extern="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="struct_min_heap" kindref="compound">MinHeap</ref> *</type>
+        <definition>MinHeap * createMinHeap</definition>
+        <argsstring>(int capacity)</argsstring>
+        <name>createMinHeap</name>
+        <param>
+          <type>int</type>
+          <declname>capacity</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="node.h" line="35" column="16" bodyfile="node.c" bodystart="140" bodyend="154" declfile="node.h" declline="35" declcolumn="16"/>
+      </memberdef>
+      <memberdef kind="function" id="node_8h_1ac9a5be012917c9c86e4cc688eb700e0c" prot="public" static="no" extern="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void addToMinHeap</definition>
+        <argsstring>(MinHeap *minHeap, Node *node)</argsstring>
+        <name>addToMinHeap</name>
+        <param>
+          <type><ref refid="struct_min_heap" kindref="compound">MinHeap</ref> *</type>
+          <declname>minHeap</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_node" kindref="compound">Node</ref> *</type>
+          <declname>node</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="node.h" line="37" column="13" bodyfile="node.c" bodystart="156" bodyend="159" declfile="node.h" declline="37" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="node_8h_1a8196a5fffc96ca854a325d1fe349e8da" prot="public" static="no" extern="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void printHeap</definition>
+        <argsstring>(MinHeap *minHeap)</argsstring>
+        <name>printHeap</name>
+        <param>
+          <type><ref refid="struct_min_heap" kindref="compound">MinHeap</ref> *</type>
+          <declname>minHeap</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="node.h" line="39" column="13" bodyfile="node.c" bodystart="229" bodyend="238" declfile="node.h" declline="39" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="node_8h_1aecbec578e3e80350306dd708f0e24b99" prot="public" static="no" extern="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="struct_node" kindref="compound">Node</ref> *</type>
+        <definition>Node * extractMin</definition>
+        <argsstring>(MinHeap *minHeap)</argsstring>
+        <name>extractMin</name>
+        <param>
+          <type><ref refid="struct_min_heap" kindref="compound">MinHeap</ref> *</type>
+          <declname>minHeap</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="node.h" line="41" column="13" bodyfile="node.c" bodystart="198" bodyend="217" declfile="node.h" declline="41" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="node_8h_1a7dddf9d8d87a548cf9d63568af9f56fa" prot="public" static="no" extern="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="struct_node" kindref="compound">Node</ref> *</type>
+        <definition>Node * buildHuffmanTree</definition>
+        <argsstring>(MinHeap *minHeap)</argsstring>
+        <name>buildHuffmanTree</name>
+        <param>
+          <type><ref refid="struct_min_heap" kindref="compound">MinHeap</ref> *</type>
+          <declname>minHeap</declname>
+        </param>
+        <briefdescription>
+<para>Creates the Huffman tree from the populated Min-Heap. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><itemizedlist>
+<listitem><para>This is the greedy algorithm core: repeatedly combine the two smallest nodes.</para>
+</listitem><listitem><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>minHeap</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The initialized Min-Heap containing all leaf nodes. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Node* The root of the completed Huffman tree. </para>
+</simplesect>
+</para>
+</listitem></itemizedlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="node.h" line="43" column="13" bodyfile="node.c" bodystart="286" bodyend="304" declfile="node.h" declline="43" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="node_8h_1ae6e53a77c8389ec5fa741eeab2e95cd9" prot="public" static="no" extern="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void buildMinHeap</definition>
+        <argsstring>(MinHeap *minHeap)</argsstring>
+        <name>buildMinHeap</name>
+        <param>
+          <type><ref refid="struct_min_heap" kindref="compound">MinHeap</ref> *</type>
+          <declname>minHeap</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="node.h" line="45" column="13" bodyfile="node.c" bodystart="240" bodyend="246" declfile="node.h" declline="45" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="node_8h_1afbdba32d1543027eda02773bce2ab102" prot="public" static="no" extern="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void freeMinHeap</definition>
+        <argsstring>(MinHeap *minHeap)</argsstring>
+        <name>freeMinHeap</name>
+        <param>
+          <type><ref refid="struct_min_heap" kindref="compound">MinHeap</ref> *</type>
+          <declname>minHeap</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="node.h" line="47" column="13" bodyfile="node.c" bodystart="219" bodyend="227" declfile="node.h" declline="47" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="node_8h_1a476e2695789ae31745b5cd5cc5877792" prot="public" static="no" extern="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="struct_node" kindref="compound">Node</ref> *</type>
+        <definition>Node * createNode</definition>
+        <argsstring>(unsigned short usSymbol, int freq)</argsstring>
+        <name>createNode</name>
+        <param>
+          <type>unsigned short</type>
+          <declname>usSymbol</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>freq</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="node.h" line="49" column="13" bodyfile="node.c" bodystart="15" bodyend="22" declfile="node.h" declline="49" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="node_8h_1afdf92c04775f1fdb56a48a6063f30b51" prot="public" static="no" extern="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void freeTree</definition>
+        <argsstring>(Node *top)</argsstring>
+        <name>freeTree</name>
+        <param>
+          <type><ref refid="struct_node" kindref="compound">Node</ref> *</type>
+          <declname>top</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="node.h" line="51" column="13" bodyfile="node.c" bodystart="24" bodyend="34" declfile="node.h" declline="51" declcolumn="13"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Created<sp/>by<sp/>Attila<sp/>Arnóczki<sp/>on<sp/>10/18/2025.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Node<sp/>version<sp/>0.0.1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>HUFFMAN_NODE_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>HUFFMAN_NODE_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdint.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11" refid="struct_node" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_node" kindref="compound">Node</ref><sp/>{</highlight></codeline>
+<codeline lineno="12" refid="struct_node_1a598b58eb0ea6750cee33aa0ea62f6ccc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="struct_node_1a598b58eb0ea6750cee33aa0ea62f6ccc" kindref="member">iFrequency</ref>;</highlight></codeline>
+<codeline lineno="13" refid="struct_node_1aef34b594003aef090557c68fa0976aef" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><ref refid="struct_node_1aef34b594003aef090557c68fa0976aef" kindref="member">usSymbol</ref>;</highlight></codeline>
+<codeline lineno="14" refid="struct_node_1a3fbc6e3132038d871c08e9b71391893f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_node" kindref="compound">Node</ref>*<sp/><ref refid="struct_node_1a3fbc6e3132038d871c08e9b71391893f" kindref="member">pnLeft</ref>;</highlight></codeline>
+<codeline lineno="15" refid="struct_node_1a72a7b991ec60f48cd33a359fb0c00942" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_node" kindref="compound">Node</ref>*<sp/><ref refid="struct_node_1a72a7b991ec60f48cd33a359fb0c00942" kindref="member">pnRight</ref>;</highlight></codeline>
+<codeline lineno="16" refid="node_8h_1a3b09f37e675bcd48a01bf22155996872" refkind="member"><highlight class="normal">}<sp/><ref refid="struct_node" kindref="compound">Node</ref>;</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18" refid="struct_min_heap" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="19" refid="struct_min_heap_1afccb13ff89743172794c40bd66b9b85b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="struct_min_heap_1afccb13ff89743172794c40bd66b9b85b" kindref="member">iSize</ref>;</highlight></codeline>
+<codeline lineno="20" refid="struct_min_heap_1aafdd50fc8bfa4a3f01987e9bc816fc1e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="struct_min_heap_1aafdd50fc8bfa4a3f01987e9bc816fc1e" kindref="member">iCapacity</ref>;</highlight></codeline>
+<codeline lineno="21" refid="struct_min_heap_1a734ed6d54bc63dbb1c7079dbdf0bebc7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_node" kindref="compound">Node</ref>**<sp/><ref refid="struct_min_heap_1a734ed6d54bc63dbb1c7079dbdf0bebc7" kindref="member">ppnArray</ref>;</highlight></codeline>
+<codeline lineno="22"><highlight class="normal">}<sp/><ref refid="struct_min_heap" kindref="compound">MinHeap</ref>;</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="node_8h_1aa1c5f84fe9f09a17b82d2ed396c1e1ad" kindref="member">compressCodeLengths</ref>(</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>uint8_t*<sp/>all_lengths,</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>count,</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t*<sp/>compressed_lengths,<sp/></highlight><highlight class="comment">//<sp/>Output<sp/>buffer<sp/>for<sp/>RLE<sp/>symbols<sp/>(0-18)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/>uint16_t*<sp/>cl_frequencies,<sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Output<sp/>array<sp/>of<sp/>size<sp/>19</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t*<sp/>extra_bits_values,<sp/><sp/></highlight><highlight class="comment">//<sp/>Output<sp/>buffer<sp/>for<sp/>RLE<sp/>extra<sp/>bit<sp/>values</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">*<sp/>compressed_count<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Final<sp/>count<sp/>of<sp/>symbols<sp/>generated</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal">);</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="node_8h_1a25107a4508c2ffd75825c42e1239fa90" kindref="member">findCodeLengthsInTree</ref>(<ref refid="struct_node" kindref="compound">Node</ref>*<sp/>node,<sp/>uint8_t*<sp/>lengths,<sp/>uint8_t<sp/>depth);</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/><ref refid="struct_min_heap" kindref="compound">MinHeap</ref>*<sp/><ref refid="node_8h_1a86c7eb4d5e202d4087bde685ae659e52" kindref="member">createMinHeap</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>capacity);</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="node_8h_1ac9a5be012917c9c86e4cc688eb700e0c" kindref="member">addToMinHeap</ref>(<ref refid="struct_min_heap" kindref="compound">MinHeap</ref>*<sp/>minHeap,<sp/><ref refid="struct_node" kindref="compound">Node</ref>*<sp/>node);</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="node_8h_1a8196a5fffc96ca854a325d1fe349e8da" kindref="member">printHeap</ref>(<ref refid="struct_min_heap" kindref="compound">MinHeap</ref>*<sp/>minHeap);</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/><ref refid="struct_node" kindref="compound">Node</ref>*<sp/><ref refid="node_8h_1aecbec578e3e80350306dd708f0e24b99" kindref="member">extractMin</ref>(<ref refid="struct_min_heap" kindref="compound">MinHeap</ref>*<sp/>minHeap);</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/><ref refid="struct_node" kindref="compound">Node</ref>*<sp/><ref refid="node_8h_1a7dddf9d8d87a548cf9d63568af9f56fa" kindref="member">buildHuffmanTree</ref>(<ref refid="struct_min_heap" kindref="compound">MinHeap</ref>*<sp/>minHeap);</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="node_8h_1ae6e53a77c8389ec5fa741eeab2e95cd9" kindref="member">buildMinHeap</ref>(<ref refid="struct_min_heap" kindref="compound">MinHeap</ref>*<sp/>minHeap);</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="node_8h_1afbdba32d1543027eda02773bce2ab102" kindref="member">freeMinHeap</ref>(<ref refid="struct_min_heap" kindref="compound">MinHeap</ref>*<sp/>minHeap);</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/><ref refid="struct_node" kindref="compound">Node</ref>*<sp/><ref refid="node_8h_1a476e2695789ae31745b5cd5cc5877792" kindref="member">createNode</ref>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/>usSymbol,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>freq);</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="node_8h_1afdf92c04775f1fdb56a48a6063f30b51" kindref="member">freeTree</ref>(<ref refid="struct_node" kindref="compound">Node</ref>*<sp/>top);</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//HUFFMAN_NODE_H</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="node.h"/>
+  </compounddef>
+</doxygen>

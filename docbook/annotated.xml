@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_annotated" xml:lang="en-US">
+<title>Data Structures</title>
+Here are the data structures with brief descriptions:<link linkend="_struct_b_i_t___r_e_a_d_e_r">BIT_READER</link><link linkend="_struct_bit_writer">BitWriter</link><link linkend="_struct_canonical_code">CanonicalCode</link><link linkend="_struct_debugmalloc_data">DebugmallocData</link><link linkend="_struct_debugmalloc_entry">DebugmallocEntry</link><link linkend="_struct_d_i_s_t_a_n_c_e___c_o_d_e">DISTANCE_CODE</link><link linkend="_struct_h_u_f_f_m_a_n___c_o_d_e">HUFFMAN_CODE</link><link linkend="_struct_huffman_entry">HuffmanEntry</link><link linkend="_struct_huffman_tree">HuffmanTree</link><link linkend="_struct_l_e_n_g_t_h___c_o_d_e">LENGTH_CODE</link><link linkend="_struct_l_z77__buffer">LZ77_buffer</link>
+<para>Structure to manage a dynamic array (growing buffer) of LZ77 tokens </para>
+<link linkend="_struct_l_z77__compressed">LZ77_compressed</link>
+<para>The fundamental LZ77 token structure </para>
+<link linkend="_struct_min_heap">MinHeap</link><link linkend="_struct_node">Node</link><link linkend="_struct_status">Status</link></section>

@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_decompress_8h" xml:lang="en-US">
+<title>decompress.h File Reference</title>
+<indexterm><primary>decompress.h</primary></indexterm>
+This graph shows which files directly or indirectly include this file:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="decompress_8h__dep__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_struct_status">Status</link> <link linkend="_decompress_8h_1ab1cc8aa166be00ccc453d7d2419219ed">decompress</link> (char *filename)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Function Documentation</title>
+<anchor xml:id="_decompress_8h_1ab1cc8aa166be00ccc453d7d2419219ed"/><section>
+    <title>decompress()</title>
+<indexterm><primary>decompress</primary><secondary>decompress.h</secondary></indexterm>
+<indexterm><primary>decompress.h</primary><secondary>decompress</secondary></indexterm>
+<para><computeroutput><link linkend="_struct_status">Status</link> decompress (char * filename)<computeroutput>[extern]</computeroutput></computeroutput></para></section>
+</section>
+</section>

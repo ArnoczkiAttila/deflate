@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_struct_b_i_t___r_e_a_d_e_r" xml:lang="en-US">
+<title>BIT_READER Struct Reference</title>
+<indexterm><primary>BIT_READER</primary></indexterm>
+<para>
+<computeroutput>#include &lt;bitreader.h&gt;</computeroutput>
+</para>
+<simplesect>
+    <title>Data Fields    </title>
+        <itemizedlist>
+            <listitem><para>FILE * <link linkend="_struct_b_i_t___r_e_a_d_e_r_1a702945180aa732857b380a007a7e2a21">file</link></para>
+</listitem>
+            <listitem><para>uint8_t * <link linkend="_struct_b_i_t___r_e_a_d_e_r_1a56ed84df35de10bdb65e72b184309497">buffer</link></para>
+</listitem>
+            <listitem><para>uint8_t <link linkend="_struct_b_i_t___r_e_a_d_e_r_1a96f44d20f1dbf1c8785a7bc99a46164c">byte</link></para>
+</listitem>
+            <listitem><para>uint8_t <link linkend="_struct_b_i_t___r_e_a_d_e_r_1a03c096e79d44983a055f7ca6839144bc">currentPosition</link></para>
+</listitem>
+            <listitem><para>size_t <link linkend="_struct_b_i_t___r_e_a_d_e_r_1a7be887a2ca0a258cf6b368d32fd87487">bufferSize</link></para>
+</listitem>
+            <listitem><para>uint16_t <link linkend="_struct_b_i_t___r_e_a_d_e_r_1a852b86a2eaee9852ada7a43e61e311a2">index</link></para>
+</listitem>
+            <listitem><para>char * <link linkend="_struct_b_i_t___r_e_a_d_e_r_1a25c8761bc1f523fe6a53db546ae83add">fileName</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Field Documentation</title>
+<anchor xml:id="_struct_b_i_t___r_e_a_d_e_r_1a56ed84df35de10bdb65e72b184309497"/><section>
+    <title>buffer</title>
+<indexterm><primary>buffer</primary><secondary>BIT_READER</secondary></indexterm>
+<indexterm><primary>BIT_READER</primary><secondary>buffer</secondary></indexterm>
+<para><computeroutput>uint8_t* buffer</computeroutput></para></section>
+<anchor xml:id="_struct_b_i_t___r_e_a_d_e_r_1a7be887a2ca0a258cf6b368d32fd87487"/><section>
+    <title>bufferSize</title>
+<indexterm><primary>bufferSize</primary><secondary>BIT_READER</secondary></indexterm>
+<indexterm><primary>BIT_READER</primary><secondary>bufferSize</secondary></indexterm>
+<para><computeroutput>size_t bufferSize</computeroutput></para></section>
+<anchor xml:id="_struct_b_i_t___r_e_a_d_e_r_1a96f44d20f1dbf1c8785a7bc99a46164c"/><section>
+    <title>byte</title>
+<indexterm><primary>byte</primary><secondary>BIT_READER</secondary></indexterm>
+<indexterm><primary>BIT_READER</primary><secondary>byte</secondary></indexterm>
+<para><computeroutput>uint8_t byte</computeroutput></para></section>
+<anchor xml:id="_struct_b_i_t___r_e_a_d_e_r_1a03c096e79d44983a055f7ca6839144bc"/><section>
+    <title>currentPosition</title>
+<indexterm><primary>currentPosition</primary><secondary>BIT_READER</secondary></indexterm>
+<indexterm><primary>BIT_READER</primary><secondary>currentPosition</secondary></indexterm>
+<para><computeroutput>uint8_t currentPosition</computeroutput></para></section>
+<anchor xml:id="_struct_b_i_t___r_e_a_d_e_r_1a702945180aa732857b380a007a7e2a21"/><section>
+    <title>file</title>
+<indexterm><primary>file</primary><secondary>BIT_READER</secondary></indexterm>
+<indexterm><primary>BIT_READER</primary><secondary>file</secondary></indexterm>
+<para><computeroutput>FILE* file</computeroutput></para></section>
+<anchor xml:id="_struct_b_i_t___r_e_a_d_e_r_1a25c8761bc1f523fe6a53db546ae83add"/><section>
+    <title>fileName</title>
+<indexterm><primary>fileName</primary><secondary>BIT_READER</secondary></indexterm>
+<indexterm><primary>BIT_READER</primary><secondary>fileName</secondary></indexterm>
+<para><computeroutput>char* fileName</computeroutput></para></section>
+<anchor xml:id="_struct_b_i_t___r_e_a_d_e_r_1a852b86a2eaee9852ada7a43e61e311a2"/><section>
+    <title>index</title>
+<indexterm><primary>index</primary><secondary>BIT_READER</secondary></indexterm>
+<indexterm><primary>BIT_READER</primary><secondary>index</secondary></indexterm>
+<para><computeroutput>uint16_t index</computeroutput></para></section>
+<para>
+The documentation for this struct was generated from the following file:</para>
+<link linkend="_bitreader_8h">bitreader.h</link></section>
+</section>

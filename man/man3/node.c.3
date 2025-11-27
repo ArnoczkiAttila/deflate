@@ -1,0 +1,159 @@
+.TH "node.c" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+node.c
+.SH SYNOPSIS
+.br
+.PP
+\fR#include 'node\&.h'\fP
+.br
+\fR#include <stdint\&.h>\fP
+.br
+\fR#include <stdlib\&.h>\fP
+.br
+\fR#include <stdio\&.h>\fP
+.br
+\fR#include 'debugmalloc\&.h'\fP
+.br
+
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBINVALID_NODE_SYMBOL\fP   286"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBNode\fP * \fBcreateNode\fP (unsigned short usSymbol, int freq)"
+.br
+.ti -1c
+.RI "void \fBfreeTree\fP (\fBNode\fP *top)"
+.br
+.ti -1c
+.RI "void \fBcompressCodeLengths\fP (const uint8_t *all_lengths, size_t count, uint8_t *compressed_lengths, uint16_t *cl_frequencies, uint8_t *extra_bits_values, size_t *compressed_count)"
+.br
+.ti -1c
+.RI "void \fBfindCodeLengthsInTree\fP (\fBNode\fP *node, uint8_t *lengths, uint8_t depth)"
+.br
+.ti -1c
+.RI "\fBMinHeap\fP * \fBcreateMinHeap\fP (int capacity)"
+.br
+.ti -1c
+.RI "void \fBaddToMinHeap\fP (\fBMinHeap\fP *minHeap, \fBNode\fP *node)"
+.br
+.ti -1c
+.RI "void \fBswapNodePointers\fP (\fBNode\fP **a, \fBNode\fP **b)"
+.br
+.ti -1c
+.RI "void \fBminHeapify\fP (\fBMinHeap\fP *minHeap, int i)"
+.br
+.ti -1c
+.RI "\fBNode\fP * \fBextractMin\fP (\fBMinHeap\fP *minHeap)"
+.br
+.ti -1c
+.RI "void \fBfreeMinHeap\fP (\fBMinHeap\fP *minHeap)"
+.br
+.ti -1c
+.RI "void \fBprintHeap\fP (\fBMinHeap\fP *minHeap)"
+.br
+.ti -1c
+.RI "void \fBbuildMinHeap\fP (\fBMinHeap\fP *minHeap)"
+.br
+.ti -1c
+.RI "int \fBparentIndex\fP (int i)"
+.br
+.ti -1c
+.RI "int \fBleftChildIndex\fP (int i)"
+.br
+.ti -1c
+.RI "void \fBinsertMinHeap\fP (\fBMinHeap\fP *minHeap, \fBNode\fP *newNode)"
+.br
+.ti -1c
+.RI "\fBNode\fP * \fBbuildHuffmanTree\fP (\fBMinHeap\fP *minHeap)"
+.br
+.RI "Creates the Huffman tree from the populated Min-Heap\&. "
+.ti -1c
+.RI "void \fBextract_code_lengths\fP (\fBNode\fP *npCurrent, uint8_t uiCurrentDepth, uint8_t *uiLengthCodes)"
+.br
+.RI "Traverses a Huffman tree to determine the bit length (depth) for every symbol\&. "
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define INVALID_NODE_SYMBOL   286"
+
+.SH "Function Documentation"
+.PP 
+.SS "void addToMinHeap (\fBMinHeap\fP * minHeap, \fBNode\fP * node)\fR [extern]\fP"
+
+.SS "\fBNode\fP * buildHuffmanTree (\fBMinHeap\fP * minHeap)"
+
+.PP
+Creates the Huffman tree from the populated Min-Heap\&. 
+.IP "\(bu" 2
+This is the greedy algorithm core: repeatedly combine the two smallest nodes\&.
+.IP "\(bu" 2
+\fBParameters\fP
+.RS 4
+\fIminHeap\fP The initialized Min-Heap containing all leaf nodes\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+Node* The root of the completed Huffman tree\&. 
+.RE
+.PP
+
+.PP
+
+.SS "void buildMinHeap (\fBMinHeap\fP * minHeap)"
+
+.SS "void compressCodeLengths (const uint8_t * all_lengths, size_t count, uint8_t * compressed_lengths, uint16_t * cl_frequencies, uint8_t * extra_bits_values, size_t * compressed_count)\fR [extern]\fP"
+
+.SS "\fBMinHeap\fP * createMinHeap (int capacity)\fR [extern]\fP"
+
+.SS "\fBNode\fP * createNode (unsigned short usSymbol, int freq)"
+
+.SS "void extract_code_lengths (\fBNode\fP * npCurrent, uint8_t uiCurrentDepth, uint8_t * uiLengthCodes)\fR [extern]\fP"
+
+.PP
+Traverses a Huffman tree to determine the bit length (depth) for every symbol\&. 
+.IP "\(bu" 2
+\fBParameters\fP
+.RS 4
+\fIcurrent_node\fP The current node in the traversal (start with the tree root)\&. 
+.br
+\fIuiCurrentDepth\fP The depth of the current node (start with 0 for the root)\&. 
+.br
+\fIuiLengthCodes\fP The array where the resulting code lengths are stored\&. 
+.RE
+.PP
+
+.PP
+
+.SS "\fBNode\fP * extractMin (\fBMinHeap\fP * minHeap)\fR [extern]\fP"
+
+.SS "void findCodeLengthsInTree (\fBNode\fP * node, uint8_t * lengths, uint8_t depth)\fR [extern]\fP"
+
+.SS "void freeMinHeap (\fBMinHeap\fP * minHeap)\fR [extern]\fP"
+
+.SS "void freeTree (\fBNode\fP * top)\fR [extern]\fP"
+
+.SS "void insertMinHeap (\fBMinHeap\fP * minHeap, \fBNode\fP * newNode)"
+
+.SS "int leftChildIndex (int i)"
+
+.SS "void minHeapify (\fBMinHeap\fP * minHeap, int i)"
+
+.SS "int parentIndex (int i)"
+
+.SS "void printHeap (\fBMinHeap\fP * minHeap)"
+
+.SS "void swapNodePointers (\fBNode\fP ** a, \fBNode\fP ** b)"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

@@ -1,0 +1,134 @@
+\doxysection{bitwriter.\+c File Reference}
+\label{bitwriter_8c}\index{bitwriter.c@{bitwriter.c}}
+{\ttfamily \#include "{}bitwriter.\+h"{}}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+Include dependency graph for bitwriter.\+c\+:
+% FIG 0
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \textbf{ BUFFER\+\_\+\+SIZE}~4096
+\item 
+\#define \textbf{ MAGIC\+\_\+\+NUMER}~0x8\+B1F
+\item 
+\#define \textbf{ COMPRESSION\+\_\+\+METHOD}~0x08
+\item 
+\#define \textbf{ FLAG}~0b00000000
+\item 
+\#define \textbf{ XFL}~0x00
+\item 
+\#define \textbf{ OS}~0x03
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+size\+\_\+t \textbf{ flush\+Bit\+Writer\+Buffer} (\textbf{ Bit\+Writer} $\ast$bw)
+\item 
+\textbf{ Bit\+Writer} $\ast$ \textbf{ init\+Bit\+Writer} (void)
+\item 
+void \textbf{ add\+Data} (\textbf{ Bit\+Writer} $\ast$bw, uint32\+\_\+t value, uint8\+\_\+t bit\+Length)
+\item 
+void \textbf{ flush\+\_\+bitstream\+\_\+writer} (\textbf{ Bit\+Writer} $\ast$bw)
+\item 
+void \textbf{ add\+Bytes\+From\+MSB} (\textbf{ Bit\+Writer} $\ast$bw, uint32\+\_\+t value, uint8\+\_\+t bytes)
+\item 
+void \textbf{ add\+Bytes\+From\+MSB2} (\textbf{ Bit\+Writer} $\ast$bw, uint32\+\_\+t value, uint8\+\_\+t bytes)
+\item 
+void \textbf{ create\+File} (\textbf{ Bit\+Writer} $\ast$bw, char $\ast$file\+Name, char $\ast$extension)
+\item 
+void \textbf{ free\+Bit\+Writer} (\textbf{ Bit\+Writer} $\ast$bw)
+\end{DoxyCompactItemize}
+
+
+\label{doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\index{bitwriter.c@{bitwriter.c}!BUFFER\_SIZE@{BUFFER\_SIZE}}
+\index{BUFFER\_SIZE@{BUFFER\_SIZE}!bitwriter.c@{bitwriter.c}}
+\doxysubsubsection{BUFFER\_SIZE}
+{\footnotesize\ttfamily \label{bitwriter_8c_a6b20d41d6252e9871430c242cb1a56e7} 
+\#define BUFFER\+\_\+\+SIZE~4096}
+
+\index{bitwriter.c@{bitwriter.c}!COMPRESSION\_METHOD@{COMPRESSION\_METHOD}}
+\index{COMPRESSION\_METHOD@{COMPRESSION\_METHOD}!bitwriter.c@{bitwriter.c}}
+\doxysubsubsection{COMPRESSION\_METHOD}
+{\footnotesize\ttfamily \label{bitwriter_8c_a9be47490ed6c06b44817a44df4c03a98} 
+\#define COMPRESSION\+\_\+\+METHOD~0x08}
+
+\index{bitwriter.c@{bitwriter.c}!FLAG@{FLAG}}
+\index{FLAG@{FLAG}!bitwriter.c@{bitwriter.c}}
+\doxysubsubsection{FLAG}
+{\footnotesize\ttfamily \label{bitwriter_8c_af8bfae90c5d6853fcfb487e05b9f50c8} 
+\#define FLAG~0b00000000}
+
+\index{bitwriter.c@{bitwriter.c}!MAGIC\_NUMER@{MAGIC\_NUMER}}
+\index{MAGIC\_NUMER@{MAGIC\_NUMER}!bitwriter.c@{bitwriter.c}}
+\doxysubsubsection{MAGIC\_NUMER}
+{\footnotesize\ttfamily \label{bitwriter_8c_a6944dcf57a34878b421c6315f19778a7} 
+\#define MAGIC\+\_\+\+NUMER~0x8\+B1F}
+
+\index{bitwriter.c@{bitwriter.c}!OS@{OS}}
+\index{OS@{OS}!bitwriter.c@{bitwriter.c}}
+\doxysubsubsection{OS}
+{\footnotesize\ttfamily \label{bitwriter_8c_a3324dbb5e25daac23e988901bb085447} 
+\#define OS~0x03}
+
+\index{bitwriter.c@{bitwriter.c}!XFL@{XFL}}
+\index{XFL@{XFL}!bitwriter.c@{bitwriter.c}}
+\doxysubsubsection{XFL}
+{\footnotesize\ttfamily \label{bitwriter_8c_a7f83abc98d763843293f5906c9564a2c} 
+\#define XFL~0x00}
+
+
+
+\label{doc-func-members}
+\doxysubsection{Function Documentation}
+\index{bitwriter.c@{bitwriter.c}!addBytesFromMSB@{addBytesFromMSB}}
+\index{addBytesFromMSB@{addBytesFromMSB}!bitwriter.c@{bitwriter.c}}
+\doxysubsubsection{addBytesFromMSB()}
+{\footnotesize\ttfamily \label{bitwriter_8c_ae0a3c065d2db177bf4312adaab2a96a8} 
+void add\+Bytes\+From\+MSB (\begin{DoxyParamCaption}\item[{\textbf{ Bit\+Writer} $\ast$}]{bw}{, }\item[{uint32\+\_\+t}]{value}{, }\item[{uint8\+\_\+t}]{bytes}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+
+\index{bitwriter.c@{bitwriter.c}!addBytesFromMSB2@{addBytesFromMSB2}}
+\index{addBytesFromMSB2@{addBytesFromMSB2}!bitwriter.c@{bitwriter.c}}
+\doxysubsubsection{addBytesFromMSB2()}
+{\footnotesize\ttfamily \label{bitwriter_8c_a5360490c127924566b62142aae839af5} 
+void add\+Bytes\+From\+MSB2 (\begin{DoxyParamCaption}\item[{\textbf{ Bit\+Writer} $\ast$}]{bw}{, }\item[{uint32\+\_\+t}]{value}{, }\item[{uint8\+\_\+t}]{bytes}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+
+\index{bitwriter.c@{bitwriter.c}!addData@{addData}}
+\index{addData@{addData}!bitwriter.c@{bitwriter.c}}
+\doxysubsubsection{addData()}
+{\footnotesize\ttfamily \label{bitwriter_8c_a15a48f26be9076026f0174a67935fce4} 
+void add\+Data (\begin{DoxyParamCaption}\item[{\textbf{ Bit\+Writer} $\ast$}]{bw}{, }\item[{uint32\+\_\+t}]{value}{, }\item[{uint8\+\_\+t}]{bit\+Length}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+
+\index{bitwriter.c@{bitwriter.c}!createFile@{createFile}}
+\index{createFile@{createFile}!bitwriter.c@{bitwriter.c}}
+\doxysubsubsection{createFile()}
+{\footnotesize\ttfamily \label{bitwriter_8c_a3725b55a47460bd10421c92495b2be3f} 
+void create\+File (\begin{DoxyParamCaption}\item[{\textbf{ Bit\+Writer} $\ast$}]{bw}{, }\item[{char $\ast$}]{file\+Name}{, }\item[{char $\ast$}]{extension}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+
+\index{bitwriter.c@{bitwriter.c}!flush\_bitstream\_writer@{flush\_bitstream\_writer}}
+\index{flush\_bitstream\_writer@{flush\_bitstream\_writer}!bitwriter.c@{bitwriter.c}}
+\doxysubsubsection{flush\_bitstream\_writer()}
+{\footnotesize\ttfamily \label{bitwriter_8c_a2706da9af748aa740b5b27c3cab1921f} 
+void flush\+\_\+bitstream\+\_\+writer (\begin{DoxyParamCaption}\item[{\textbf{ Bit\+Writer} $\ast$}]{bw}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+
+\index{bitwriter.c@{bitwriter.c}!flushBitWriterBuffer@{flushBitWriterBuffer}}
+\index{flushBitWriterBuffer@{flushBitWriterBuffer}!bitwriter.c@{bitwriter.c}}
+\doxysubsubsection{flushBitWriterBuffer()}
+{\footnotesize\ttfamily \label{bitwriter_8c_a0c9a8a4752fd0144d7c5556083545ca1} 
+size\+\_\+t flush\+Bit\+Writer\+Buffer (\begin{DoxyParamCaption}\item[{\textbf{ Bit\+Writer} $\ast$}]{bw}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+
+\index{bitwriter.c@{bitwriter.c}!freeBitWriter@{freeBitWriter}}
+\index{freeBitWriter@{freeBitWriter}!bitwriter.c@{bitwriter.c}}
+\doxysubsubsection{freeBitWriter()}
+{\footnotesize\ttfamily \label{bitwriter_8c_a0bc036019ea04608e40ea43ac2a4efe1} 
+void free\+Bit\+Writer (\begin{DoxyParamCaption}\item[{\textbf{ Bit\+Writer} $\ast$}]{bw}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+
+\index{bitwriter.c@{bitwriter.c}!initBitWriter@{initBitWriter}}
+\index{initBitWriter@{initBitWriter}!bitwriter.c@{bitwriter.c}}
+\doxysubsubsection{initBitWriter()}
+{\footnotesize\ttfamily \label{bitwriter_8c_a98decd406fc97f3a5e87a1c5e43450f6} 
+\textbf{ Bit\+Writer} $\ast$ init\+Bit\+Writer (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+

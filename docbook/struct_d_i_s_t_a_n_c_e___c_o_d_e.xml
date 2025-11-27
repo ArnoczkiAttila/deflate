@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_struct_d_i_s_t_a_n_c_e___c_o_d_e" xml:lang="en-US">
+<title>DISTANCE_CODE Struct Reference</title>
+<indexterm><primary>DISTANCE_CODE</primary></indexterm>
+<para>
+<computeroutput>#include &lt;distance.h&gt;</computeroutput>
+</para>
+<simplesect>
+    <title>Data Fields    </title>
+        <itemizedlist>
+            <listitem><para>unsigned short <link linkend="_struct_d_i_s_t_a_n_c_e___c_o_d_e_1a35a802f2592065224b239abeff51e12b">usSymbolID</link></para>
+</listitem>
+            <listitem><para>int <link linkend="_struct_d_i_s_t_a_n_c_e___c_o_d_e_1ad0421cae1a69a1e660a2ee6e36927944">iExtraBits</link></para>
+</listitem>
+            <listitem><para>int <link linkend="_struct_d_i_s_t_a_n_c_e___c_o_d_e_1ab7a5eb6abde049fad9d90625143477ee">iExtraValue</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Field Documentation</title>
+<anchor xml:id="_struct_d_i_s_t_a_n_c_e___c_o_d_e_1ad0421cae1a69a1e660a2ee6e36927944"/><section>
+    <title>iExtraBits</title>
+<indexterm><primary>iExtraBits</primary><secondary>DISTANCE_CODE</secondary></indexterm>
+<indexterm><primary>DISTANCE_CODE</primary><secondary>iExtraBits</secondary></indexterm>
+<para><computeroutput>int iExtraBits</computeroutput></para></section>
+<anchor xml:id="_struct_d_i_s_t_a_n_c_e___c_o_d_e_1ab7a5eb6abde049fad9d90625143477ee"/><section>
+    <title>iExtraValue</title>
+<indexterm><primary>iExtraValue</primary><secondary>DISTANCE_CODE</secondary></indexterm>
+<indexterm><primary>DISTANCE_CODE</primary><secondary>iExtraValue</secondary></indexterm>
+<para><computeroutput>int iExtraValue</computeroutput></para></section>
+<anchor xml:id="_struct_d_i_s_t_a_n_c_e___c_o_d_e_1a35a802f2592065224b239abeff51e12b"/><section>
+    <title>usSymbolID</title>
+<indexterm><primary>usSymbolID</primary><secondary>DISTANCE_CODE</secondary></indexterm>
+<indexterm><primary>DISTANCE_CODE</primary><secondary>usSymbolID</secondary></indexterm>
+<para><computeroutput>unsigned short usSymbolID</computeroutput></para></section>
+<para>
+The documentation for this struct was generated from the following file:</para>
+<link linkend="_distance_8h">distance.h</link></section>
+</section>

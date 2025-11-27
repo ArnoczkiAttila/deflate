@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="__l_z77_8h_source" xml:lang="en-US">
+<title>LZ77.h</title>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered">1 <emphasis role="comment">//</emphasis>
+2 <emphasis role="comment">//&#32;Created&#32;by&#32;Rendszergazda&#32;on&#32;11/16/2025.</emphasis>
+3 <emphasis role="comment">//</emphasis>
+4 <emphasis role="preprocessor">#ifndef&#32;DEFLATE_LZ77_H</emphasis>
+5 <emphasis role="preprocessor">#define&#32;DEFLATE_LZ77_H</emphasis>
+6 
+7 <emphasis role="preprocessor">#include&#32;&lt;stdint.h&gt;</emphasis>
+8 <emphasis role="preprocessor">#include&#32;&lt;stdlib.h&gt;</emphasis>
+9 
+13 <emphasis role="preprocessor">#define&#32;EXPAND_BY&#32;50</emphasis>
+14 
+18 <emphasis role="keyword">typedef</emphasis>&#32;<emphasis role="keyword">enum</emphasis>&#32;{
+19 &#32;&#32;&#32;&#32;<link linkend="__l_z77_8h_1aa2dfc75cd7ffec5a645d9d50841b6403a01168ce90eea67d7bb43776fb0c139e5">LITERAL</link>,
+20 &#32;&#32;&#32;&#32;<link linkend="__l_z77_8h_1aa2dfc75cd7ffec5a645d9d50841b6403a1155ee5305ebe5bb9407faa9d395ae93">MATCH</link>
+21 }&#32;<link linkend="__l_z77_8h_1aa2dfc75cd7ffec5a645d9d50841b6403">LZ77_encoded_type</link>;
+22 
+28 <emphasis role="keyword">typedef</emphasis>&#32;<emphasis role="keyword">struct&#32;</emphasis>{
+29 &#32;&#32;&#32;&#32;<link linkend="__l_z77_8h_1aa2dfc75cd7ffec5a645d9d50841b6403">LZ77_encoded_type</link>&#32;<link linkend="_struct_l_z77__compressed_1a35706548b8a67e870f95e47317246787">type</link>;
+30 
+31 &#32;&#32;&#32;&#32;<emphasis role="keyword">union&#32;</emphasis>{
+32 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;uint8_t&#32;<link linkend="_struct_l_z77__compressed_1a66a4fabf3d4457878d3a90d39cdd524f">literal</link>;
+33 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">struct&#32;</emphasis>{
+34 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;uint16_t&#32;<link linkend="_struct_l_z77__compressed_1a7ae9d3ad463ec7a0eb38ee23a15c51e7">distance</link>;
+35 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;uint16_t&#32;<link linkend="_struct_l_z77__compressed_1a1892eba2086d12ac2b09005aeb09ea3b">length</link>;
+36 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;match;
+37 &#32;&#32;&#32;&#32;}&#32;data;
+38 }&#32;<link linkend="_struct_l_z77__compressed">LZ77_compressed</link>;
+39 
+45 <emphasis role="keyword">typedef</emphasis>&#32;<emphasis role="keyword">struct&#32;</emphasis>{
+46 &#32;&#32;&#32;&#32;<link linkend="_struct_l_z77__compressed">LZ77_compressed</link>*&#32;<link linkend="_struct_l_z77__buffer_1a28dd3a7c2db4aa8526cb4b1dedb376a8">tokens</link>;&#32;
+47 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">size_t</emphasis>&#32;<link linkend="_struct_l_z77__buffer_1a854352f53b148adc24983a58a1866d66">size</link>;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;
+48 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">size_t</emphasis>&#32;<link linkend="_struct_l_z77__buffer_1ad721fc6ca6a3d6ba3bc506576622aab0">capacity</link>;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;
+49 }&#32;<link linkend="_struct_l_z77__buffer">LZ77_buffer</link>;
+50 
+60 <link linkend="_struct_l_z77__compressed">LZ77_compressed</link>&#32;<link linkend="__l_z77_8h_1a39a4b9657ba7447c0a42d1cc318b2a7b">createLiteralLZ77</link>(<emphasis role="keyword">const</emphasis>&#32;uint8_t&#32;<emphasis role="keywordtype">byte</emphasis>);
+61 
+72 <link linkend="_struct_l_z77__compressed">LZ77_compressed</link>&#32;<link linkend="__l_z77_8h_1ab1cea1d7293ff705a0980fbdb3047eef">createMatchLZ77</link>(<emphasis role="keyword">const</emphasis>&#32;uint16_t&#32;distance,&#32;<emphasis role="keyword">const</emphasis>&#32;uint16_t&#32;length);
+73 
+74 
+75 <emphasis role="comment">//&#32;---&#32;Buffer&#32;Management&#32;Functions&#32;---</emphasis>
+76 
+84 <link linkend="_struct_l_z77__buffer">LZ77_buffer</link>*&#32;<link linkend="__l_z77_8h_1a17ad95ccbd3d7d4a7ac4ffbee2c989ed">initLZ77Buffer</link>(<emphasis role="keywordtype">void</emphasis>);
+85 
+91 <emphasis role="keywordtype">void</emphasis>&#32;<link linkend="__l_z77_8h_1adab308ae1377a2287dcc12153ef47457">expandBuffer</link>(<link linkend="_struct_l_z77__buffer">LZ77_buffer</link>*&#32;buffer);
+92 
+99 <emphasis role="keywordtype">void</emphasis>&#32;<link linkend="__l_z77_8h_1a207642c4539df16babd925c54e4fae02">appendToken</link>(<link linkend="_struct_l_z77__buffer">LZ77_buffer</link>*&#32;buffer,&#32;<link linkend="_struct_l_z77__compressed">LZ77_compressed</link>&#32;token);
+100 
+106 <emphasis role="keywordtype">void</emphasis>&#32;<link linkend="__l_z77_8h_1aae1527487667bef65a7944ecb3ba6bac">freeLZ77Buffer</link>(<link linkend="_struct_l_z77__buffer">LZ77_buffer</link>*&#32;buffer);
+107 
+108 <emphasis role="preprocessor">#endif&#32;</emphasis><emphasis role="comment">//DEFLATE_LZ77_H</emphasis>
+</programlisting></section>

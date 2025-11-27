@@ -1,0 +1,221 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_bitreader_8h" xml:lang="en-US">
+<title>bitreader.h File Reference</title>
+<indexterm><primary>bitreader.h</primary></indexterm>
+<programlisting linenumbering="unnumbered">#include &lt;stdbool.h&gt;<?linebreak?>#include &lt;stdint.h&gt;<?linebreak?>#include &lt;stdio.h&gt;<?linebreak?></programlisting>Include dependency graph for bitreader.h:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="bitreader_8h__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+This graph shows which files directly or indirectly include this file:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="bitreader_8h__dep__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Data Structures    </title>
+        <itemizedlist>
+            <listitem><para>struct <link linkend="_struct_b_i_t___r_e_a_d_e_r">BIT_READER</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_struct_b_i_t___r_e_a_d_e_r">BIT_READER</link> * <link linkend="_bitreader_8h_1af813be79ba8b6b387a8dacff1ef72c04">init_bit_reader</link> (const char *filePath)</para>
+</listitem>
+            <listitem><para>int <link linkend="_bitreader_8h_1a21ed250683802f09cc0375f8dbb5a125">read_bit</link> (<link linkend="_struct_b_i_t___r_e_a_d_e_r">BIT_READER</link> *reader)</para>
+</listitem>
+            <listitem><para>uint32_t <link linkend="_bitreader_8h_1a06bc428e5e0fdf358c4d7aaf14498ce0">read_bits</link> (<link linkend="_struct_b_i_t___r_e_a_d_e_r">BIT_READER</link> *reader, int numBits)</para>
+
+<para>Processes the 10-byte GZIP header and any optional fields. </para>
+</listitem>
+            <listitem><para>void <link linkend="_bitreader_8h_1aa8b5fc0a2d13215757372d983e37b336">close_bit_reader</link> (<link linkend="_struct_b_i_t___r_e_a_d_e_r">BIT_READER</link> *reader)</para>
+</listitem>
+            <listitem><para>bool <link linkend="_bitreader_8h_1acac2cf5ecbb43c96b44ff0b63b432c46">process_gzip_header</link> (<link linkend="_struct_b_i_t___r_e_a_d_e_r">BIT_READER</link> *reader)</para>
+</listitem>
+            <listitem><para>uint16_t <link linkend="_bitreader_8h_1ae4fcc275a9937dc610bc057cb9bcc919">peek_bits</link> (<link linkend="_struct_b_i_t___r_e_a_d_e_r">BIT_READER</link> *reader, uint8_t n)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Function Documentation</title>
+<anchor xml:id="_bitreader_8h_1aa8b5fc0a2d13215757372d983e37b336"/><section>
+    <title>close_bit_reader()</title>
+<indexterm><primary>close_bit_reader</primary><secondary>bitreader.h</secondary></indexterm>
+<indexterm><primary>bitreader.h</primary><secondary>close_bit_reader</secondary></indexterm>
+<para><computeroutput>void close_bit_reader (<link linkend="_struct_b_i_t___r_e_a_d_e_r">BIT_READER</link> * reader)</computeroutput></para>
+<para>Closes the file handle and performs cleanup. 
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>reader</entry><entry>
+<para>Pointer to the <link linkend="_struct_b_i_t___r_e_a_d_e_r">BIT_READER</link> structure. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                </para>
+</section>
+<anchor xml:id="_bitreader_8h_1af813be79ba8b6b387a8dacff1ef72c04"/><section>
+    <title>init_bit_reader()</title>
+<indexterm><primary>init_bit_reader</primary><secondary>bitreader.h</secondary></indexterm>
+<indexterm><primary>bitreader.h</primary><secondary>init_bit_reader</secondary></indexterm>
+<para><computeroutput><link linkend="_struct_b_i_t___r_e_a_d_e_r">BIT_READER</link> * init_bit_reader (const char * filePath)</computeroutput></para>
+<para>Initializes the <link linkend="_struct_b_i_t___r_e_a_d_e_r">BIT_READER</link> structure. Opens the file and resets the bit-reading state. 
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>filePath</entry><entry>
+<para>Path to the input file. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>0 on success, -1 on failure (e.g., file not found). </para>
+</formalpara>
+</para>
+</section>
+<anchor xml:id="_bitreader_8h_1ae4fcc275a9937dc610bc057cb9bcc919"/><section>
+    <title>peek_bits()</title>
+<indexterm><primary>peek_bits</primary><secondary>bitreader.h</secondary></indexterm>
+<indexterm><primary>bitreader.h</primary><secondary>peek_bits</secondary></indexterm>
+<para><computeroutput>uint16_t peek_bits (<link linkend="_struct_b_i_t___r_e_a_d_e_r">BIT_READER</link> * reader, uint8_t n)<computeroutput>[extern]</computeroutput></computeroutput></para></section>
+<anchor xml:id="_bitreader_8h_1acac2cf5ecbb43c96b44ff0b63b432c46"/><section>
+    <title>process_gzip_header()</title>
+<indexterm><primary>process_gzip_header</primary><secondary>bitreader.h</secondary></indexterm>
+<indexterm><primary>bitreader.h</primary><secondary>process_gzip_header</secondary></indexterm>
+<para><computeroutput>bool process_gzip_header (<link linkend="_struct_b_i_t___r_e_a_d_e_r">BIT_READER</link> * reader)</computeroutput></para></section>
+<anchor xml:id="_bitreader_8h_1a21ed250683802f09cc0375f8dbb5a125"/><section>
+    <title>read_bit()</title>
+<indexterm><primary>read_bit</primary><secondary>bitreader.h</secondary></indexterm>
+<indexterm><primary>bitreader.h</primary><secondary>read_bit</secondary></indexterm>
+<para><computeroutput>int read_bit (<link linkend="_struct_b_i_t___r_e_a_d_e_r">BIT_READER</link> * reader)</computeroutput></para>
+<para>Reads a single bit from the stream. Handles reading new bytes from the file when the current byte is exhausted. 
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>reader</entry><entry>
+<para>Pointer to the initialized <link linkend="_struct_b_i_t___r_e_a_d_e_r">BIT_READER</link>. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>The bit value (0 or 1), or -1 if the end of file is reached unexpectedly. </para>
+</formalpara>
+</para>
+</section>
+<anchor xml:id="_bitreader_8h_1a06bc428e5e0fdf358c4d7aaf14498ce0"/><section>
+    <title>read_bits()</title>
+<indexterm><primary>read_bits</primary><secondary>bitreader.h</secondary></indexterm>
+<indexterm><primary>bitreader.h</primary><secondary>read_bits</secondary></indexterm>
+<para><computeroutput>uint32_t read_bits (<link linkend="_struct_b_i_t___r_e_a_d_e_r">BIT_READER</link> * reader, int numBits)</computeroutput></para><para>
+
+<para>Processes the 10-byte GZIP header and any optional fields. </para>
+</para>
+
+<para>Reads a specified number of bits from the stream. 
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>reader</entry><entry>
+<para>Pointer to the initialized <link linkend="_struct_b_i_t___r_e_a_d_e_r">BIT_READER</link>. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>numBits</entry><entry>
+<para>The number of bits to read (must be &lt;= 32). </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>The unsigned integer value represented by the bits, or 0xFFFFFFFF on error.</para>
+</formalpara>
+<itemizedlist>
+<listitem>
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>reader</entry><entry>
+<para>Pointer to the initialized <link linkend="_struct_b_i_t___r_e_a_d_e_r">BIT_READER</link>. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>true if the header is valid and optional fields were processed (or skipped). </para>
+
+<para>false if the file is not a valid GZIP stream or required features are unsupported. </para>
+</formalpara>
+</para>
+</listitem></itemizedlist>
+</para>
+</section>
+</section>
+</section>

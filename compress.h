@@ -1,5 +1,5 @@
 //
-// Created by Rendszergazda on 11/19/2025.
+// Created by Arnóczki Attila on 11/19/2025.
 //
 
 #ifndef DEFLATE_COMPRESS_H

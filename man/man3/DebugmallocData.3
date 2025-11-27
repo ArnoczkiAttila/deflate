@@ -1,0 +1,60 @@
+.TH "DebugmallocData" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+DebugmallocData
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <debugmalloc\&.h>\fP
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "char \fBlogfile\fP [256]"
+.br
+.ti -1c
+.RI "long \fBmax_block_size\fP"
+.br
+.ti -1c
+.RI "long \fBalloc_count\fP"
+.br
+.ti -1c
+.RI "long long \fBalloc_bytes\fP"
+.br
+.ti -1c
+.RI "long \fBall_alloc_count\fP"
+.br
+.ti -1c
+.RI "long long \fBall_alloc_bytes\fP"
+.br
+.ti -1c
+.RI "\fBDebugmallocEntry\fP \fBhead\fP [\fBdebugmalloc_tablesize\fP]"
+.br
+.ti -1c
+.RI "\fBDebugmallocEntry\fP \fBtail\fP [\fBdebugmalloc_tablesize\fP]"
+.br
+.in -1c
+.SH "Field Documentation"
+.PP 
+.SS "long long all_alloc_bytes"
+
+.SS "long all_alloc_count"
+
+.SS "long long alloc_bytes"
+
+.SS "long alloc_count"
+
+.SS "\fBDebugmallocEntry\fP head[\fBdebugmalloc_tablesize\fP]"
+
+.SS "char logfile[256]"
+
+.SS "long max_block_size"
+
+.SS "\fBDebugmallocEntry\fP tail[\fBdebugmalloc_tablesize\fP]"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

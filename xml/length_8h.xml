@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="length_8h" kind="file" language="C++">
+    <compoundname>length.h</compoundname>
+    <includedby refid="compress_8c" local="yes">compress.c</includedby>
+    <includedby refid="length_8c" local="yes">length.c</includedby>
+    <includedby refid="main_8c" local="yes">main.c</includedby>
+    <invincdepgraph>
+      <node id="2">
+        <label>compress.c</label>
+        <link refid="compress_8c"/>
+      </node>
+      <node id="3">
+        <label>length.c</label>
+        <link refid="length_8c"/>
+      </node>
+      <node id="1">
+        <label>length.h</label>
+        <link refid="length_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>main.c</label>
+        <link refid="main_8c"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="struct_l_e_n_g_t_h___c_o_d_e" prot="public">LENGTH_CODE</innerclass>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="length_8h_1ac1708113f9ba2b598b57c0290f24ddd2" prot="public" static="no" extern="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="struct_l_e_n_g_t_h___c_o_d_e" kindref="compound">LENGTH_CODE</ref></type>
+        <definition>LENGTH_CODE getLengthCode</definition>
+        <argsstring>(int length)</argsstring>
+        <name>getLengthCode</name>
+        <param>
+          <type>int</type>
+          <declname>length</declname>
+        </param>
+        <briefdescription>
+<para>LengthCode. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The getLengthCode function calculates the Length Code for each match length, and returns a struct with the necessary data in it. For more information on Length Code&apos;s check out the official rfc1951 standard documentation. (<ulink url="https://datatracker.ietf.org/doc/html/rfc1951#page-11">https://datatracker.ietf.org/doc/html/rfc1951#page-11</ulink>)</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>length</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The actual length between (3 and 258) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>LengthCode struct which stores the length code, the required extra bits, and then the extra value in those extra bits, </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="length.h" line="25" column="20" bodyfile="length.c" bodystart="54" bodyend="90" declfile="length.h" declline="25" declcolumn="20"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Created<sp/>by<sp/>Rendszergazda<sp/>on<sp/>11/19/2025.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>DEFLATE_LENGTH_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DEFLATE_LENGTH_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8" refid="struct_l_e_n_g_t_h___c_o_d_e" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="9" refid="struct_l_e_n_g_t_h___c_o_d_e_1a35a802f2592065224b239abeff51e12b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><ref refid="struct_l_e_n_g_t_h___c_o_d_e_1a35a802f2592065224b239abeff51e12b" kindref="member">usSymbolID</ref>;</highlight></codeline>
+<codeline lineno="10" refid="struct_l_e_n_g_t_h___c_o_d_e_1ad0421cae1a69a1e660a2ee6e36927944" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="struct_l_e_n_g_t_h___c_o_d_e_1ad0421cae1a69a1e660a2ee6e36927944" kindref="member">iExtraBits</ref>;</highlight></codeline>
+<codeline lineno="11" refid="struct_l_e_n_g_t_h___c_o_d_e_1ab7a5eb6abde049fad9d90625143477ee" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="struct_l_e_n_g_t_h___c_o_d_e_1ab7a5eb6abde049fad9d90625143477ee" kindref="member">iExtraValue</ref>;</highlight></codeline>
+<codeline lineno="12"><highlight class="normal">}<sp/><ref refid="struct_l_e_n_g_t_h___c_o_d_e" kindref="compound">LENGTH_CODE</ref>;</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/><ref refid="struct_l_e_n_g_t_h___c_o_d_e" kindref="compound">LENGTH_CODE</ref><sp/><ref refid="length_8h_1ac1708113f9ba2b598b57c0290f24ddd2" kindref="member">getLengthCode</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>length);</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//DEFLATE_LENGTH_H</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="length.h"/>
+  </compounddef>
+</doxygen>

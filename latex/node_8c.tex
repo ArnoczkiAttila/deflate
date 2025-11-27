@@ -1,0 +1,199 @@
+\doxysection{node.\+c File Reference}
+\label{node_8c}\index{node.c@{node.c}}
+{\ttfamily \#include "{}node.\+h"{}}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include "{}debugmalloc.\+h"{}}\newline
+Include dependency graph for node.\+c\+:
+% FIG 0
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \textbf{ INVALID\+\_\+\+NODE\+\_\+\+SYMBOL}~286
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Node} $\ast$ \textbf{ create\+Node} (unsigned short us\+Symbol, int freq)
+\item 
+void \textbf{ free\+Tree} (\textbf{ Node} $\ast$top)
+\item 
+void \textbf{ compress\+Code\+Lengths} (const uint8\+\_\+t $\ast$all\+\_\+lengths, size\+\_\+t count, uint8\+\_\+t $\ast$compressed\+\_\+lengths, uint16\+\_\+t $\ast$cl\+\_\+frequencies, uint8\+\_\+t $\ast$extra\+\_\+bits\+\_\+values, size\+\_\+t $\ast$compressed\+\_\+count)
+\item 
+void \textbf{ find\+Code\+Lengths\+In\+Tree} (\textbf{ Node} $\ast$node, uint8\+\_\+t $\ast$lengths, uint8\+\_\+t depth)
+\item 
+\textbf{ Min\+Heap} $\ast$ \textbf{ create\+Min\+Heap} (int capacity)
+\item 
+void \textbf{ add\+To\+Min\+Heap} (\textbf{ Min\+Heap} $\ast$min\+Heap, \textbf{ Node} $\ast$node)
+\item 
+void \textbf{ swap\+Node\+Pointers} (\textbf{ Node} $\ast$$\ast$a, \textbf{ Node} $\ast$$\ast$b)
+\item 
+void \textbf{ min\+Heapify} (\textbf{ Min\+Heap} $\ast$min\+Heap, int i)
+\item 
+\textbf{ Node} $\ast$ \textbf{ extract\+Min} (\textbf{ Min\+Heap} $\ast$min\+Heap)
+\item 
+void \textbf{ free\+Min\+Heap} (\textbf{ Min\+Heap} $\ast$min\+Heap)
+\item 
+void \textbf{ print\+Heap} (\textbf{ Min\+Heap} $\ast$min\+Heap)
+\item 
+void \textbf{ build\+Min\+Heap} (\textbf{ Min\+Heap} $\ast$min\+Heap)
+\item 
+int \textbf{ parent\+Index} (int i)
+\item 
+int \textbf{ left\+Child\+Index} (int i)
+\item 
+void \textbf{ insert\+Min\+Heap} (\textbf{ Min\+Heap} $\ast$min\+Heap, \textbf{ Node} $\ast$new\+Node)
+\item 
+\textbf{ Node} $\ast$ \textbf{ build\+Huffman\+Tree} (\textbf{ Min\+Heap} $\ast$min\+Heap)
+\begin{DoxyCompactList}\small\item\em Creates the Huffman tree from the populated Min-\/\+Heap. \end{DoxyCompactList}\item 
+void \textbf{ extract\+\_\+code\+\_\+lengths} (\textbf{ Node} $\ast$np\+Current, uint8\+\_\+t ui\+Current\+Depth, uint8\+\_\+t $\ast$ui\+Length\+Codes)
+\begin{DoxyCompactList}\small\item\em Traverses a Huffman tree to determine the bit length (depth) for every symbol. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\index{node.c@{node.c}!INVALID\_NODE\_SYMBOL@{INVALID\_NODE\_SYMBOL}}
+\index{INVALID\_NODE\_SYMBOL@{INVALID\_NODE\_SYMBOL}!node.c@{node.c}}
+\doxysubsubsection{INVALID\_NODE\_SYMBOL}
+{\footnotesize\ttfamily \label{node_8c_a90344de9a45f0d60f23aff3fea165e05} 
+\#define INVALID\+\_\+\+NODE\+\_\+\+SYMBOL~286}
+
+
+
+\label{doc-func-members}
+\doxysubsection{Function Documentation}
+\index{node.c@{node.c}!addToMinHeap@{addToMinHeap}}
+\index{addToMinHeap@{addToMinHeap}!node.c@{node.c}}
+\doxysubsubsection{addToMinHeap()}
+{\footnotesize\ttfamily \label{node_8c_ac9a5be012917c9c86e4cc688eb700e0c} 
+void add\+To\+Min\+Heap (\begin{DoxyParamCaption}\item[{\textbf{ Min\+Heap} $\ast$}]{min\+Heap}{, }\item[{\textbf{ Node} $\ast$}]{node}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+
+\index{node.c@{node.c}!buildHuffmanTree@{buildHuffmanTree}}
+\index{buildHuffmanTree@{buildHuffmanTree}!node.c@{node.c}}
+\doxysubsubsection{buildHuffmanTree()}
+{\footnotesize\ttfamily \label{node_8c_a7dddf9d8d87a548cf9d63568af9f56fa} 
+\textbf{ Node} $\ast$ build\+Huffman\+Tree (\begin{DoxyParamCaption}\item[{\textbf{ Min\+Heap} $\ast$}]{min\+Heap}{}\end{DoxyParamCaption})}
+
+
+
+Creates the Huffman tree from the populated Min-\/\+Heap. 
+
+
+\begin{DoxyItemize}
+\item This is the greedy algorithm core\+: repeatedly combine the two smallest nodes.
+\item 
+\begin{DoxyParams}{Parameters}
+{\em min\+Heap} & The initialized Min-\/\+Heap containing all leaf nodes. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Node$\ast$ The root of the completed Huffman tree. 
+\end{DoxyReturn}
+
+\end{DoxyItemize}\index{node.c@{node.c}!buildMinHeap@{buildMinHeap}}
+\index{buildMinHeap@{buildMinHeap}!node.c@{node.c}}
+\doxysubsubsection{buildMinHeap()}
+{\footnotesize\ttfamily \label{node_8c_ae6e53a77c8389ec5fa741eeab2e95cd9} 
+void build\+Min\+Heap (\begin{DoxyParamCaption}\item[{\textbf{ Min\+Heap} $\ast$}]{min\+Heap}{}\end{DoxyParamCaption})}
+
+\index{node.c@{node.c}!compressCodeLengths@{compressCodeLengths}}
+\index{compressCodeLengths@{compressCodeLengths}!node.c@{node.c}}
+\doxysubsubsection{compressCodeLengths()}
+{\footnotesize\ttfamily \label{node_8c_aa1c5f84fe9f09a17b82d2ed396c1e1ad} 
+void compress\+Code\+Lengths (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t $\ast$}]{all\+\_\+lengths}{, }\item[{size\+\_\+t}]{count}{, }\item[{uint8\+\_\+t $\ast$}]{compressed\+\_\+lengths}{, }\item[{uint16\+\_\+t $\ast$}]{cl\+\_\+frequencies}{, }\item[{uint8\+\_\+t $\ast$}]{extra\+\_\+bits\+\_\+values}{, }\item[{size\+\_\+t $\ast$}]{compressed\+\_\+count}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+
+\index{node.c@{node.c}!createMinHeap@{createMinHeap}}
+\index{createMinHeap@{createMinHeap}!node.c@{node.c}}
+\doxysubsubsection{createMinHeap()}
+{\footnotesize\ttfamily \label{node_8c_a86c7eb4d5e202d4087bde685ae659e52} 
+\textbf{ Min\+Heap} $\ast$ create\+Min\+Heap (\begin{DoxyParamCaption}\item[{int}]{capacity}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+
+\index{node.c@{node.c}!createNode@{createNode}}
+\index{createNode@{createNode}!node.c@{node.c}}
+\doxysubsubsection{createNode()}
+{\footnotesize\ttfamily \label{node_8c_a476e2695789ae31745b5cd5cc5877792} 
+\textbf{ Node} $\ast$ create\+Node (\begin{DoxyParamCaption}\item[{unsigned short}]{us\+Symbol}{, }\item[{int}]{freq}{}\end{DoxyParamCaption})}
+
+\index{node.c@{node.c}!extract\_code\_lengths@{extract\_code\_lengths}}
+\index{extract\_code\_lengths@{extract\_code\_lengths}!node.c@{node.c}}
+\doxysubsubsection{extract\_code\_lengths()}
+{\footnotesize\ttfamily \label{node_8c_aa5388bed3eaea8eee24e56c7e66b1e62} 
+void extract\+\_\+code\+\_\+lengths (\begin{DoxyParamCaption}\item[{\textbf{ Node} $\ast$}]{np\+Current}{, }\item[{uint8\+\_\+t}]{ui\+Current\+Depth}{, }\item[{uint8\+\_\+t $\ast$}]{ui\+Length\+Codes}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Traverses a Huffman tree to determine the bit length (depth) for every symbol. 
+
+
+\begin{DoxyItemize}
+\item 
+\begin{DoxyParams}{Parameters}
+{\em current\+\_\+node} & The current node in the traversal (start with the tree root). \\
+\hline
+{\em ui\+Current\+Depth} & The depth of the current node (start with 0 for the root). \\
+\hline
+{\em ui\+Length\+Codes} & The array where the resulting code lengths are stored. \\
+\hline
+\end{DoxyParams}
+
+\end{DoxyItemize}\index{node.c@{node.c}!extractMin@{extractMin}}
+\index{extractMin@{extractMin}!node.c@{node.c}}
+\doxysubsubsection{extractMin()}
+{\footnotesize\ttfamily \label{node_8c_aecbec578e3e80350306dd708f0e24b99} 
+\textbf{ Node} $\ast$ extract\+Min (\begin{DoxyParamCaption}\item[{\textbf{ Min\+Heap} $\ast$}]{min\+Heap}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+
+\index{node.c@{node.c}!findCodeLengthsInTree@{findCodeLengthsInTree}}
+\index{findCodeLengthsInTree@{findCodeLengthsInTree}!node.c@{node.c}}
+\doxysubsubsection{findCodeLengthsInTree()}
+{\footnotesize\ttfamily \label{node_8c_a25107a4508c2ffd75825c42e1239fa90} 
+void find\+Code\+Lengths\+In\+Tree (\begin{DoxyParamCaption}\item[{\textbf{ Node} $\ast$}]{node}{, }\item[{uint8\+\_\+t $\ast$}]{lengths}{, }\item[{uint8\+\_\+t}]{depth}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+
+\index{node.c@{node.c}!freeMinHeap@{freeMinHeap}}
+\index{freeMinHeap@{freeMinHeap}!node.c@{node.c}}
+\doxysubsubsection{freeMinHeap()}
+{\footnotesize\ttfamily \label{node_8c_afbdba32d1543027eda02773bce2ab102} 
+void free\+Min\+Heap (\begin{DoxyParamCaption}\item[{\textbf{ Min\+Heap} $\ast$}]{min\+Heap}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+
+\index{node.c@{node.c}!freeTree@{freeTree}}
+\index{freeTree@{freeTree}!node.c@{node.c}}
+\doxysubsubsection{freeTree()}
+{\footnotesize\ttfamily \label{node_8c_afdf92c04775f1fdb56a48a6063f30b51} 
+void free\+Tree (\begin{DoxyParamCaption}\item[{\textbf{ Node} $\ast$}]{top}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+
+\index{node.c@{node.c}!insertMinHeap@{insertMinHeap}}
+\index{insertMinHeap@{insertMinHeap}!node.c@{node.c}}
+\doxysubsubsection{insertMinHeap()}
+{\footnotesize\ttfamily \label{node_8c_a2fa8d61f1354f6602498abd3f4415417} 
+void insert\+Min\+Heap (\begin{DoxyParamCaption}\item[{\textbf{ Min\+Heap} $\ast$}]{min\+Heap}{, }\item[{\textbf{ Node} $\ast$}]{new\+Node}{}\end{DoxyParamCaption})}
+
+\index{node.c@{node.c}!leftChildIndex@{leftChildIndex}}
+\index{leftChildIndex@{leftChildIndex}!node.c@{node.c}}
+\doxysubsubsection{leftChildIndex()}
+{\footnotesize\ttfamily \label{node_8c_abf874a257b47b5a785891cc3d9920251} 
+int left\+Child\+Index (\begin{DoxyParamCaption}\item[{int}]{i}{}\end{DoxyParamCaption})}
+
+\index{node.c@{node.c}!minHeapify@{minHeapify}}
+\index{minHeapify@{minHeapify}!node.c@{node.c}}
+\doxysubsubsection{minHeapify()}
+{\footnotesize\ttfamily \label{node_8c_ae90b32976c0036dd23f82b402230cb84} 
+void min\+Heapify (\begin{DoxyParamCaption}\item[{\textbf{ Min\+Heap} $\ast$}]{min\+Heap}{, }\item[{int}]{i}{}\end{DoxyParamCaption})}
+
+\index{node.c@{node.c}!parentIndex@{parentIndex}}
+\index{parentIndex@{parentIndex}!node.c@{node.c}}
+\doxysubsubsection{parentIndex()}
+{\footnotesize\ttfamily \label{node_8c_a3620a363633d7b5214f68fc8692fb075} 
+int parent\+Index (\begin{DoxyParamCaption}\item[{int}]{i}{}\end{DoxyParamCaption})}
+
+\index{node.c@{node.c}!printHeap@{printHeap}}
+\index{printHeap@{printHeap}!node.c@{node.c}}
+\doxysubsubsection{printHeap()}
+{\footnotesize\ttfamily \label{node_8c_a8196a5fffc96ca854a325d1fe349e8da} 
+void print\+Heap (\begin{DoxyParamCaption}\item[{\textbf{ Min\+Heap} $\ast$}]{min\+Heap}{}\end{DoxyParamCaption})}
+
+\index{node.c@{node.c}!swapNodePointers@{swapNodePointers}}
+\index{swapNodePointers@{swapNodePointers}!node.c@{node.c}}
+\doxysubsubsection{swapNodePointers()}
+{\footnotesize\ttfamily \label{node_8c_abb1491b2a66959d3dea01a9b552c8e86} 
+void swap\+Node\+Pointers (\begin{DoxyParamCaption}\item[{\textbf{ Node} $\ast$$\ast$}]{a}{, }\item[{\textbf{ Node} $\ast$$\ast$}]{b}{}\end{DoxyParamCaption})}
+

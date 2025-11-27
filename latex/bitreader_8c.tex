@@ -1,0 +1,182 @@
+\doxysection{bitreader.\+c File Reference}
+\label{bitreader_8c}\index{bitreader.c@{bitreader.c}}
+{\ttfamily \#include "{}bitreader.\+h"{}}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include "{}debugmalloc.\+h"{}}\newline
+Include dependency graph for bitreader.\+c\+:
+% FIG 0
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \textbf{ BUFFER\+\_\+\+SIZE}~4096
+\item 
+\#define \textbf{ GZIP\+\_\+\+ID1}~0x1f
+\item 
+\#define \textbf{ GZIP\+\_\+\+ID2}~0x8b
+\item 
+\#define \textbf{ GZIP\+\_\+\+CM\+\_\+\+DEFLATE}~0x08
+\item 
+\#define \textbf{ FTEXT}~0x01
+\item 
+\#define \textbf{ FHCRC}~0x02
+\item 
+\#define \textbf{ FEXTRA}~0x04
+\item 
+\#define \textbf{ FNAME}~0x08
+\item 
+\#define \textbf{ FCOMMENT}~0x10
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint32\+\_\+t \textbf{ read\+\_\+bits} (\textbf{ BIT\+\_\+\+READER} $\ast$reader, int num\+Bits)
+\begin{DoxyCompactList}\small\item\em Processes the 10-\/byte GZIP header and any optional fields. \end{DoxyCompactList}\item 
+bool \textbf{ process\+\_\+gzip\+\_\+header} (\textbf{ BIT\+\_\+\+READER} $\ast$reader)
+\item 
+\textbf{ BIT\+\_\+\+READER} $\ast$ \textbf{ init\+\_\+bit\+\_\+reader} (const char $\ast$file\+Path)
+\item 
+int \textbf{ read\+\_\+bit} (\textbf{ BIT\+\_\+\+READER} $\ast$reader)
+\item 
+void \textbf{ close\+\_\+bit\+\_\+reader} (\textbf{ BIT\+\_\+\+READER} $\ast$reader)
+\item 
+uint16\+\_\+t \textbf{ peek\+\_\+bits} (\textbf{ BIT\+\_\+\+READER} $\ast$reader, uint8\+\_\+t n)
+\end{DoxyCompactItemize}
+
+
+\label{doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\index{bitreader.c@{bitreader.c}!BUFFER\_SIZE@{BUFFER\_SIZE}}
+\index{BUFFER\_SIZE@{BUFFER\_SIZE}!bitreader.c@{bitreader.c}}
+\doxysubsubsection{BUFFER\_SIZE}
+{\footnotesize\ttfamily \label{bitreader_8c_a6b20d41d6252e9871430c242cb1a56e7} 
+\#define BUFFER\+\_\+\+SIZE~4096}
+
+\index{bitreader.c@{bitreader.c}!FCOMMENT@{FCOMMENT}}
+\index{FCOMMENT@{FCOMMENT}!bitreader.c@{bitreader.c}}
+\doxysubsubsection{FCOMMENT}
+{\footnotesize\ttfamily \label{bitreader_8c_ab1cb41f7a9d2436f79f01a537ba79b71} 
+\#define FCOMMENT~0x10}
+
+\index{bitreader.c@{bitreader.c}!FEXTRA@{FEXTRA}}
+\index{FEXTRA@{FEXTRA}!bitreader.c@{bitreader.c}}
+\doxysubsubsection{FEXTRA}
+{\footnotesize\ttfamily \label{bitreader_8c_ad0c5ecb7071bdd157bce2e3b7ee930ad} 
+\#define FEXTRA~0x04}
+
+\index{bitreader.c@{bitreader.c}!FHCRC@{FHCRC}}
+\index{FHCRC@{FHCRC}!bitreader.c@{bitreader.c}}
+\doxysubsubsection{FHCRC}
+{\footnotesize\ttfamily \label{bitreader_8c_a8469cbeb2f8071938f6d68cd0c58c0f3} 
+\#define FHCRC~0x02}
+
+\index{bitreader.c@{bitreader.c}!FNAME@{FNAME}}
+\index{FNAME@{FNAME}!bitreader.c@{bitreader.c}}
+\doxysubsubsection{FNAME}
+{\footnotesize\ttfamily \label{bitreader_8c_afd7feb39acd312085566c208e35c2362} 
+\#define FNAME~0x08}
+
+\index{bitreader.c@{bitreader.c}!FTEXT@{FTEXT}}
+\index{FTEXT@{FTEXT}!bitreader.c@{bitreader.c}}
+\doxysubsubsection{FTEXT}
+{\footnotesize\ttfamily \label{bitreader_8c_ad16d3314e1ed1f0124d728efbd474ad4} 
+\#define FTEXT~0x01}
+
+\index{bitreader.c@{bitreader.c}!GZIP\_CM\_DEFLATE@{GZIP\_CM\_DEFLATE}}
+\index{GZIP\_CM\_DEFLATE@{GZIP\_CM\_DEFLATE}!bitreader.c@{bitreader.c}}
+\doxysubsubsection{GZIP\_CM\_DEFLATE}
+{\footnotesize\ttfamily \label{bitreader_8c_a46bb71d79f4ca0301b1239d8931f1541} 
+\#define GZIP\+\_\+\+CM\+\_\+\+DEFLATE~0x08}
+
+\index{bitreader.c@{bitreader.c}!GZIP\_ID1@{GZIP\_ID1}}
+\index{GZIP\_ID1@{GZIP\_ID1}!bitreader.c@{bitreader.c}}
+\doxysubsubsection{GZIP\_ID1}
+{\footnotesize\ttfamily \label{bitreader_8c_a3077cee4d25db022d9076b5575a14809} 
+\#define GZIP\+\_\+\+ID1~0x1f}
+
+\index{bitreader.c@{bitreader.c}!GZIP\_ID2@{GZIP\_ID2}}
+\index{GZIP\_ID2@{GZIP\_ID2}!bitreader.c@{bitreader.c}}
+\doxysubsubsection{GZIP\_ID2}
+{\footnotesize\ttfamily \label{bitreader_8c_aa5b870e8cf3ddbbb799871f614eb1cc2} 
+\#define GZIP\+\_\+\+ID2~0x8b}
+
+
+
+\label{doc-func-members}
+\doxysubsection{Function Documentation}
+\index{bitreader.c@{bitreader.c}!close\_bit\_reader@{close\_bit\_reader}}
+\index{close\_bit\_reader@{close\_bit\_reader}!bitreader.c@{bitreader.c}}
+\doxysubsubsection{close\_bit\_reader()}
+{\footnotesize\ttfamily \label{bitreader_8c_aa8b5fc0a2d13215757372d983e37b336} 
+void close\+\_\+bit\+\_\+reader (\begin{DoxyParamCaption}\item[{\textbf{ BIT\+\_\+\+READER} $\ast$}]{reader}{}\end{DoxyParamCaption})}
+
+Closes the file handle and performs cleanup. 
+\begin{DoxyParams}{Parameters}
+{\em reader} & Pointer to the \doxyref{BIT\+\_\+\+READER}{p.}{struct_b_i_t___r_e_a_d_e_r} structure. \\
+\hline
+\end{DoxyParams}
+\index{bitreader.c@{bitreader.c}!init\_bit\_reader@{init\_bit\_reader}}
+\index{init\_bit\_reader@{init\_bit\_reader}!bitreader.c@{bitreader.c}}
+\doxysubsubsection{init\_bit\_reader()}
+{\footnotesize\ttfamily \label{bitreader_8c_af813be79ba8b6b387a8dacff1ef72c04} 
+\textbf{ BIT\+\_\+\+READER} $\ast$ init\+\_\+bit\+\_\+reader (\begin{DoxyParamCaption}\item[{const char $\ast$}]{file\+Path}{}\end{DoxyParamCaption})}
+
+Initializes the \doxyref{BIT\+\_\+\+READER}{p.}{struct_b_i_t___r_e_a_d_e_r} structure. Opens the file and resets the bit-\/reading state. 
+\begin{DoxyParams}{Parameters}
+{\em file\+Path} & Path to the input file. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, -\/1 on failure (e.\+g., file not found). 
+\end{DoxyReturn}
+\index{bitreader.c@{bitreader.c}!peek\_bits@{peek\_bits}}
+\index{peek\_bits@{peek\_bits}!bitreader.c@{bitreader.c}}
+\doxysubsubsection{peek\_bits()}
+{\footnotesize\ttfamily \label{bitreader_8c_ae4fcc275a9937dc610bc057cb9bcc919} 
+uint16\+\_\+t peek\+\_\+bits (\begin{DoxyParamCaption}\item[{\textbf{ BIT\+\_\+\+READER} $\ast$}]{reader}{, }\item[{uint8\+\_\+t}]{n}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+
+\index{bitreader.c@{bitreader.c}!process\_gzip\_header@{process\_gzip\_header}}
+\index{process\_gzip\_header@{process\_gzip\_header}!bitreader.c@{bitreader.c}}
+\doxysubsubsection{process\_gzip\_header()}
+{\footnotesize\ttfamily \label{bitreader_8c_acac2cf5ecbb43c96b44ff0b63b432c46} 
+bool process\+\_\+gzip\+\_\+header (\begin{DoxyParamCaption}\item[{\textbf{ BIT\+\_\+\+READER} $\ast$}]{reader}{}\end{DoxyParamCaption})}
+
+\index{bitreader.c@{bitreader.c}!read\_bit@{read\_bit}}
+\index{read\_bit@{read\_bit}!bitreader.c@{bitreader.c}}
+\doxysubsubsection{read\_bit()}
+{\footnotesize\ttfamily \label{bitreader_8c_a21ed250683802f09cc0375f8dbb5a125} 
+int read\+\_\+bit (\begin{DoxyParamCaption}\item[{\textbf{ BIT\+\_\+\+READER} $\ast$}]{reader}{}\end{DoxyParamCaption})}
+
+Reads a single bit from the stream. Handles reading new bytes from the file when the current byte is exhausted. 
+\begin{DoxyParams}{Parameters}
+{\em reader} & Pointer to the initialized \doxyref{BIT\+\_\+\+READER}{p.}{struct_b_i_t___r_e_a_d_e_r}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The bit value (0 or 1), or -\/1 if the end of file is reached unexpectedly. 
+\end{DoxyReturn}
+\index{bitreader.c@{bitreader.c}!read\_bits@{read\_bits}}
+\index{read\_bits@{read\_bits}!bitreader.c@{bitreader.c}}
+\doxysubsubsection{read\_bits()}
+{\footnotesize\ttfamily \label{bitreader_8c_a06bc428e5e0fdf358c4d7aaf14498ce0} 
+uint32\+\_\+t read\+\_\+bits (\begin{DoxyParamCaption}\item[{\textbf{ BIT\+\_\+\+READER} $\ast$}]{reader}{, }\item[{int}]{num\+Bits}{}\end{DoxyParamCaption})}
+
+
+
+Processes the 10-\/byte GZIP header and any optional fields. 
+
+
+\begin{DoxyItemize}
+\item 
+\begin{DoxyParams}{Parameters}
+{\em reader} & Pointer to the initialized \doxyref{BIT\+\_\+\+READER}{p.}{struct_b_i_t___r_e_a_d_e_r}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the header is valid and optional fields were processed (or skipped). 
+
+false if the file is not a valid GZIP stream or required features are unsupported. 
+\end{DoxyReturn}
+
+\end{DoxyItemize}

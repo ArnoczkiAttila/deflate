@@ -1,0 +1,153 @@
+.TH "debugmalloc.h" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+debugmalloc.h
+.SH SYNOPSIS
+.br
+.PP
+\fR#include <stdbool\&.h>\fP
+.br
+\fR#include <stddef\&.h>\fP
+.br
+\fR#include <stdlib\&.h>\fP
+.br
+\fR#include <stdio\&.h>\fP
+.br
+\fR#include <ctype\&.h>\fP
+.br
+\fR#include <string\&.h>\fP
+.br
+\fR#include <stdarg\&.h>\fP
+.br
+\fR#include <unistd\&.h>\fP
+.br
+
+.SS "Data Structures"
+
+.in +1c
+.ti -1c
+.RI "struct \fBDebugmallocEntry\fP"
+.br
+.ti -1c
+.RI "struct \fBDebugmallocData\fP"
+.br
+.in -1c
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBmalloc\fP(S)"
+.br
+.ti -1c
+.RI "#define \fBcalloc\fP(N,  S)"
+.br
+.ti -1c
+.RI "#define \fBrealloc\fP(P,  S)"
+.br
+.ti -1c
+.RI "#define \fBfree\fP(P)"
+.br
+.ti -1c
+.RI "#define \fBstrdup\fP(S)"
+.br
+.ti -1c
+.RI "#define \fBstrndup\fP(S,  N)"
+.br
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "typedef struct DebugmallocEntry \fBDebugmallocEntry\fP"
+.br
+.ti -1c
+.RI "typedef struct DebugmallocData \fBDebugmallocData\fP"
+.br
+.in -1c
+.SS "Enumerations"
+
+.in +1c
+.ti -1c
+.RI "enum { \fBdebugmalloc_canary_size\fP = 64, \fBdebugmalloc_canary_char\fP = 'K', \fBdebugmalloc_tablesize\fP = 256, \fBdebugmalloc_max_block_size_default\fP = 1048576 }"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "int \fBputenv\fP (char *)"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define calloc( N,  S)"
+\fBValue:\fP
+.nf
+debugmalloc_malloc_full((N)*(S), "calloc", #N ", " #S, __FILE__, __LINE__, true)
+.PP
+.fi
+
+.SS "#define free( P)"
+\fBValue:\fP
+.nf
+debugmalloc_free_full((P), "free", __FILE__, __LINE__)
+.PP
+.fi
+
+.SS "#define malloc( S)"
+\fBValue:\fP
+.nf
+debugmalloc_malloc_full((S), "malloc", #S, __FILE__, __LINE__, false)
+.PP
+.fi
+
+.SS "#define realloc( P,  S)"
+\fBValue:\fP
+.nf
+debugmalloc_realloc_full((P), (S), "realloc", #S, __FILE__, __LINE__)
+.PP
+.fi
+
+.SS "#define strdup( S)"
+\fBValue:\fP
+.nf
+debugmalloc_strdup((S), "strdup", #S, __FILE__, __LINE__)
+.PP
+.fi
+
+.SS "#define strndup( S,  N)"
+\fBValue:\fP
+.nf
+debugmalloc_strndup((S), (N), "strndup", #S, __FILE__, __LINE__)
+.PP
+.fi
+
+.SH "Typedef Documentation"
+.PP 
+.SS "typedef struct DebugmallocData DebugmallocData"
+
+.SS "typedef struct DebugmallocEntry DebugmallocEntry"
+
+.SH "Enumeration Type Documentation"
+.PP 
+.SS "anonymous enum"
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\f(BIdebugmalloc_canary_size \fP
+.TP
+\f(BIdebugmalloc_canary_char \fP
+.TP
+\f(BIdebugmalloc_tablesize \fP
+.TP
+\f(BIdebugmalloc_max_block_size_default \fP
+.SH "Function Documentation"
+.PP 
+.SS "int putenv (char * )"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

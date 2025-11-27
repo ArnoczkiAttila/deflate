@@ -1,0 +1,60 @@
+.TH "distance.c" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+distance.c
+.SH SYNOPSIS
+.br
+.PP
+\fR#include 'distance\&.h'\fP
+.br
+\fR#include <stdio\&.h>\fP
+.br
+
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBNUM_DIST_CODES\fP   30"
+.br
+.ti -1c
+.RI "#define \fBMAX_ALLOWED_DISTANCE\fP   32768"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBDISTANCE_CODE\fP \fBgetDistanceCode\fP (int distance)"
+.br
+.RI "Maps a raw LZ77 distance to its Deflate Symbol ID and extra bit information\&. "
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define MAX_ALLOWED_DISTANCE   32768"
+
+.SS "#define NUM_DIST_CODES   30"
+
+.SH "Function Documentation"
+.PP 
+.SS "\fBDISTANCE_CODE\fP getDistanceCode (int distance)\fR [extern]\fP"
+
+.PP
+Maps a raw LZ77 distance to its Deflate Symbol ID and extra bit information\&. 
+.IP "\(bu" 2
+\fBParameters\fP
+.RS 4
+\fIdistance\fP The raw look-back distance (1 to 32768)\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+\fBDISTANCE_CODE\fP The structure containing the Symbol ID, extra bits count, and value\&. 
+.RE
+.PP
+
+.PP
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

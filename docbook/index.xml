@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<book xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_index" xml:lang="en-US">
+    <info>
+    <title>My Project</title>
+    </info>
+<chapter>
+    <title>Data Structure Documentation</title>
+    <xi:include href="struct_b_i_t___r_e_a_d_e_r.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="struct_bit_writer.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="struct_canonical_code.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="struct_debugmalloc_data.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="struct_debugmalloc_entry.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="struct_d_i_s_t_a_n_c_e___c_o_d_e.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="struct_h_u_f_f_m_a_n___c_o_d_e.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="struct_huffman_entry.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="struct_huffman_tree.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="struct_l_e_n_g_t_h___c_o_d_e.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="struct_l_z77__buffer.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="struct_l_z77__compressed.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="struct_min_heap.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="struct_node.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="struct_status.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+</chapter>
+<chapter>
+    <title>File Documentation</title>
+    <xi:include href="bitreader_8c.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="bitreader_8h.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="bitreader_8h_source.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="bitwriter_8c.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="bitwriter_8h.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="bitwriter_8h_source.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="compress_8c.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="compress_8h.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="compress_8h_source.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="_c_r_c___c_h_e_c_k_s_u_m_8c.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="_c_r_c___c_h_e_c_k_s_u_m_8h.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="_c_r_c___c_h_e_c_k_s_u_m_8h_source.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="debugmalloc_8h.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="debugmalloc_8h_source.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="decompress_8c.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="decompress_8h.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="decompress_8h_source.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="distance_8c.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="distance_8h.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="distance_8h_source.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="_h_u_f_f_m_a_n___t_a_b_l_e_8c.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="_h_u_f_f_m_a_n___t_a_b_l_e_8h.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="_h_u_f_f_m_a_n___t_a_b_l_e_8h_source.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="length_8c.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="length_8h.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="length_8h_source.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="_l_z77_8c.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="_l_z77_8h.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="_l_z77_8h_source.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="main_8c.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="node_8c.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="node_8h.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="node_8h_source.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="status_8h.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="status_8h_source.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+</chapter>
+<index/>
+</book>

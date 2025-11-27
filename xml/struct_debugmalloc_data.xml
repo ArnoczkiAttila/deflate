@@ -1,0 +1,154 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="struct_debugmalloc_data" kind="struct" language="C++" prot="public">
+    <compoundname>DebugmallocData</compoundname>
+    <includes refid="debugmalloc_8h" local="no">debugmalloc.h</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="struct_debugmalloc_data_1af5ff893eedb28514f6f69c3687ca893b" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char logfile[256]</definition>
+        <argsstring>[256]</argsstring>
+        <name>logfile</name>
+        <qualifiedname>DebugmallocData::logfile</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="debugmalloc.h" line="68" column="10" bodyfile="debugmalloc.h" bodystart="68" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_debugmalloc_data_1a5ff6535cb48e89d8b0707e889ba72b0d" prot="public" static="no" mutable="no">
+        <type>long</type>
+        <definition>long max_block_size</definition>
+        <argsstring></argsstring>
+        <name>max_block_size</name>
+        <qualifiedname>DebugmallocData::max_block_size</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="debugmalloc.h" line="69" column="10" bodyfile="debugmalloc.h" bodystart="69" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_debugmalloc_data_1a15f42e819e77e27bc9e2f204ff15e871" prot="public" static="no" mutable="no">
+        <type>long</type>
+        <definition>long alloc_count</definition>
+        <argsstring></argsstring>
+        <name>alloc_count</name>
+        <qualifiedname>DebugmallocData::alloc_count</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="debugmalloc.h" line="70" column="10" bodyfile="debugmalloc.h" bodystart="70" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_debugmalloc_data_1a23c9102a7df871da995e7aa887279e46" prot="public" static="no" mutable="no">
+        <type>long long</type>
+        <definition>long long alloc_bytes</definition>
+        <argsstring></argsstring>
+        <name>alloc_bytes</name>
+        <qualifiedname>DebugmallocData::alloc_bytes</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="debugmalloc.h" line="71" column="15" bodyfile="debugmalloc.h" bodystart="71" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_debugmalloc_data_1a42a37cfdec0b59c102e58457f5954962" prot="public" static="no" mutable="no">
+        <type>long</type>
+        <definition>long all_alloc_count</definition>
+        <argsstring></argsstring>
+        <name>all_alloc_count</name>
+        <qualifiedname>DebugmallocData::all_alloc_count</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="debugmalloc.h" line="72" column="10" bodyfile="debugmalloc.h" bodystart="72" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_debugmalloc_data_1a9b9e3387235c1e2bebc84e38c230837e" prot="public" static="no" mutable="no">
+        <type>long long</type>
+        <definition>long long all_alloc_bytes</definition>
+        <argsstring></argsstring>
+        <name>all_alloc_bytes</name>
+        <qualifiedname>DebugmallocData::all_alloc_bytes</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="debugmalloc.h" line="73" column="15" bodyfile="debugmalloc.h" bodystart="73" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_debugmalloc_data_1a96730563c8ca3d98f4f9f40df5ecb3c0" prot="public" static="no" mutable="no">
+        <type><ref refid="struct_debugmalloc_entry" kindref="compound">DebugmallocEntry</ref></type>
+        <definition>DebugmallocEntry head[debugmalloc_tablesize]</definition>
+        <argsstring>[debugmalloc_tablesize]</argsstring>
+        <name>head</name>
+        <qualifiedname>DebugmallocData::head</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="debugmalloc.h" line="74" column="22" bodyfile="debugmalloc.h" bodystart="74" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_debugmalloc_data_1a6a489bd48f708358b171a68acf75de9f" prot="public" static="no" mutable="no">
+        <type><ref refid="struct_debugmalloc_entry" kindref="compound">DebugmallocEntry</ref></type>
+        <definition>DebugmallocEntry tail[debugmalloc_tablesize]</definition>
+        <argsstring>[debugmalloc_tablesize]</argsstring>
+        <name>tail</name>
+        <qualifiedname>DebugmallocData::tail</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="debugmalloc.h" line="74" column="27" bodyfile="debugmalloc.h" bodystart="74" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>DebugmallocData</label>
+        <link refid="struct_debugmalloc_data"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>head</edgelabel>
+          <edgelabel>tail</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>DebugmallocEntry</label>
+        <link refid="struct_debugmalloc_entry"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>next</edgelabel>
+          <edgelabel>prev</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="debugmalloc.h" line="67" column="1" bodyfile="debugmalloc.h" bodystart="67" bodyend="75"/>
+    <listofallmembers>
+      <member refid="struct_debugmalloc_data_1a9b9e3387235c1e2bebc84e38c230837e" prot="public" virt="non-virtual"><scope>DebugmallocData</scope><name>all_alloc_bytes</name></member>
+      <member refid="struct_debugmalloc_data_1a42a37cfdec0b59c102e58457f5954962" prot="public" virt="non-virtual"><scope>DebugmallocData</scope><name>all_alloc_count</name></member>
+      <member refid="struct_debugmalloc_data_1a23c9102a7df871da995e7aa887279e46" prot="public" virt="non-virtual"><scope>DebugmallocData</scope><name>alloc_bytes</name></member>
+      <member refid="struct_debugmalloc_data_1a15f42e819e77e27bc9e2f204ff15e871" prot="public" virt="non-virtual"><scope>DebugmallocData</scope><name>alloc_count</name></member>
+      <member refid="struct_debugmalloc_data_1a96730563c8ca3d98f4f9f40df5ecb3c0" prot="public" virt="non-virtual"><scope>DebugmallocData</scope><name>head</name></member>
+      <member refid="struct_debugmalloc_data_1af5ff893eedb28514f6f69c3687ca893b" prot="public" virt="non-virtual"><scope>DebugmallocData</scope><name>logfile</name></member>
+      <member refid="struct_debugmalloc_data_1a5ff6535cb48e89d8b0707e889ba72b0d" prot="public" virt="non-virtual"><scope>DebugmallocData</scope><name>max_block_size</name></member>
+      <member refid="struct_debugmalloc_data_1a6a489bd48f708358b171a68acf75de9f" prot="public" virt="non-virtual"><scope>DebugmallocData</scope><name>tail</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

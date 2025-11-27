@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_length_8c" xml:lang="en-US">
+<title>length.c File Reference</title>
+<indexterm><primary>length.c</primary></indexterm>
+<programlisting linenumbering="unnumbered">#include &quot;length.h&quot;<?linebreak?>#include &lt;stdio.h&gt;<?linebreak?></programlisting>Include dependency graph for length.c:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="length_8c__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Macros    </title>
+        <itemizedlist>
+            <listitem><para>#define <link linkend="_length_8c_1afe7f7fbaef84c75fa729fdcd890973a7">MIN_MATCH_LENGTH</link>&#160;&#160;&#160;3</para>
+</listitem>
+            <listitem><para>#define <link linkend="_length_8c_1a4428f8b07f1c8e3ca317792334258f3d">MAX_MATCH_LENGTH</link>&#160;&#160;&#160;258</para>
+</listitem>
+            <listitem><para>#define <link linkend="_length_8c_1a33a80a995347c0556981f23d363e89eb">LITERAL_LENGTH_CODE_START</link>&#160;&#160;&#160;257</para>
+</listitem>
+            <listitem><para>#define <link linkend="_length_8c_1aa803921583cd0d074e424bd5a596e456">NUM_LENGTH_CODES</link>&#160;&#160;&#160;29</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_struct_l_e_n_g_t_h___c_o_d_e">LENGTH_CODE</link> <link linkend="_length_8c_1ac1708113f9ba2b598b57c0290f24ddd2">getLengthCode</link> (int length)</para>
+
+<para>LengthCode. </para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Macro Definition Documentation</title>
+<anchor xml:id="_length_8c_1a33a80a995347c0556981f23d363e89eb"/><section>
+    <title>LITERAL_LENGTH_CODE_START</title>
+<indexterm><primary>LITERAL_LENGTH_CODE_START</primary><secondary>length.c</secondary></indexterm>
+<indexterm><primary>length.c</primary><secondary>LITERAL_LENGTH_CODE_START</secondary></indexterm>
+<para><computeroutput>#define LITERAL_LENGTH_CODE_START&#160;&#160;&#160;257</computeroutput></para></section>
+<anchor xml:id="_length_8c_1a4428f8b07f1c8e3ca317792334258f3d"/><section>
+    <title>MAX_MATCH_LENGTH</title>
+<indexterm><primary>MAX_MATCH_LENGTH</primary><secondary>length.c</secondary></indexterm>
+<indexterm><primary>length.c</primary><secondary>MAX_MATCH_LENGTH</secondary></indexterm>
+<para><computeroutput>#define MAX_MATCH_LENGTH&#160;&#160;&#160;258</computeroutput></para></section>
+<anchor xml:id="_length_8c_1afe7f7fbaef84c75fa729fdcd890973a7"/><section>
+    <title>MIN_MATCH_LENGTH</title>
+<indexterm><primary>MIN_MATCH_LENGTH</primary><secondary>length.c</secondary></indexterm>
+<indexterm><primary>length.c</primary><secondary>MIN_MATCH_LENGTH</secondary></indexterm>
+<para><computeroutput>#define MIN_MATCH_LENGTH&#160;&#160;&#160;3</computeroutput></para></section>
+<anchor xml:id="_length_8c_1aa803921583cd0d074e424bd5a596e456"/><section>
+    <title>NUM_LENGTH_CODES</title>
+<indexterm><primary>NUM_LENGTH_CODES</primary><secondary>length.c</secondary></indexterm>
+<indexterm><primary>length.c</primary><secondary>NUM_LENGTH_CODES</secondary></indexterm>
+<para><computeroutput>#define NUM_LENGTH_CODES&#160;&#160;&#160;29</computeroutput></para></section>
+</section>
+<section>
+<title>Function Documentation</title>
+<anchor xml:id="_length_8c_1ac1708113f9ba2b598b57c0290f24ddd2"/><section>
+    <title>getLengthCode()</title>
+<indexterm><primary>getLengthCode</primary><secondary>length.c</secondary></indexterm>
+<indexterm><primary>length.c</primary><secondary>getLengthCode</secondary></indexterm>
+<para><computeroutput><link linkend="_struct_l_e_n_g_t_h___c_o_d_e">LENGTH_CODE</link> getLengthCode (int length)<computeroutput>[extern]</computeroutput></computeroutput></para><para>
+
+<para>LengthCode. </para>
+</para>
+
+<para>The getLengthCode function calculates the Length Code for each match length, and returns a struct with the necessary data in it. For more information on Length Code&apos;s check out the official rfc1951 standard documentation. (<link xlink:href="https://datatracker.ietf.org/doc/html/rfc1951#page-11">https://datatracker.ietf.org/doc/html/rfc1951#page-11</link>)</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>length</entry><entry>
+<para>The actual length between (3 and 258) </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>LengthCode struct which stores the length code, the required extra bits, and then the extra value in those extra bits, </para>
+</formalpara>
+</para>
+</section>
+</section>
+</section>

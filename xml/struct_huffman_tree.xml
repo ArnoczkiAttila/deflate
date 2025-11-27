@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="struct_huffman_tree" kind="struct" language="C++" prot="public">
+    <compoundname>HuffmanTree</compoundname>
+    <includes refid="_h_u_f_f_m_a_n___t_a_b_l_e_8h" local="no">HUFFMAN_TABLE.h</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="struct_huffman_tree_1a972c94cb32177e802b2d8f97714e2968" prot="public" static="no" mutable="no">
+        <type><ref refid="struct_huffman_entry" kindref="compound">HuffmanEntry</ref></type>
+        <definition>HuffmanEntry lookup_table[1&lt;&lt; FAST_BITS]</definition>
+        <argsstring>[1&lt;&lt; FAST_BITS]</argsstring>
+        <name>lookup_table</name>
+        <qualifiedname>HuffmanTree::lookup_table</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HUFFMAN_TABLE.h" line="37" column="18" bodyfile="HUFFMAN_TABLE.h" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_huffman_tree_1ab6510f0d6074676a0c7a2cf6d2216def" prot="public" static="no" mutable="no">
+        <type><ref refid="struct_canonical_code" kindref="compound">CanonicalCode</ref></type>
+        <definition>CanonicalCode codes_list[MAX_CODE_SYMBOLS]</definition>
+        <argsstring>[MAX_CODE_SYMBOLS]</argsstring>
+        <name>codes_list</name>
+        <qualifiedname>HuffmanTree::codes_list</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HUFFMAN_TABLE.h" line="42" column="19" bodyfile="HUFFMAN_TABLE.h" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_huffman_tree_1a9fdb3f3c936b832f2b67b6b97555b2c5" prot="public" static="no" mutable="no">
+        <type>uint16_t</type>
+        <definition>uint16_t total_symbols</definition>
+        <argsstring></argsstring>
+        <name>total_symbols</name>
+        <qualifiedname>HuffmanTree::total_symbols</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HUFFMAN_TABLE.h" line="45" column="14" bodyfile="HUFFMAN_TABLE.h" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_huffman_tree_1afdcd30ccd185619f804c9cc7a5b1870e" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t max_length</definition>
+        <argsstring></argsstring>
+        <name>max_length</name>
+        <qualifiedname>HuffmanTree::max_length</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HUFFMAN_TABLE.h" line="46" column="13" bodyfile="HUFFMAN_TABLE.h" bodystart="46" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="3">
+        <label>CanonicalCode</label>
+        <link refid="struct_canonical_code"/>
+      </node>
+      <node id="2">
+        <label>HuffmanEntry</label>
+        <link refid="struct_huffman_entry"/>
+      </node>
+      <node id="1">
+        <label>HuffmanTree</label>
+        <link refid="struct_huffman_tree"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>lookup_table</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>codes_list</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="HUFFMAN_TABLE.h" line="35" column="1" bodyfile="HUFFMAN_TABLE.h" bodystart="35" bodyend="48"/>
+    <listofallmembers>
+      <member refid="struct_huffman_tree_1ab6510f0d6074676a0c7a2cf6d2216def" prot="public" virt="non-virtual"><scope>HuffmanTree</scope><name>codes_list</name></member>
+      <member refid="struct_huffman_tree_1a972c94cb32177e802b2d8f97714e2968" prot="public" virt="non-virtual"><scope>HuffmanTree</scope><name>lookup_table</name></member>
+      <member refid="struct_huffman_tree_1afdcd30ccd185619f804c9cc7a5b1870e" prot="public" virt="non-virtual"><scope>HuffmanTree</scope><name>max_length</name></member>
+      <member refid="struct_huffman_tree_1a9fdb3f3c936b832f2b67b6b97555b2c5" prot="public" virt="non-virtual"><scope>HuffmanTree</scope><name>total_symbols</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

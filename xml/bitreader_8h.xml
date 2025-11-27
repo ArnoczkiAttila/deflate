@@ -1,0 +1,299 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="bitreader_8h" kind="file" language="C++">
+    <compoundname>bitreader.h</compoundname>
+    <includes local="no">stdbool.h</includes>
+    <includes local="no">stdint.h</includes>
+    <includes local="no">stdio.h</includes>
+    <includedby refid="_h_u_f_f_m_a_n___t_a_b_l_e_8c" local="yes">HUFFMAN_TABLE.c</includedby>
+    <includedby refid="_h_u_f_f_m_a_n___t_a_b_l_e_8h" local="yes">HUFFMAN_TABLE.h</includedby>
+    <includedby refid="bitreader_8c" local="yes">bitreader.c</includedby>
+    <includedby refid="decompress_8c" local="yes">decompress.c</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>bitreader.h</label>
+        <link refid="bitreader_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>stdbool.h</label>
+      </node>
+      <node id="3">
+        <label>stdint.h</label>
+      </node>
+      <node id="4">
+        <label>stdio.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2">
+        <label>HUFFMAN_TABLE.c</label>
+        <link refid="_h_u_f_f_m_a_n___t_a_b_l_e_8c"/>
+      </node>
+      <node id="3">
+        <label>HUFFMAN_TABLE.h</label>
+        <link refid="_h_u_f_f_m_a_n___t_a_b_l_e_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>bitreader.c</label>
+        <link refid="bitreader_8c"/>
+      </node>
+      <node id="1">
+        <label>bitreader.h</label>
+        <link refid="bitreader_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>compress.c</label>
+        <link refid="compress_8c"/>
+      </node>
+      <node id="5">
+        <label>decompress.c</label>
+        <link refid="decompress_8c"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="struct_b_i_t___r_e_a_d_e_r" prot="public">BIT_READER</innerclass>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="bitreader_8h_1af813be79ba8b6b387a8dacff1ef72c04" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="struct_b_i_t___r_e_a_d_e_r" kindref="compound">BIT_READER</ref> *</type>
+        <definition>BIT_READER * init_bit_reader</definition>
+        <argsstring>(const char *filePath)</argsstring>
+        <name>init_bit_reader</name>
+        <param>
+          <type>const char *</type>
+          <declname>filePath</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Initializes the <ref refid="struct_b_i_t___r_e_a_d_e_r" kindref="compound">BIT_READER</ref> structure. Opens the file and resets the bit-reading state. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filePath</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Path to the input file. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>0 on success, -1 on failure (e.g., file not found). </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bitreader.h" line="27" column="12" bodyfile="bitreader.c" bodystart="144" bodyend="161" declfile="bitreader.h" declline="27" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="bitreader_8h_1a21ed250683802f09cc0375f8dbb5a125" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int read_bit</definition>
+        <argsstring>(BIT_READER *reader)</argsstring>
+        <name>read_bit</name>
+        <param>
+          <type><ref refid="struct_b_i_t___r_e_a_d_e_r" kindref="compound">BIT_READER</ref> *</type>
+          <declname>reader</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Reads a single bit from the stream. Handles reading new bytes from the file when the current byte is exhausted. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>reader</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to the initialized <ref refid="struct_b_i_t___r_e_a_d_e_r" kindref="compound">BIT_READER</ref>. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The bit value (0 or 1), or -1 if the end of file is reached unexpectedly. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bitreader.h" line="35" column="5" bodyfile="bitreader.c" bodystart="163" bodyend="181" declfile="bitreader.h" declline="35" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="bitreader_8h_1a06bc428e5e0fdf358c4d7aaf14498ce0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uint32_t</type>
+        <definition>uint32_t read_bits</definition>
+        <argsstring>(BIT_READER *reader, int numBits)</argsstring>
+        <name>read_bits</name>
+        <param>
+          <type><ref refid="struct_b_i_t___r_e_a_d_e_r" kindref="compound">BIT_READER</ref> *</type>
+          <declname>reader</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>numBits</declname>
+        </param>
+        <briefdescription>
+<para>Processes the 10-byte GZIP header and any optional fields. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Reads a specified number of bits from the stream. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>reader</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to the initialized <ref refid="struct_b_i_t___r_e_a_d_e_r" kindref="compound">BIT_READER</ref>. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>numBits</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The number of bits to read (must be &lt;= 32). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The unsigned integer value represented by the bits, or 0xFFFFFFFF on error.</para>
+</simplesect>
+<itemizedlist>
+<listitem><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>reader</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to the initialized <ref refid="struct_b_i_t___r_e_a_d_e_r" kindref="compound">BIT_READER</ref>. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true if the header is valid and optional fields were processed (or skipped). </para>
+</simplesect>
+<simplesect kind="return"><para>false if the file is not a valid GZIP stream or required features are unsupported. </para>
+</simplesect>
+</para>
+</listitem></itemizedlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bitreader.h" line="43" column="10" bodyfile="bitreader.c" bodystart="32" bodyend="57" declfile="bitreader.h" declline="43" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="bitreader_8h_1aa8b5fc0a2d13215757372d983e37b336" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void close_bit_reader</definition>
+        <argsstring>(BIT_READER *reader)</argsstring>
+        <name>close_bit_reader</name>
+        <param>
+          <type><ref refid="struct_b_i_t___r_e_a_d_e_r" kindref="compound">BIT_READER</ref> *</type>
+          <declname>reader</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Closes the file handle and performs cleanup. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>reader</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to the <ref refid="struct_b_i_t___r_e_a_d_e_r" kindref="compound">BIT_READER</ref> structure. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bitreader.h" line="49" column="6" bodyfile="bitreader.c" bodystart="183" bodyend="189" declfile="bitreader.h" declline="49" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="bitreader_8h_1acac2cf5ecbb43c96b44ff0b63b432c46" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool process_gzip_header</definition>
+        <argsstring>(BIT_READER *reader)</argsstring>
+        <name>process_gzip_header</name>
+        <param>
+          <type><ref refid="struct_b_i_t___r_e_a_d_e_r" kindref="compound">BIT_READER</ref> *</type>
+          <declname>reader</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bitreader.h" line="53" column="6" bodyfile="bitreader.c" bodystart="59" bodyend="116" declfile="bitreader.h" declline="53" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="bitreader_8h_1ae4fcc275a9937dc610bc057cb9bcc919" prot="public" static="no" extern="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uint16_t</type>
+        <definition>uint16_t peek_bits</definition>
+        <argsstring>(BIT_READER *reader, uint8_t n)</argsstring>
+        <name>peek_bits</name>
+        <param>
+          <type><ref refid="struct_b_i_t___r_e_a_d_e_r" kindref="compound">BIT_READER</ref> *</type>
+          <declname>reader</declname>
+        </param>
+        <param>
+          <type>uint8_t</type>
+          <declname>n</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bitreader.h" line="55" column="17" bodyfile="bitreader.c" bodystart="211" bodyend="243" declfile="bitreader.h" declline="55" declcolumn="17"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Created<sp/>by<sp/>Attila<sp/>on<sp/>11/24/2025.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>DEFLATE_BITREADER_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DEFLATE_BITREADER_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdbool.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdint.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11" refid="struct_b_i_t___r_e_a_d_e_r" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="12" refid="struct_b_i_t___r_e_a_d_e_r_1a702945180aa732857b380a007a7e2a21" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>FILE<sp/>*<ref refid="struct_b_i_t___r_e_a_d_e_r_1a702945180aa732857b380a007a7e2a21" kindref="member">file</ref>;</highlight></codeline>
+<codeline lineno="13" refid="struct_b_i_t___r_e_a_d_e_r_1a56ed84df35de10bdb65e72b184309497" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t*<sp/><ref refid="struct_b_i_t___r_e_a_d_e_r_1a56ed84df35de10bdb65e72b184309497" kindref="member">buffer</ref>;</highlight></codeline>
+<codeline lineno="14" refid="struct_b_i_t___r_e_a_d_e_r_1a96f44d20f1dbf1c8785a7bc99a46164c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/><ref refid="struct_b_i_t___r_e_a_d_e_r_1a96f44d20f1dbf1c8785a7bc99a46164c" kindref="member">byte</ref>;</highlight></codeline>
+<codeline lineno="15" refid="struct_b_i_t___r_e_a_d_e_r_1a03c096e79d44983a055f7ca6839144bc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/><ref refid="struct_b_i_t___r_e_a_d_e_r_1a03c096e79d44983a055f7ca6839144bc" kindref="member">currentPosition</ref>;</highlight></codeline>
+<codeline lineno="16" refid="struct_b_i_t___r_e_a_d_e_r_1a7be887a2ca0a258cf6b368d32fd87487" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="struct_b_i_t___r_e_a_d_e_r_1a7be887a2ca0a258cf6b368d32fd87487" kindref="member">bufferSize</ref>;</highlight></codeline>
+<codeline lineno="17" refid="struct_b_i_t___r_e_a_d_e_r_1a852b86a2eaee9852ada7a43e61e311a2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint16_t<sp/><ref refid="struct_b_i_t___r_e_a_d_e_r_1a852b86a2eaee9852ada7a43e61e311a2" kindref="member">index</ref>;</highlight></codeline>
+<codeline lineno="18" refid="struct_b_i_t___r_e_a_d_e_r_1a25c8761bc1f523fe6a53db546ae83add" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/><ref refid="struct_b_i_t___r_e_a_d_e_r_1a25c8761bc1f523fe6a53db546ae83add" kindref="member">fileName</ref>;</highlight></codeline>
+<codeline lineno="19"><highlight class="normal">}<sp/><ref refid="struct_b_i_t___r_e_a_d_e_r" kindref="compound">BIT_READER</ref>;</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><ref refid="struct_b_i_t___r_e_a_d_e_r" kindref="compound">BIT_READER</ref>*<sp/><ref refid="bitreader_8h_1af813be79ba8b6b387a8dacff1ef72c04" kindref="member">init_bit_reader</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*filePath);</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="bitreader_8h_1a21ed250683802f09cc0375f8dbb5a125" kindref="member">read_bit</ref>(<ref refid="struct_b_i_t___r_e_a_d_e_r" kindref="compound">BIT_READER</ref><sp/>*reader);</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal">uint32_t<sp/><ref refid="bitreader_8h_1a06bc428e5e0fdf358c4d7aaf14498ce0" kindref="member">read_bits</ref>(<ref refid="struct_b_i_t___r_e_a_d_e_r" kindref="compound">BIT_READER</ref><sp/>*reader,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>numBits);</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="bitreader_8h_1aa8b5fc0a2d13215757372d983e37b336" kindref="member">close_bit_reader</ref>(<ref refid="struct_b_i_t___r_e_a_d_e_r" kindref="compound">BIT_READER</ref><sp/>*reader);</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight><highlight class="comment">//void<sp/>createFile(BIT_READER*<sp/>bw,<sp/>char*<sp/>fileName,<sp/>char*<sp/>extension);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="bitreader_8h_1acac2cf5ecbb43c96b44ff0b63b432c46" kindref="member">process_gzip_header</ref>(<ref refid="struct_b_i_t___r_e_a_d_e_r" kindref="compound">BIT_READER</ref><sp/>*reader);</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/>uint16_t<sp/><ref refid="bitreader_8h_1ae4fcc275a9937dc610bc057cb9bcc919" kindref="member">peek_bits</ref>(<ref refid="struct_b_i_t___r_e_a_d_e_r" kindref="compound">BIT_READER</ref>*<sp/>reader,<sp/>uint8_t<sp/>n);</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//DEFLATE_BITREADER_H</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="bitreader.h"/>
+  </compounddef>
+</doxygen>

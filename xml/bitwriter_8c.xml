@@ -1,0 +1,470 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="bitwriter_8c" kind="file" language="C++">
+    <compoundname>bitwriter.c</compoundname>
+    <includes refid="bitwriter_8h" local="yes">bitwriter.h</includes>
+    <includes local="no">stdlib.h</includes>
+    <includes local="no">string.h</includes>
+    <includes local="no">time.h</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>bitwriter.c</label>
+        <link refid="bitwriter_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>bitwriter.h</label>
+        <link refid="bitwriter_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>stdint.h</label>
+      </node>
+      <node id="4">
+        <label>stdio.h</label>
+      </node>
+      <node id="5">
+        <label>stdlib.h</label>
+      </node>
+      <node id="6">
+        <label>string.h</label>
+      </node>
+      <node id="7">
+        <label>time.h</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="define">
+      <memberdef kind="define" id="bitwriter_8c_1a6b20d41d6252e9871430c242cb1a56e7" prot="public" static="no">
+        <name>BUFFER_SIZE</name>
+        <initializer>4096</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bitwriter.c" line="11" column="9" bodyfile="bitwriter.c" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="bitwriter_8c_1a6944dcf57a34878b421c6315f19778a7" prot="public" static="no">
+        <name>MAGIC_NUMER</name>
+        <initializer>0x8B1F</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bitwriter.c" line="13" column="9" bodyfile="bitwriter.c" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="bitwriter_8c_1a9be47490ed6c06b44817a44df4c03a98" prot="public" static="no">
+        <name>COMPRESSION_METHOD</name>
+        <initializer>0x08</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bitwriter.c" line="14" column="9" bodyfile="bitwriter.c" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="bitwriter_8c_1af8bfae90c5d6853fcfb487e05b9f50c8" prot="public" static="no">
+        <name>FLAG</name>
+        <initializer>0b00000000</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bitwriter.c" line="15" column="9" bodyfile="bitwriter.c" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="bitwriter_8c_1a7f83abc98d763843293f5906c9564a2c" prot="public" static="no">
+        <name>XFL</name>
+        <initializer>0x00</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bitwriter.c" line="16" column="9" bodyfile="bitwriter.c" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="bitwriter_8c_1a3324dbb5e25daac23e988901bb085447" prot="public" static="no">
+        <name>OS</name>
+        <initializer>0x03</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bitwriter.c" line="17" column="9" bodyfile="bitwriter.c" bodystart="17" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="bitwriter_8c_1a0c9a8a4752fd0144d7c5556083545ca1" prot="public" static="no" extern="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t flushBitWriterBuffer</definition>
+        <argsstring>(BitWriter *bw)</argsstring>
+        <name>flushBitWriterBuffer</name>
+        <param>
+          <type><ref refid="struct_bit_writer" kindref="compound">BitWriter</ref> *</type>
+          <declname>bw</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bitwriter.c" line="19" column="15" bodyfile="bitwriter.c" bodystart="19" bodyend="25" declfile="bitwriter.c" declline="19" declcolumn="15"/>
+      </memberdef>
+      <memberdef kind="function" id="bitwriter_8c_1a98decd406fc97f3a5e87a1c5e43450f6" prot="public" static="no" extern="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="struct_bit_writer" kindref="compound">BitWriter</ref> *</type>
+        <definition>BitWriter * initBitWriter</definition>
+        <argsstring>(void)</argsstring>
+        <name>initBitWriter</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bitwriter.c" line="27" column="18" bodyfile="bitwriter.c" bodystart="27" bodyend="36" declfile="bitwriter.c" declline="27" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="function" id="bitwriter_8c_1a6ef88b6f1ea98fec6bd666922b277b56" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void flushByte</definition>
+        <argsstring>(BitWriter *bw)</argsstring>
+        <name>flushByte</name>
+        <param>
+          <type><ref refid="struct_bit_writer" kindref="compound">BitWriter</ref> *</type>
+          <declname>bw</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bitwriter.c" line="38" column="13" bodyfile="bitwriter.c" bodystart="38" bodyend="45"/>
+      </memberdef>
+      <memberdef kind="function" id="bitwriter_8c_1a15a48f26be9076026f0174a67935fce4" prot="public" static="no" extern="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void addData</definition>
+        <argsstring>(BitWriter *bw, uint32_t value, uint8_t bitLength)</argsstring>
+        <name>addData</name>
+        <param>
+          <type><ref refid="struct_bit_writer" kindref="compound">BitWriter</ref> *</type>
+          <declname>bw</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>value</declname>
+        </param>
+        <param>
+          <type>uint8_t</type>
+          <declname>bitLength</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bitwriter.c" line="48" column="13" bodyfile="bitwriter.c" bodystart="48" bodyend="92" declfile="bitwriter.c" declline="48" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="bitwriter_8c_1a2706da9af748aa740b5b27c3cab1921f" prot="public" static="no" extern="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void flush_bitstream_writer</definition>
+        <argsstring>(BitWriter *bw)</argsstring>
+        <name>flush_bitstream_writer</name>
+        <param>
+          <type><ref refid="struct_bit_writer" kindref="compound">BitWriter</ref> *</type>
+          <declname>bw</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bitwriter.c" line="94" column="13" bodyfile="bitwriter.c" bodystart="94" bodyend="108" declfile="bitwriter.c" declline="94" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="bitwriter_8c_1ae0a3c065d2db177bf4312adaab2a96a8" prot="public" static="no" extern="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void addBytesFromMSB</definition>
+        <argsstring>(BitWriter *bw, uint32_t value, uint8_t bytes)</argsstring>
+        <name>addBytesFromMSB</name>
+        <param>
+          <type><ref refid="struct_bit_writer" kindref="compound">BitWriter</ref> *</type>
+          <declname>bw</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>value</declname>
+        </param>
+        <param>
+          <type>uint8_t</type>
+          <declname>bytes</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bitwriter.c" line="110" column="13" bodyfile="bitwriter.c" bodystart="110" bodyend="120" declfile="bitwriter.c" declline="110" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="bitwriter_8c_1a5360490c127924566b62142aae839af5" prot="public" static="no" extern="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void addBytesFromMSB2</definition>
+        <argsstring>(BitWriter *bw, uint32_t value, uint8_t bytes)</argsstring>
+        <name>addBytesFromMSB2</name>
+        <param>
+          <type><ref refid="struct_bit_writer" kindref="compound">BitWriter</ref> *</type>
+          <declname>bw</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>value</declname>
+        </param>
+        <param>
+          <type>uint8_t</type>
+          <declname>bytes</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bitwriter.c" line="122" column="13" bodyfile="bitwriter.c" bodystart="122" bodyend="132" declfile="bitwriter.c" declline="122" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="bitwriter_8c_1a3725b55a47460bd10421c92495b2be3f" prot="public" static="no" extern="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void createFile</definition>
+        <argsstring>(BitWriter *bw, char *fileName, char *extension)</argsstring>
+        <name>createFile</name>
+        <param>
+          <type><ref refid="struct_bit_writer" kindref="compound">BitWriter</ref> *</type>
+          <declname>bw</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>fileName</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>extension</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bitwriter.c" line="135" column="13" bodyfile="bitwriter.c" bodystart="135" bodyend="152" declfile="bitwriter.c" declline="135" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="bitwriter_8c_1a0bc036019ea04608e40ea43ac2a4efe1" prot="public" static="no" extern="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void freeBitWriter</definition>
+        <argsstring>(BitWriter *bw)</argsstring>
+        <name>freeBitWriter</name>
+        <param>
+          <type><ref refid="struct_bit_writer" kindref="compound">BitWriter</ref> *</type>
+          <declname>bw</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bitwriter.c" line="156" column="13" bodyfile="bitwriter.c" bodystart="156" bodyend="162" declfile="bitwriter.c" declline="156" declcolumn="13"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Created<sp/>by<sp/>Attila<sp/>on<sp/>11/19/2025.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="bitwriter_8h" kindref="compound">bitwriter.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdlib.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;time.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BUFFER_SIZE<sp/>4096</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MAGIC_NUMER<sp/>0x8B1F</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>COMPRESSION_METHOD<sp/>0x08<sp/></highlight><highlight class="comment">//deflate</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>FLAG<sp/>0b00000000<sp/></highlight><highlight class="comment">//RESERVED,RESERVED,RESERVED,<sp/>FCOMMENT,<sp/>FNAME,<sp/>FEXTRA,<sp/>FHCRC<sp/>FTEXT</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>XFL<sp/>0x00</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>OS<sp/>0x03<sp/></highlight><highlight class="comment">//FAT<sp/>filesystem</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="bitwriter_8c_1a0c9a8a4752fd0144d7c5556083545ca1" kindref="member">flushBitWriterBuffer</ref>(<ref refid="struct_bit_writer" kindref="compound">BitWriter</ref>*<sp/>bw)<sp/>{</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//printf(&quot;index<sp/>=<sp/>%d\n&quot;,bw-&gt;index);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>elementsWritten<sp/>=<sp/>fwrite(bw-&gt;<ref refid="struct_bit_writer_1a56ed84df35de10bdb65e72b184309497" kindref="member">buffer</ref>,1,bw-&gt;<ref refid="struct_bit_writer_1a852b86a2eaee9852ada7a43e61e311a2" kindref="member">index</ref>,bw-&gt;<ref refid="struct_bit_writer_1a702945180aa732857b380a007a7e2a21" kindref="member">file</ref>);</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//printf(&quot;Elements<sp/>written<sp/>to<sp/>file:<sp/>%llu<sp/>\n&quot;,<sp/>elementsWritten);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/>bw-&gt;<ref refid="struct_bit_writer_1a852b86a2eaee9852ada7a43e61e311a2" kindref="member">index</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>elementsWritten;</highlight></codeline>
+<codeline lineno="25"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/><ref refid="struct_bit_writer" kindref="compound">BitWriter</ref>*<sp/><ref refid="bitwriter_8c_1a98decd406fc97f3a5e87a1c5e43450f6" kindref="member">initBitWriter</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)<sp/>{</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_bit_writer" kindref="compound">BitWriter</ref>*<sp/>bw<sp/>=<sp/>(<ref refid="struct_bit_writer" kindref="compound">BitWriter</ref>*)<sp/><ref refid="debugmalloc_8h_1a535b58ab5aa48e2e86073e334d43fd32" kindref="member">malloc</ref>(</highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<ref refid="struct_bit_writer" kindref="compound">BitWriter</ref>));</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/>bw-&gt;<ref refid="struct_bit_writer_1a702945180aa732857b380a007a7e2a21" kindref="member">file</ref><sp/>=<sp/>NULL;<sp/></highlight><highlight class="comment">//temp</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/>bw-&gt;<ref refid="struct_bit_writer_1a96f44d20f1dbf1c8785a7bc99a46164c" kindref="member">byte</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/>bw-&gt;<ref refid="struct_bit_writer_1a56ed84df35de10bdb65e72b184309497" kindref="member">buffer</ref><sp/>=<sp/>(uint8_t*)<sp/><ref refid="debugmalloc_8h_1a535b58ab5aa48e2e86073e334d43fd32" kindref="member">malloc</ref>(<ref refid="bitreader_8c_1a6b20d41d6252e9871430c242cb1a56e7" kindref="member">BUFFER_SIZE</ref>);</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/>bw-&gt;<ref refid="struct_bit_writer_1a03c096e79d44983a055f7ca6839144bc" kindref="member">currentPosition</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/>bw-&gt;<ref refid="struct_bit_writer_1a7be887a2ca0a258cf6b368d32fd87487" kindref="member">bufferSize</ref><sp/>=<sp/><ref refid="bitreader_8c_1a6b20d41d6252e9871430c242cb1a56e7" kindref="member">BUFFER_SIZE</ref>;</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/>bw-&gt;<ref refid="struct_bit_writer_1a852b86a2eaee9852ada7a43e61e311a2" kindref="member">index</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>bw;</highlight></codeline>
+<codeline lineno="36"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>flushByte(<ref refid="struct_bit_writer" kindref="compound">BitWriter</ref>*<sp/>bw)<sp/>{</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>bw-&gt;<ref refid="struct_bit_writer_1a56ed84df35de10bdb65e72b184309497" kindref="member">buffer</ref>[bw-&gt;<ref refid="struct_bit_writer_1a852b86a2eaee9852ada7a43e61e311a2" kindref="member">index</ref>]<sp/>=<sp/>bw-&gt;<ref refid="struct_bit_writer_1a96f44d20f1dbf1c8785a7bc99a46164c" kindref="member">byte</ref>;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/>bw-&gt;<ref refid="struct_bit_writer_1a852b86a2eaee9852ada7a43e61e311a2" kindref="member">index</ref>++;</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/>bw-&gt;<ref refid="struct_bit_writer_1a96f44d20f1dbf1c8785a7bc99a46164c" kindref="member">byte</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/>bw-&gt;<ref refid="struct_bit_writer_1a03c096e79d44983a055f7ca6839144bc" kindref="member">currentPosition</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//printf(&quot;%d\t&quot;,bw-&gt;index);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(bw-&gt;<ref refid="struct_bit_writer_1a852b86a2eaee9852ada7a43e61e311a2" kindref="member">index</ref><sp/>==<sp/>bw-&gt;<ref refid="struct_bit_writer_1a7be887a2ca0a258cf6b368d32fd87487" kindref="member">bufferSize</ref>)<sp/><ref refid="bitwriter_8c_1a0c9a8a4752fd0144d7c5556083545ca1" kindref="member">flushBitWriterBuffer</ref>(bw);</highlight></codeline>
+<codeline lineno="45"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="bitwriter_8c_1a15a48f26be9076026f0174a67935fce4" kindref="member">addData</ref>(<ref refid="struct_bit_writer" kindref="compound">BitWriter</ref>*<sp/>bw,<sp/>uint32_t<sp/>value,<sp/>uint8_t<sp/>bitLength)<sp/>{</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(bitLength<sp/>==<sp/>0<sp/>||<sp/>bitLength<sp/>&gt;<sp/>32)<sp/>{</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/>current_value<sp/>=<sp/>value;</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(bitLength<sp/>&gt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint8_t<sp/>bitsLeftInByte<sp/>=<sp/>8<sp/>-<sp/>bw-&gt;<ref refid="struct_bit_writer_1a03c096e79d44983a055f7ca6839144bc" kindref="member">currentPosition</ref>;</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Calculate<sp/>how<sp/>many<sp/>bits<sp/>we<sp/>can<sp/>write<sp/>into<sp/>the<sp/>current<sp/>buffer.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>This<sp/>is<sp/>the<sp/>minimum<sp/>of<sp/>the<sp/>bits<sp/>left<sp/>in<sp/>the<sp/>input<sp/>and<sp/>the<sp/>space<sp/>left<sp/>in<sp/>the<sp/>buffer.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint8_t<sp/>bits_to_transfer<sp/>=<sp/>(bitLength<sp/>&lt;<sp/>bitsLeftInByte)<sp/>?<sp/>bitLength<sp/>:<sp/>bitsLeftInByte;</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>---<sp/>LSB-FIRST<sp/>INSERTION<sp/>LOGIC<sp/>---</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>1.<sp/>Create<sp/>a<sp/>mask<sp/>to<sp/>isolate<sp/>the<sp/>&apos;bits_to_transfer&apos;<sp/>LSBs<sp/>from<sp/>the<sp/>input<sp/>&apos;value&apos;.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/>Use<sp/>a<sp/>wider<sp/>type<sp/>for<sp/>the<sp/>mask<sp/>calculation<sp/>to<sp/>ensure<sp/>correct<sp/>behavior<sp/>if<sp/>bits_to_transfer<sp/>==<sp/>8.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint32_t<sp/>mask<sp/>=<sp/>(1<sp/>&lt;&lt;<sp/>bits_to_transfer)<sp/>-<sp/>1;</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>2.<sp/>Extract<sp/>the<sp/>relevant<sp/>LSB<sp/>chunk<sp/>from<sp/>the<sp/>input<sp/>value.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/>The<sp/>snippet<sp/>is<sp/>now<sp/>up<sp/>to<sp/>8<sp/>bits,<sp/>stored<sp/>in<sp/>a<sp/>32-bit<sp/>container.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint32_t<sp/>snippet<sp/>=<sp/>current_value<sp/>&amp;<sp/>mask;</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>3.<sp/>Shift<sp/>the<sp/>snippet<sp/>to<sp/>its<sp/>correct<sp/>position<sp/>in<sp/>the<sp/>byte<sp/>buffer</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/>(left-shifted<sp/>by<sp/>currentPosition)<sp/>and<sp/>OR<sp/>it<sp/>in.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/>The<sp/>cast<sp/>to<sp/>(uint8_t)<sp/>on<sp/>the<sp/>right<sp/>side<sp/>is<sp/>safe<sp/>since<sp/>snippet<sp/>is<sp/>&lt;=<sp/>255.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>bw-&gt;<ref refid="struct_bit_writer_1a96f44d20f1dbf1c8785a7bc99a46164c" kindref="member">byte</ref><sp/>|=<sp/>(uint8_t)(snippet<sp/>&lt;&lt;<sp/>bw-&gt;<ref refid="struct_bit_writer_1a03c096e79d44983a055f7ca6839144bc" kindref="member">currentPosition</ref>);</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>---<sp/>UPDATE<sp/>STATE<sp/>---</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>4.<sp/>Advance<sp/>the<sp/>buffer<sp/>position.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>bw-&gt;<ref refid="struct_bit_writer_1a03c096e79d44983a055f7ca6839144bc" kindref="member">currentPosition</ref><sp/>+=<sp/>bits_to_transfer;</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>5.<sp/>Update<sp/>the<sp/>input<sp/>value<sp/>and<sp/>length<sp/>to<sp/>discard<sp/>the<sp/>bits<sp/>we<sp/>just<sp/>wrote.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>current_value<sp/>&gt;&gt;=<sp/>bits_to_transfer;<sp/></highlight><highlight class="comment">//<sp/>Discard<sp/>the<sp/>LSBs<sp/>that<sp/>were<sp/>just<sp/>written.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>bitLength<sp/>-=<sp/>bits_to_transfer;</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>---<sp/>HANDLE<sp/>FLUSH<sp/>(Byte<sp/>Boundary<sp/>Crossing)<sp/>---</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>If<sp/>the<sp/>byte<sp/>is<sp/>now<sp/>full<sp/>(currentPosition<sp/>==<sp/>8),<sp/>flush<sp/>it.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(bw-&gt;<ref refid="struct_bit_writer_1a03c096e79d44983a055f7ca6839144bc" kindref="member">currentPosition</ref><sp/>==<sp/>8)<sp/>{</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>flushByte(bw);</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>position<sp/>and<sp/>byte<sp/>are<sp/>reset<sp/>inside<sp/>flushByte()</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="92"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="bitwriter_8c_1a2706da9af748aa740b5b27c3cab1921f" kindref="member">flush_bitstream_writer</ref>(<ref refid="struct_bit_writer" kindref="compound">BitWriter</ref>*<sp/>bw)<sp/>{</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Check<sp/>if<sp/>the<sp/>current<sp/>byte<sp/>is<sp/>only<sp/>partially<sp/>full<sp/>(currentPosition<sp/>is<sp/>1<sp/>to<sp/>7)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(bw-&gt;<ref refid="struct_bit_writer_1a03c096e79d44983a055f7ca6839144bc" kindref="member">currentPosition</ref><sp/>&gt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Calculate<sp/>the<sp/>number<sp/>of<sp/>zero<sp/>bits<sp/>needed<sp/>to<sp/>fill<sp/>the<sp/>byte</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint8_t<sp/>bits_to_pad<sp/>=<sp/>8<sp/>-<sp/>bw-&gt;<ref refid="struct_bit_writer_1a03c096e79d44983a055f7ca6839144bc" kindref="member">currentPosition</ref>;</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Since<sp/>the<sp/>current<sp/>value<sp/>is<sp/>0,<sp/>we<sp/>can<sp/>use<sp/>addData<sp/>to<sp/>write<sp/>&apos;bits_to_pad&apos;<sp/>zeros.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>addData<sp/>handles<sp/>the<sp/>correct<sp/>bit<sp/>shifting<sp/>and<sp/>calls<sp/>flushByte<sp/>when<sp/>done.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bitwriter_8c_1a15a48f26be9076026f0174a67935fce4" kindref="member">addData</ref>(bw,<sp/>0,<sp/>bits_to_pad);</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>After<sp/>this,<sp/>bw-&gt;currentPosition<sp/>must<sp/>be<sp/>0,<sp/>and<sp/>the<sp/>last<sp/>byte<sp/>is<sp/>flushed</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>into<sp/>the<sp/>buffer<sp/>(bw-&gt;buffer[bw-&gt;index]<sp/>is<sp/>the<sp/>last<sp/>padded<sp/>byte).</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>final<sp/>flush<sp/>to<sp/>disk<sp/>(fwrite)<sp/>is<sp/>usually<sp/>handled<sp/>by<sp/>closeBitWriter<sp/>or<sp/>a<sp/>large<sp/>buffer<sp/>flush.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="bitwriter_8c_1ae0a3c065d2db177bf4312adaab2a96a8" kindref="member">addBytesFromMSB</ref>(<ref refid="struct_bit_writer" kindref="compound">BitWriter</ref>*<sp/>bw,<sp/>uint32_t<sp/>value,<sp/>uint8_t<sp/>bytes)<sp/>{</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>1.<sp/>Ensure<sp/>bitstream<sp/>is<sp/>aligned.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="bitwriter_8c_1a2706da9af748aa740b5b27c3cab1921f" kindref="member">flush_bitstream_writer</ref>(bw);</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>2.<sp/>Write<sp/>the<sp/>4<sp/>bytes<sp/>in<sp/>LSB-first<sp/>order<sp/>(Little-Endian)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>bytes;<sp/>i++)<sp/>{</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Extract<sp/>byte<sp/>i<sp/>(0,<sp/>1,<sp/>2,<sp/>3).<sp/>The<sp/>LSB<sp/>byte<sp/>(i=0)<sp/>is<sp/>written<sp/>first.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>bw-&gt;<ref refid="struct_bit_writer_1a96f44d20f1dbf1c8785a7bc99a46164c" kindref="member">byte</ref><sp/>=<sp/>(uint8_t)((value<sp/>&gt;&gt;<sp/>(i<sp/>*<sp/>8))<sp/>&amp;<sp/>0xFF);</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>flushByte(bw);<sp/></highlight><highlight class="comment">//<sp/>Writes<sp/>the<sp/>byte<sp/>and<sp/>resets<sp/>position<sp/>to<sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="120"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="bitwriter_8c_1a5360490c127924566b62142aae839af5" kindref="member">addBytesFromMSB2</ref>(<ref refid="struct_bit_writer" kindref="compound">BitWriter</ref>*<sp/>bw,<sp/>uint32_t<sp/>value,<sp/>uint8_t<sp/>bytes)<sp/>{</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>1.<sp/>Ensure<sp/>bitstream<sp/>is<sp/>aligned.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="bitwriter_8c_1a2706da9af748aa740b5b27c3cab1921f" kindref="member">flush_bitstream_writer</ref>(bw);</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"></highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>2.<sp/>Write<sp/>the<sp/>4<sp/>bytes<sp/>in<sp/>LSB-first<sp/>order<sp/>(Little-Endian)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>bytes;<sp/>i<sp/>&gt;=<sp/>0;<sp/>i--)<sp/>{</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Extract<sp/>byte<sp/>i<sp/>(0,<sp/>1,<sp/>2,<sp/>3).<sp/>The<sp/>LSB<sp/>byte<sp/>(i=0)<sp/>is<sp/>written<sp/>first.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>bw-&gt;<ref refid="struct_bit_writer_1a96f44d20f1dbf1c8785a7bc99a46164c" kindref="member">byte</ref><sp/>=<sp/>(uint8_t)((value<sp/>&gt;&gt;<sp/>(i<sp/>*<sp/>8))<sp/>&amp;<sp/>0xFF);</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>flushByte(bw);<sp/></highlight><highlight class="comment">//<sp/>Writes<sp/>the<sp/>byte<sp/>and<sp/>resets<sp/>position<sp/>to<sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="132"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"></highlight></codeline>
+<codeline lineno="134"><highlight class="normal"></highlight></codeline>
+<codeline lineno="135"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="bitwriter_8c_1a3725b55a47460bd10421c92495b2be3f" kindref="member">createFile</ref>(<ref refid="struct_bit_writer" kindref="compound">BitWriter</ref>*<sp/>bw,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>fileName,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>extension)<sp/>{</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>newFileName<sp/>=<sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*)<sp/><ref refid="debugmalloc_8h_1a535b58ab5aa48e2e86073e334d43fd32" kindref="member">malloc</ref>(strlen(fileName)<sp/>+<sp/>strlen(extension)<sp/>+<sp/>2);</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/>strcpy(newFileName,<sp/>fileName);</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/>strcat(newFileName,<sp/></highlight><highlight class="stringliteral">&quot;.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/>strcat(newFileName,<sp/>extension);</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"></highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/>FILE*<sp/>file<sp/>=<sp/>fopen(newFileName,<sp/></highlight><highlight class="stringliteral">&quot;wb&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/>bw-&gt;<ref refid="struct_bit_writer_1a25c8761bc1f523fe6a53db546ae83add" kindref="member">fileName</ref><sp/>=<sp/>newFileName;</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/>bw-&gt;<ref refid="struct_bit_writer_1a702945180aa732857b380a007a7e2a21" kindref="member">file</ref><sp/>=<sp/>file;</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"></highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="bitwriter_8c_1ae0a3c065d2db177bf4312adaab2a96a8" kindref="member">addBytesFromMSB</ref>(bw,<sp/><ref refid="bitwriter_8c_1a6944dcf57a34878b421c6315f19778a7" kindref="member">MAGIC_NUMER</ref>,<sp/>2);<sp/></highlight><highlight class="comment">//ID1<sp/>ID2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="bitwriter_8c_1ae0a3c065d2db177bf4312adaab2a96a8" kindref="member">addBytesFromMSB</ref>(bw,<sp/><ref refid="bitwriter_8c_1a9be47490ed6c06b44817a44df4c03a98" kindref="member">COMPRESSION_METHOD</ref>,<sp/>1);<sp/></highlight><highlight class="comment">//CM</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="bitwriter_8c_1ae0a3c065d2db177bf4312adaab2a96a8" kindref="member">addBytesFromMSB</ref>(bw,<sp/><ref refid="bitwriter_8c_1af8bfae90c5d6853fcfb487e05b9f50c8" kindref="member">FLAG</ref>,1);<sp/></highlight><highlight class="comment">//FLG</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="bitwriter_8c_1ae0a3c065d2db177bf4312adaab2a96a8" kindref="member">addBytesFromMSB</ref>(bw,<sp/>(uint32_t)<sp/>time(NULL),<sp/>4);<sp/></highlight><highlight class="comment">//MTIME</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="bitwriter_8c_1ae0a3c065d2db177bf4312adaab2a96a8" kindref="member">addBytesFromMSB</ref>(bw,<sp/><ref refid="bitwriter_8c_1a7f83abc98d763843293f5906c9564a2c" kindref="member">XFL</ref>,1);<sp/></highlight><highlight class="comment">//XFL</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="bitwriter_8c_1ae0a3c065d2db177bf4312adaab2a96a8" kindref="member">addBytesFromMSB</ref>(bw,<sp/><ref refid="bitwriter_8c_1a3324dbb5e25daac23e988901bb085447" kindref="member">OS</ref>,<sp/>1);</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"></highlight></codeline>
+<codeline lineno="152"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"></highlight></codeline>
+<codeline lineno="154"><highlight class="normal"></highlight></codeline>
+<codeline lineno="155"><highlight class="normal"></highlight></codeline>
+<codeline lineno="156"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="bitwriter_8c_1a0bc036019ea04608e40ea43ac2a4efe1" kindref="member">freeBitWriter</ref>(<ref refid="struct_bit_writer" kindref="compound">BitWriter</ref>*<sp/>bw)<sp/>{</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="bitwriter_8c_1a0c9a8a4752fd0144d7c5556083545ca1" kindref="member">flushBitWriterBuffer</ref>(bw);</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="debugmalloc_8h_1aa7943e5d135734f6801bebcc37401fc0" kindref="member">free</ref>(bw-&gt;<ref refid="struct_bit_writer_1a25c8761bc1f523fe6a53db546ae83add" kindref="member">fileName</ref>);</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/>fclose(bw-&gt;<ref refid="struct_bit_writer_1a702945180aa732857b380a007a7e2a21" kindref="member">file</ref>);</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="debugmalloc_8h_1aa7943e5d135734f6801bebcc37401fc0" kindref="member">free</ref>(bw-&gt;<ref refid="struct_bit_writer_1a56ed84df35de10bdb65e72b184309497" kindref="member">buffer</ref>);</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="debugmalloc_8h_1aa7943e5d135734f6801bebcc37401fc0" kindref="member">free</ref>(bw);</highlight></codeline>
+<codeline lineno="162"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="bitwriter.c"/>
+  </compounddef>
+</doxygen>

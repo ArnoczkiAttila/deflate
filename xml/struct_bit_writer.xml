@@ -1,0 +1,121 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="struct_bit_writer" kind="struct" language="C++" prot="public">
+    <compoundname>BitWriter</compoundname>
+    <includes refid="bitwriter_8h" local="no">bitwriter.h</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="struct_bit_writer_1a702945180aa732857b380a007a7e2a21" prot="public" static="no" mutable="no">
+        <type>FILE *</type>
+        <definition>FILE* file</definition>
+        <argsstring></argsstring>
+        <name>file</name>
+        <qualifiedname>BitWriter::file</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bitwriter.h" line="12" column="10" bodyfile="bitwriter.h" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_bit_writer_1a56ed84df35de10bdb65e72b184309497" prot="public" static="no" mutable="no">
+        <type>uint8_t *</type>
+        <definition>uint8_t* buffer</definition>
+        <argsstring></argsstring>
+        <name>buffer</name>
+        <qualifiedname>BitWriter::buffer</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bitwriter.h" line="13" column="13" bodyfile="bitwriter.h" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_bit_writer_1a96f44d20f1dbf1c8785a7bc99a46164c" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t byte</definition>
+        <argsstring></argsstring>
+        <name>byte</name>
+        <qualifiedname>BitWriter::byte</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bitwriter.h" line="14" column="13" bodyfile="bitwriter.h" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_bit_writer_1a03c096e79d44983a055f7ca6839144bc" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t currentPosition</definition>
+        <argsstring></argsstring>
+        <name>currentPosition</name>
+        <qualifiedname>BitWriter::currentPosition</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bitwriter.h" line="15" column="13" bodyfile="bitwriter.h" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_bit_writer_1a7be887a2ca0a258cf6b368d32fd87487" prot="public" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t bufferSize</definition>
+        <argsstring></argsstring>
+        <name>bufferSize</name>
+        <qualifiedname>BitWriter::bufferSize</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bitwriter.h" line="16" column="12" bodyfile="bitwriter.h" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_bit_writer_1a852b86a2eaee9852ada7a43e61e311a2" prot="public" static="no" mutable="no">
+        <type>uint16_t</type>
+        <definition>uint16_t index</definition>
+        <argsstring></argsstring>
+        <name>index</name>
+        <qualifiedname>BitWriter::index</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bitwriter.h" line="17" column="14" bodyfile="bitwriter.h" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_bit_writer_1a25c8761bc1f523fe6a53db546ae83add" prot="public" static="no" mutable="no">
+        <type>char *</type>
+        <definition>char* fileName</definition>
+        <argsstring></argsstring>
+        <name>fileName</name>
+        <qualifiedname>BitWriter::fileName</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bitwriter.h" line="18" column="10" bodyfile="bitwriter.h" bodystart="18" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="bitwriter.h" line="11" column="1" bodyfile="bitwriter.h" bodystart="11" bodyend="19"/>
+    <listofallmembers>
+      <member refid="struct_bit_writer_1a56ed84df35de10bdb65e72b184309497" prot="public" virt="non-virtual"><scope>BitWriter</scope><name>buffer</name></member>
+      <member refid="struct_bit_writer_1a7be887a2ca0a258cf6b368d32fd87487" prot="public" virt="non-virtual"><scope>BitWriter</scope><name>bufferSize</name></member>
+      <member refid="struct_bit_writer_1a96f44d20f1dbf1c8785a7bc99a46164c" prot="public" virt="non-virtual"><scope>BitWriter</scope><name>byte</name></member>
+      <member refid="struct_bit_writer_1a03c096e79d44983a055f7ca6839144bc" prot="public" virt="non-virtual"><scope>BitWriter</scope><name>currentPosition</name></member>
+      <member refid="struct_bit_writer_1a702945180aa732857b380a007a7e2a21" prot="public" virt="non-virtual"><scope>BitWriter</scope><name>file</name></member>
+      <member refid="struct_bit_writer_1a25c8761bc1f523fe6a53db546ae83add" prot="public" virt="non-virtual"><scope>BitWriter</scope><name>fileName</name></member>
+      <member refid="struct_bit_writer_1a852b86a2eaee9852ada7a43e61e311a2" prot="public" virt="non-virtual"><scope>BitWriter</scope><name>index</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

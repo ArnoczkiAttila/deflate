@@ -1,0 +1,118 @@
+\doxysection{bitreader.\+h File Reference}
+\label{bitreader_8h}\index{bitreader.h@{bitreader.h}}
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+Include dependency graph for bitreader.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \textbf{ BIT\+\_\+\+READER}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ BIT\+\_\+\+READER} $\ast$ \textbf{ init\+\_\+bit\+\_\+reader} (const char $\ast$file\+Path)
+\item 
+int \textbf{ read\+\_\+bit} (\textbf{ BIT\+\_\+\+READER} $\ast$reader)
+\item 
+uint32\+\_\+t \textbf{ read\+\_\+bits} (\textbf{ BIT\+\_\+\+READER} $\ast$reader, int num\+Bits)
+\begin{DoxyCompactList}\small\item\em Processes the 10-\/byte GZIP header and any optional fields. \end{DoxyCompactList}\item 
+void \textbf{ close\+\_\+bit\+\_\+reader} (\textbf{ BIT\+\_\+\+READER} $\ast$reader)
+\item 
+bool \textbf{ process\+\_\+gzip\+\_\+header} (\textbf{ BIT\+\_\+\+READER} $\ast$reader)
+\item 
+uint16\+\_\+t \textbf{ peek\+\_\+bits} (\textbf{ BIT\+\_\+\+READER} $\ast$reader, uint8\+\_\+t n)
+\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\doxysubsection{Function Documentation}
+\index{bitreader.h@{bitreader.h}!close\_bit\_reader@{close\_bit\_reader}}
+\index{close\_bit\_reader@{close\_bit\_reader}!bitreader.h@{bitreader.h}}
+\doxysubsubsection{close\_bit\_reader()}
+{\footnotesize\ttfamily \label{bitreader_8h_aa8b5fc0a2d13215757372d983e37b336} 
+void close\+\_\+bit\+\_\+reader (\begin{DoxyParamCaption}\item[{\textbf{ BIT\+\_\+\+READER} $\ast$}]{reader}{}\end{DoxyParamCaption})}
+
+Closes the file handle and performs cleanup. 
+\begin{DoxyParams}{Parameters}
+{\em reader} & Pointer to the \doxyref{BIT\+\_\+\+READER}{p.}{struct_b_i_t___r_e_a_d_e_r} structure. \\
+\hline
+\end{DoxyParams}
+\index{bitreader.h@{bitreader.h}!init\_bit\_reader@{init\_bit\_reader}}
+\index{init\_bit\_reader@{init\_bit\_reader}!bitreader.h@{bitreader.h}}
+\doxysubsubsection{init\_bit\_reader()}
+{\footnotesize\ttfamily \label{bitreader_8h_af813be79ba8b6b387a8dacff1ef72c04} 
+\textbf{ BIT\+\_\+\+READER} $\ast$ init\+\_\+bit\+\_\+reader (\begin{DoxyParamCaption}\item[{const char $\ast$}]{file\+Path}{}\end{DoxyParamCaption})}
+
+Initializes the \doxyref{BIT\+\_\+\+READER}{p.}{struct_b_i_t___r_e_a_d_e_r} structure. Opens the file and resets the bit-\/reading state. 
+\begin{DoxyParams}{Parameters}
+{\em file\+Path} & Path to the input file. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, -\/1 on failure (e.\+g., file not found). 
+\end{DoxyReturn}
+\index{bitreader.h@{bitreader.h}!peek\_bits@{peek\_bits}}
+\index{peek\_bits@{peek\_bits}!bitreader.h@{bitreader.h}}
+\doxysubsubsection{peek\_bits()}
+{\footnotesize\ttfamily \label{bitreader_8h_ae4fcc275a9937dc610bc057cb9bcc919} 
+uint16\+\_\+t peek\+\_\+bits (\begin{DoxyParamCaption}\item[{\textbf{ BIT\+\_\+\+READER} $\ast$}]{reader}{, }\item[{uint8\+\_\+t}]{n}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+
+\index{bitreader.h@{bitreader.h}!process\_gzip\_header@{process\_gzip\_header}}
+\index{process\_gzip\_header@{process\_gzip\_header}!bitreader.h@{bitreader.h}}
+\doxysubsubsection{process\_gzip\_header()}
+{\footnotesize\ttfamily \label{bitreader_8h_acac2cf5ecbb43c96b44ff0b63b432c46} 
+bool process\+\_\+gzip\+\_\+header (\begin{DoxyParamCaption}\item[{\textbf{ BIT\+\_\+\+READER} $\ast$}]{reader}{}\end{DoxyParamCaption})}
+
+\index{bitreader.h@{bitreader.h}!read\_bit@{read\_bit}}
+\index{read\_bit@{read\_bit}!bitreader.h@{bitreader.h}}
+\doxysubsubsection{read\_bit()}
+{\footnotesize\ttfamily \label{bitreader_8h_a21ed250683802f09cc0375f8dbb5a125} 
+int read\+\_\+bit (\begin{DoxyParamCaption}\item[{\textbf{ BIT\+\_\+\+READER} $\ast$}]{reader}{}\end{DoxyParamCaption})}
+
+Reads a single bit from the stream. Handles reading new bytes from the file when the current byte is exhausted. 
+\begin{DoxyParams}{Parameters}
+{\em reader} & Pointer to the initialized \doxyref{BIT\+\_\+\+READER}{p.}{struct_b_i_t___r_e_a_d_e_r}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The bit value (0 or 1), or -\/1 if the end of file is reached unexpectedly. 
+\end{DoxyReturn}
+\index{bitreader.h@{bitreader.h}!read\_bits@{read\_bits}}
+\index{read\_bits@{read\_bits}!bitreader.h@{bitreader.h}}
+\doxysubsubsection{read\_bits()}
+{\footnotesize\ttfamily \label{bitreader_8h_a06bc428e5e0fdf358c4d7aaf14498ce0} 
+uint32\+\_\+t read\+\_\+bits (\begin{DoxyParamCaption}\item[{\textbf{ BIT\+\_\+\+READER} $\ast$}]{reader}{, }\item[{int}]{num\+Bits}{}\end{DoxyParamCaption})}
+
+
+
+Processes the 10-\/byte GZIP header and any optional fields. 
+
+Reads a specified number of bits from the stream. 
+\begin{DoxyParams}{Parameters}
+{\em reader} & Pointer to the initialized \doxyref{BIT\+\_\+\+READER}{p.}{struct_b_i_t___r_e_a_d_e_r}. \\
+\hline
+{\em num\+Bits} & The number of bits to read (must be $<$= 32). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The unsigned integer value represented by the bits, or 0x\+FFFFFFFF on error.
+\end{DoxyReturn}
+
+\begin{DoxyItemize}
+\item 
+\begin{DoxyParams}{Parameters}
+{\em reader} & Pointer to the initialized \doxyref{BIT\+\_\+\+READER}{p.}{struct_b_i_t___r_e_a_d_e_r}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the header is valid and optional fields were processed (or skipped). 
+
+false if the file is not a valid GZIP stream or required features are unsupported. 
+\end{DoxyReturn}
+
+\end{DoxyItemize}

@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_struct_h_u_f_f_m_a_n___c_o_d_e" xml:lang="en-US">
+<title>HUFFMAN_CODE Struct Reference</title>
+<indexterm><primary>HUFFMAN_CODE</primary></indexterm>
+<para>
+<computeroutput>#include &lt;HUFFMAN_TABLE.h&gt;</computeroutput>
+</para>
+<simplesect>
+    <title>Data Fields    </title>
+        <itemizedlist>
+            <listitem><para>uint16_t <link linkend="_struct_h_u_f_f_m_a_n___c_o_d_e_1a70008c0b7822b172472813e6730ea565">code</link></para>
+</listitem>
+            <listitem><para>uint8_t <link linkend="_struct_h_u_f_f_m_a_n___c_o_d_e_1ab2b3adeb2a67e656ff030b56727fd0ac">length</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Field Documentation</title>
+<anchor xml:id="_struct_h_u_f_f_m_a_n___c_o_d_e_1a70008c0b7822b172472813e6730ea565"/><section>
+    <title>code</title>
+<indexterm><primary>code</primary><secondary>HUFFMAN_CODE</secondary></indexterm>
+<indexterm><primary>HUFFMAN_CODE</primary><secondary>code</secondary></indexterm>
+<para><computeroutput>uint16_t code</computeroutput></para></section>
+<anchor xml:id="_struct_h_u_f_f_m_a_n___c_o_d_e_1ab2b3adeb2a67e656ff030b56727fd0ac"/><section>
+    <title>length</title>
+<indexterm><primary>length</primary><secondary>HUFFMAN_CODE</secondary></indexterm>
+<indexterm><primary>HUFFMAN_CODE</primary><secondary>length</secondary></indexterm>
+<para><computeroutput>uint8_t length</computeroutput></para></section>
+<para>
+The documentation for this struct was generated from the following file:</para>
+<link linkend="__h_u_f_f_m_a_n___t_a_b_l_e_8h">HUFFMAN_TABLE.h</link></section>
+</section>

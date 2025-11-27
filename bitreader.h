@@ -1,5 +1,5 @@
 //
-// Created by Attila on 11/24/2025.
+// Created by Arnóczki Attila on 11/24/2025.
 //
 
 #ifndef DEFLATE_BITREADER_H

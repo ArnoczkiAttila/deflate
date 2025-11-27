@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="__c_r_c___c_h_e_c_k_s_u_m_8c" xml:lang="en-US">
+<title>CRC_CHECKSUM.c File Reference</title>
+<indexterm><primary>CRC_CHECKSUM.c</primary></indexterm>
+<programlisting linenumbering="unnumbered">#include &quot;CRC_CHECKSUM.h&quot;<?linebreak?>#include &lt;stdio.h&gt;<?linebreak?></programlisting>Include dependency graph for CRC_CHECKSUM.c:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="_c_r_c___c_h_e_c_k_s_u_m_8c__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Functions    </title>
+        <itemizedlist>
+            <listitem><para>uint32_t <link linkend="__c_r_c___c_h_e_c_k_s_u_m_8c_1a949564d32e176c6849b5ccc68c4947f3">calculate_crc32</link> (uint32_t current_crc, const uint8_t *data, size_t length)</para>
+
+<para>Updates a running CRC32 checksum based on a block of data. </para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Function Documentation</title>
+<anchor xml:id="__c_r_c___c_h_e_c_k_s_u_m_8c_1a949564d32e176c6849b5ccc68c4947f3"/><section>
+    <title>calculate_crc32()</title>
+<indexterm><primary>calculate_crc32</primary><secondary>CRC_CHECKSUM.c</secondary></indexterm>
+<indexterm><primary>CRC_CHECKSUM.c</primary><secondary>calculate_crc32</secondary></indexterm>
+<para><computeroutput>uint32_t calculate_crc32 (uint32_t current_crc, const uint8_t * data, size_t length)<computeroutput>[extern]</computeroutput></computeroutput></para><para>
+
+<para>Updates a running CRC32 checksum based on a block of data. </para>
+</para>
+
+<para>Updates a running CRC32 checksum based on a block of data. The CRC32 algorithm used is the standard IEEE 802.3 (used in Gzip and Zlib).</para>
+
+<para><itemizedlist>
+<listitem>
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>current_crc</entry><entry>
+<para>The current running CRC value (initial value 0xFFFFFFFF). </para>
+</entry>
+                            </row>
+                            <row>
+<entry>data</entry><entry>
+<para>Pointer to the buffer containing the data chunk. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>length</entry><entry>
+<para>The number of bytes in the data chunk. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>uint32_t The updated CRC value. </para>
+</formalpara>
+</para>
+</listitem></itemizedlist>
+</para>
+</section>
+</section>
+</section>

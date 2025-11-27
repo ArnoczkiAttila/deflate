@@ -1,0 +1,549 @@
+\doxysection{debugmalloc.\+h}
+\label{debugmalloc_8h_source}\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ DEBUGMALLOC\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ DEBUGMALLOC\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <stddef.h>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <ctype.h>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <stdarg.h>}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{comment}{/*\ size\ of\ canary\ in\ bytes.\ should\ be\ multiple\ of\ largest\ alignment}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ \ \ \ \ *\ required\ by\ any\ data\ type\ (usually\ 8\ or\ 16)\ */}}
+\DoxyCodeLine{00016\ \ \ \ \ debugmalloc\_canary\_size\ =\ 64,}
+\DoxyCodeLine{00017\ \ \ \ \ }
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{comment}{/*\ canary\ byte\ */}}
+\DoxyCodeLine{00019\ \ \ \ \ debugmalloc\_canary\_char\ =\ \textcolor{charliteral}{'K'},}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{comment}{/*\ hash\ table\ size\ for\ allocated\ entries\ */}}
+\DoxyCodeLine{00022\ \ \ \ \ debugmalloc\_tablesize\ =\ 256,}
+\DoxyCodeLine{00023\ \ \ \ \ }
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{comment}{/*\ max\ block\ size\ for\ allocation,\ can\ be\ modified\ with\ debugmalloc\_max\_block\_size()\ */}}
+\DoxyCodeLine{00025\ \ \ \ \ debugmalloc\_max\_block\_size\_default\ =\ 1048576}
+\DoxyCodeLine{00026\ \};}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{comment}{/*\ make\ getpid\ and\ putenv\ "{}crossplatform"{}.\ deprecated\ on\ windows\ but\ they\ work\ just\ fine,}}
+\DoxyCodeLine{00030\ \textcolor{comment}{\ *\ however\ not\ declared.\ */}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#ifdef\ \_WIN32}}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{comment}{/*\ windows\ */}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\ \ \ \ \#include\ <process.h>}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\ \ \ \ \#ifdef\ \_MSC\_VER}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#pragma\ warning(push)}}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ visual\ studio,\ getenv/getpid\ deprecated\ warning\ */}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#pragma\ warning(disable:\ 4996)}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#pragma\ warning(disable:\ 4127)}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\ \ \ \ \#else}}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ other\ windows.\ the\ declaration\ is\ unfortunately\ hidden}}
+\DoxyCodeLine{00041\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ in\ mingw\ header\ files\ by\ ifdefs.\ */}}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ putenv(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *);}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{comment}{/*\ posix\ */}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\ \ \ \ \#include\ <unistd.h>}}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordtype}{int}\ putenv(\textcolor{keywordtype}{char}\ *);}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \textcolor{comment}{/*\ linked\ list\ entry\ for\ allocated\ blocks\ */}}
+\DoxyCodeLine{00052\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }DebugmallocEntry\ \{}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordtype}{void}\ *real\_mem;\ \ \ \ \ \textcolor{comment}{/*\ the\ address\ of\ the\ real\ allocation\ */}}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordtype}{void}\ *user\_mem;\ \ \ \ \ \textcolor{comment}{/*\ address\ shown\ to\ the\ user\ */}}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ size;\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ size\ of\ block\ requested\ by\ user\ */}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordtype}{char}\ file[64];\ \ \ \ \ \ \textcolor{comment}{/*\ malloc\ called\ in\ this\ file\ */}}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ line;\ \ \ \ \ \ \textcolor{comment}{/*\ malloc\ called\ at\ this\ line\ in\ file\ */}}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{char}\ func[32];\ \ \ \ \ \ \textcolor{comment}{/*\ allocation\ function\ called\ (malloc,\ calloc,\ realloc)\ */}}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordtype}{char}\ expr[128];\ \ \ \ \ \textcolor{comment}{/*\ expression\ calculating\ the\ size\ of\ allocation\ */}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keyword}{struct\ }DebugmallocEntry\ *prev,\ *next;\ \ \textcolor{comment}{/*\ for\ doubly\ linked\ list\ */}}
+\DoxyCodeLine{00063\ \}\ DebugmallocEntry;}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \textcolor{comment}{/*\ debugmalloc\ singleton,\ storing\ all\ state\ */}}
+\DoxyCodeLine{00067\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }DebugmallocData\ \{}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordtype}{char}\ logfile[256];\ \ \ \ \textcolor{comment}{/*\ log\ file\ name\ or\ empty\ string\ */}}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordtype}{long}\ max\_block\_size;\ \ \textcolor{comment}{/*\ max\ size\ of\ a\ single\ block\ allocated\ */}}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordtype}{long}\ alloc\_count;\ \ \ \ \ \textcolor{comment}{/*\ currently\ allocated;\ decreased\ with\ free\ */}}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ alloc\_bytes;}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordtype}{long}\ all\_alloc\_count;\ \textcolor{comment}{/*\ all\ allocations,\ never\ decreased\ */}}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ all\_alloc\_bytes;}
+\DoxyCodeLine{00074\ \ \ \ \ DebugmallocEntry\ head[debugmalloc\_tablesize],\ tail[debugmalloc\_tablesize];\ \ \textcolor{comment}{/*\ head\ and\ tail\ elements\ of\ allocation\ lists\ */}}
+\DoxyCodeLine{00075\ \}\ DebugmallocData;}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \textcolor{comment}{/*\ this\ forward\ declaration\ is\ required\ by\ the\ singleton\ manager\ function\ */}}
+\DoxyCodeLine{00079\ \textcolor{keyword}{static}\ DebugmallocData\ *\ debugmalloc\_create(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \textcolor{comment}{/*\ creates\ singleton\ instance.\ as\ this\ function\ is\ static\ included\ to\ different}}
+\DoxyCodeLine{00083\ \textcolor{comment}{\ *\ translation\ units,\ multiple\ instances\ of\ the\ static\ variables\ are\ created.}}
+\DoxyCodeLine{00084\ \textcolor{comment}{\ *\ to\ make\ sure\ it\ is\ really\ a\ singleton,\ these\ instances\ must\ know\ each\ other}}
+\DoxyCodeLine{00085\ \textcolor{comment}{\ *\ somethow.\ an\ environment\ variable\ is\ used\ for\ that\ purpose,\ ie.\ the\ address}}
+\DoxyCodeLine{00086\ \textcolor{comment}{\ *\ of\ the\ singleton\ allocated\ is\ stored\ by\ the\ operating\ system.}}
+\DoxyCodeLine{00087\ \textcolor{comment}{\ *\ this\ implementation\ is\ not\ thread-\/safe.\ */}}
+\DoxyCodeLine{00088\ \textcolor{keyword}{static}\ DebugmallocData\ *\ debugmalloc\_singleton(\textcolor{keywordtype}{void})\ \{}
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{char}\ envstr[100];}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ *instance\ =\ NULL;}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{comment}{/*\ if\ we\ do\ not\ know\ the\ address\ of\ the\ singleton:}}
+\DoxyCodeLine{00093\ \textcolor{comment}{\ \ \ \ \ *\ -\/\ maybe\ we\ are\ the\ one\ to\ create\ it\ (env\ variable\ also\ does\ not\ exist)}}
+\DoxyCodeLine{00094\ \textcolor{comment}{\ \ \ \ \ *\ -\/\ or\ it\ is\ already\ created,\ and\ stored\ in\ the\ env\ variable.\ */}}
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keywordflow}{if}\ (instance\ ==\ NULL)\ \{}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ envvarname[100]\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ sprintf(envvarname,\ \textcolor{stringliteral}{"{}\%s\%d"{}},\ \textcolor{stringliteral}{"{}debugmallocsingleton"{}},\ (\textcolor{keywordtype}{int})\ getpid());}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ *envptr\ =\ getenv(envvarname);}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (envptr\ ==\ NULL)\ \{}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ no\ env\ variable:\ create\ singleton.\ */}}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ instance\ =\ debugmalloc\_create();}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ sprintf(envstr,\ \textcolor{stringliteral}{"{}\%s=\%p"{}},\ envvarname,\ instance);}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ putenv(envstr);}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ another\ copy\ of\ this\ function\ already\ created\ it.\ */}}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ ok\ =\ sscanf(envptr,\ \textcolor{stringliteral}{"{}\%p"{}},\ \&instance);}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ok\ !=\ 1)\ \{}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ fprintf(stderr,\ \textcolor{stringliteral}{"{}debugmalloc:\ nem\ lehet\ ertelmezni:\ \%s!\(\backslash\)n"{}},\ envptr);}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ abort();}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00112\ \ \ \ \ \}}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keywordflow}{return}\ (DebugmallocData\ *)\ instance;}
+\DoxyCodeLine{00115\ \}}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \textcolor{comment}{/*\ better\ version\ of\ strncpy,\ always\ terminates\ string\ with\ \(\backslash\)0.\ */}}
+\DoxyCodeLine{00119\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ debugmalloc\_strlcpy(\textcolor{keywordtype}{char}\ *dest,\ \textcolor{keywordtype}{char}\ \textcolor{keyword}{const}\ *src,\ \textcolor{keywordtype}{size\_t}\ destsize)\ \{}
+\DoxyCodeLine{00120\ \ \ \ \ strncpy(dest,\ src,\ destsize-\/1);\ \textcolor{comment}{/*\ 03.09.2025\ by\ KZs:\ destsize\ changed\ to\ destsize-\/1\ according\ to\ warnings*/}}
+\DoxyCodeLine{00121\ \ \ \ \ dest[destsize\ -\/\ 1]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00122\ \}}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \textcolor{comment}{/*\ set\ the\ name\ of\ the\ log\ file\ for\ debugmalloc.\ empty\ filename}}
+\DoxyCodeLine{00126\ \textcolor{comment}{\ *\ means\ logging\ to\ stderr.\ */}}
+\DoxyCodeLine{00127\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ debugmalloc\_log\_file(\textcolor{keywordtype}{char}\ \textcolor{keyword}{const}\ *logfilename)\ \{}
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{keywordflow}{if}\ (logfilename\ ==\ NULL)}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ logfilename\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00130\ \ \ \ \ DebugmallocData\ *instance\ =\ debugmalloc\_singleton();}
+\DoxyCodeLine{00131\ \ \ \ \ debugmalloc\_strlcpy(instance-\/>logfile,\ logfilename,\ \textcolor{keyword}{sizeof}(instance-\/>logfile));}
+\DoxyCodeLine{00132\ \}}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ \textcolor{comment}{/*\ set\ the\ maximum\ size\ of\ one\ block.\ useful\ for\ debugging\ purposes.\ */}}
+\DoxyCodeLine{00136\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ debugmalloc\_max\_block\_size(\textcolor{keywordtype}{long}\ max\_block\_size)\ \{}
+\DoxyCodeLine{00137\ \ \ \ \ DebugmallocData\ *instance\ =\ debugmalloc\_singleton();}
+\DoxyCodeLine{00138\ \ \ \ \ instance-\/>max\_block\_size\ =\ max\_block\_size;}
+\DoxyCodeLine{00139\ \}}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ \textcolor{comment}{/*\ printf\ to\ the\ log\ file,\ or\ stderr.\ */}}
+\DoxyCodeLine{00144\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ debugmalloc\_log(\textcolor{keywordtype}{char}\ \textcolor{keyword}{const}\ *format,\ ...)\ \{}
+\DoxyCodeLine{00145\ \ \ \ \ DebugmallocData\ *instance\ =\ debugmalloc\_singleton();}
+\DoxyCodeLine{00146\ \ \ \ \ FILE\ *f\ =\ stderr;}
+\DoxyCodeLine{00147\ \ \ \ \ \textcolor{keywordflow}{if}\ (instance-\/>logfile[0]\ !=\ \textcolor{charliteral}{'\(\backslash\)0'})\ \{}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ f\ =\ fopen(instance-\/>logfile,\ \textcolor{stringliteral}{"{}at"{}});}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (f\ ==\ NULL)\ \{}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ f\ =\ stderr;}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ fprintf(stderr,\ \textcolor{stringliteral}{"{}debugmalloc:\ nem\ tudom\ megnyitni\ a\ \%s\ fajlt\ irasra!\(\backslash\)n"{}},\ instance-\/>logfile);}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ debugmalloc\_strlcpy(instance-\/>logfile,\ \textcolor{stringliteral}{"{}"{}},\ \textcolor{keyword}{sizeof}(instance-\/>logfile));}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00154\ \ \ \ \ \}}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \ \ \ \ va\_list\ ap;}
+\DoxyCodeLine{00157\ \ \ \ \ va\_start(ap,\ format);}
+\DoxyCodeLine{00158\ \ \ \ \ vfprintf(f,\ format,\ ap);}
+\DoxyCodeLine{00159\ \ \ \ \ va\_end(ap);}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \ \ \ \ \textcolor{keywordflow}{if}\ (f\ !=\ stderr)}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ fclose(f);}
+\DoxyCodeLine{00163\ \}}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \textcolor{comment}{/*\ initialize\ a\ memory\ block\ allocated\ for\ the\ user.\ the\ start\ and\ the\ end}}
+\DoxyCodeLine{00167\ \textcolor{comment}{\ *\ of\ the\ block\ is\ initialized\ with\ the\ canary\ characters.\ if\ 'zero'\ is}}
+\DoxyCodeLine{00168\ \textcolor{comment}{\ *\ true,\ the\ user\ memory\ area\ is\ zero-\/initialized,\ otherwise\ it\ is\ also}}
+\DoxyCodeLine{00169\ \textcolor{comment}{\ *\ filled\ with\ the\ canary\ character\ to\ simulate\ garbage\ in\ memory.\ */}}
+\DoxyCodeLine{00170\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ debugmalloc\_memory\_init(DebugmallocEntry\ *elem,\ \textcolor{keywordtype}{bool}\ zero)\ \{}
+\DoxyCodeLine{00171\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ *real\_mem\ =\ (\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ *)\ elem-\/>real\_mem;}
+\DoxyCodeLine{00172\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ *user\_mem\ =\ (\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ *)\ elem-\/>user\_mem;}
+\DoxyCodeLine{00173\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ *canary1\ =\ real\_mem;}
+\DoxyCodeLine{00174\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ *canary2\ =\ real\_mem\ +\ debugmalloc\_canary\_size\ +\ elem-\/>size;}
+\DoxyCodeLine{00175\ \ \ \ \ memset(canary1,\ debugmalloc\_canary\_char,\ debugmalloc\_canary\_size);}
+\DoxyCodeLine{00176\ \ \ \ \ memset(canary2,\ debugmalloc\_canary\_char,\ debugmalloc\_canary\_size);}
+\DoxyCodeLine{00177\ \ \ \ \ memset(user\_mem,\ zero\ ?\ 0\ :\ debugmalloc\_canary\_char,\ elem-\/>size);}
+\DoxyCodeLine{00178\ \}}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00180\ \textcolor{comment}{/*\ check\ canary,\ return\ true\ if\ ok,\ false\ if\ corrupted.\ */}}
+\DoxyCodeLine{00181\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ debugmalloc\_canary\_ok(DebugmallocEntry\ \textcolor{keyword}{const}\ *elem)\ \{}
+\DoxyCodeLine{00182\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ *real\_mem\ =\ (\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ *)\ elem-\/>real\_mem;}
+\DoxyCodeLine{00183\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ *canary1\ =\ real\_mem;}
+\DoxyCodeLine{00184\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ *canary2\ =\ real\_mem\ +\ debugmalloc\_canary\_size\ +\ elem-\/>size;}
+\DoxyCodeLine{00185\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ debugmalloc\_canary\_size;\ ++i)\ \{}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (canary1[i]\ !=\ debugmalloc\_canary\_char)}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (canary2[i]\ !=\ debugmalloc\_canary\_char)}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00190\ \ \ \ \ \}}
+\DoxyCodeLine{00191\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00192\ \}}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00195\ \textcolor{comment}{/*\ dump\ memory\ contents\ to\ log\ file.\ */}}
+\DoxyCodeLine{00196\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ debugmalloc\_dump\_memory(\textcolor{keywordtype}{char}\ \textcolor{keyword}{const}\ *mem,\ \textcolor{keywordtype}{size\_t}\ size)\ \{}
+\DoxyCodeLine{00197\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{unsigned}\ y\ =\ 0;\ y\ <\ (size\ +\ 15)\ /\ 16;\ y++)\ \{}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ line[80];}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ pos\ =\ 0;}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ pos\ +=\ sprintf(line\ +\ pos,\ \textcolor{stringliteral}{"{}\ \ \ \ \ \ \%04x\ \ "{}},\ y\ *\ 16);}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{unsigned}\ x\ =\ 0;\ x\ <\ 16;\ x++)\ \{}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (y\ *\ 16\ +\ x\ <\ size)}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pos\ +=\ sprintf(line\ +\ pos,\ \textcolor{stringliteral}{"{}\%02x\ "{}},\ (\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char})mem[y\ *\ 16\ +\ x]);}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pos\ +=\ sprintf(line\ +\ pos,\ \textcolor{stringliteral}{"{}\ \ \ "{}});}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ pos\ +=\ sprintf(line\ +\ pos,\ \textcolor{stringliteral}{"{}\ \ "{}});}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{unsigned}\ x\ =\ 0;\ x\ <\ 16;\ x++)\ \{}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (y\ *\ 16\ +\ x\ <\ size)\ \{}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ c\ =\ mem[y\ *\ 16\ +\ x];}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pos\ +=\ sprintf(line\ +\ pos,\ \textcolor{stringliteral}{"{}\%c"{}},\ isprint(c)\ ?\ c\ :\ \textcolor{charliteral}{'.'});}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pos\ +=\ sprintf(line\ +\ pos,\ \textcolor{stringliteral}{"{}\ "{}});}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ debugmalloc\_log(\textcolor{stringliteral}{"{}\%s\(\backslash\)n"{}},\ line);}
+\DoxyCodeLine{00218\ \ \ \ \ \}}
+\DoxyCodeLine{00219\ \}}
+\DoxyCodeLine{00220\ }
+\DoxyCodeLine{00221\ }
+\DoxyCodeLine{00222\ \textcolor{comment}{/*\ dump\ data\ of\ allocated\ memory\ block.}}
+\DoxyCodeLine{00223\ \textcolor{comment}{\ *\ if\ the\ canary\ is\ corrupted,\ it\ is\ also\ written\ to\ the\ log.\ */}}
+\DoxyCodeLine{00224\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ debugmalloc\_dump\_elem(DebugmallocEntry\ \textcolor{keyword}{const}\ *elem)\ \{}
+\DoxyCodeLine{00225\ \ \ \ \ \textcolor{keywordtype}{bool}\ canary\_ok\ =\ debugmalloc\_canary\_ok(elem);}
+\DoxyCodeLine{00226\ }
+\DoxyCodeLine{00227\ \ \ \ \ debugmalloc\_log(\textcolor{stringliteral}{"{}\ \ \%p,\ \%u\ bajt,\ kanari:\ \%s\(\backslash\)n"{}}}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}\ \ \%s:\%u,\ \%s(\%s)\(\backslash\)n"{}},}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ elem-\/>user\_mem,\ (\textcolor{keywordtype}{unsigned})\ elem-\/>size,\ canary\_ok\ ?\ \textcolor{stringliteral}{"{}ok"{}}\ :\ \textcolor{stringliteral}{"{}**SERULT**"{}},}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ elem-\/>file,\ elem-\/>line,}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ elem-\/>func,\ elem-\/>expr);}
+\DoxyCodeLine{00232\ }
+\DoxyCodeLine{00233\ \ \ \ \ \textcolor{keywordflow}{if}\ (!canary\_ok)\ \{}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ debugmalloc\_log(\textcolor{stringliteral}{"{}\ \ \ \ ELOTTE\ kanari:\ \(\backslash\)n"{}});}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ debugmalloc\_dump\_memory((\textcolor{keywordtype}{char}\ \textcolor{keyword}{const}\ *)\ elem-\/>real\_mem,\ debugmalloc\_canary\_size);}
+\DoxyCodeLine{00236\ \ \ \ \ \}}
+\DoxyCodeLine{00237\ }
+\DoxyCodeLine{00238\ \ \ \ \ debugmalloc\_dump\_memory((\textcolor{keywordtype}{char}\ \textcolor{keyword}{const}\ *)\ elem-\/>user\_mem,\ elem-\/>size\ >\ 64\ ?\ 64\ :\ elem-\/>size);}
+\DoxyCodeLine{00239\ }
+\DoxyCodeLine{00240\ \ \ \ \ \textcolor{keywordflow}{if}\ (!canary\_ok)\ \{}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ debugmalloc\_log(\textcolor{stringliteral}{"{}\ \ \ \ UTANA\ kanari:\ \(\backslash\)n"{}});}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ debugmalloc\_dump\_memory((\textcolor{keywordtype}{char}\ \textcolor{keyword}{const}\ *)\ elem-\/>real\_mem\ +\ debugmalloc\_canary\_size\ +\ elem-\/>size,\ debugmalloc\_canary\_size);}
+\DoxyCodeLine{00243\ \ \ \ \ \}}
+\DoxyCodeLine{00244\ \}}
+\DoxyCodeLine{00245\ }
+\DoxyCodeLine{00246\ }
+\DoxyCodeLine{00247\ \textcolor{comment}{/*\ dump\ data\ of\ all\ memory\ blocks\ allocated.\ */}}
+\DoxyCodeLine{00248\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ debugmalloc\_dump(\textcolor{keywordtype}{void})\ \{}
+\DoxyCodeLine{00249\ \ \ \ \ DebugmallocData\ *instance\ =\ debugmalloc\_singleton();}
+\DoxyCodeLine{00250\ \ \ \ \ debugmalloc\_log(\textcolor{stringliteral}{"{}**\ DEBUGMALLOC\ DUMP\ ************************************\(\backslash\)n"{}});}
+\DoxyCodeLine{00251\ \ \ \ \ \textcolor{keywordtype}{int}\ cnt\ =\ 0;}
+\DoxyCodeLine{00252\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ debugmalloc\_tablesize;\ i++)\ \{}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ DebugmallocEntry\ *head\ =\ \&instance-\/>head[i];}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (DebugmallocEntry\ *iter\ =\ head-\/>next;\ iter-\/>next\ !=\ NULL;\ iter\ =\ iter-\/>next)\ \{}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \ \ \ \ ++cnt;}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \ \ \ \ debugmalloc\_log(\textcolor{stringliteral}{"{}**\ \%d/\%d.\ rekord:\(\backslash\)n"{}},\ cnt,\ instance-\/>alloc\_count);}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \ \ \ \ debugmalloc\_dump\_elem(iter);}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00259\ \ \ \ \ \}}
+\DoxyCodeLine{00260\ \ \ \ \ debugmalloc\_log(\textcolor{stringliteral}{"{}**\ DEBUGMALLOC\ DUMP\ VEGE\ *******************************\(\backslash\)n"{}});}
+\DoxyCodeLine{00261\ \}}
+\DoxyCodeLine{00262\ }
+\DoxyCodeLine{00263\ }
+\DoxyCodeLine{00264\ \textcolor{comment}{/*\ called\ at\ program\ exit\ to\ dump\ data\ if\ there\ is\ a\ leak,}}
+\DoxyCodeLine{00265\ \textcolor{comment}{\ *\ ie.\ allocated\ block\ remained.\ */}}
+\DoxyCodeLine{00266\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ debugmalloc\_atexit\_dump(\textcolor{keywordtype}{void})\ \{}
+\DoxyCodeLine{00267\ \ \ \ \ DebugmallocData\ *instance\ =\ debugmalloc\_singleton();}
+\DoxyCodeLine{00268\ \ \ \ \ }
+\DoxyCodeLine{00269\ \ \ \ \ \textcolor{keywordflow}{if}\ (instance-\/>alloc\_count\ >\ 0)\ \{}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ debugmalloc\_log(\textcolor{stringliteral}{"{}\(\backslash\)n"{}}}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}********************************************************\(\backslash\)n"{}}}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}*\ MEMORIASZIVARGAS\ VAN\ A\ PROGRAMBAN!!!\(\backslash\)n"{}}}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}********************************************************\(\backslash\)n"{}}}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}\(\backslash\)n"{}});}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ debugmalloc\_dump();}
+\DoxyCodeLine{00276\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ debugmalloc\_log(\textcolor{stringliteral}{"{}****************************************************\(\backslash\)n"{}}}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}*\ Debugmalloc:\ nincs\ memoriaszivargas\ a\ programban.\(\backslash\)n"{}}}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}*\ Osszes\ foglalas:\ \%d\ blokk,\ \%d\ bajt.\(\backslash\)n"{}}}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}****************************************************\(\backslash\)n"{}},}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ instance-\/>all\_alloc\_count,\ instance-\/>all\_alloc\_bytes);}
+\DoxyCodeLine{00282\ \ \ \ \ \}}
+\DoxyCodeLine{00283\ \}}
+\DoxyCodeLine{00284\ }
+\DoxyCodeLine{00285\ }
+\DoxyCodeLine{00286\ \textcolor{comment}{/*\ hash\ function\ for\ bucket\ hash.\ */}}
+\DoxyCodeLine{00287\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{size\_t}\ debugmalloc\_hash(\textcolor{keywordtype}{void}\ *address)\ \{}
+\DoxyCodeLine{00288\ \ \ \ \ \textcolor{comment}{/*\ the\ last\ few\ bits\ are\ ignored,\ as\ they\ are\ usually\ zero\ for}}
+\DoxyCodeLine{00289\ \textcolor{comment}{\ \ \ \ \ *\ alignment\ purposes.\ all\ tested\ architectures\ used\ 16\ byte\ allocation.\ */}}
+\DoxyCodeLine{00290\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ cut\ =\ (size\_t)address\ >>\ 4;}
+\DoxyCodeLine{00291\ \ \ \ \ \textcolor{keywordflow}{return}\ cut\ \%\ debugmalloc\_tablesize;}
+\DoxyCodeLine{00292\ \}}
+\DoxyCodeLine{00293\ }
+\DoxyCodeLine{00294\ }
+\DoxyCodeLine{00295\ \textcolor{comment}{/*\ insert\ element\ to\ hash\ table.\ */}}
+\DoxyCodeLine{00296\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ debugmalloc\_insert(DebugmallocEntry\ *entry)\ \{}
+\DoxyCodeLine{00297\ \ \ \ \ DebugmallocData\ *instance\ =\ debugmalloc\_singleton();}
+\DoxyCodeLine{00298\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ idx\ =\ debugmalloc\_hash(entry-\/>user\_mem);}
+\DoxyCodeLine{00299\ \ \ \ \ DebugmallocEntry\ *head\ =\ \&instance-\/>head[idx];}
+\DoxyCodeLine{00300\ \ \ \ \ entry-\/>prev\ =\ head;}
+\DoxyCodeLine{00301\ \ \ \ \ entry-\/>next\ =\ head-\/>next;}
+\DoxyCodeLine{00302\ \ \ \ \ head-\/>next-\/>prev\ =\ entry;}
+\DoxyCodeLine{00303\ \ \ \ \ head-\/>next\ =\ entry;}
+\DoxyCodeLine{00304\ \ \ \ \ instance-\/>alloc\_count\ +=\ 1;}
+\DoxyCodeLine{00305\ \ \ \ \ instance-\/>alloc\_bytes\ +=\ entry-\/>size;}
+\DoxyCodeLine{00306\ \ \ \ \ instance-\/>all\_alloc\_count\ +=\ 1;}
+\DoxyCodeLine{00307\ \ \ \ \ instance-\/>all\_alloc\_bytes\ +=\ entry-\/>size;}
+\DoxyCodeLine{00308\ \}}
+\DoxyCodeLine{00309\ }
+\DoxyCodeLine{00310\ }
+\DoxyCodeLine{00311\ \textcolor{comment}{/*\ remove\ element\ from\ hash\ table\ */}}
+\DoxyCodeLine{00312\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ debugmalloc\_remove(DebugmallocEntry\ *entry)\ \{}
+\DoxyCodeLine{00313\ \ \ \ \ DebugmallocData\ *instance\ =\ debugmalloc\_singleton();}
+\DoxyCodeLine{00314\ \ \ \ \ entry-\/>next-\/>prev\ =\ entry-\/>prev;}
+\DoxyCodeLine{00315\ \ \ \ \ entry-\/>prev-\/>next\ =\ entry-\/>next;}
+\DoxyCodeLine{00316\ \ \ \ \ instance-\/>alloc\_count\ -\/=\ 1;}
+\DoxyCodeLine{00317\ \ \ \ \ instance-\/>alloc\_bytes\ -\/=\ entry-\/>size;}
+\DoxyCodeLine{00318\ \}}
+\DoxyCodeLine{00319\ }
+\DoxyCodeLine{00320\ }
+\DoxyCodeLine{00321\ \textcolor{comment}{/*\ find\ element\ in\ hash\ table,\ given\ with\ the\ memory\ address\ that\ the\ user\ sees.}}
+\DoxyCodeLine{00322\ \textcolor{comment}{\ *\ @return\ the\ linked\ list\ entry,\ or\ null\ if\ not\ found.\ */}}
+\DoxyCodeLine{00323\ \textcolor{keyword}{static}\ DebugmallocEntry\ *debugmalloc\_find(\textcolor{keywordtype}{void}\ *mem)\ \{}
+\DoxyCodeLine{00324\ \ \ \ \ DebugmallocData\ *instance\ =\ debugmalloc\_singleton();}
+\DoxyCodeLine{00325\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ idx\ =\ debugmalloc\_hash(mem);}
+\DoxyCodeLine{00326\ \ \ \ \ DebugmallocEntry\ *head\ =\ \&instance-\/>head[idx];}
+\DoxyCodeLine{00327\ \ \ \ \ \textcolor{keywordflow}{for}\ (DebugmallocEntry\ *iter\ =\ head-\/>next;\ iter-\/>next\ !=\ NULL;\ iter\ =\ iter-\/>next)}
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (iter-\/>user\_mem\ ==\ mem)}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ iter;}
+\DoxyCodeLine{00330\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00331\ \}}
+\DoxyCodeLine{00332\ }
+\DoxyCodeLine{00333\ }
+\DoxyCodeLine{00334\ \textcolor{comment}{/*\ allocate\ memory.\ this\ function\ is\ called\ via\ the\ macro.\ */}}
+\DoxyCodeLine{00335\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ *debugmalloc\_malloc\_full(\textcolor{keywordtype}{size\_t}\ size,\ \textcolor{keywordtype}{char}\ \textcolor{keyword}{const}\ *func,\ \textcolor{keywordtype}{char}\ \textcolor{keyword}{const}\ *expr,\ \textcolor{keywordtype}{char}\ \textcolor{keyword}{const}\ *file,\ \textcolor{keywordtype}{unsigned}\ line,\ \textcolor{keywordtype}{bool}\ zero)\ \{}
+\DoxyCodeLine{00336\ \ \ \ \ \textcolor{comment}{/*\ imitate\ standard\ malloc:\ return\ null\ if\ size\ is\ zero\ */}}
+\DoxyCodeLine{00337\ \ \ \ \ \textcolor{keywordflow}{if}\ (size\ ==\ 0)}
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00339\ \ \ \ \ }
+\DoxyCodeLine{00340\ \ \ \ \ \textcolor{comment}{/*\ check\ max\ size\ */}}
+\DoxyCodeLine{00341\ \ \ \ \ DebugmallocData\ *instance\ =\ debugmalloc\_singleton();}
+\DoxyCodeLine{00342\ \ \ \ \ \textcolor{keywordflow}{if}\ (size\ >\ (\textcolor{keywordtype}{size\_t})(instance-\/>max\_block\_size))\ \{}
+\DoxyCodeLine{00343\ \ \ \ \ \ \ \ \ debugmalloc\_log(\textcolor{stringliteral}{"{}debugmalloc:\ \%s\ @\ \%s:\%u:\ a\ blokk\ merete\ tul\ nagy,\ \%u\ bajt;\ debugmalloc\_max\_block\_size()\ fuggvennyel\ novelheto.\(\backslash\)n"{}},\ func,\ file,\ line,\ (\textcolor{keywordtype}{unsigned})\ size);}
+\DoxyCodeLine{00344\ \ \ \ \ \ \ \ \ abort();}
+\DoxyCodeLine{00345\ \ \ \ \ \}}
+\DoxyCodeLine{00346\ }
+\DoxyCodeLine{00347\ \ \ \ \ \textcolor{comment}{/*\ allocate\ more\ memory,\ make\ room\ for\ canary\ */}}
+\DoxyCodeLine{00348\ \ \ \ \ \textcolor{keywordtype}{void}\ *real\_mem\ =\ malloc(size\ +\ 2\ *\ debugmalloc\_canary\_size);}
+\DoxyCodeLine{00349\ \ \ \ \ \textcolor{keywordflow}{if}\ (real\_mem\ ==\ NULL)\ \{}
+\DoxyCodeLine{00350\ \ \ \ \ \ \ \ \ debugmalloc\_log(\textcolor{stringliteral}{"{}debugmalloc:\ \%s\ @\ \%s:\%u:\ nem\ sikerult\ \%u\ meretu\ memoriat\ foglalni!\(\backslash\)n"{}},\ func,\ file,\ line,\ (\textcolor{keywordtype}{unsigned})\ size);}
+\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00352\ \ \ \ \ \}}
+\DoxyCodeLine{00353\ }
+\DoxyCodeLine{00354\ \ \ \ \ \textcolor{comment}{/*\ allocate\ memory\ for\ linked\ list\ element\ */}}
+\DoxyCodeLine{00355\ \ \ \ \ DebugmallocEntry\ *newentry\ =\ (DebugmallocEntry\ *)\ malloc(\textcolor{keyword}{sizeof}(DebugmallocEntry));}
+\DoxyCodeLine{00356\ \ \ \ \ \textcolor{keywordflow}{if}\ (newentry\ ==\ NULL)\ \{}
+\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ free(real\_mem);}
+\DoxyCodeLine{00358\ \ \ \ \ \ \ \ \ debugmalloc\_log(\textcolor{stringliteral}{"{}debugmalloc:\ \%s\ @\ \%s:\%u:\ le\ tudtam\ foglalni\ \%u\ memoriat,\ de\ utana\ a\ sajatnak\ nem,\ sry\(\backslash\)n"{}},\ func,\ file,\ line,\ (\textcolor{keywordtype}{unsigned})\ size);}
+\DoxyCodeLine{00359\ \ \ \ \ \ \ \ \ abort();}
+\DoxyCodeLine{00360\ \ \ \ \ \}}
+\DoxyCodeLine{00361\ }
+\DoxyCodeLine{00362\ \ \ \ \ \textcolor{comment}{/*\ metadata\ of\ allocation:\ caller\ function,\ code\ line\ etc.\ */}}
+\DoxyCodeLine{00363\ \ \ \ \ debugmalloc\_strlcpy(newentry-\/>func,\ func,\ \textcolor{keyword}{sizeof}(newentry-\/>func));}
+\DoxyCodeLine{00364\ \ \ \ \ debugmalloc\_strlcpy(newentry-\/>expr,\ expr,\ \textcolor{keyword}{sizeof}(newentry-\/>expr));}
+\DoxyCodeLine{00365\ \ \ \ \ debugmalloc\_strlcpy(newentry-\/>file,\ file,\ \textcolor{keyword}{sizeof}(newentry-\/>file));}
+\DoxyCodeLine{00366\ \ \ \ \ newentry-\/>line\ =\ line;}
+\DoxyCodeLine{00367\ }
+\DoxyCodeLine{00368\ \ \ \ \ \textcolor{comment}{/*\ address\ of\ allocated\ memory\ chunk\ */}}
+\DoxyCodeLine{00369\ \ \ \ \ newentry-\/>real\_mem\ =\ real\_mem;}
+\DoxyCodeLine{00370\ \ \ \ \ newentry-\/>user\_mem\ =\ (\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ *)\ real\_mem\ +\ debugmalloc\_canary\_size;}
+\DoxyCodeLine{00371\ \ \ \ \ newentry-\/>size\ =\ size;}
+\DoxyCodeLine{00372\ \ \ \ \ debugmalloc\_memory\_init(newentry,\ zero);}
+\DoxyCodeLine{00373\ }
+\DoxyCodeLine{00374\ \ \ \ \ \textcolor{comment}{/*\ store\ in\ list\ and\ return\ pointer\ to\ user\ area\ */}}
+\DoxyCodeLine{00375\ \ \ \ \ debugmalloc\_insert(newentry);}
+\DoxyCodeLine{00376\ \ \ \ \ \textcolor{keywordflow}{return}\ newentry-\/>user\_mem;}
+\DoxyCodeLine{00377\ \}}
+\DoxyCodeLine{00378\ }
+\DoxyCodeLine{00379\ }
+\DoxyCodeLine{00380\ \textcolor{comment}{/*\ free\ memory\ and\ remove\ list\ item.\ before\ deleting,\ the\ chuck\ is\ filled\ with}}
+\DoxyCodeLine{00381\ \textcolor{comment}{\ *\ the\ canary\ byte\ to\ make\ sure\ that\ the\ user\ will\ see\ garbage\ if\ the\ memory}}
+\DoxyCodeLine{00382\ \textcolor{comment}{\ *\ is\ accessed\ after\ freeing.\ */}}
+\DoxyCodeLine{00383\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ debugmalloc\_free\_inner(DebugmallocEntry\ *deleted)\ \{}
+\DoxyCodeLine{00384\ \ \ \ \ debugmalloc\_remove(deleted);}
+\DoxyCodeLine{00385\ }
+\DoxyCodeLine{00386\ \ \ \ \ \textcolor{comment}{/*\ fill\ with\ garbage,\ then\ remove\ from\ linked\ list\ */}}
+\DoxyCodeLine{00387\ \ \ \ \ memset(deleted-\/>real\_mem,\ debugmalloc\_canary\_char,\ deleted-\/>size\ +\ 2\ *\ debugmalloc\_canary\_size);}
+\DoxyCodeLine{00388\ \ \ \ \ free(deleted-\/>real\_mem);}
+\DoxyCodeLine{00389\ \ \ \ \ free(deleted);}
+\DoxyCodeLine{00390\ \}}
+\DoxyCodeLine{00391\ }
+\DoxyCodeLine{00392\ }
+\DoxyCodeLine{00393\ \textcolor{comment}{/*\ free\ memory\ -\/\ called\ via\ the\ macro.}}
+\DoxyCodeLine{00394\ \textcolor{comment}{\ *\ as\ all\ allocations\ are\ tracked\ in\ the\ list,\ this\ function\ can\ terminate\ the\ program}}
+\DoxyCodeLine{00395\ \textcolor{comment}{\ *\ if\ a\ block\ is\ freed\ twice\ or\ the\ free\ function\ is\ called\ with\ an\ invalid\ address.\ */}}
+\DoxyCodeLine{00396\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ debugmalloc\_free\_full(\textcolor{keywordtype}{void}\ *mem,\ \textcolor{keywordtype}{char}\ \textcolor{keyword}{const}\ *func,\ \textcolor{keywordtype}{char}\ \textcolor{keyword}{const}\ *file,\ \textcolor{keywordtype}{unsigned}\ line)\ \{}
+\DoxyCodeLine{00397\ \ \ \ \ \textcolor{comment}{/*\ imitate\ standard\ free\ function:\ if\ ptr\ is\ null,\ no\ operation\ is\ performed\ */}}
+\DoxyCodeLine{00398\ \ \ \ \ \textcolor{keywordflow}{if}\ (mem\ ==\ NULL)}
+\DoxyCodeLine{00399\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00400\ }
+\DoxyCodeLine{00401\ \ \ \ \ \textcolor{comment}{/*\ find\ allocation,\ abort\ if\ not\ found\ */}}
+\DoxyCodeLine{00402\ \ \ \ \ DebugmallocEntry\ *deleted\ =\ debugmalloc\_find(mem);}
+\DoxyCodeLine{00403\ \ \ \ \ \textcolor{keywordflow}{if}\ (deleted\ ==\ NULL)\ \{}
+\DoxyCodeLine{00404\ \ \ \ \ \ \ \ \ debugmalloc\_log(\textcolor{stringliteral}{"{}debugmalloc:\ \%s\ @\ \%s:\%u:\ olyan\ teruletet\ probalsz\ felszabaditani,\ ami\ nincs\ lefoglalva!\(\backslash\)n"{}},\ func,\ file,\ line);}
+\DoxyCodeLine{00405\ \ \ \ \ \ \ \ \ abort();}
+\DoxyCodeLine{00406\ \ \ \ \ \}}
+\DoxyCodeLine{00407\ }
+\DoxyCodeLine{00408\ \ \ \ \ \textcolor{comment}{/*\ check\ canary\ and\ then\ free\ memory\ */}}
+\DoxyCodeLine{00409\ \ \ \ \ \textcolor{keywordflow}{if}\ (!debugmalloc\_canary\_ok(deleted))\ \{}
+\DoxyCodeLine{00410\ \ \ \ \ \ \ \ \ debugmalloc\_log(\textcolor{stringliteral}{"{}debugmalloc:\ \%s\ @\ \%s:\%u:\ a\ \%p\ memoriateruletet\ tulindexelted!\(\backslash\)n"{}},\ func,\ file,\ line,\ mem);}
+\DoxyCodeLine{00411\ \ \ \ \ \ \ \ \ debugmalloc\_dump\_elem(deleted);}
+\DoxyCodeLine{00412\ \ \ \ \ \}}
+\DoxyCodeLine{00413\ \ \ \ \ debugmalloc\_free\_inner(deleted);}
+\DoxyCodeLine{00414\ \}}
+\DoxyCodeLine{00415\ }
+\DoxyCodeLine{00416\ }
+\DoxyCodeLine{00417\ \textcolor{comment}{/*\ realloc-\/like\ function.\ */}}
+\DoxyCodeLine{00418\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ *debugmalloc\_realloc\_full(\textcolor{keywordtype}{void}\ *oldmem,\ \textcolor{keywordtype}{size\_t}\ newsize,\ \textcolor{keywordtype}{char}\ \textcolor{keyword}{const}\ *func,\ \textcolor{keywordtype}{char}\ \textcolor{keyword}{const}\ *expr,\ \textcolor{keywordtype}{char}\ \textcolor{keyword}{const}\ *file,\ \textcolor{keywordtype}{unsigned}\ line)\ \{}
+\DoxyCodeLine{00419\ \ \ \ \ \textcolor{comment}{/*\ imitate\ standard\ realloc:\ equivalent\ to\ free\ if\ size\ is\ null.\ */}}
+\DoxyCodeLine{00420\ \ \ \ \ \textcolor{keywordflow}{if}\ (newsize\ ==\ 0)\ \{}
+\DoxyCodeLine{00421\ \ \ \ \ \ \ \ \ debugmalloc\_free\_full(oldmem,\ func,\ file,\ line);}
+\DoxyCodeLine{00422\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00423\ \ \ \ \ \}}
+\DoxyCodeLine{00424\ \ \ \ \ \textcolor{comment}{/*\ imitate\ standard\ realloc:\ equivalent\ to\ malloc\ if\ first\ param\ is\ NULL\ */}}
+\DoxyCodeLine{00425\ \ \ \ \ \textcolor{keywordflow}{if}\ (oldmem\ ==\ NULL)}
+\DoxyCodeLine{00426\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ debugmalloc\_malloc\_full(newsize,\ func,\ expr,\ file,\ line,\ 0);}
+\DoxyCodeLine{00427\ }
+\DoxyCodeLine{00428\ \ \ \ \ \textcolor{comment}{/*\ find\ old\ allocation.\ abort\ if\ not\ found.\ */}}
+\DoxyCodeLine{00429\ \ \ \ \ DebugmallocEntry\ *oldentry\ =\ debugmalloc\_find(oldmem);}
+\DoxyCodeLine{00430\ \ \ \ \ \textcolor{keywordflow}{if}\ (oldentry\ ==\ NULL)\ \{}
+\DoxyCodeLine{00431\ \ \ \ \ \ \ \ \ debugmalloc\_log(\textcolor{stringliteral}{"{}debugmalloc:\ \%s\ @\ \%s:\%u:\ olyan\ teruletet\ probalsz\ atmeretezni,\ ami\ nincs\ lefoglalva!\(\backslash\)n"{}},\ func,\ file,\ line);}
+\DoxyCodeLine{00432\ \ \ \ \ \ \ \ \ abort();}
+\DoxyCodeLine{00433\ \ \ \ \ \}}
+\DoxyCodeLine{00434\ }
+\DoxyCodeLine{00435\ \ \ \ \ \textcolor{comment}{/*\ create\ new\ allocation,\ copy\ \&\ free\ old\ data\ */}}
+\DoxyCodeLine{00436\ \ \ \ \ \textcolor{keywordtype}{void}\ *newmem\ =\ debugmalloc\_malloc\_full(newsize,\ func,\ expr,\ file,\ line,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00437\ \ \ \ \ \textcolor{keywordflow}{if}\ (newmem\ ==\ NULL)\ \{}
+\DoxyCodeLine{00438\ \ \ \ \ \ \ \ \ debugmalloc\_log(\textcolor{stringliteral}{"{}debugmalloc:\ \%s\ @\ \%s:\%u:\ nem\ sikerult\ uj\ memoriat\ foglalni\ az\ atmeretezeshez!\(\backslash\)n"{}},\ func,\ file,\ line);}
+\DoxyCodeLine{00439\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ imitate\ standard\ realloc:\ original\ block\ is\ untouched,\ but\ return\ NULL\ */}}
+\DoxyCodeLine{00440\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00441\ \ \ \ \ \}}
+\DoxyCodeLine{00442\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ smaller\ =\ oldentry-\/>size\ <\ newsize\ ?\ oldentry-\/>size\ :\ newsize;}
+\DoxyCodeLine{00443\ \ \ \ \ memcpy(newmem,\ oldmem,\ smaller);}
+\DoxyCodeLine{00444\ \ \ \ \ debugmalloc\_free\_inner(oldentry);}
+\DoxyCodeLine{00445\ }
+\DoxyCodeLine{00446\ \ \ \ \ \textcolor{keywordflow}{return}\ newmem;}
+\DoxyCodeLine{00447\ \}}
+\DoxyCodeLine{00448\ }
+\DoxyCodeLine{00449\ }
+\DoxyCodeLine{00450\ \textcolor{comment}{/*\ initialize\ debugmalloc\ singleton.\ returns\ the\ newly\ allocated\ instance\ */}}
+\DoxyCodeLine{00451\ \textcolor{keyword}{static}\ DebugmallocData\ *\ debugmalloc\_create(\textcolor{keywordtype}{void})\ \{}
+\DoxyCodeLine{00452\ \ \ \ \ \textcolor{comment}{/*\ config\ check\ */}}
+\DoxyCodeLine{00453\ \ \ \ \ \textcolor{keywordflow}{if}\ (debugmalloc\_canary\_size\ \%\ 16\ !=\ 0)\ \{}
+\DoxyCodeLine{00454\ \ \ \ \ \ \ \ \ debugmalloc\_log(\textcolor{stringliteral}{"{}debugmalloc:\ a\ kanari\ merete\ legyen\ 16-\/tal\ oszthato\(\backslash\)n"{}});}
+\DoxyCodeLine{00455\ \ \ \ \ \ \ \ \ abort();}
+\DoxyCodeLine{00456\ \ \ \ \ \}}
+\DoxyCodeLine{00457\ \ \ \ \ \textcolor{keywordflow}{if}\ (debugmalloc\_canary\_char\ ==\ 0)\ \{}
+\DoxyCodeLine{00458\ \ \ \ \ \ \ \ \ debugmalloc\_log(\textcolor{stringliteral}{"{}debugmalloc:\ a\ kanari\ legyen\ 0-\/tol\ kulonbozo\(\backslash\)n"{}});}
+\DoxyCodeLine{00459\ \ \ \ \ \ \ \ \ abort();}
+\DoxyCodeLine{00460\ \ \ \ \ \}}
+\DoxyCodeLine{00461\ \ \ \ \ \textcolor{comment}{/*\ avoid\ compiler\ warning\ if\ these\ functions\ are\ not\ used\ */}}
+\DoxyCodeLine{00462\ \ \ \ \ (void)\ debugmalloc\_realloc\_full;}
+\DoxyCodeLine{00463\ \ \ \ \ (void)\ debugmalloc\_log\_file;}
+\DoxyCodeLine{00464\ \ \ \ \ (void)\ debugmalloc\_max\_block\_size;}
+\DoxyCodeLine{00465\ }
+\DoxyCodeLine{00466\ \ \ \ \ \textcolor{comment}{/*\ create\ and\ initialize\ instance\ */}}
+\DoxyCodeLine{00467\ \ \ \ \ DebugmallocData\ *instance\ =\ (DebugmallocData\ *)\ malloc(\textcolor{keyword}{sizeof}(DebugmallocData));}
+\DoxyCodeLine{00468\ \ \ \ \ \textcolor{keywordflow}{if}\ (instance\ ==\ NULL)\ \{}
+\DoxyCodeLine{00469\ \ \ \ \ \ \ \ \ debugmalloc\_log(\textcolor{stringliteral}{"{}debugmalloc:\ nem\ sikerult\ elinditani\ a\ memoriakezelest\(\backslash\)n"{}});}
+\DoxyCodeLine{00470\ \ \ \ \ \ \ \ \ abort();}
+\DoxyCodeLine{00471\ \ \ \ \ \}}
+\DoxyCodeLine{00472\ \ \ \ \ debugmalloc\_strlcpy(instance-\/>logfile,\ \textcolor{stringliteral}{"{}"{}},\ \textcolor{keyword}{sizeof}(instance-\/>logfile));}
+\DoxyCodeLine{00473\ \ \ \ \ instance-\/>max\_block\_size\ =\ debugmalloc\_max\_block\_size\_default;}
+\DoxyCodeLine{00474\ \ \ \ \ instance-\/>alloc\_count\ =\ 0;}
+\DoxyCodeLine{00475\ \ \ \ \ instance-\/>alloc\_bytes\ =\ 0;}
+\DoxyCodeLine{00476\ \ \ \ \ instance-\/>all\_alloc\_count\ =\ 0;}
+\DoxyCodeLine{00477\ \ \ \ \ instance-\/>all\_alloc\_bytes\ =\ 0;}
+\DoxyCodeLine{00478\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ debugmalloc\_tablesize;\ i++)\ \{}
+\DoxyCodeLine{00479\ \ \ \ \ \ \ \ \ instance-\/>head[i].prev\ =\ NULL;}
+\DoxyCodeLine{00480\ \ \ \ \ \ \ \ \ instance-\/>head[i].next\ =\ \&instance-\/>tail[i];}
+\DoxyCodeLine{00481\ \ \ \ \ \ \ \ \ instance-\/>tail[i].next\ =\ NULL;}
+\DoxyCodeLine{00482\ \ \ \ \ \ \ \ \ instance-\/>tail[i].prev\ =\ \&instance-\/>head[i];}
+\DoxyCodeLine{00483\ \ \ \ \ \}}
+\DoxyCodeLine{00484\ }
+\DoxyCodeLine{00485\ \ \ \ \ atexit(debugmalloc\_atexit\_dump);}
+\DoxyCodeLine{00486\ \ \ \ \ \textcolor{keywordflow}{return}\ instance;}
+\DoxyCodeLine{00487\ \}}
+\DoxyCodeLine{00488\ }
+\DoxyCodeLine{00489\ }
+\DoxyCodeLine{00490\ \textcolor{comment}{/*\ These\ macro-\/like\ functions\ forward\ all\ allocation/free}}
+\DoxyCodeLine{00491\ \textcolor{comment}{\ *\ calls\ to\ debugmalloc.\ Usage\ is\ the\ same,\ malloc(size)}}
+\DoxyCodeLine{00492\ \textcolor{comment}{\ *\ gives\ the\ address\ of\ a\ new\ memory\ block,\ free(ptr)}}
+\DoxyCodeLine{00493\ \textcolor{comment}{\ *\ deallocates\ etc.}}
+\DoxyCodeLine{00494\ \textcolor{comment}{\ *\ }}
+\DoxyCodeLine{00495\ \textcolor{comment}{\ *\ If\ you\ use\ this\ file,\ make\ sure\ that\ you\ include\ this}}
+\DoxyCodeLine{00496\ \textcolor{comment}{\ *\ in\ *ALL*\ translation\ units\ (*.c)\ of\ your\ source.\ The}}
+\DoxyCodeLine{00497\ \textcolor{comment}{\ *\ builtin\ free()\ function\ cannot\ deallocate\ a\ memory\ block}}
+\DoxyCodeLine{00498\ \textcolor{comment}{\ *\ that\ was\ allocated\ via\ debugmalloc,\ yet\ the\ name\ of}}
+\DoxyCodeLine{00499\ \textcolor{comment}{\ *\ the\ function\ is\ the\ same!\ */}}
+\DoxyCodeLine{00500\ }
+\DoxyCodeLine{00501\ \textcolor{preprocessor}{\#define\ malloc(S)\ debugmalloc\_malloc\_full((S),\ "{}malloc"{},\ \#S,\ \_\_FILE\_\_,\ \_\_LINE\_\_,\ false)}}
+\DoxyCodeLine{00502\ \textcolor{preprocessor}{\#define\ calloc(N,S)\ debugmalloc\_malloc\_full((N)*(S),\ "{}calloc"{},\ \#N\ "{},\ "{}\ \#S,\ \_\_FILE\_\_,\ \_\_LINE\_\_,\ true)}}
+\DoxyCodeLine{00503\ \textcolor{preprocessor}{\#define\ realloc(P,S)\ debugmalloc\_realloc\_full((P),\ (S),\ "{}realloc"{},\ \#S,\ \_\_FILE\_\_,\ \_\_LINE\_\_)}}
+\DoxyCodeLine{00504\ \textcolor{preprocessor}{\#define\ free(P)\ debugmalloc\_free\_full((P),\ "{}free"{},\ \_\_FILE\_\_,\ \_\_LINE\_\_)}}
+\DoxyCodeLine{00505\ }
+\DoxyCodeLine{00506\ \textcolor{comment}{/*\ To\ include\ strdup\ and\ strndup\ functions\ (since\ c20)\ }}
+\DoxyCodeLine{00507\ \textcolor{comment}{\ *\ in\ debugmalloc\ administration\ mechanism.\ */}}
+\DoxyCodeLine{00508\ \ }
+\DoxyCodeLine{00509\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{char}\ *\ debugmalloc\_strdup\ (\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *s,\ \textcolor{keywordtype}{char}\ \textcolor{keyword}{const}\ *func,\ \textcolor{keywordtype}{char}\ \textcolor{keyword}{const}\ *expr,\ \textcolor{keywordtype}{char}\ \textcolor{keyword}{const}\ *file,\ \textcolor{keywordtype}{unsigned}\ line)}
+\DoxyCodeLine{00510\ \{}
+\DoxyCodeLine{00511\ \ \ \textcolor{keywordtype}{size\_t}\ len\ =\ strlen\ (s)\ +\ 1;}
+\DoxyCodeLine{00512\ \ \ \textcolor{keywordtype}{void}\ *\textcolor{keyword}{new}\ =\ debugmalloc\_malloc\_full\ (len,\ func,\ expr,\ file,\ line,\ 0);}
+\DoxyCodeLine{00513\ }
+\DoxyCodeLine{00514\ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{new}\ ==\ NULL)}
+\DoxyCodeLine{00515\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00516\ }
+\DoxyCodeLine{00517\ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keywordtype}{char}\ *)\ memcpy\ (\textcolor{keyword}{new},\ s,\ len);}
+\DoxyCodeLine{00518\ \}}
+\DoxyCodeLine{00519\ }
+\DoxyCodeLine{00520\ \ }
+\DoxyCodeLine{00521\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{char}\ *\ debugmalloc\_strndup\ (\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *s,\ \textcolor{keywordtype}{size\_t}\ n,\ \textcolor{keywordtype}{char}\ \textcolor{keyword}{const}\ *func,\ \textcolor{keywordtype}{char}\ \textcolor{keyword}{const}\ *expr,\ \textcolor{keywordtype}{char}\ \textcolor{keyword}{const}\ *file,\ \textcolor{keywordtype}{unsigned}\ line)}
+\DoxyCodeLine{00522\ \{}
+\DoxyCodeLine{00523\ \ \ \textcolor{keywordtype}{size\_t}\ len\ =\ strlen\ (s);}
+\DoxyCodeLine{00524\ \ \ }
+\DoxyCodeLine{00525\ \ \ \textcolor{keywordflow}{if}\ (n\ <\ len)}
+\DoxyCodeLine{00526\ \ \ \ \ len\ =\ n;}
+\DoxyCodeLine{00527\ \ \ }
+\DoxyCodeLine{00528\ \ \ \textcolor{keywordtype}{void}\ *\textcolor{keyword}{new}\ =\ debugmalloc\_malloc\_full\ (len+1,\ func,\ expr,\ file,\ line,\ 0);}
+\DoxyCodeLine{00529\ }
+\DoxyCodeLine{00530\ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{new}\ ==\ NULL)}
+\DoxyCodeLine{00531\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00532\ }
+\DoxyCodeLine{00533\ \ \ ((\textcolor{keywordtype}{char}*)\textcolor{keyword}{new})[len]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00534\ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keywordtype}{char}\ *)\ memcpy\ (\textcolor{keyword}{new},\ s,\ len);}
+\DoxyCodeLine{00535\ \}}
+\DoxyCodeLine{00536\ }
+\DoxyCodeLine{00537\ \textcolor{preprocessor}{\#define\ strdup(S)\ debugmalloc\_strdup((S),\ "{}strdup"{},\ \#S,\ \_\_FILE\_\_,\ \_\_LINE\_\_)}}
+\DoxyCodeLine{00538\ \textcolor{preprocessor}{\#define\ strndup(S,N)\ debugmalloc\_strndup((S),\ (N),\ "{}strndup"{},\ \#S,\ \_\_FILE\_\_,\ \_\_LINE\_\_)}}
+\DoxyCodeLine{00539\ }
+\DoxyCodeLine{00540\ \textcolor{preprocessor}{\#if\ defined(\_WIN32)\ \&\&\ defined(\_MSC\_VER)}}
+\DoxyCodeLine{00541\ \textcolor{preprocessor}{\ \ \ \ \#pragma\ warning(pop)}}
+\DoxyCodeLine{00542\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00543\ }
+\DoxyCodeLine{00544\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

@@ -1,0 +1,198 @@
+\doxysection{compress.\+c File Reference}
+\label{compress_8c}\index{compress.c@{compress.c}}
+{\ttfamily \#include "{}compress.\+h"{}}\newline
+{\ttfamily \#include "{}debugmalloc.\+h"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include "{}bitwriter.\+h"{}}\newline
+{\ttfamily \#include "{}CRC\+\_\+\+CHECKSUM.\+h"{}}\newline
+{\ttfamily \#include "{}distance.\+h"{}}\newline
+{\ttfamily \#include "{}HUFFMAN\+\_\+\+TABLE.\+h"{}}\newline
+{\ttfamily \#include "{}length.\+h"{}}\newline
+{\ttfamily \#include "{}LZ77.\+h"{}}\newline
+{\ttfamily \#include "{}node.\+h"{}}\newline
+{\ttfamily \#include "{}status.\+h"{}}\newline
+Include dependency graph for compress.\+c\+:
+% FIG 0
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \textbf{ HASH\+\_\+\+BITS}~15
+\item 
+\#define \textbf{ HASH\+\_\+\+SHIFT}~5
+\item 
+\#define \textbf{ HASH\+\_\+\+MASK}~0x7\+FFF
+\item 
+\#define \textbf{ HASH\+\_\+\+SIZE}~(1 $<$$<$ \textbf{ HASH\+\_\+\+BITS})
+\item 
+\#define \textbf{ WINDOW\+\_\+\+SIZE}~32768
+\item 
+\#define \textbf{ BUFFER\+\_\+\+SIZE}~(\textbf{ WINDOW\+\_\+\+SIZE} $\ast$ 2)
+\item 
+\#define \textbf{ EMPTY\+\_\+\+INDEX}~0x\+FFFF
+\item 
+\#define \textbf{ LITERAL\+\_\+\+LENGTH\+\_\+\+SIZE}~286
+\item 
+\#define \textbf{ END\+\_\+\+OF\+\_\+\+BLOCK}~256
+\item 
+\#define \textbf{ DISTANCE\+\_\+\+CODE\+\_\+\+SIZE}~30
+\item 
+\#define \textbf{ CODE\+\_\+\+LENGTH\+\_\+\+FREQUENCIES}~19
+\item 
+\#define \textbf{ BYTE}~uint8\+\_\+t
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+FILE $\ast$ \textbf{ ff\+Open\+File} (const char $\ast$filename)
+\begin{DoxyCompactList}\small\item\em Opens a file in rb (read binary) mode. \end{DoxyCompactList}\item 
+void \textbf{ compress\+Data} (const unsigned char $\ast$ucp\+Buffer, const size\+\_\+t bytes\+Read, uint16\+\_\+t $\ast$hash\+\_\+table, \textbf{ LZ77\+\_\+buffer} $\ast$output\+\_\+ucp\+Buffer)
+\begin{DoxyCompactList}\small\item\em Compress Data. \end{DoxyCompactList}\item 
+void \textbf{ write\+Gzip\+Trailer} (\textbf{ Bit\+Writer} $\ast$bw, uint32\+\_\+t crc32\+\_\+checksum, uint32\+\_\+t total\+\_\+uncompressed\+\_\+size)
+\item 
+void \textbf{ process\+Block} (\textbf{ Bit\+Writer} $\ast$bw, uint16\+\_\+t $\ast$LLFrequency, uint16\+\_\+t $\ast$distance\+Code\+Frequency, const \textbf{ LZ77\+\_\+buffer} $\ast$output\+\_\+ucp\+Buffer, const bool last\+Block)
+\item 
+\textbf{ Status} \textbf{ compress} (char $\ast$filename)
+\end{DoxyCompactItemize}
+
+
+\label{doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\index{compress.c@{compress.c}!BUFFER\_SIZE@{BUFFER\_SIZE}}
+\index{BUFFER\_SIZE@{BUFFER\_SIZE}!compress.c@{compress.c}}
+\doxysubsubsection{BUFFER\_SIZE}
+{\footnotesize\ttfamily \label{compress_8c_a6b20d41d6252e9871430c242cb1a56e7} 
+\#define BUFFER\+\_\+\+SIZE~(\textbf{ WINDOW\+\_\+\+SIZE} $\ast$ 2)}
+
+\index{compress.c@{compress.c}!BYTE@{BYTE}}
+\index{BYTE@{BYTE}!compress.c@{compress.c}}
+\doxysubsubsection{BYTE}
+{\footnotesize\ttfamily \label{compress_8c_aec93e83855ac17c3c25c55c37ca186dd} 
+\#define BYTE~uint8\+\_\+t}
+
+\index{compress.c@{compress.c}!CODE\_LENGTH\_FREQUENCIES@{CODE\_LENGTH\_FREQUENCIES}}
+\index{CODE\_LENGTH\_FREQUENCIES@{CODE\_LENGTH\_FREQUENCIES}!compress.c@{compress.c}}
+\doxysubsubsection{CODE\_LENGTH\_FREQUENCIES}
+{\footnotesize\ttfamily \label{compress_8c_a5f9bb71c82ea3fa727a1dff9447dff20} 
+\#define CODE\+\_\+\+LENGTH\+\_\+\+FREQUENCIES~19}
+
+\index{compress.c@{compress.c}!DISTANCE\_CODE\_SIZE@{DISTANCE\_CODE\_SIZE}}
+\index{DISTANCE\_CODE\_SIZE@{DISTANCE\_CODE\_SIZE}!compress.c@{compress.c}}
+\doxysubsubsection{DISTANCE\_CODE\_SIZE}
+{\footnotesize\ttfamily \label{compress_8c_ad30337fb0318fd2705318081158a6f7b} 
+\#define DISTANCE\+\_\+\+CODE\+\_\+\+SIZE~30}
+
+\index{compress.c@{compress.c}!EMPTY\_INDEX@{EMPTY\_INDEX}}
+\index{EMPTY\_INDEX@{EMPTY\_INDEX}!compress.c@{compress.c}}
+\doxysubsubsection{EMPTY\_INDEX}
+{\footnotesize\ttfamily \label{compress_8c_a76660d8139575e05671801dbe5a5af50} 
+\#define EMPTY\+\_\+\+INDEX~0x\+FFFF}
+
+\index{compress.c@{compress.c}!END\_OF\_BLOCK@{END\_OF\_BLOCK}}
+\index{END\_OF\_BLOCK@{END\_OF\_BLOCK}!compress.c@{compress.c}}
+\doxysubsubsection{END\_OF\_BLOCK}
+{\footnotesize\ttfamily \label{compress_8c_a351ed2b19cd87022ef91920a102312d8} 
+\#define END\+\_\+\+OF\+\_\+\+BLOCK~256}
+
+\index{compress.c@{compress.c}!HASH\_BITS@{HASH\_BITS}}
+\index{HASH\_BITS@{HASH\_BITS}!compress.c@{compress.c}}
+\doxysubsubsection{HASH\_BITS}
+{\footnotesize\ttfamily \label{compress_8c_ab0bc977d3fec2517ebda1a77e1cfaecc} 
+\#define HASH\+\_\+\+BITS~15}
+
+\index{compress.c@{compress.c}!HASH\_MASK@{HASH\_MASK}}
+\index{HASH\_MASK@{HASH\_MASK}!compress.c@{compress.c}}
+\doxysubsubsection{HASH\_MASK}
+{\footnotesize\ttfamily \label{compress_8c_a8ba578169aad59095035a05d2f7323a7} 
+\#define HASH\+\_\+\+MASK~0x7\+FFF}
+
+\index{compress.c@{compress.c}!HASH\_SHIFT@{HASH\_SHIFT}}
+\index{HASH\_SHIFT@{HASH\_SHIFT}!compress.c@{compress.c}}
+\doxysubsubsection{HASH\_SHIFT}
+{\footnotesize\ttfamily \label{compress_8c_a52f7ff3c0f79c8692dbd2fab70256529} 
+\#define HASH\+\_\+\+SHIFT~5}
+
+\index{compress.c@{compress.c}!HASH\_SIZE@{HASH\_SIZE}}
+\index{HASH\_SIZE@{HASH\_SIZE}!compress.c@{compress.c}}
+\doxysubsubsection{HASH\_SIZE}
+{\footnotesize\ttfamily \label{compress_8c_ad6074dd11ab3c97c8135c43aab03ae95} 
+\#define HASH\+\_\+\+SIZE~(1 $<$$<$ \textbf{ HASH\+\_\+\+BITS})}
+
+\index{compress.c@{compress.c}!LITERAL\_LENGTH\_SIZE@{LITERAL\_LENGTH\_SIZE}}
+\index{LITERAL\_LENGTH\_SIZE@{LITERAL\_LENGTH\_SIZE}!compress.c@{compress.c}}
+\doxysubsubsection{LITERAL\_LENGTH\_SIZE}
+{\footnotesize\ttfamily \label{compress_8c_a7c4eca8fe59888352807b89daed94258} 
+\#define LITERAL\+\_\+\+LENGTH\+\_\+\+SIZE~286}
+
+\index{compress.c@{compress.c}!WINDOW\_SIZE@{WINDOW\_SIZE}}
+\index{WINDOW\_SIZE@{WINDOW\_SIZE}!compress.c@{compress.c}}
+\doxysubsubsection{WINDOW\_SIZE}
+{\footnotesize\ttfamily \label{compress_8c_ab3f68d59e815ea166f8c983bc6e85c5b} 
+\#define WINDOW\+\_\+\+SIZE~32768}
+
+
+
+\label{doc-func-members}
+\doxysubsection{Function Documentation}
+\index{compress.c@{compress.c}!compress@{compress}}
+\index{compress@{compress}!compress.c@{compress.c}}
+\doxysubsubsection{compress()}
+{\footnotesize\ttfamily \label{compress_8c_a79cadd96d56d3aa879adb002a68d07d7} 
+\textbf{ Status} compress (\begin{DoxyParamCaption}\item[{char $\ast$}]{filename}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+
+\index{compress.c@{compress.c}!compressData@{compressData}}
+\index{compressData@{compressData}!compress.c@{compress.c}}
+\doxysubsubsection{compressData()}
+{\footnotesize\ttfamily \label{compress_8c_a8dfb153692ba68896af5936e482d6493} 
+void compress\+Data (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{ucp\+Buffer}{, }\item[{const size\+\_\+t}]{bytes\+Read}{, }\item[{uint16\+\_\+t $\ast$}]{hash\+\_\+table}{, }\item[{\textbf{ LZ77\+\_\+buffer} $\ast$}]{output\+\_\+ucp\+Buffer}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Compress Data. 
+
+This function takes in a BUFFER SIZED buffer containing BYTES from a file, and fills up an \doxyref{LZ77\+\_\+buffer}{p.}{struct_l_z77__buffer} containing match/literal distance/length codes which will be used later in the process\+Block function.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ucp\+Buffer} & The start of the buffer (pointer). \\
+\hline
+{\em bytes\+Read} & The bytes processed in this function. \\
+\hline
+{\em hash\+\_\+table} & The hash lookup table for matches. \\
+\hline
+{\em output\+\_\+ucp\+Buffer} & The \doxyref{LZ77\+\_\+buffer}{p.}{struct_l_z77__buffer} containing the matches/literals.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\index{compress.c@{compress.c}!ffOpenFile@{ffOpenFile}}
+\index{ffOpenFile@{ffOpenFile}!compress.c@{compress.c}}
+\doxysubsubsection{ffOpenFile()}
+{\footnotesize\ttfamily \label{compress_8c_af23a493c40a7e0aff72b6ecf7f54c06b} 
+FILE $\ast$ ff\+Open\+File (\begin{DoxyParamCaption}\item[{const char $\ast$}]{filename}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Opens a file in rb (read binary) mode. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & The name of the file. (probably with absolute path)\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+FILE$\ast$ or NULL 
+\end{DoxyReturn}
+\index{compress.c@{compress.c}!processBlock@{processBlock}}
+\index{processBlock@{processBlock}!compress.c@{compress.c}}
+\doxysubsubsection{processBlock()}
+{\footnotesize\ttfamily \label{compress_8c_aa7597901166c3301bf52047091ed5d59} 
+void process\+Block (\begin{DoxyParamCaption}\item[{\textbf{ Bit\+Writer} $\ast$}]{bw}{, }\item[{uint16\+\_\+t $\ast$}]{LLFrequency}{, }\item[{uint16\+\_\+t $\ast$}]{distance\+Code\+Frequency}{, }\item[{const \textbf{ LZ77\+\_\+buffer} $\ast$}]{output\+\_\+ucp\+Buffer}{, }\item[{const bool}]{last\+Block}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+
+\index{compress.c@{compress.c}!writeGzipTrailer@{writeGzipTrailer}}
+\index{writeGzipTrailer@{writeGzipTrailer}!compress.c@{compress.c}}
+\doxysubsubsection{writeGzipTrailer()}
+{\footnotesize\ttfamily \label{compress_8c_a56b0820315da001b8d577ec83574dad7} 
+void write\+Gzip\+Trailer (\begin{DoxyParamCaption}\item[{\textbf{ Bit\+Writer} $\ast$}]{bw}{, }\item[{uint32\+\_\+t}]{crc32\+\_\+checksum}{, }\item[{uint32\+\_\+t}]{total\+\_\+uncompressed\+\_\+size}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+

@@ -1,0 +1,136 @@
+\doxysection{LZ77.\+c File Reference}
+\label{_l_z77_8c}\index{LZ77.c@{LZ77.c}}
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include "{}LZ77.\+h"{}}\newline
+Include dependency graph for LZ77.\+c\+:
+% FIG 0
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ LZ77\+\_\+compressed} \textbf{ create\+Literal\+LZ77} (const uint8\+\_\+t byte)
+\begin{DoxyCompactList}\small\item\em Create Literal Struct for LZ77 compression. \end{DoxyCompactList}\item 
+\textbf{ LZ77\+\_\+compressed} \textbf{ create\+Match\+LZ77} (const uint16\+\_\+t distance, const uint16\+\_\+t length)
+\begin{DoxyCompactList}\small\item\em Create MATCH Struct for LZ77 compression. \end{DoxyCompactList}\item 
+\textbf{ LZ77\+\_\+buffer} $\ast$ \textbf{ init\+LZ77\+Buffer} (void)
+\begin{DoxyCompactList}\small\item\em Initalizes the \doxyref{LZ77\+\_\+buffer}{p.}{struct_l_z77__buffer} struct. \end{DoxyCompactList}\item 
+void \textbf{ expand\+Buffer} (\textbf{ LZ77\+\_\+buffer} $\ast$buffer)
+\begin{DoxyCompactList}\small\item\em Expands the buffer capacity by EXPAND\+\_\+\+BY tokens. \end{DoxyCompactList}\item 
+void \textbf{ append\+Token} (\textbf{ LZ77\+\_\+buffer} $\ast$buffer, const \textbf{ LZ77\+\_\+compressed} token)
+\begin{DoxyCompactList}\small\item\em Appends a token to the buffer. \end{DoxyCompactList}\item 
+void \textbf{ free\+LZ77\+Buffer} (\textbf{ LZ77\+\_\+buffer} $\ast$buffer)
+\begin{DoxyCompactList}\small\item\em Frees all dynamically allocated memory associated with the buffer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\doxysubsection{Function Documentation}
+\index{LZ77.c@{LZ77.c}!appendToken@{appendToken}}
+\index{appendToken@{appendToken}!LZ77.c@{LZ77.c}}
+\doxysubsubsection{appendToken()}
+{\footnotesize\ttfamily \label{_l_z77_8c_ae7e9aa7991f2359ab5168b98783544a9} 
+void append\+Token (\begin{DoxyParamCaption}\item[{\textbf{ LZ77\+\_\+buffer} $\ast$}]{buffer}{, }\item[{const \textbf{ LZ77\+\_\+compressed}}]{token}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Appends a token to the buffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em buffer} & The buffer to append the token to. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\index{LZ77.c@{LZ77.c}!createLiteralLZ77@{createLiteralLZ77}}
+\index{createLiteralLZ77@{createLiteralLZ77}!LZ77.c@{LZ77.c}}
+\doxysubsubsection{createLiteralLZ77()}
+{\footnotesize\ttfamily \label{_l_z77_8c_a39a4b9657ba7447c0a42d1cc318b2a7b} 
+\textbf{ LZ77\+\_\+compressed} create\+Literal\+LZ77 (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t}]{byte}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Create Literal Struct for LZ77 compression. 
+
+The create\+Literal\+LZ77 function allocates memory for one single LZ77\+\_\+compresed struct filled with enum LITERAL and the actual byte.
+
+
+\begin{DoxyParams}{Parameters}
+{\em byte} & The actual byte to be written into the file \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxyref{LZ77\+\_\+compressed}{p.}{struct_l_z77__compressed} 
+\end{DoxyReturn}
+\index{LZ77.c@{LZ77.c}!createMatchLZ77@{createMatchLZ77}}
+\index{createMatchLZ77@{createMatchLZ77}!LZ77.c@{LZ77.c}}
+\doxysubsubsection{createMatchLZ77()}
+{\footnotesize\ttfamily \label{_l_z77_8c_ab1cea1d7293ff705a0980fbdb3047eef} 
+\textbf{ LZ77\+\_\+compressed} create\+Match\+LZ77 (\begin{DoxyParamCaption}\item[{const uint16\+\_\+t}]{distance}{, }\item[{const uint16\+\_\+t}]{length}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Create MATCH Struct for LZ77 compression. 
+
+The create\+Match\+LZ77 function allocates memory for one single LZ77\+\_\+compresed struct filled with enum MATCH and the actual distance / length pair.
+
+
+\begin{DoxyParams}{Parameters}
+{\em distance} & The distance from the last occurrence \\
+\hline
+{\em length} & The length which specifies the length from last occurrence \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxyref{LZ77\+\_\+compressed}{p.}{struct_l_z77__compressed} 
+\end{DoxyReturn}
+\index{LZ77.c@{LZ77.c}!expandBuffer@{expandBuffer}}
+\index{expandBuffer@{expandBuffer}!LZ77.c@{LZ77.c}}
+\doxysubsubsection{expandBuffer()}
+{\footnotesize\ttfamily \label{_l_z77_8c_adab308ae1377a2287dcc12153ef47457} 
+void expand\+Buffer (\begin{DoxyParamCaption}\item[{\textbf{ LZ77\+\_\+buffer} $\ast$}]{buffer}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Expands the buffer capacity by EXPAND\+\_\+\+BY tokens. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em buffer} & The buffer to expand. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\index{LZ77.c@{LZ77.c}!freeLZ77Buffer@{freeLZ77Buffer}}
+\index{freeLZ77Buffer@{freeLZ77Buffer}!LZ77.c@{LZ77.c}}
+\doxysubsubsection{freeLZ77Buffer()}
+{\footnotesize\ttfamily \label{_l_z77_8c_aae1527487667bef65a7944ecb3ba6bac} 
+void free\+LZ77\+Buffer (\begin{DoxyParamCaption}\item[{\textbf{ LZ77\+\_\+buffer} $\ast$}]{buffer}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Frees all dynamically allocated memory associated with the buffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em buffer} & The buffer structure to be freed. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\index{LZ77.c@{LZ77.c}!initLZ77Buffer@{initLZ77Buffer}}
+\index{initLZ77Buffer@{initLZ77Buffer}!LZ77.c@{LZ77.c}}
+\doxysubsubsection{initLZ77Buffer()}
+{\footnotesize\ttfamily \label{_l_z77_8c_a17ad95ccbd3d7d4a7ac4ffbee2c989ed} 
+\textbf{ LZ77\+\_\+buffer} $\ast$ init\+LZ77\+Buffer (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Initalizes the \doxyref{LZ77\+\_\+buffer}{p.}{struct_l_z77__buffer} struct. 
+
+Allocates initial memory for the token array.
+
+\begin{DoxyReturn}{Returns}
+LZ77\+\_\+buffer$\ast$ The location in memory. MUST BE FREED afterward! 
+\end{DoxyReturn}

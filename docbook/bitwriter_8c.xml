@@ -1,0 +1,128 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_bitwriter_8c" xml:lang="en-US">
+<title>bitwriter.c File Reference</title>
+<indexterm><primary>bitwriter.c</primary></indexterm>
+<programlisting linenumbering="unnumbered">#include &quot;bitwriter.h&quot;<?linebreak?>#include &lt;stdlib.h&gt;<?linebreak?>#include &lt;string.h&gt;<?linebreak?>#include &lt;time.h&gt;<?linebreak?></programlisting>Include dependency graph for bitwriter.c:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="bitwriter_8c__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Macros    </title>
+        <itemizedlist>
+            <listitem><para>#define <link linkend="_bitwriter_8c_1a6b20d41d6252e9871430c242cb1a56e7">BUFFER_SIZE</link>&#160;&#160;&#160;4096</para>
+</listitem>
+            <listitem><para>#define <link linkend="_bitwriter_8c_1a6944dcf57a34878b421c6315f19778a7">MAGIC_NUMER</link>&#160;&#160;&#160;0x8B1F</para>
+</listitem>
+            <listitem><para>#define <link linkend="_bitwriter_8c_1a9be47490ed6c06b44817a44df4c03a98">COMPRESSION_METHOD</link>&#160;&#160;&#160;0x08</para>
+</listitem>
+            <listitem><para>#define <link linkend="_bitwriter_8c_1af8bfae90c5d6853fcfb487e05b9f50c8">FLAG</link>&#160;&#160;&#160;0b00000000</para>
+</listitem>
+            <listitem><para>#define <link linkend="_bitwriter_8c_1a7f83abc98d763843293f5906c9564a2c">XFL</link>&#160;&#160;&#160;0x00</para>
+</listitem>
+            <listitem><para>#define <link linkend="_bitwriter_8c_1a3324dbb5e25daac23e988901bb085447">OS</link>&#160;&#160;&#160;0x03</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Functions    </title>
+        <itemizedlist>
+            <listitem><para>size_t <link linkend="_bitwriter_8c_1a0c9a8a4752fd0144d7c5556083545ca1">flushBitWriterBuffer</link> (<link linkend="_struct_bit_writer">BitWriter</link> *bw)</para>
+</listitem>
+            <listitem><para><link linkend="_struct_bit_writer">BitWriter</link> * <link linkend="_bitwriter_8c_1a98decd406fc97f3a5e87a1c5e43450f6">initBitWriter</link> (void)</para>
+</listitem>
+            <listitem><para>void <link linkend="_bitwriter_8c_1a15a48f26be9076026f0174a67935fce4">addData</link> (<link linkend="_struct_bit_writer">BitWriter</link> *bw, uint32_t value, uint8_t bitLength)</para>
+</listitem>
+            <listitem><para>void <link linkend="_bitwriter_8c_1a2706da9af748aa740b5b27c3cab1921f">flush_bitstream_writer</link> (<link linkend="_struct_bit_writer">BitWriter</link> *bw)</para>
+</listitem>
+            <listitem><para>void <link linkend="_bitwriter_8c_1ae0a3c065d2db177bf4312adaab2a96a8">addBytesFromMSB</link> (<link linkend="_struct_bit_writer">BitWriter</link> *bw, uint32_t value, uint8_t bytes)</para>
+</listitem>
+            <listitem><para>void <link linkend="_bitwriter_8c_1a5360490c127924566b62142aae839af5">addBytesFromMSB2</link> (<link linkend="_struct_bit_writer">BitWriter</link> *bw, uint32_t value, uint8_t bytes)</para>
+</listitem>
+            <listitem><para>void <link linkend="_bitwriter_8c_1a3725b55a47460bd10421c92495b2be3f">createFile</link> (<link linkend="_struct_bit_writer">BitWriter</link> *bw, char *fileName, char *extension)</para>
+</listitem>
+            <listitem><para>void <link linkend="_bitwriter_8c_1a0bc036019ea04608e40ea43ac2a4efe1">freeBitWriter</link> (<link linkend="_struct_bit_writer">BitWriter</link> *bw)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Macro Definition Documentation</title>
+<anchor xml:id="_bitwriter_8c_1a6b20d41d6252e9871430c242cb1a56e7"/><section>
+    <title>BUFFER_SIZE</title>
+<indexterm><primary>BUFFER_SIZE</primary><secondary>bitwriter.c</secondary></indexterm>
+<indexterm><primary>bitwriter.c</primary><secondary>BUFFER_SIZE</secondary></indexterm>
+<para><computeroutput>#define BUFFER_SIZE&#160;&#160;&#160;4096</computeroutput></para></section>
+<anchor xml:id="_bitwriter_8c_1a9be47490ed6c06b44817a44df4c03a98"/><section>
+    <title>COMPRESSION_METHOD</title>
+<indexterm><primary>COMPRESSION_METHOD</primary><secondary>bitwriter.c</secondary></indexterm>
+<indexterm><primary>bitwriter.c</primary><secondary>COMPRESSION_METHOD</secondary></indexterm>
+<para><computeroutput>#define COMPRESSION_METHOD&#160;&#160;&#160;0x08</computeroutput></para></section>
+<anchor xml:id="_bitwriter_8c_1af8bfae90c5d6853fcfb487e05b9f50c8"/><section>
+    <title>FLAG</title>
+<indexterm><primary>FLAG</primary><secondary>bitwriter.c</secondary></indexterm>
+<indexterm><primary>bitwriter.c</primary><secondary>FLAG</secondary></indexterm>
+<para><computeroutput>#define FLAG&#160;&#160;&#160;0b00000000</computeroutput></para></section>
+<anchor xml:id="_bitwriter_8c_1a6944dcf57a34878b421c6315f19778a7"/><section>
+    <title>MAGIC_NUMER</title>
+<indexterm><primary>MAGIC_NUMER</primary><secondary>bitwriter.c</secondary></indexterm>
+<indexterm><primary>bitwriter.c</primary><secondary>MAGIC_NUMER</secondary></indexterm>
+<para><computeroutput>#define MAGIC_NUMER&#160;&#160;&#160;0x8B1F</computeroutput></para></section>
+<anchor xml:id="_bitwriter_8c_1a3324dbb5e25daac23e988901bb085447"/><section>
+    <title>OS</title>
+<indexterm><primary>OS</primary><secondary>bitwriter.c</secondary></indexterm>
+<indexterm><primary>bitwriter.c</primary><secondary>OS</secondary></indexterm>
+<para><computeroutput>#define OS&#160;&#160;&#160;0x03</computeroutput></para></section>
+<anchor xml:id="_bitwriter_8c_1a7f83abc98d763843293f5906c9564a2c"/><section>
+    <title>XFL</title>
+<indexterm><primary>XFL</primary><secondary>bitwriter.c</secondary></indexterm>
+<indexterm><primary>bitwriter.c</primary><secondary>XFL</secondary></indexterm>
+<para><computeroutput>#define XFL&#160;&#160;&#160;0x00</computeroutput></para></section>
+</section>
+<section>
+<title>Function Documentation</title>
+<anchor xml:id="_bitwriter_8c_1ae0a3c065d2db177bf4312adaab2a96a8"/><section>
+    <title>addBytesFromMSB()</title>
+<indexterm><primary>addBytesFromMSB</primary><secondary>bitwriter.c</secondary></indexterm>
+<indexterm><primary>bitwriter.c</primary><secondary>addBytesFromMSB</secondary></indexterm>
+<para><computeroutput>void addBytesFromMSB (<link linkend="_struct_bit_writer">BitWriter</link> * bw, uint32_t value, uint8_t bytes)<computeroutput>[extern]</computeroutput></computeroutput></para></section>
+<anchor xml:id="_bitwriter_8c_1a5360490c127924566b62142aae839af5"/><section>
+    <title>addBytesFromMSB2()</title>
+<indexterm><primary>addBytesFromMSB2</primary><secondary>bitwriter.c</secondary></indexterm>
+<indexterm><primary>bitwriter.c</primary><secondary>addBytesFromMSB2</secondary></indexterm>
+<para><computeroutput>void addBytesFromMSB2 (<link linkend="_struct_bit_writer">BitWriter</link> * bw, uint32_t value, uint8_t bytes)<computeroutput>[extern]</computeroutput></computeroutput></para></section>
+<anchor xml:id="_bitwriter_8c_1a15a48f26be9076026f0174a67935fce4"/><section>
+    <title>addData()</title>
+<indexterm><primary>addData</primary><secondary>bitwriter.c</secondary></indexterm>
+<indexterm><primary>bitwriter.c</primary><secondary>addData</secondary></indexterm>
+<para><computeroutput>void addData (<link linkend="_struct_bit_writer">BitWriter</link> * bw, uint32_t value, uint8_t bitLength)<computeroutput>[extern]</computeroutput></computeroutput></para></section>
+<anchor xml:id="_bitwriter_8c_1a3725b55a47460bd10421c92495b2be3f"/><section>
+    <title>createFile()</title>
+<indexterm><primary>createFile</primary><secondary>bitwriter.c</secondary></indexterm>
+<indexterm><primary>bitwriter.c</primary><secondary>createFile</secondary></indexterm>
+<para><computeroutput>void createFile (<link linkend="_struct_bit_writer">BitWriter</link> * bw, char * fileName, char * extension)<computeroutput>[extern]</computeroutput></computeroutput></para></section>
+<anchor xml:id="_bitwriter_8c_1a2706da9af748aa740b5b27c3cab1921f"/><section>
+    <title>flush_bitstream_writer()</title>
+<indexterm><primary>flush_bitstream_writer</primary><secondary>bitwriter.c</secondary></indexterm>
+<indexterm><primary>bitwriter.c</primary><secondary>flush_bitstream_writer</secondary></indexterm>
+<para><computeroutput>void flush_bitstream_writer (<link linkend="_struct_bit_writer">BitWriter</link> * bw)<computeroutput>[extern]</computeroutput></computeroutput></para></section>
+<anchor xml:id="_bitwriter_8c_1a0c9a8a4752fd0144d7c5556083545ca1"/><section>
+    <title>flushBitWriterBuffer()</title>
+<indexterm><primary>flushBitWriterBuffer</primary><secondary>bitwriter.c</secondary></indexterm>
+<indexterm><primary>bitwriter.c</primary><secondary>flushBitWriterBuffer</secondary></indexterm>
+<para><computeroutput>size_t flushBitWriterBuffer (<link linkend="_struct_bit_writer">BitWriter</link> * bw)<computeroutput>[extern]</computeroutput></computeroutput></para></section>
+<anchor xml:id="_bitwriter_8c_1a0bc036019ea04608e40ea43ac2a4efe1"/><section>
+    <title>freeBitWriter()</title>
+<indexterm><primary>freeBitWriter</primary><secondary>bitwriter.c</secondary></indexterm>
+<indexterm><primary>bitwriter.c</primary><secondary>freeBitWriter</secondary></indexterm>
+<para><computeroutput>void freeBitWriter (<link linkend="_struct_bit_writer">BitWriter</link> * bw)<computeroutput>[extern]</computeroutput></computeroutput></para></section>
+<anchor xml:id="_bitwriter_8c_1a98decd406fc97f3a5e87a1c5e43450f6"/><section>
+    <title>initBitWriter()</title>
+<indexterm><primary>initBitWriter</primary><secondary>bitwriter.c</secondary></indexterm>
+<indexterm><primary>bitwriter.c</primary><secondary>initBitWriter</secondary></indexterm>
+<para><computeroutput><link linkend="_struct_bit_writer">BitWriter</link> * initBitWriter (void )<computeroutput>[extern]</computeroutput></computeroutput></para></section>
+</section>
+</section>

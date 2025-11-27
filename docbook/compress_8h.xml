@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_compress_8h" xml:lang="en-US">
+<title>compress.h File Reference</title>
+<indexterm><primary>compress.h</primary></indexterm>
+<programlisting linenumbering="unnumbered">#include &lt;stddef.h&gt;<?linebreak?>#include &quot;bitwriter.h&quot;<?linebreak?>#include &quot;status.h&quot;<?linebreak?></programlisting>Include dependency graph for compress.h:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="compress_8h__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+This graph shows which files directly or indirectly include this file:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="compress_8h__dep__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_struct_status">Status</link> <link linkend="_compress_8h_1a2d72f4404a1d2679275850f8a4fb836f">compress</link> (char *fileName)</para>
+</listitem>
+            <listitem><para>FILE * <link linkend="_compress_8h_1af23a493c40a7e0aff72b6ecf7f54c06b">ffOpenFile</link> (const char *filename)</para>
+
+<para>Opens a file in rb (read binary) mode. </para>
+</listitem>
+            <listitem><para>size_t <link linkend="_compress_8h_1a0c9a8a4752fd0144d7c5556083545ca1">flushBitWriterBuffer</link> (<link linkend="_struct_bit_writer">BitWriter</link> *bw)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Function Documentation</title>
+<anchor xml:id="_compress_8h_1a2d72f4404a1d2679275850f8a4fb836f"/><section>
+    <title>compress()</title>
+<indexterm><primary>compress</primary><secondary>compress.h</secondary></indexterm>
+<indexterm><primary>compress.h</primary><secondary>compress</secondary></indexterm>
+<para><computeroutput><link linkend="_struct_status">Status</link> compress (char * fileName)<computeroutput>[extern]</computeroutput></computeroutput></para></section>
+<anchor xml:id="_compress_8h_1af23a493c40a7e0aff72b6ecf7f54c06b"/><section>
+    <title>ffOpenFile()</title>
+<indexterm><primary>ffOpenFile</primary><secondary>compress.h</secondary></indexterm>
+<indexterm><primary>compress.h</primary><secondary>ffOpenFile</secondary></indexterm>
+<para><computeroutput>FILE * ffOpenFile (const char * filename)<computeroutput>[extern]</computeroutput></computeroutput></para><para>
+
+<para>Opens a file in rb (read binary) mode. </para>
+</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>filename</entry><entry>
+<para>The name of the file. (probably with absolute path)</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>FILE* or NULL </para>
+</formalpara>
+</para>
+</section>
+<anchor xml:id="_compress_8h_1a0c9a8a4752fd0144d7c5556083545ca1"/><section>
+    <title>flushBitWriterBuffer()</title>
+<indexterm><primary>flushBitWriterBuffer</primary><secondary>compress.h</secondary></indexterm>
+<indexterm><primary>compress.h</primary><secondary>flushBitWriterBuffer</secondary></indexterm>
+<para><computeroutput>size_t flushBitWriterBuffer (<link linkend="_struct_bit_writer">BitWriter</link> * bw)<computeroutput>[extern]</computeroutput></computeroutput></para></section>
+</section>
+</section>

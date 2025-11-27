@@ -1,0 +1,121 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="struct_b_i_t___r_e_a_d_e_r" kind="struct" language="C++" prot="public">
+    <compoundname>BIT_READER</compoundname>
+    <includes refid="bitreader_8h" local="no">bitreader.h</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="struct_b_i_t___r_e_a_d_e_r_1a702945180aa732857b380a007a7e2a21" prot="public" static="no" mutable="no">
+        <type>FILE *</type>
+        <definition>FILE* file</definition>
+        <argsstring></argsstring>
+        <name>file</name>
+        <qualifiedname>BIT_READER::file</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bitreader.h" line="12" column="10" bodyfile="bitreader.h" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_b_i_t___r_e_a_d_e_r_1a56ed84df35de10bdb65e72b184309497" prot="public" static="no" mutable="no">
+        <type>uint8_t *</type>
+        <definition>uint8_t* buffer</definition>
+        <argsstring></argsstring>
+        <name>buffer</name>
+        <qualifiedname>BIT_READER::buffer</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bitreader.h" line="13" column="13" bodyfile="bitreader.h" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_b_i_t___r_e_a_d_e_r_1a96f44d20f1dbf1c8785a7bc99a46164c" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t byte</definition>
+        <argsstring></argsstring>
+        <name>byte</name>
+        <qualifiedname>BIT_READER::byte</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bitreader.h" line="14" column="13" bodyfile="bitreader.h" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_b_i_t___r_e_a_d_e_r_1a03c096e79d44983a055f7ca6839144bc" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t currentPosition</definition>
+        <argsstring></argsstring>
+        <name>currentPosition</name>
+        <qualifiedname>BIT_READER::currentPosition</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bitreader.h" line="15" column="13" bodyfile="bitreader.h" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_b_i_t___r_e_a_d_e_r_1a7be887a2ca0a258cf6b368d32fd87487" prot="public" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t bufferSize</definition>
+        <argsstring></argsstring>
+        <name>bufferSize</name>
+        <qualifiedname>BIT_READER::bufferSize</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bitreader.h" line="16" column="12" bodyfile="bitreader.h" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_b_i_t___r_e_a_d_e_r_1a852b86a2eaee9852ada7a43e61e311a2" prot="public" static="no" mutable="no">
+        <type>uint16_t</type>
+        <definition>uint16_t index</definition>
+        <argsstring></argsstring>
+        <name>index</name>
+        <qualifiedname>BIT_READER::index</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bitreader.h" line="17" column="14" bodyfile="bitreader.h" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_b_i_t___r_e_a_d_e_r_1a25c8761bc1f523fe6a53db546ae83add" prot="public" static="no" mutable="no">
+        <type>char *</type>
+        <definition>char* fileName</definition>
+        <argsstring></argsstring>
+        <name>fileName</name>
+        <qualifiedname>BIT_READER::fileName</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bitreader.h" line="18" column="10" bodyfile="bitreader.h" bodystart="18" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="bitreader.h" line="11" column="1" bodyfile="bitreader.h" bodystart="11" bodyend="19"/>
+    <listofallmembers>
+      <member refid="struct_b_i_t___r_e_a_d_e_r_1a56ed84df35de10bdb65e72b184309497" prot="public" virt="non-virtual"><scope>BIT_READER</scope><name>buffer</name></member>
+      <member refid="struct_b_i_t___r_e_a_d_e_r_1a7be887a2ca0a258cf6b368d32fd87487" prot="public" virt="non-virtual"><scope>BIT_READER</scope><name>bufferSize</name></member>
+      <member refid="struct_b_i_t___r_e_a_d_e_r_1a96f44d20f1dbf1c8785a7bc99a46164c" prot="public" virt="non-virtual"><scope>BIT_READER</scope><name>byte</name></member>
+      <member refid="struct_b_i_t___r_e_a_d_e_r_1a03c096e79d44983a055f7ca6839144bc" prot="public" virt="non-virtual"><scope>BIT_READER</scope><name>currentPosition</name></member>
+      <member refid="struct_b_i_t___r_e_a_d_e_r_1a702945180aa732857b380a007a7e2a21" prot="public" virt="non-virtual"><scope>BIT_READER</scope><name>file</name></member>
+      <member refid="struct_b_i_t___r_e_a_d_e_r_1a25c8761bc1f523fe6a53db546ae83add" prot="public" virt="non-virtual"><scope>BIT_READER</scope><name>fileName</name></member>
+      <member refid="struct_b_i_t___r_e_a_d_e_r_1a852b86a2eaee9852ada7a43e61e311a2" prot="public" virt="non-virtual"><scope>BIT_READER</scope><name>index</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

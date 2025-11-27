@@ -1,0 +1,179 @@
+\doxysection{debugmalloc.\+h File Reference}
+\label{debugmalloc_8h}\index{debugmalloc.h@{debugmalloc.h}}
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$stddef.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$ctype.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$stdarg.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+Include dependency graph for debugmalloc.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \textbf{ Debugmalloc\+Entry}
+\item 
+struct \textbf{ Debugmalloc\+Data}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \textbf{ malloc}(S)
+\item 
+\#define \textbf{ calloc}(N,  S)
+\item 
+\#define \textbf{ realloc}(P,  S)
+\item 
+\#define \textbf{ free}(P)
+\item 
+\#define \textbf{ strdup}(S)
+\item 
+\#define \textbf{ strndup}(S,  N)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct Debugmalloc\+Entry \textbf{ Debugmalloc\+Entry}
+\item 
+typedef struct Debugmalloc\+Data \textbf{ Debugmalloc\+Data}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \{ \textbf{ debugmalloc\+\_\+canary\+\_\+size} = 64
+, \textbf{ debugmalloc\+\_\+canary\+\_\+char} = \textquotesingle{}K\textquotesingle{}
+, \textbf{ debugmalloc\+\_\+tablesize} = 256
+, \textbf{ debugmalloc\+\_\+max\+\_\+block\+\_\+size\+\_\+default} = 1048576
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \textbf{ putenv} (char $\ast$)
+\end{DoxyCompactItemize}
+
+
+\label{doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\index{debugmalloc.h@{debugmalloc.h}!calloc@{calloc}}
+\index{calloc@{calloc}!debugmalloc.h@{debugmalloc.h}}
+\doxysubsubsection{calloc}
+{\footnotesize\ttfamily \label{debugmalloc_8h_ac07b71d27b6b37e81ac3a4c230f5794e} 
+\#define calloc(\begin{DoxyParamCaption}\item[{}]{N}{, }\item[{}]{S}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{debugmalloc\_malloc\_full((N)*(S),\ \textcolor{stringliteral}{"{}calloc"{}},\ \#N\ \textcolor{stringliteral}{"{},\ "{}}\ \#S,\ \_\_FILE\_\_,\ \_\_LINE\_\_,\ \textcolor{keyword}{true})}
+
+\end{DoxyCode}
+\index{debugmalloc.h@{debugmalloc.h}!free@{free}}
+\index{free@{free}!debugmalloc.h@{debugmalloc.h}}
+\doxysubsubsection{free}
+{\footnotesize\ttfamily \label{debugmalloc_8h_aa7943e5d135734f6801bebcc37401fc0} 
+\#define free(\begin{DoxyParamCaption}\item[{}]{P}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{debugmalloc\_free\_full((P),\ \textcolor{stringliteral}{"{}free"{}},\ \_\_FILE\_\_,\ \_\_LINE\_\_)}
+
+\end{DoxyCode}
+\index{debugmalloc.h@{debugmalloc.h}!malloc@{malloc}}
+\index{malloc@{malloc}!debugmalloc.h@{debugmalloc.h}}
+\doxysubsubsection{malloc}
+{\footnotesize\ttfamily \label{debugmalloc_8h_a535b58ab5aa48e2e86073e334d43fd32} 
+\#define malloc(\begin{DoxyParamCaption}\item[{}]{S}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{debugmalloc\_malloc\_full((S),\ \textcolor{stringliteral}{"{}malloc"{}},\ \#S,\ \_\_FILE\_\_,\ \_\_LINE\_\_,\ \textcolor{keyword}{false})}
+
+\end{DoxyCode}
+\index{debugmalloc.h@{debugmalloc.h}!realloc@{realloc}}
+\index{realloc@{realloc}!debugmalloc.h@{debugmalloc.h}}
+\doxysubsubsection{realloc}
+{\footnotesize\ttfamily \label{debugmalloc_8h_a54df243d89c451240697d7d3afb5663f} 
+\#define realloc(\begin{DoxyParamCaption}\item[{}]{P}{, }\item[{}]{S}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{debugmalloc\_realloc\_full((P),\ (S),\ \textcolor{stringliteral}{"{}realloc"{}},\ \#S,\ \_\_FILE\_\_,\ \_\_LINE\_\_)}
+
+\end{DoxyCode}
+\index{debugmalloc.h@{debugmalloc.h}!strdup@{strdup}}
+\index{strdup@{strdup}!debugmalloc.h@{debugmalloc.h}}
+\doxysubsubsection{strdup}
+{\footnotesize\ttfamily \label{debugmalloc_8h_a759f9c1272a31ed1e46a030091fe03e3} 
+\#define strdup(\begin{DoxyParamCaption}\item[{}]{S}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{debugmalloc\_strdup((S),\ \textcolor{stringliteral}{"{}strdup"{}},\ \#S,\ \_\_FILE\_\_,\ \_\_LINE\_\_)}
+
+\end{DoxyCode}
+\index{debugmalloc.h@{debugmalloc.h}!strndup@{strndup}}
+\index{strndup@{strndup}!debugmalloc.h@{debugmalloc.h}}
+\doxysubsubsection{strndup}
+{\footnotesize\ttfamily \label{debugmalloc_8h_a4db6dcbb705883ad4a28ff882964bb8a} 
+\#define strndup(\begin{DoxyParamCaption}\item[{}]{S}{, }\item[{}]{N}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{debugmalloc\_strndup((S),\ (N),\ \textcolor{stringliteral}{"{}strndup"{}},\ \#S,\ \_\_FILE\_\_,\ \_\_LINE\_\_)}
+
+\end{DoxyCode}
+
+
+\label{doc-typedef-members}
+\doxysubsection{Typedef Documentation}
+\index{debugmalloc.h@{debugmalloc.h}!DebugmallocData@{DebugmallocData}}
+\index{DebugmallocData@{DebugmallocData}!debugmalloc.h@{debugmalloc.h}}
+\doxysubsubsection{DebugmallocData}
+{\footnotesize\ttfamily \label{debugmalloc_8h_a6270b6c4128e9715c7e47c0d007e4367} 
+typedef struct Debugmalloc\+Data Debugmalloc\+Data}
+
+\index{debugmalloc.h@{debugmalloc.h}!DebugmallocEntry@{DebugmallocEntry}}
+\index{DebugmallocEntry@{DebugmallocEntry}!debugmalloc.h@{debugmalloc.h}}
+\doxysubsubsection{DebugmallocEntry}
+{\footnotesize\ttfamily \label{debugmalloc_8h_a69e016f03a024f815bedf07ed671d4ea} 
+typedef struct Debugmalloc\+Entry Debugmalloc\+Entry}
+
+
+
+\label{doc-enum-members}
+\doxysubsection{Enumeration Type Documentation}
+\doxysubsubsection{anonymous enum}
+{\footnotesize\ttfamily \label{debugmalloc_8h_ad6725ad24902750bb8080fb21c8d6ec4} 
+anonymous enum}
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{debugmalloc\_canary\_size@{debugmalloc\_canary\_size}!debugmalloc.h@{debugmalloc.h}}\index{debugmalloc.h@{debugmalloc.h}!debugmalloc\_canary\_size@{debugmalloc\_canary\_size}}}\label{debugmalloc_8h_ad6725ad24902750bb8080fb21c8d6ec4ab345007cf28a2516c0ba24371a400520} 
+debugmalloc\+\_\+canary\+\_\+size&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{debugmalloc\_canary\_char@{debugmalloc\_canary\_char}!debugmalloc.h@{debugmalloc.h}}\index{debugmalloc.h@{debugmalloc.h}!debugmalloc\_canary\_char@{debugmalloc\_canary\_char}}}\label{debugmalloc_8h_ad6725ad24902750bb8080fb21c8d6ec4a8e3d5ad8628140edd887b8920f521cfd} 
+debugmalloc\+\_\+canary\+\_\+char&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{debugmalloc\_tablesize@{debugmalloc\_tablesize}!debugmalloc.h@{debugmalloc.h}}\index{debugmalloc.h@{debugmalloc.h}!debugmalloc\_tablesize@{debugmalloc\_tablesize}}}\label{debugmalloc_8h_ad6725ad24902750bb8080fb21c8d6ec4a40803f0d5a26a349a78cbd998cb8a2a1} 
+debugmalloc\+\_\+tablesize&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{debugmalloc\_max\_block\_size\_default@{debugmalloc\_max\_block\_size\_default}!debugmalloc.h@{debugmalloc.h}}\index{debugmalloc.h@{debugmalloc.h}!debugmalloc\_max\_block\_size\_default@{debugmalloc\_max\_block\_size\_default}}}\label{debugmalloc_8h_ad6725ad24902750bb8080fb21c8d6ec4ae8726dfde3f35d4345009234ee734f6c} 
+debugmalloc\+\_\+max\+\_\+block\+\_\+size\+\_\+default&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\label{doc-func-members}
+\doxysubsection{Function Documentation}
+\index{debugmalloc.h@{debugmalloc.h}!putenv@{putenv}}
+\index{putenv@{putenv}!debugmalloc.h@{debugmalloc.h}}
+\doxysubsubsection{putenv()}
+{\footnotesize\ttfamily \label{debugmalloc_8h_a5dd0c329b734eeefd1909d15385f8b95} 
+int putenv (\begin{DoxyParamCaption}\item[{char $\ast$}]{}{}\end{DoxyParamCaption})}
+

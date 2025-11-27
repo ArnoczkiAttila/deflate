@@ -1,0 +1,64 @@
+.TH "bitwriter.h" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+bitwriter.h
+.SH SYNOPSIS
+.br
+.PP
+\fR#include <stdint\&.h>\fP
+.br
+\fR#include <stdio\&.h>\fP
+.br
+
+.SS "Data Structures"
+
+.in +1c
+.ti -1c
+.RI "struct \fBBitWriter\fP"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBBitWriter\fP * \fBinitBitWriter\fP (void)"
+.br
+.ti -1c
+.RI "void \fBaddData\fP (\fBBitWriter\fP *bw, uint32_t value, uint8_t bitLength)"
+.br
+.ti -1c
+.RI "void \fBcreateFile\fP (\fBBitWriter\fP *bw, char *fileName, char *extension)"
+.br
+.ti -1c
+.RI "void \fBfreeBitWriter\fP (\fBBitWriter\fP *bw)"
+.br
+.ti -1c
+.RI "void \fBaddBytesFromMSB\fP (\fBBitWriter\fP *bw, uint32_t value, uint8_t bytes)"
+.br
+.ti -1c
+.RI "void \fBaddBytesFromMSB2\fP (\fBBitWriter\fP *bw, uint32_t value, uint8_t bytes)"
+.br
+.ti -1c
+.RI "void \fBflush_bitstream_writer\fP (\fBBitWriter\fP *bw)"
+.br
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS "void addBytesFromMSB (\fBBitWriter\fP * bw, uint32_t value, uint8_t bytes)\fR [extern]\fP"
+
+.SS "void addBytesFromMSB2 (\fBBitWriter\fP * bw, uint32_t value, uint8_t bytes)\fR [extern]\fP"
+
+.SS "void addData (\fBBitWriter\fP * bw, uint32_t value, uint8_t bitLength)"
+
+.SS "void createFile (\fBBitWriter\fP * bw, char * fileName, char * extension)"
+
+.SS "void flush_bitstream_writer (\fBBitWriter\fP * bw)\fR [extern]\fP"
+
+.SS "void freeBitWriter (\fBBitWriter\fP * bw)"
+
+.SS "\fBBitWriter\fP * initBitWriter (void )"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

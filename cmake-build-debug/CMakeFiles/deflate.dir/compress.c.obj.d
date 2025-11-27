@@ -42,6 +42,7 @@ CMakeFiles/deflate.dir/compress.c.obj: \
  C:\Users\Attila\Documents\GitHub\deflate\CRC_CHECKSUM.h \
  C:\Users\Attila\Documents\GitHub\deflate\distance.h \
  C:\Users\Attila\Documents\GitHub\deflate\HUFFMAN_TABLE.h \
+ C:\Users\Attila\Documents\GitHub\deflate\bitreader.h \
  C:\Users\Attila\Documents\GitHub\deflate\node.h \
  C:\Users\Attila\Documents\GitHub\deflate\length.h \
  C:\Users\Attila\Documents\GitHub\deflate\LZ77.h

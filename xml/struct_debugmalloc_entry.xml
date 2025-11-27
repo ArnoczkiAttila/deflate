@@ -1,0 +1,161 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="struct_debugmalloc_entry" kind="struct" language="C++" prot="public">
+    <compoundname>DebugmallocEntry</compoundname>
+    <includes refid="debugmalloc_8h" local="no">debugmalloc.h</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="struct_debugmalloc_entry_1ae241706d126e0114e48ce7c4083d93d1" prot="public" static="no" mutable="no">
+        <type>void *</type>
+        <definition>void* real_mem</definition>
+        <argsstring></argsstring>
+        <name>real_mem</name>
+        <qualifiedname>DebugmallocEntry::real_mem</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="debugmalloc.h" line="53" column="10" bodyfile="debugmalloc.h" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_debugmalloc_entry_1a20cf96b6c21400f0123a6a3b6dae9876" prot="public" static="no" mutable="no">
+        <type>void *</type>
+        <definition>void* user_mem</definition>
+        <argsstring></argsstring>
+        <name>user_mem</name>
+        <qualifiedname>DebugmallocEntry::user_mem</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="debugmalloc.h" line="54" column="10" bodyfile="debugmalloc.h" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_debugmalloc_entry_1a854352f53b148adc24983a58a1866d66" prot="public" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t size</definition>
+        <argsstring></argsstring>
+        <name>size</name>
+        <qualifiedname>DebugmallocEntry::size</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="debugmalloc.h" line="55" column="12" bodyfile="debugmalloc.h" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_debugmalloc_entry_1a353d29f9f9cc0db6fca9d49b5f88d34d" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char file[64]</definition>
+        <argsstring>[64]</argsstring>
+        <name>file</name>
+        <qualifiedname>DebugmallocEntry::file</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="debugmalloc.h" line="57" column="10" bodyfile="debugmalloc.h" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_debugmalloc_entry_1a05ef0c4dbeec4fc8ccb225de9c26d896" prot="public" static="no" mutable="no">
+        <type>unsigned</type>
+        <definition>unsigned line</definition>
+        <argsstring></argsstring>
+        <name>line</name>
+        <qualifiedname>DebugmallocEntry::line</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="debugmalloc.h" line="58" column="14" bodyfile="debugmalloc.h" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_debugmalloc_entry_1ac8a2334cf5c64b1f708ced23ef569db4" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char func[32]</definition>
+        <argsstring>[32]</argsstring>
+        <name>func</name>
+        <qualifiedname>DebugmallocEntry::func</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="debugmalloc.h" line="59" column="10" bodyfile="debugmalloc.h" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_debugmalloc_entry_1aa8f5b6d2256e18de50b9a17b5e3cda3b" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char expr[128]</definition>
+        <argsstring>[128]</argsstring>
+        <name>expr</name>
+        <qualifiedname>DebugmallocEntry::expr</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="debugmalloc.h" line="60" column="10" bodyfile="debugmalloc.h" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_debugmalloc_entry_1aae87f43e5df8141aedca245507e8d790" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="struct_debugmalloc_entry" kindref="compound">DebugmallocEntry</ref> *</type>
+        <definition>struct DebugmallocEntry* prev</definition>
+        <argsstring></argsstring>
+        <name>prev</name>
+        <qualifiedname>DebugmallocEntry::prev</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="debugmalloc.h" line="62" column="27" bodyfile="debugmalloc.h" bodystart="62" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_debugmalloc_entry_1a7ebf7cb15f24577c59e05768d8f9ffc5" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="struct_debugmalloc_entry" kindref="compound">DebugmallocEntry</ref> *</type>
+        <definition>struct DebugmallocEntry * next</definition>
+        <argsstring></argsstring>
+        <name>next</name>
+        <qualifiedname>DebugmallocEntry::next</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="debugmalloc.h" line="62" column="32" bodyfile="debugmalloc.h" bodystart="62" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>DebugmallocEntry</label>
+        <link refid="struct_debugmalloc_entry"/>
+        <childnode refid="1" relation="usage">
+          <edgelabel>next</edgelabel>
+          <edgelabel>prev</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="debugmalloc.h" line="52" column="1" bodyfile="debugmalloc.h" bodystart="52" bodyend="63"/>
+    <listofallmembers>
+      <member refid="struct_debugmalloc_entry_1aa8f5b6d2256e18de50b9a17b5e3cda3b" prot="public" virt="non-virtual"><scope>DebugmallocEntry</scope><name>expr</name></member>
+      <member refid="struct_debugmalloc_entry_1a353d29f9f9cc0db6fca9d49b5f88d34d" prot="public" virt="non-virtual"><scope>DebugmallocEntry</scope><name>file</name></member>
+      <member refid="struct_debugmalloc_entry_1ac8a2334cf5c64b1f708ced23ef569db4" prot="public" virt="non-virtual"><scope>DebugmallocEntry</scope><name>func</name></member>
+      <member refid="struct_debugmalloc_entry_1a05ef0c4dbeec4fc8ccb225de9c26d896" prot="public" virt="non-virtual"><scope>DebugmallocEntry</scope><name>line</name></member>
+      <member refid="struct_debugmalloc_entry_1a7ebf7cb15f24577c59e05768d8f9ffc5" prot="public" virt="non-virtual"><scope>DebugmallocEntry</scope><name>next</name></member>
+      <member refid="struct_debugmalloc_entry_1aae87f43e5df8141aedca245507e8d790" prot="public" virt="non-virtual"><scope>DebugmallocEntry</scope><name>prev</name></member>
+      <member refid="struct_debugmalloc_entry_1ae241706d126e0114e48ce7c4083d93d1" prot="public" virt="non-virtual"><scope>DebugmallocEntry</scope><name>real_mem</name></member>
+      <member refid="struct_debugmalloc_entry_1a854352f53b148adc24983a58a1866d66" prot="public" virt="non-virtual"><scope>DebugmallocEntry</scope><name>size</name></member>
+      <member refid="struct_debugmalloc_entry_1a20cf96b6c21400f0123a6a3b6dae9876" prot="public" virt="non-virtual"><scope>DebugmallocEntry</scope><name>user_mem</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="__h_u_f_f_m_a_n___t_a_b_l_e_8h" xml:lang="en-US">
+<title>HUFFMAN_TABLE.h File Reference</title>
+<indexterm><primary>HUFFMAN_TABLE.h</primary></indexterm>
+<programlisting linenumbering="unnumbered">#include &lt;stdint.h&gt;<?linebreak?>#include &quot;bitreader.h&quot;<?linebreak?>#include &quot;node.h&quot;<?linebreak?></programlisting>Include dependency graph for HUFFMAN_TABLE.h:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="_h_u_f_f_m_a_n___t_a_b_l_e_8h__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+This graph shows which files directly or indirectly include this file:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="_h_u_f_f_m_a_n___t_a_b_l_e_8h__dep__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Data Structures    </title>
+        <itemizedlist>
+            <listitem><para>struct <link linkend="_struct_h_u_f_f_m_a_n___c_o_d_e">HUFFMAN_CODE</link></para>
+</listitem>
+            <listitem><para>struct <link linkend="_struct_huffman_entry">HuffmanEntry</link></para>
+</listitem>
+            <listitem><para>struct <link linkend="_struct_canonical_code">CanonicalCode</link></para>
+</listitem>
+            <listitem><para>struct <link linkend="_struct_huffman_tree">HuffmanTree</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Macros    </title>
+        <itemizedlist>
+            <listitem><para>#define <link linkend="__h_u_f_f_m_a_n___t_a_b_l_e_8h_1add78822c51f4692289f2ce174bdf82b0">FAST_BITS</link>&#160;&#160;&#160;9</para>
+</listitem>
+            <listitem><para>#define <link linkend="__h_u_f_f_m_a_n___t_a_b_l_e_8h_1aa9e6595da72a8ad3543d033dbf737db2">FAST_SIZE</link>&#160;&#160;&#160;(1 &lt;&lt; <link linkend="__h_u_f_f_m_a_n___t_a_b_l_e_8h_1add78822c51f4692289f2ce174bdf82b0">FAST_BITS</link>)</para>
+</listitem>
+            <listitem><para>#define <link linkend="__h_u_f_f_m_a_n___t_a_b_l_e_8h_1a8e78a9fcd1b3afab6bff573299f76ed1">MAX_CODE_SYMBOLS</link>&#160;&#160;&#160;286</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Functions    </title>
+        <itemizedlist>
+            <listitem><para>void <link linkend="__h_u_f_f_m_a_n___t_a_b_l_e_8h_1a32e731d206254fe2aa33026e72d81cf0">buildCodeLookupTable</link> (<link linkend="_struct_node">Node</link> *node, <link linkend="_struct_h_u_f_f_m_a_n___c_o_d_e">HUFFMAN_CODE</link> *table, uint16_t current_code, int depth)</para>
+</listitem>
+            <listitem><para>void <link linkend="__h_u_f_f_m_a_n___t_a_b_l_e_8h_1a2499274512be997926ea1464b3d09628">buildFastLookupTable</link> (const <link linkend="_struct_h_u_f_f_m_a_n___c_o_d_e">HUFFMAN_CODE</link> *canonical_codes, int total_symbols, <link linkend="_struct_huffman_entry">HuffmanEntry</link> *lookup_table)</para>
+</listitem>
+            <listitem><para>uint16_t <link linkend="__h_u_f_f_m_a_n___t_a_b_l_e_8h_1ac5c5c75eec8b54cf307c41e22253540f">decode_symbol</link> (<link linkend="_struct_b_i_t___r_e_a_d_e_r">BIT_READER</link> *reader, const <link linkend="_struct_huffman_tree">HuffmanTree</link> *tree)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Macro Definition Documentation</title>
+<anchor xml:id="__h_u_f_f_m_a_n___t_a_b_l_e_8h_1add78822c51f4692289f2ce174bdf82b0"/><section>
+    <title>FAST_BITS</title>
+<indexterm><primary>FAST_BITS</primary><secondary>HUFFMAN_TABLE.h</secondary></indexterm>
+<indexterm><primary>HUFFMAN_TABLE.h</primary><secondary>FAST_BITS</secondary></indexterm>
+<para><computeroutput>#define FAST_BITS&#160;&#160;&#160;9</computeroutput></para></section>
+<anchor xml:id="__h_u_f_f_m_a_n___t_a_b_l_e_8h_1aa9e6595da72a8ad3543d033dbf737db2"/><section>
+    <title>FAST_SIZE</title>
+<indexterm><primary>FAST_SIZE</primary><secondary>HUFFMAN_TABLE.h</secondary></indexterm>
+<indexterm><primary>HUFFMAN_TABLE.h</primary><secondary>FAST_SIZE</secondary></indexterm>
+<para><computeroutput>#define FAST_SIZE&#160;&#160;&#160;(1 &lt;&lt; <link linkend="__h_u_f_f_m_a_n___t_a_b_l_e_8h_1add78822c51f4692289f2ce174bdf82b0">FAST_BITS</link>)</computeroutput></para></section>
+<anchor xml:id="__h_u_f_f_m_a_n___t_a_b_l_e_8h_1a8e78a9fcd1b3afab6bff573299f76ed1"/><section>
+    <title>MAX_CODE_SYMBOLS</title>
+<indexterm><primary>MAX_CODE_SYMBOLS</primary><secondary>HUFFMAN_TABLE.h</secondary></indexterm>
+<indexterm><primary>HUFFMAN_TABLE.h</primary><secondary>MAX_CODE_SYMBOLS</secondary></indexterm>
+<para><computeroutput>#define MAX_CODE_SYMBOLS&#160;&#160;&#160;286</computeroutput></para></section>
+</section>
+<section>
+<title>Function Documentation</title>
+<anchor xml:id="__h_u_f_f_m_a_n___t_a_b_l_e_8h_1a32e731d206254fe2aa33026e72d81cf0"/><section>
+    <title>buildCodeLookupTable()</title>
+<indexterm><primary>buildCodeLookupTable</primary><secondary>HUFFMAN_TABLE.h</secondary></indexterm>
+<indexterm><primary>HUFFMAN_TABLE.h</primary><secondary>buildCodeLookupTable</secondary></indexterm>
+<para><computeroutput>void buildCodeLookupTable (<link linkend="_struct_node">Node</link> * node, <link linkend="_struct_h_u_f_f_m_a_n___c_o_d_e">HUFFMAN_CODE</link> * table, uint16_t current_code, int depth)<computeroutput>[extern]</computeroutput></computeroutput></para></section>
+<anchor xml:id="__h_u_f_f_m_a_n___t_a_b_l_e_8h_1a2499274512be997926ea1464b3d09628"/><section>
+    <title>buildFastLookupTable()</title>
+<indexterm><primary>buildFastLookupTable</primary><secondary>HUFFMAN_TABLE.h</secondary></indexterm>
+<indexterm><primary>HUFFMAN_TABLE.h</primary><secondary>buildFastLookupTable</secondary></indexterm>
+<para><computeroutput>void buildFastLookupTable (const <link linkend="_struct_h_u_f_f_m_a_n___c_o_d_e">HUFFMAN_CODE</link> * canonical_codes, int total_symbols, <link linkend="_struct_huffman_entry">HuffmanEntry</link> * lookup_table)<computeroutput>[extern]</computeroutput></computeroutput></para></section>
+<anchor xml:id="__h_u_f_f_m_a_n___t_a_b_l_e_8h_1ac5c5c75eec8b54cf307c41e22253540f"/><section>
+    <title>decode_symbol()</title>
+<indexterm><primary>decode_symbol</primary><secondary>HUFFMAN_TABLE.h</secondary></indexterm>
+<indexterm><primary>HUFFMAN_TABLE.h</primary><secondary>decode_symbol</secondary></indexterm>
+<para><computeroutput>uint16_t decode_symbol (<link linkend="_struct_b_i_t___r_e_a_d_e_r">BIT_READER</link> * reader, const <link linkend="_struct_huffman_tree">HuffmanTree</link> * tree)</computeroutput></para></section>
+</section>
+</section>

@@ -1,0 +1,76 @@
+\doxysection{bitwriter.\+h File Reference}
+\label{bitwriter_8h}\index{bitwriter.h@{bitwriter.h}}
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+Include dependency graph for bitwriter.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \textbf{ Bit\+Writer}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Bit\+Writer} $\ast$ \textbf{ init\+Bit\+Writer} (void)
+\item 
+void \textbf{ add\+Data} (\textbf{ Bit\+Writer} $\ast$bw, uint32\+\_\+t value, uint8\+\_\+t bit\+Length)
+\item 
+void \textbf{ create\+File} (\textbf{ Bit\+Writer} $\ast$bw, char $\ast$file\+Name, char $\ast$extension)
+\item 
+void \textbf{ free\+Bit\+Writer} (\textbf{ Bit\+Writer} $\ast$bw)
+\item 
+void \textbf{ add\+Bytes\+From\+MSB} (\textbf{ Bit\+Writer} $\ast$bw, uint32\+\_\+t value, uint8\+\_\+t bytes)
+\item 
+void \textbf{ add\+Bytes\+From\+MSB2} (\textbf{ Bit\+Writer} $\ast$bw, uint32\+\_\+t value, uint8\+\_\+t bytes)
+\item 
+void \textbf{ flush\+\_\+bitstream\+\_\+writer} (\textbf{ Bit\+Writer} $\ast$bw)
+\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\doxysubsection{Function Documentation}
+\index{bitwriter.h@{bitwriter.h}!addBytesFromMSB@{addBytesFromMSB}}
+\index{addBytesFromMSB@{addBytesFromMSB}!bitwriter.h@{bitwriter.h}}
+\doxysubsubsection{addBytesFromMSB()}
+{\footnotesize\ttfamily \label{bitwriter_8h_ae0a3c065d2db177bf4312adaab2a96a8} 
+void add\+Bytes\+From\+MSB (\begin{DoxyParamCaption}\item[{\textbf{ Bit\+Writer} $\ast$}]{bw}{, }\item[{uint32\+\_\+t}]{value}{, }\item[{uint8\+\_\+t}]{bytes}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+
+\index{bitwriter.h@{bitwriter.h}!addBytesFromMSB2@{addBytesFromMSB2}}
+\index{addBytesFromMSB2@{addBytesFromMSB2}!bitwriter.h@{bitwriter.h}}
+\doxysubsubsection{addBytesFromMSB2()}
+{\footnotesize\ttfamily \label{bitwriter_8h_a5360490c127924566b62142aae839af5} 
+void add\+Bytes\+From\+MSB2 (\begin{DoxyParamCaption}\item[{\textbf{ Bit\+Writer} $\ast$}]{bw}{, }\item[{uint32\+\_\+t}]{value}{, }\item[{uint8\+\_\+t}]{bytes}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+
+\index{bitwriter.h@{bitwriter.h}!addData@{addData}}
+\index{addData@{addData}!bitwriter.h@{bitwriter.h}}
+\doxysubsubsection{addData()}
+{\footnotesize\ttfamily \label{bitwriter_8h_a15a48f26be9076026f0174a67935fce4} 
+void add\+Data (\begin{DoxyParamCaption}\item[{\textbf{ Bit\+Writer} $\ast$}]{bw}{, }\item[{uint32\+\_\+t}]{value}{, }\item[{uint8\+\_\+t}]{bit\+Length}{}\end{DoxyParamCaption})}
+
+\index{bitwriter.h@{bitwriter.h}!createFile@{createFile}}
+\index{createFile@{createFile}!bitwriter.h@{bitwriter.h}}
+\doxysubsubsection{createFile()}
+{\footnotesize\ttfamily \label{bitwriter_8h_a3725b55a47460bd10421c92495b2be3f} 
+void create\+File (\begin{DoxyParamCaption}\item[{\textbf{ Bit\+Writer} $\ast$}]{bw}{, }\item[{char $\ast$}]{file\+Name}{, }\item[{char $\ast$}]{extension}{}\end{DoxyParamCaption})}
+
+\index{bitwriter.h@{bitwriter.h}!flush\_bitstream\_writer@{flush\_bitstream\_writer}}
+\index{flush\_bitstream\_writer@{flush\_bitstream\_writer}!bitwriter.h@{bitwriter.h}}
+\doxysubsubsection{flush\_bitstream\_writer()}
+{\footnotesize\ttfamily \label{bitwriter_8h_a2706da9af748aa740b5b27c3cab1921f} 
+void flush\+\_\+bitstream\+\_\+writer (\begin{DoxyParamCaption}\item[{\textbf{ Bit\+Writer} $\ast$}]{bw}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+
+\index{bitwriter.h@{bitwriter.h}!freeBitWriter@{freeBitWriter}}
+\index{freeBitWriter@{freeBitWriter}!bitwriter.h@{bitwriter.h}}
+\doxysubsubsection{freeBitWriter()}
+{\footnotesize\ttfamily \label{bitwriter_8h_a0bc036019ea04608e40ea43ac2a4efe1} 
+void free\+Bit\+Writer (\begin{DoxyParamCaption}\item[{\textbf{ Bit\+Writer} $\ast$}]{bw}{}\end{DoxyParamCaption})}
+
+\index{bitwriter.h@{bitwriter.h}!initBitWriter@{initBitWriter}}
+\index{initBitWriter@{initBitWriter}!bitwriter.h@{bitwriter.h}}
+\doxysubsubsection{initBitWriter()}
+{\footnotesize\ttfamily \label{bitwriter_8h_a98decd406fc97f3a5e87a1c5e43450f6} 
+\textbf{ Bit\+Writer} $\ast$ init\+Bit\+Writer (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+

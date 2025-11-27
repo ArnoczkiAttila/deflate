@@ -1,0 +1,19 @@
+var searchData=
+[
+  ['magic_5fnumer_0',['MAGIC_NUMER',['../bitwriter_8c.html#a6944dcf57a34878b421c6315f19778a7',1,'bitwriter.c']]],
+  ['main_1',['main',['../main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627',1,'main.c']]],
+  ['main_2ec_2',['main.c',['../main_8c.html',1,'']]],
+  ['malloc_3',['malloc',['../debugmalloc_8h.html#a535b58ab5aa48e2e86073e334d43fd32',1,'debugmalloc.h']]],
+  ['match_4',['MATCH',['../_l_z77_8h.html#aa2dfc75cd7ffec5a645d9d50841b6403a1155ee5305ebe5bb9407faa9d395ae93',1,'LZ77.h']]],
+  ['match_5',['match',['../struct_l_z77__compressed.html#a54e81a285c801cbd44309f0d3f1658bd',1,'LZ77_compressed']]],
+  ['max_5fallowed_5fdistance_6',['MAX_ALLOWED_DISTANCE',['../distance_8c.html#affc051004401a9fbf1482551514106f3',1,'distance.c']]],
+  ['max_5fbits_7',['MAX_BITS',['../decompress_8c.html#a51c241e7ad52441b8d4c1fd5f498b3b9',1,'MAX_BITS:&#160;decompress.c'],['../_h_u_f_f_m_a_n___t_a_b_l_e_8c.html#a51c241e7ad52441b8d4c1fd5f498b3b9',1,'MAX_BITS:&#160;HUFFMAN_TABLE.c']]],
+  ['max_5fblock_5fsize_8',['max_block_size',['../struct_debugmalloc_data.html#a5ff6535cb48e89d8b0707e889ba72b0d',1,'DebugmallocData']]],
+  ['max_5fcode_5fsymbols_9',['MAX_CODE_SYMBOLS',['../_h_u_f_f_m_a_n___t_a_b_l_e_8h.html#a8e78a9fcd1b3afab6bff573299f76ed1',1,'HUFFMAN_TABLE.h']]],
+  ['max_5flength_10',['max_length',['../struct_huffman_tree.html#afdcd30ccd185619f804c9cc7a5b1870e',1,'HuffmanTree']]],
+  ['max_5fmatch_5flength_11',['MAX_MATCH_LENGTH',['../length_8c.html#a4428f8b07f1c8e3ca317792334258f3d',1,'length.c']]],
+  ['message_12',['message',['../struct_status.html#a0b2e8c7f76df48129f994ecc46d5c66c',1,'Status']]],
+  ['min_5fmatch_5flength_13',['MIN_MATCH_LENGTH',['../length_8c.html#afe7f7fbaef84c75fa729fdcd890973a7',1,'length.c']]],
+  ['minheap_14',['MinHeap',['../struct_min_heap.html',1,'']]],
+  ['minheapify_15',['minHeapify',['../node_8c.html#ae90b32976c0036dd23f82b402230cb84',1,'node.c']]]
+];

@@ -1,0 +1,54 @@
+.TH "compress.h" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+compress.h
+.SH SYNOPSIS
+.br
+.PP
+\fR#include <stddef\&.h>\fP
+.br
+\fR#include 'bitwriter\&.h'\fP
+.br
+\fR#include 'status\&.h'\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBStatus\fP \fBcompress\fP (char *fileName)"
+.br
+.ti -1c
+.RI "FILE * \fBffOpenFile\fP (const char *filename)"
+.br
+.RI "Opens a file in rb (read binary) mode\&. "
+.ti -1c
+.RI "size_t \fBflushBitWriterBuffer\fP (\fBBitWriter\fP *bw)"
+.br
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS "\fBStatus\fP compress (char * fileName)\fR [extern]\fP"
+
+.SS "FILE * ffOpenFile (const char * filename)\fR [extern]\fP"
+
+.PP
+Opens a file in rb (read binary) mode\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIfilename\fP The name of the file\&. (probably with absolute path)
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+FILE* or NULL 
+.RE
+.PP
+
+.SS "size_t flushBitWriterBuffer (\fBBitWriter\fP * bw)\fR [extern]\fP"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

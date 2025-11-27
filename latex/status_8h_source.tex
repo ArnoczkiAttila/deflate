@@ -1,0 +1,27 @@
+\doxysection{status.\+h}
+\label{status_8h_source}\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ Created\ by\ Rendszergazda\ on\ 11/19/2025.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#ifndef\ DEFLATE\_STATUS\_H}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ DEFLATE\_STATUS\_H}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00009\ \ \ \ \ COMPRESSION\_SUCCESS,}
+\DoxyCodeLine{00010\ \ \ \ \ COMPRESSION\_FAILED,}
+\DoxyCodeLine{00011\ \ \ \ \ CANT\_OPEN\_FILE,}
+\DoxyCodeLine{00012\ \ \ \ \ CANT\_ALLOCATE\_MEMORY,}
+\DoxyCodeLine{00013\ \ \ \ \ DECOMPRESS\_SUCCESS,}
+\DoxyCodeLine{00014\ \ \ \ \ DECOMPRESS\_FAILED,}
+\DoxyCodeLine{00015\ \}\ StatusCode;}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00018\ \ \ \ \ StatusCode\ code;}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordtype}{char}*\ message;}
+\DoxyCodeLine{00020\ \}\ Status;}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//DEFLATE\_STATUS\_H}}
+
+\end{DoxyCode}

@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_length_8h" xml:lang="en-US">
+<title>length.h File Reference</title>
+<indexterm><primary>length.h</primary></indexterm>
+This graph shows which files directly or indirectly include this file:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="length_8h__dep__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Data Structures    </title>
+        <itemizedlist>
+            <listitem><para>struct <link linkend="_struct_l_e_n_g_t_h___c_o_d_e">LENGTH_CODE</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_struct_l_e_n_g_t_h___c_o_d_e">LENGTH_CODE</link> <link linkend="_length_8h_1ac1708113f9ba2b598b57c0290f24ddd2">getLengthCode</link> (int length)</para>
+
+<para>LengthCode. </para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Function Documentation</title>
+<anchor xml:id="_length_8h_1ac1708113f9ba2b598b57c0290f24ddd2"/><section>
+    <title>getLengthCode()</title>
+<indexterm><primary>getLengthCode</primary><secondary>length.h</secondary></indexterm>
+<indexterm><primary>length.h</primary><secondary>getLengthCode</secondary></indexterm>
+<para><computeroutput><link linkend="_struct_l_e_n_g_t_h___c_o_d_e">LENGTH_CODE</link> getLengthCode (int length)<computeroutput>[extern]</computeroutput></computeroutput></para><para>
+
+<para>LengthCode. </para>
+</para>
+
+<para>The getLengthCode function calculates the Length Code for each match length, and returns a struct with the necessary data in it. For more information on Length Code&apos;s check out the official rfc1951 standard documentation. (<link xlink:href="https://datatracker.ietf.org/doc/html/rfc1951#page-11">https://datatracker.ietf.org/doc/html/rfc1951#page-11</link>)</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>length</entry><entry>
+<para>The actual length between (3 and 258) </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>LengthCode struct which stores the length code, the required extra bits, and then the extra value in those extra bits, </para>
+</formalpara>
+</para>
+</section>
+</section>
+</section>

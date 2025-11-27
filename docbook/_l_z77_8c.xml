@@ -1,0 +1,247 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="__l_z77_8c" xml:lang="en-US">
+<title>LZ77.c File Reference</title>
+<indexterm><primary>LZ77.c</primary></indexterm>
+<programlisting linenumbering="unnumbered">#include &lt;stdint.h&gt;<?linebreak?>#include &quot;LZ77.h&quot;<?linebreak?></programlisting>Include dependency graph for LZ77.c:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="_l_z77_8c__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_struct_l_z77__compressed">LZ77_compressed</link> <link linkend="__l_z77_8c_1a39a4b9657ba7447c0a42d1cc318b2a7b">createLiteralLZ77</link> (const uint8_t byte)</para>
+
+<para>Create Literal Struct for LZ77 compression. </para>
+</listitem>
+            <listitem><para><link linkend="_struct_l_z77__compressed">LZ77_compressed</link> <link linkend="__l_z77_8c_1ab1cea1d7293ff705a0980fbdb3047eef">createMatchLZ77</link> (const uint16_t distance, const uint16_t length)</para>
+
+<para>Create MATCH Struct for LZ77 compression. </para>
+</listitem>
+            <listitem><para><link linkend="_struct_l_z77__buffer">LZ77_buffer</link> * <link linkend="__l_z77_8c_1a17ad95ccbd3d7d4a7ac4ffbee2c989ed">initLZ77Buffer</link> (void)</para>
+
+<para>Initalizes the <link linkend="_struct_l_z77__buffer">LZ77_buffer</link> struct. </para>
+</listitem>
+            <listitem><para>void <link linkend="__l_z77_8c_1adab308ae1377a2287dcc12153ef47457">expandBuffer</link> (<link linkend="_struct_l_z77__buffer">LZ77_buffer</link> *buffer)</para>
+
+<para>Expands the buffer capacity by EXPAND_BY tokens. </para>
+</listitem>
+            <listitem><para>void <link linkend="__l_z77_8c_1ae7e9aa7991f2359ab5168b98783544a9">appendToken</link> (<link linkend="_struct_l_z77__buffer">LZ77_buffer</link> *buffer, const <link linkend="_struct_l_z77__compressed">LZ77_compressed</link> token)</para>
+
+<para>Appends a token to the buffer. </para>
+</listitem>
+            <listitem><para>void <link linkend="__l_z77_8c_1aae1527487667bef65a7944ecb3ba6bac">freeLZ77Buffer</link> (<link linkend="_struct_l_z77__buffer">LZ77_buffer</link> *buffer)</para>
+
+<para>Frees all dynamically allocated memory associated with the buffer. </para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Function Documentation</title>
+<anchor xml:id="__l_z77_8c_1ae7e9aa7991f2359ab5168b98783544a9"/><section>
+    <title>appendToken()</title>
+<indexterm><primary>appendToken</primary><secondary>LZ77.c</secondary></indexterm>
+<indexterm><primary>LZ77.c</primary><secondary>appendToken</secondary></indexterm>
+<para><computeroutput>void appendToken (<link linkend="_struct_l_z77__buffer">LZ77_buffer</link> * buffer, const <link linkend="_struct_l_z77__compressed">LZ77_compressed</link> token)<computeroutput>[extern]</computeroutput></computeroutput></para><para>
+
+<para>Appends a token to the buffer. </para>
+</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>buffer</entry><entry>
+<para>The buffer to append the token to. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>void </para>
+</formalpara>
+</para>
+</section>
+<anchor xml:id="__l_z77_8c_1a39a4b9657ba7447c0a42d1cc318b2a7b"/><section>
+    <title>createLiteralLZ77()</title>
+<indexterm><primary>createLiteralLZ77</primary><secondary>LZ77.c</secondary></indexterm>
+<indexterm><primary>LZ77.c</primary><secondary>createLiteralLZ77</secondary></indexterm>
+<para><computeroutput><link linkend="_struct_l_z77__compressed">LZ77_compressed</link> createLiteralLZ77 (const uint8_t byte)<computeroutput>[extern]</computeroutput></computeroutput></para><para>
+
+<para>Create Literal Struct for LZ77 compression. </para>
+</para>
+
+<para>The createLiteralLZ77 function allocates memory for one single LZ77_compresed struct filled with enum LITERAL and the actual byte.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>byte</entry><entry>
+<para>The actual byte to be written into the file </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para><link linkend="_struct_l_z77__compressed">LZ77_compressed</link> </para>
+</formalpara>
+</para>
+</section>
+<anchor xml:id="__l_z77_8c_1ab1cea1d7293ff705a0980fbdb3047eef"/><section>
+    <title>createMatchLZ77()</title>
+<indexterm><primary>createMatchLZ77</primary><secondary>LZ77.c</secondary></indexterm>
+<indexterm><primary>LZ77.c</primary><secondary>createMatchLZ77</secondary></indexterm>
+<para><computeroutput><link linkend="_struct_l_z77__compressed">LZ77_compressed</link> createMatchLZ77 (const uint16_t distance, const uint16_t length)<computeroutput>[extern]</computeroutput></computeroutput></para><para>
+
+<para>Create MATCH Struct for LZ77 compression. </para>
+</para>
+
+<para>The createMatchLZ77 function allocates memory for one single LZ77_compresed struct filled with enum MATCH and the actual distance / length pair.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>distance</entry><entry>
+<para>The distance from the last occurrence </para>
+</entry>
+                            </row>
+                            <row>
+<entry>length</entry><entry>
+<para>The length which specifies the length from last occurrence </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para><link linkend="_struct_l_z77__compressed">LZ77_compressed</link> </para>
+</formalpara>
+</para>
+</section>
+<anchor xml:id="__l_z77_8c_1adab308ae1377a2287dcc12153ef47457"/><section>
+    <title>expandBuffer()</title>
+<indexterm><primary>expandBuffer</primary><secondary>LZ77.c</secondary></indexterm>
+<indexterm><primary>LZ77.c</primary><secondary>expandBuffer</secondary></indexterm>
+<para><computeroutput>void expandBuffer (<link linkend="_struct_l_z77__buffer">LZ77_buffer</link> * buffer)<computeroutput>[extern]</computeroutput></computeroutput></para><para>
+
+<para>Expands the buffer capacity by EXPAND_BY tokens. </para>
+</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>buffer</entry><entry>
+<para>The buffer to expand. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>void </para>
+</formalpara>
+</para>
+</section>
+<anchor xml:id="__l_z77_8c_1aae1527487667bef65a7944ecb3ba6bac"/><section>
+    <title>freeLZ77Buffer()</title>
+<indexterm><primary>freeLZ77Buffer</primary><secondary>LZ77.c</secondary></indexterm>
+<indexterm><primary>LZ77.c</primary><secondary>freeLZ77Buffer</secondary></indexterm>
+<para><computeroutput>void freeLZ77Buffer (<link linkend="_struct_l_z77__buffer">LZ77_buffer</link> * buffer)<computeroutput>[extern]</computeroutput></computeroutput></para><para>
+
+<para>Frees all dynamically allocated memory associated with the buffer. </para>
+</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>buffer</entry><entry>
+<para>The buffer structure to be freed. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>void </para>
+</formalpara>
+</para>
+</section>
+<anchor xml:id="__l_z77_8c_1a17ad95ccbd3d7d4a7ac4ffbee2c989ed"/><section>
+    <title>initLZ77Buffer()</title>
+<indexterm><primary>initLZ77Buffer</primary><secondary>LZ77.c</secondary></indexterm>
+<indexterm><primary>LZ77.c</primary><secondary>initLZ77Buffer</secondary></indexterm>
+<para><computeroutput><link linkend="_struct_l_z77__buffer">LZ77_buffer</link> * initLZ77Buffer (void )<computeroutput>[extern]</computeroutput></computeroutput></para><para>
+
+<para>Initalizes the <link linkend="_struct_l_z77__buffer">LZ77_buffer</link> struct. </para>
+</para>
+
+<para>Allocates initial memory for the token array.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>LZ77_buffer* The location in memory. MUST BE FREED afterward! </para>
+</formalpara>
+</para>
+</section>
+</section>
+</section>

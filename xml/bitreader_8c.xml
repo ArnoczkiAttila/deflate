@@ -1,0 +1,633 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="bitreader_8c" kind="file" language="C++">
+    <compoundname>bitreader.c</compoundname>
+    <includes refid="bitreader_8h" local="yes">bitreader.h</includes>
+    <includes local="no">string.h</includes>
+    <includes local="no">stdio.h</includes>
+    <includes local="no">stdlib.h</includes>
+    <includes refid="debugmalloc_8h" local="yes">debugmalloc.h</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>bitreader.c</label>
+        <link refid="bitreader_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>bitreader.h</label>
+        <link refid="bitreader_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>debugmalloc.h</label>
+        <link refid="debugmalloc_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>ctype.h</label>
+      </node>
+      <node id="11">
+        <label>stdarg.h</label>
+      </node>
+      <node id="3">
+        <label>stdbool.h</label>
+      </node>
+      <node id="9">
+        <label>stddef.h</label>
+      </node>
+      <node id="4">
+        <label>stdint.h</label>
+      </node>
+      <node id="5">
+        <label>stdio.h</label>
+      </node>
+      <node id="7">
+        <label>stdlib.h</label>
+      </node>
+      <node id="6">
+        <label>string.h</label>
+      </node>
+      <node id="12">
+        <label>unistd.h</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="define">
+      <memberdef kind="define" id="bitreader_8c_1a6b20d41d6252e9871430c242cb1a56e7" prot="public" static="no">
+        <name>BUFFER_SIZE</name>
+        <initializer>4096</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bitreader.c" line="6" column="11" bodyfile="bitreader.c" bodystart="6" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="bitreader_8c_1a3077cee4d25db022d9076b5575a14809" prot="public" static="no">
+        <name>GZIP_ID1</name>
+        <initializer>0x1f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bitreader.c" line="14" column="9" bodyfile="bitreader.c" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="bitreader_8c_1aa5b870e8cf3ddbbb799871f614eb1cc2" prot="public" static="no">
+        <name>GZIP_ID2</name>
+        <initializer>0x8b</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bitreader.c" line="15" column="9" bodyfile="bitreader.c" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="bitreader_8c_1a46bb71d79f4ca0301b1239d8931f1541" prot="public" static="no">
+        <name>GZIP_CM_DEFLATE</name>
+        <initializer>0x08</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bitreader.c" line="16" column="9" bodyfile="bitreader.c" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="bitreader_8c_1ad16d3314e1ed1f0124d728efbd474ad4" prot="public" static="no">
+        <name>FTEXT</name>
+        <initializer>0x01</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bitreader.c" line="19" column="9" bodyfile="bitreader.c" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="bitreader_8c_1a8469cbeb2f8071938f6d68cd0c58c0f3" prot="public" static="no">
+        <name>FHCRC</name>
+        <initializer>0x02</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bitreader.c" line="20" column="9" bodyfile="bitreader.c" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="bitreader_8c_1ad0c5ecb7071bdd157bce2e3b7ee930ad" prot="public" static="no">
+        <name>FEXTRA</name>
+        <initializer>0x04</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bitreader.c" line="21" column="9" bodyfile="bitreader.c" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="bitreader_8c_1afd7feb39acd312085566c208e35c2362" prot="public" static="no">
+        <name>FNAME</name>
+        <initializer>0x08</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bitreader.c" line="22" column="9" bodyfile="bitreader.c" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="bitreader_8c_1ab1cb41f7a9d2436f79f01a537ba79b71" prot="public" static="no">
+        <name>FCOMMENT</name>
+        <initializer>0x10</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bitreader.c" line="23" column="9" bodyfile="bitreader.c" bodystart="23" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="bitreader_8c_1a06bc428e5e0fdf358c4d7aaf14498ce0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uint32_t</type>
+        <definition>uint32_t read_bits</definition>
+        <argsstring>(BIT_READER *reader, int numBits)</argsstring>
+        <name>read_bits</name>
+        <param>
+          <type><ref refid="struct_b_i_t___r_e_a_d_e_r" kindref="compound">BIT_READER</ref> *</type>
+          <declname>reader</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>numBits</declname>
+        </param>
+        <briefdescription>
+<para>Processes the 10-byte GZIP header and any optional fields. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><itemizedlist>
+<listitem><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>reader</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to the initialized <ref refid="struct_b_i_t___r_e_a_d_e_r" kindref="compound">BIT_READER</ref>. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true if the header is valid and optional fields were processed (or skipped). </para>
+</simplesect>
+<simplesect kind="return"><para>false if the file is not a valid GZIP stream or required features are unsupported. </para>
+</simplesect>
+</para>
+</listitem></itemizedlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bitreader.c" line="32" column="10" bodyfile="bitreader.c" bodystart="32" bodyend="57"/>
+      </memberdef>
+      <memberdef kind="function" id="bitreader_8c_1acac2cf5ecbb43c96b44ff0b63b432c46" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool process_gzip_header</definition>
+        <argsstring>(BIT_READER *reader)</argsstring>
+        <name>process_gzip_header</name>
+        <param>
+          <type><ref refid="struct_b_i_t___r_e_a_d_e_r" kindref="compound">BIT_READER</ref> *</type>
+          <declname>reader</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bitreader.c" line="59" column="6" bodyfile="bitreader.c" bodystart="59" bodyend="116"/>
+      </memberdef>
+      <memberdef kind="function" id="bitreader_8c_1a1f01f7fee19acce0ef19bf3d7d9a7919" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>static int load_next_byte</definition>
+        <argsstring>(BIT_READER *reader)</argsstring>
+        <name>load_next_byte</name>
+        <param>
+          <type><ref refid="struct_b_i_t___r_e_a_d_e_r" kindref="compound">BIT_READER</ref> *</type>
+          <declname>reader</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Loads the next byte from the file into the reader&apos;s &apos;byte&apos; field. Resets &apos;currentPosition&apos; to 0. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>reader</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to the initialized <ref refid="struct_b_i_t___r_e_a_d_e_r" kindref="compound">BIT_READER</ref>. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>1 on successful load, 0 on EOF, -1 on read error. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bitreader.c" line="125" column="12" bodyfile="bitreader.c" bodystart="125" bodyend="140"/>
+      </memberdef>
+      <memberdef kind="function" id="bitreader_8c_1af813be79ba8b6b387a8dacff1ef72c04" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="struct_b_i_t___r_e_a_d_e_r" kindref="compound">BIT_READER</ref> *</type>
+        <definition>BIT_READER * init_bit_reader</definition>
+        <argsstring>(const char *filePath)</argsstring>
+        <name>init_bit_reader</name>
+        <param>
+          <type>const char *</type>
+          <declname>filePath</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Initializes the <ref refid="struct_b_i_t___r_e_a_d_e_r" kindref="compound">BIT_READER</ref> structure. Opens the file and resets the bit-reading state. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filePath</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Path to the input file. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>0 on success, -1 on failure (e.g., file not found). </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bitreader.c" line="144" column="12" bodyfile="bitreader.c" bodystart="144" bodyend="161"/>
+      </memberdef>
+      <memberdef kind="function" id="bitreader_8c_1a21ed250683802f09cc0375f8dbb5a125" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int read_bit</definition>
+        <argsstring>(BIT_READER *reader)</argsstring>
+        <name>read_bit</name>
+        <param>
+          <type><ref refid="struct_b_i_t___r_e_a_d_e_r" kindref="compound">BIT_READER</ref> *</type>
+          <declname>reader</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Reads a single bit from the stream. Handles reading new bytes from the file when the current byte is exhausted. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>reader</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to the initialized <ref refid="struct_b_i_t___r_e_a_d_e_r" kindref="compound">BIT_READER</ref>. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The bit value (0 or 1), or -1 if the end of file is reached unexpectedly. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bitreader.c" line="163" column="5" bodyfile="bitreader.c" bodystart="163" bodyend="181"/>
+      </memberdef>
+      <memberdef kind="function" id="bitreader_8c_1aa8b5fc0a2d13215757372d983e37b336" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void close_bit_reader</definition>
+        <argsstring>(BIT_READER *reader)</argsstring>
+        <name>close_bit_reader</name>
+        <param>
+          <type><ref refid="struct_b_i_t___r_e_a_d_e_r" kindref="compound">BIT_READER</ref> *</type>
+          <declname>reader</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Closes the file handle and performs cleanup. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>reader</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to the <ref refid="struct_b_i_t___r_e_a_d_e_r" kindref="compound">BIT_READER</ref> structure. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bitreader.c" line="183" column="6" bodyfile="bitreader.c" bodystart="183" bodyend="189"/>
+      </memberdef>
+      <memberdef kind="function" id="bitreader_8c_1af9ea53752cc8d2e30a3b95f6ac749289" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>static int peek_bit</definition>
+        <argsstring>(BIT_READER *temp_reader)</argsstring>
+        <name>peek_bit</name>
+        <param>
+          <type><ref refid="struct_b_i_t___r_e_a_d_e_r" kindref="compound">BIT_READER</ref> *</type>
+          <declname>temp_reader</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bitreader.c" line="191" column="12" bodyfile="bitreader.c" bodystart="191" bodyend="208"/>
+      </memberdef>
+      <memberdef kind="function" id="bitreader_8c_1ae4fcc275a9937dc610bc057cb9bcc919" prot="public" static="no" extern="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uint16_t</type>
+        <definition>uint16_t peek_bits</definition>
+        <argsstring>(BIT_READER *reader, uint8_t n)</argsstring>
+        <name>peek_bits</name>
+        <param>
+          <type><ref refid="struct_b_i_t___r_e_a_d_e_r" kindref="compound">BIT_READER</ref> *</type>
+          <declname>reader</declname>
+        </param>
+        <param>
+          <type>uint8_t</type>
+          <declname>n</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bitreader.c" line="211" column="17" bodyfile="bitreader.c" bodystart="211" bodyend="243" declfile="bitreader.c" declline="211" declcolumn="17"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Created<sp/>by<sp/>Attila<sp/>on<sp/>11/24/2025.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="bitreader_8h" kindref="compound">bitreader.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BUFFER_SIZE<sp/>4096</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdlib.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="debugmalloc_8h" kindref="compound">debugmalloc.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="comment">//<sp/>---<sp/>GZIP<sp/>Constants<sp/>---</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>GZIP_ID1<sp/>0x1f</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>GZIP_ID2<sp/>0x8b</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>GZIP_CM_DEFLATE<sp/>0x08</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="comment">//<sp/>---<sp/>GZIP<sp/>Flags<sp/>(FLG<sp/>byte)<sp/>---</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>FTEXT<sp/><sp/><sp/><sp/>0x01<sp/></highlight><highlight class="comment">//<sp/>Header<sp/>contains<sp/>text<sp/>file<sp/>indication</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>FHCRC<sp/><sp/><sp/><sp/>0x02<sp/></highlight><highlight class="comment">//<sp/>Header<sp/>CRC16<sp/>is<sp/>present</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>FEXTRA<sp/><sp/><sp/>0x04<sp/></highlight><highlight class="comment">//<sp/>Extra<sp/>field<sp/>is<sp/>present</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>FNAME<sp/><sp/><sp/><sp/>0x08<sp/></highlight><highlight class="comment">//<sp/>Original<sp/>file<sp/>name<sp/>is<sp/>present</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>FCOMMENT<sp/>0x10<sp/></highlight><highlight class="comment">//<sp/>File<sp/>comment<sp/>is<sp/>present</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal">uint32_t<sp/><ref refid="bitreader_8c_1a06bc428e5e0fdf358c4d7aaf14498ce0" kindref="member">read_bits</ref>(<ref refid="struct_b_i_t___r_e_a_d_e_r" kindref="compound">BIT_READER</ref><sp/>*reader,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>numBits)<sp/>{</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(numBits<sp/>&lt;<sp/>1<sp/>||<sp/>numBits<sp/>&gt;<sp/>32)<sp/>{</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fprintf(stderr,<sp/></highlight><highlight class="stringliteral">&quot;Error:<sp/>Invalid<sp/>number<sp/>of<sp/>bits<sp/>requested<sp/>(%d).\n&quot;</highlight><highlight class="normal">,<sp/>numBits);</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0xFFFFFFFF;<sp/></highlight><highlight class="comment">//<sp/>Error<sp/>value</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/>result<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Read<sp/>bits<sp/>one<sp/>by<sp/>one,<sp/>constructing<sp/>the<sp/>value<sp/>in<sp/>LSB-first<sp/>order</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>numBits;<sp/>i++)<sp/>{</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>bit<sp/>=<sp/><ref refid="bitreader_8c_1a21ed250683802f09cc0375f8dbb5a125" kindref="member">read_bit</ref>(reader);</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(bit<sp/>==<sp/>-1)<sp/>{</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Reached<sp/>unexpected<sp/>end<sp/>of<sp/>stream</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fprintf(stderr,<sp/></highlight><highlight class="stringliteral">&quot;Error:<sp/>Unexpected<sp/>EOF<sp/>while<sp/>reading<sp/>%d<sp/>bits.\n&quot;</highlight><highlight class="normal">,<sp/>numBits);</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0xFFFFFFFF;<sp/></highlight><highlight class="comment">//<sp/>Error<sp/>value</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Place<sp/>the<sp/>read<sp/>bit<sp/>(0<sp/>or<sp/>1)<sp/>into<sp/>the<sp/>correct<sp/>position<sp/>in<sp/>the<sp/>result.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Since<sp/>we<sp/>read<sp/>in<sp/>LSB-first<sp/>order,<sp/>the<sp/>first<sp/>bit<sp/>read<sp/>goes<sp/>to<sp/>result[0],</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>the<sp/>second<sp/>to<sp/>result[1],<sp/>and<sp/>so<sp/>on.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>result<sp/>|=<sp/>(uint32_t)bit<sp/>&lt;&lt;<sp/>i;</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>result;</highlight></codeline>
+<codeline lineno="57"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="bitreader_8c_1acac2cf5ecbb43c96b44ff0b63b432c46" kindref="member">process_gzip_header</ref>(<ref refid="struct_b_i_t___r_e_a_d_e_r" kindref="compound">BIT_READER</ref><sp/>*reader)<sp/>{</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/>id1,<sp/>id2,<sp/>cm,<sp/>flg,<sp/>xfl,<sp/>os;</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>1.<sp/>Check<sp/>Magic<sp/>Bytes<sp/>(ID1,<sp/>ID2)<sp/>-<sp/>2<sp/>bytes</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/>id1<sp/>=<sp/><ref refid="bitreader_8c_1a06bc428e5e0fdf358c4d7aaf14498ce0" kindref="member">read_bits</ref>(reader,<sp/>8);</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/>id2<sp/>=<sp/><ref refid="bitreader_8c_1a06bc428e5e0fdf358c4d7aaf14498ce0" kindref="member">read_bits</ref>(reader,<sp/>8);</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(id1<sp/>!=<sp/><ref refid="bitreader_8c_1a3077cee4d25db022d9076b5575a14809" kindref="member">GZIP_ID1</ref><sp/>||<sp/>id2<sp/>!=<sp/><ref refid="bitreader_8c_1aa5b870e8cf3ddbbb799871f614eb1cc2" kindref="member">GZIP_ID2</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fprintf(stderr,<sp/></highlight><highlight class="stringliteral">&quot;Error:<sp/>Invalid<sp/>magic<sp/>bytes.<sp/>Not<sp/>a<sp/>GZIP<sp/>file<sp/>(got<sp/>0x%02x<sp/>0x%02x,<sp/>expected<sp/>0x%02x<sp/>0x%02x).\n&quot;</highlight><highlight class="normal">,<sp/>id1,<sp/>id2,<sp/><ref refid="bitreader_8c_1a3077cee4d25db022d9076b5575a14809" kindref="member">GZIP_ID1</ref>,<sp/><ref refid="bitreader_8c_1aa5b870e8cf3ddbbb799871f614eb1cc2" kindref="member">GZIP_ID2</ref>);</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>2.<sp/>Compression<sp/>Method<sp/>(CM)<sp/>-<sp/>1<sp/>byte</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/>cm<sp/>=<sp/><ref refid="bitreader_8c_1a06bc428e5e0fdf358c4d7aaf14498ce0" kindref="member">read_bits</ref>(reader,<sp/>8);</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(cm<sp/>!=<sp/><ref refid="bitreader_8c_1a46bb71d79f4ca0301b1239d8931f1541" kindref="member">GZIP_CM_DEFLATE</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fprintf(stderr,<sp/></highlight><highlight class="stringliteral">&quot;Error:<sp/>Unsupported<sp/>compression<sp/>method<sp/>(got<sp/>0x%02x,<sp/>expected<sp/>DEFLATE<sp/>0x%02x).\n&quot;</highlight><highlight class="normal">,<sp/>cm,<sp/><ref refid="bitreader_8c_1a46bb71d79f4ca0301b1239d8931f1541" kindref="member">GZIP_CM_DEFLATE</ref>);</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>3.<sp/>Flags<sp/>(FLG)<sp/>-<sp/>1<sp/>byte</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/>flg<sp/>=<sp/><ref refid="bitreader_8c_1a06bc428e5e0fdf358c4d7aaf14498ce0" kindref="member">read_bits</ref>(reader,<sp/>8);</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>---<sp/>BEGIN<sp/>User&apos;s<sp/>requested<sp/>simple<sp/>flag<sp/>check<sp/>---</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(flg<sp/>!=<sp/>0x00)<sp/>{</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fprintf(stderr,<sp/></highlight><highlight class="stringliteral">&quot;Warning:<sp/>Only<sp/>GZIP<sp/>files<sp/>with<sp/>FLAG=0x00<sp/>are<sp/>supported<sp/>at<sp/>this<sp/>stage.<sp/>Found<sp/>flag<sp/>0x%02x.\n&quot;</highlight><highlight class="normal">,<sp/>flg);</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>For<sp/>now,<sp/>we<sp/>will<sp/>fail<sp/>if<sp/>it&apos;s<sp/>not<sp/>0x00,<sp/>as<sp/>requested<sp/>by<sp/>the<sp/>user&apos;s<sp/>initial<sp/>logic.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>---<sp/>END<sp/>User&apos;s<sp/>requested<sp/>simple<sp/>flag<sp/>check<sp/>---</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="bitreader_8c_1a06bc428e5e0fdf358c4d7aaf14498ce0" kindref="member">read_bits</ref>(reader,32);</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>5.<sp/>Extra<sp/>Flags<sp/>(XFL)<sp/>-<sp/>1<sp/>byte</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/>xfl<sp/>=<sp/><ref refid="bitreader_8c_1a06bc428e5e0fdf358c4d7aaf14498ce0" kindref="member">read_bits</ref>(reader,<sp/>8);</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(xfl<sp/>==<sp/>0xFF)<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;<sp/></highlight><highlight class="comment">//<sp/>Check<sp/>for<sp/>EOF</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>6.<sp/>Operating<sp/>System<sp/>(OS)<sp/>-<sp/>1<sp/>byte</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/>os<sp/>=<sp/><ref refid="bitreader_8c_1a06bc428e5e0fdf358c4d7aaf14498ce0" kindref="member">read_bits</ref>(reader,<sp/>8);</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(os<sp/>==<sp/>0xFF)<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;<sp/></highlight><highlight class="comment">//<sp/>Check<sp/>for<sp/>EOF</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>---<sp/>Handling<sp/>Optional<sp/>Fields<sp/>(Disabled<sp/>for<sp/>FLG=0x00)<sp/>---</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="102"><highlight class="comment"><sp/><sp/><sp/><sp/>if<sp/>(flg<sp/>&amp;<sp/>FEXTRA)<sp/>{</highlight></codeline>
+<codeline lineno="103"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>Read<sp/>16-bit<sp/>extra<sp/>field<sp/>length<sp/>(XLEN)</highlight></codeline>
+<codeline lineno="104"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint16_t<sp/>xlen<sp/>=<sp/>read_le_u16(reader);</highlight></codeline>
+<codeline lineno="105"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>Skip<sp/>XLEN<sp/>bytes</highlight></codeline>
+<codeline lineno="106"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>for<sp/>(int<sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>xlen;<sp/>i++)<sp/>{</highlight></codeline>
+<codeline lineno="107"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(read_byte_aligned_u8(reader)<sp/>==<sp/>0xFF)<sp/>return<sp/>false;</highlight></codeline>
+<codeline lineno="108"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="109"><highlight class="comment"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="110"><highlight class="comment"></highlight></codeline>
+<codeline lineno="111"><highlight class="comment"><sp/><sp/><sp/><sp/>//<sp/>...<sp/>logic<sp/>for<sp/>FNAME,<sp/>FCOMMENT,<sp/>FHCRC<sp/>would<sp/>follow<sp/>here<sp/>...</highlight></codeline>
+<codeline lineno="112"><highlight class="comment"><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;GZIP<sp/>Header<sp/>successfully<sp/>processed.<sp/>Ready<sp/>for<sp/>DEFLATE<sp/>stream.\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="116"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"></highlight></codeline>
+<codeline lineno="125"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>load_next_byte(<ref refid="struct_b_i_t___r_e_a_d_e_r" kindref="compound">BIT_READER</ref><sp/>*reader)<sp/>{</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>result<sp/>=<sp/>fgetc(reader-&gt;<ref refid="struct_b_i_t___r_e_a_d_e_r_1a702945180aa732857b380a007a7e2a21" kindref="member">file</ref>);</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(result<sp/>==<sp/>EOF)<sp/>{</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(ferror(reader-&gt;<ref refid="struct_b_i_t___r_e_a_d_e_r_1a702945180aa732857b380a007a7e2a21" kindref="member">file</ref>))<sp/>{</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Handle<sp/>read<sp/>error</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>-1;</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Handle<sp/>EOF</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"></highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Successfully<sp/>read<sp/>a<sp/>byte</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/>reader-&gt;<ref refid="struct_b_i_t___r_e_a_d_e_r_1a96f44d20f1dbf1c8785a7bc99a46164c" kindref="member">byte</ref><sp/>=<sp/>(uint8_t)result;</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/>reader-&gt;<ref refid="struct_b_i_t___r_e_a_d_e_r_1a03c096e79d44983a055f7ca6839144bc" kindref="member">currentPosition</ref><sp/>=<sp/>0;<sp/></highlight><highlight class="comment">//<sp/>Reset<sp/>bit<sp/>position<sp/>(0<sp/>means<sp/>we<sp/>start<sp/>reading<sp/>from<sp/>bit<sp/>0)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="140"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"></highlight></codeline>
+<codeline lineno="142"><highlight class="normal"></highlight><highlight class="comment">//<sp/>---<sp/>Public<sp/>Functions<sp/>---</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="143"><highlight class="normal"></highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><ref refid="struct_b_i_t___r_e_a_d_e_r" kindref="compound">BIT_READER</ref>*<sp/><ref refid="bitreader_8c_1af813be79ba8b6b387a8dacff1ef72c04" kindref="member">init_bit_reader</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*filePath)<sp/>{</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_b_i_t___r_e_a_d_e_r" kindref="compound">BIT_READER</ref>*<sp/>reader<sp/>=<sp/>(<ref refid="struct_b_i_t___r_e_a_d_e_r" kindref="compound">BIT_READER</ref>*)<sp/><ref refid="debugmalloc_8h_1a535b58ab5aa48e2e86073e334d43fd32" kindref="member">malloc</ref>(</highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<ref refid="struct_b_i_t___r_e_a_d_e_r" kindref="compound">BIT_READER</ref>));</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"></highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/>reader-&gt;<ref refid="struct_b_i_t___r_e_a_d_e_r_1a702945180aa732857b380a007a7e2a21" kindref="member">file</ref><sp/>=<sp/>fopen(filePath,<sp/></highlight><highlight class="stringliteral">&quot;rb&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!reader-&gt;<ref refid="struct_b_i_t___r_e_a_d_e_r_1a702945180aa732857b380a007a7e2a21" kindref="member">file</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>perror(</highlight><highlight class="stringliteral">&quot;Failed<sp/>to<sp/>open<sp/>file<sp/>for<sp/>reading&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>NULL;</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"></highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Initialize<sp/>the<sp/>bit-level<sp/>state</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>We<sp/>don&apos;t<sp/>load<sp/>the<sp/>first<sp/>byte<sp/>immediately;<sp/>it<sp/>will<sp/>be<sp/>loaded<sp/>on<sp/>the<sp/>first<sp/>call<sp/>to<sp/>read_bit.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/>reader-&gt;<ref refid="struct_b_i_t___r_e_a_d_e_r_1a03c096e79d44983a055f7ca6839144bc" kindref="member">currentPosition</ref><sp/>=<sp/>8;<sp/></highlight><highlight class="comment">//<sp/>Set<sp/>to<sp/>8<sp/>to<sp/>force<sp/>load_next_byte<sp/>on<sp/>first<sp/>read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="156"><highlight class="normal"></highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Note:<sp/>The<sp/>&apos;buffer&apos;,<sp/>&apos;bufferSize&apos;,<sp/>&apos;index&apos;,<sp/>and<sp/>&apos;fileName&apos;<sp/>fields<sp/>are<sp/>unused</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>in<sp/>this<sp/>simplified,<sp/>byte-by-byte<sp/>implementation<sp/>for<sp/>clarity.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="159"><highlight class="normal"></highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>reader;</highlight></codeline>
+<codeline lineno="161"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"></highlight></codeline>
+<codeline lineno="163"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="bitreader_8c_1a21ed250683802f09cc0375f8dbb5a125" kindref="member">read_bit</ref>(<ref refid="struct_b_i_t___r_e_a_d_e_r" kindref="compound">BIT_READER</ref><sp/>*reader)<sp/>{</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>1.<sp/>Check<sp/>if<sp/>the<sp/>current<sp/>byte<sp/>is<sp/>exhausted<sp/>(8<sp/>bits<sp/>read)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(reader-&gt;<ref refid="struct_b_i_t___r_e_a_d_e_r_1a03c096e79d44983a055f7ca6839144bc" kindref="member">currentPosition</ref><sp/>&gt;=<sp/>8)<sp/>{</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>load_status<sp/>=<sp/>load_next_byte(reader);</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(load_status<sp/>&lt;=<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>0:<sp/>EOF,<sp/>-1:<sp/>Error</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>-1;</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"></highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>2.<sp/>Extract<sp/>the<sp/>bit:<sp/>DEFLATE<sp/>reads<sp/>bits<sp/>in<sp/>LSB-first<sp/>order.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>bit<sp/>at<sp/>position<sp/>0<sp/>is<sp/>the<sp/>least<sp/>significant<sp/>bit<sp/>(LSB).</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/>bit<sp/>=<sp/>(reader-&gt;<ref refid="struct_b_i_t___r_e_a_d_e_r_1a96f44d20f1dbf1c8785a7bc99a46164c" kindref="member">byte</ref><sp/>&gt;&gt;<sp/>reader-&gt;<ref refid="struct_b_i_t___r_e_a_d_e_r_1a03c096e79d44983a055f7ca6839144bc" kindref="member">currentPosition</ref>)<sp/>&amp;<sp/>1;</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"></highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>3.<sp/>Advance<sp/>the<sp/>position</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/>reader-&gt;<ref refid="struct_b_i_t___r_e_a_d_e_r_1a03c096e79d44983a055f7ca6839144bc" kindref="member">currentPosition</ref>++;</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"></highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">)bit;</highlight></codeline>
+<codeline lineno="181"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"></highlight></codeline>
+<codeline lineno="183"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="bitreader_8c_1aa8b5fc0a2d13215757372d983e37b336" kindref="member">close_bit_reader</ref>(<ref refid="struct_b_i_t___r_e_a_d_e_r" kindref="compound">BIT_READER</ref><sp/>*reader)<sp/>{</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(reader-&gt;<ref refid="struct_b_i_t___r_e_a_d_e_r_1a702945180aa732857b380a007a7e2a21" kindref="member">file</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fclose(reader-&gt;<ref refid="struct_b_i_t___r_e_a_d_e_r_1a702945180aa732857b380a007a7e2a21" kindref="member">file</ref>);</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>reader-&gt;<ref refid="struct_b_i_t___r_e_a_d_e_r_1a702945180aa732857b380a007a7e2a21" kindref="member">file</ref><sp/>=<sp/>NULL;</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Free<sp/>other<sp/>allocated<sp/>resources<sp/>if<sp/>they<sp/>were<sp/>used<sp/>(e.g.,<sp/>reader-&gt;buffer,<sp/>reader-&gt;fileName)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="189"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"></highlight></codeline>
+<codeline lineno="191"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>peek_bit(<ref refid="struct_b_i_t___r_e_a_d_e_r" kindref="compound">BIT_READER</ref>*<sp/>temp_reader)<sp/>{</highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>If<sp/>we&apos;ve<sp/>read<sp/>all<sp/>bits<sp/>in<sp/>the<sp/>current<sp/>byte,<sp/>move<sp/>to<sp/>the<sp/>next<sp/>byte<sp/>in<sp/>the<sp/>buffer</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(temp_reader-&gt;<ref refid="struct_b_i_t___r_e_a_d_e_r_1a03c096e79d44983a055f7ca6839144bc" kindref="member">currentPosition</ref><sp/>==<sp/>8)<sp/>{</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(temp_reader-&gt;<ref refid="struct_b_i_t___r_e_a_d_e_r_1a852b86a2eaee9852ada7a43e61e311a2" kindref="member">index</ref><sp/>&gt;=<sp/>temp_reader-&gt;<ref refid="struct_b_i_t___r_e_a_d_e_r_1a7be887a2ca0a258cf6b368d32fd87487" kindref="member">bufferSize</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Cannot<sp/>fetch<sp/>more<sp/>bits<sp/>from<sp/>the<sp/>buffer/file<sp/>without<sp/>reading</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>-1;<sp/></highlight><highlight class="comment">//<sp/>Indicate<sp/>end<sp/>of<sp/>available<sp/>data<sp/>for<sp/>peeking</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>temp_reader-&gt;<ref refid="struct_b_i_t___r_e_a_d_e_r_1a96f44d20f1dbf1c8785a7bc99a46164c" kindref="member">byte</ref><sp/>=<sp/>temp_reader-&gt;<ref refid="struct_b_i_t___r_e_a_d_e_r_1a56ed84df35de10bdb65e72b184309497" kindref="member">buffer</ref>[temp_reader-&gt;<ref refid="struct_b_i_t___r_e_a_d_e_r_1a852b86a2eaee9852ada7a43e61e311a2" kindref="member">index</ref>];</highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>temp_reader-&gt;<ref refid="struct_b_i_t___r_e_a_d_e_r_1a852b86a2eaee9852ada7a43e61e311a2" kindref="member">index</ref>++;</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>temp_reader-&gt;<ref refid="struct_b_i_t___r_e_a_d_e_r_1a03c096e79d44983a055f7ca6839144bc" kindref="member">currentPosition</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"></highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Extract<sp/>the<sp/>bit<sp/>at<sp/>the<sp/>current<sp/>position<sp/>(LSB-first<sp/>assuming<sp/>your<sp/>read_bits<sp/>logic)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>bit<sp/>=<sp/>(temp_reader-&gt;<ref refid="struct_b_i_t___r_e_a_d_e_r_1a96f44d20f1dbf1c8785a7bc99a46164c" kindref="member">byte</ref><sp/>&gt;&gt;<sp/>temp_reader-&gt;<ref refid="struct_b_i_t___r_e_a_d_e_r_1a03c096e79d44983a055f7ca6839144bc" kindref="member">currentPosition</ref>)<sp/>&amp;<sp/>1;</highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/>temp_reader-&gt;<ref refid="struct_b_i_t___r_e_a_d_e_r_1a03c096e79d44983a055f7ca6839144bc" kindref="member">currentPosition</ref>++;</highlight></codeline>
+<codeline lineno="206"><highlight class="normal"></highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>bit;</highlight></codeline>
+<codeline lineno="208"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"></highlight></codeline>
+<codeline lineno="210"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Function<sp/>to<sp/>peek<sp/>&apos;n&apos;<sp/>bits<sp/>into<sp/>the<sp/>stream<sp/>without<sp/>advancing<sp/>the<sp/>actual<sp/>reader</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="211"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/>uint16_t<sp/><ref refid="bitreader_8c_1ae4fcc275a9937dc610bc057cb9bcc919" kindref="member">peek_bits</ref>(<ref refid="struct_b_i_t___r_e_a_d_e_r" kindref="compound">BIT_READER</ref>*<sp/>reader,<sp/>uint8_t<sp/>n)<sp/>{</highlight></codeline>
+<codeline lineno="212"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(n<sp/>&lt;<sp/>1<sp/>||<sp/>n<sp/>&gt;<sp/>16)<sp/>{</highlight></codeline>
+<codeline lineno="213"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>We<sp/>return<sp/>uint16_t,<sp/>so<sp/>limit<sp/>n<sp/>to<sp/>16<sp/>bits.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fprintf(stderr,<sp/></highlight><highlight class="stringliteral">&quot;Error:<sp/>Invalid<sp/>number<sp/>of<sp/>bits<sp/>requested<sp/>for<sp/>peek<sp/>(%d).\n&quot;</highlight><highlight class="normal">,<sp/>n);</highlight></codeline>
+<codeline lineno="215"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0xFFFF;<sp/></highlight><highlight class="comment">//<sp/>Error<sp/>value</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="216"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="217"><highlight class="normal"></highlight></codeline>
+<codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Create<sp/>a<sp/>temporary,<sp/>local<sp/>copy<sp/>of<sp/>the<sp/>reader<sp/>state.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="219"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>We<sp/>only<sp/>need<sp/>to<sp/>copy<sp/>the<sp/>*state<sp/>variables*,<sp/>not<sp/>the<sp/>pointers<sp/>to<sp/>the<sp/>file<sp/>or<sp/>buffer<sp/>themselves.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="220"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>We<sp/>*must<sp/>not*<sp/>call<sp/>functions<sp/>that<sp/>perform<sp/>I/O<sp/>operations<sp/>(like<sp/>fread)<sp/>inside<sp/>peek.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="221"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_b_i_t___r_e_a_d_e_r" kindref="compound">BIT_READER</ref><sp/>temp_reader;</highlight></codeline>
+<codeline lineno="222"><highlight class="normal"><sp/><sp/><sp/><sp/>memcpy(&amp;temp_reader,<sp/>reader,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<ref refid="struct_b_i_t___r_e_a_d_e_r" kindref="compound">BIT_READER</ref>));</highlight></codeline>
+<codeline lineno="223"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>buffer<sp/>pointer<sp/>in<sp/>temp_reader<sp/>now<sp/>points<sp/>to<sp/>the<sp/>*same*<sp/>buffer<sp/>memory<sp/>as<sp/>the<sp/>original<sp/>reader.<sp/>This<sp/>is<sp/>fine<sp/>because<sp/>we&apos;re<sp/>only<sp/>reading<sp/>from<sp/>the<sp/>buffer,<sp/>not<sp/>modifying<sp/>it<sp/>or<sp/>loading<sp/>new<sp/>data<sp/>via<sp/>file<sp/>I/O.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="224"><highlight class="normal"></highlight></codeline>
+<codeline lineno="225"><highlight class="normal"><sp/><sp/><sp/><sp/>uint16_t<sp/>result<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="226"><highlight class="normal"></highlight></codeline>
+<codeline lineno="227"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Read<sp/>bits<sp/>using<sp/>the<sp/>temporary<sp/>reader<sp/>state</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="228"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>n;<sp/>i++)<sp/>{</highlight></codeline>
+<codeline lineno="229"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>bit<sp/>=<sp/>peek_bit(&amp;temp_reader);</highlight></codeline>
+<codeline lineno="230"><highlight class="normal"></highlight></codeline>
+<codeline lineno="231"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(bit<sp/>==<sp/>-1)<sp/>{</highlight></codeline>
+<codeline lineno="232"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Reached<sp/>end<sp/>of<sp/>currently<sp/>buffered<sp/>stream</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="233"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fprintf(stderr,<sp/></highlight><highlight class="stringliteral">&quot;Error:<sp/>Not<sp/>enough<sp/>buffered<sp/>data<sp/>to<sp/>peek<sp/>%d<sp/>bits.\n&quot;</highlight><highlight class="normal">,<sp/>n);</highlight></codeline>
+<codeline lineno="234"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0xFFFF;<sp/></highlight><highlight class="comment">//<sp/>Error<sp/>value</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="235"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="236"><highlight class="normal"></highlight></codeline>
+<codeline lineno="237"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Place<sp/>the<sp/>read<sp/>bit<sp/>into<sp/>the<sp/>correct<sp/>position<sp/>in<sp/>the<sp/>result<sp/>(LSB-first)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="238"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>result<sp/>|=<sp/>(uint16_t)bit<sp/>&lt;&lt;<sp/>i;</highlight></codeline>
+<codeline lineno="239"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="240"><highlight class="normal"></highlight></codeline>
+<codeline lineno="241"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>&apos;reader&apos;<sp/>pointer&apos;s<sp/>state<sp/>remains<sp/>untouched.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="242"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>result;</highlight></codeline>
+<codeline lineno="243"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="bitreader.c"/>
+  </compounddef>
+</doxygen>

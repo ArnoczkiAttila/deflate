@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_struct_node" xml:lang="en-US">
+<title>Node Struct Reference</title>
+<indexterm><primary>Node</primary></indexterm>
+<para>
+<computeroutput>#include &lt;node.h&gt;</computeroutput>
+</para>
+Collaboration diagram for Node:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="struct_node__coll__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Data Fields    </title>
+        <itemizedlist>
+            <listitem><para>int <link linkend="_struct_node_1a598b58eb0ea6750cee33aa0ea62f6ccc">iFrequency</link></para>
+</listitem>
+            <listitem><para>unsigned short <link linkend="_struct_node_1aef34b594003aef090557c68fa0976aef">usSymbol</link></para>
+</listitem>
+            <listitem><para>struct <link linkend="_struct_node">Node</link> * <link linkend="_struct_node_1a3fbc6e3132038d871c08e9b71391893f">pnLeft</link></para>
+</listitem>
+            <listitem><para>struct <link linkend="_struct_node">Node</link> * <link linkend="_struct_node_1a72a7b991ec60f48cd33a359fb0c00942">pnRight</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Field Documentation</title>
+<anchor xml:id="_struct_node_1a598b58eb0ea6750cee33aa0ea62f6ccc"/><section>
+    <title>iFrequency</title>
+<indexterm><primary>iFrequency</primary><secondary>Node</secondary></indexterm>
+<indexterm><primary>Node</primary><secondary>iFrequency</secondary></indexterm>
+<para><computeroutput>int iFrequency</computeroutput></para></section>
+<anchor xml:id="_struct_node_1a3fbc6e3132038d871c08e9b71391893f"/><section>
+    <title>pnLeft</title>
+<indexterm><primary>pnLeft</primary><secondary>Node</secondary></indexterm>
+<indexterm><primary>Node</primary><secondary>pnLeft</secondary></indexterm>
+<para><computeroutput>struct <link linkend="_struct_node">Node</link>* pnLeft</computeroutput></para></section>
+<anchor xml:id="_struct_node_1a72a7b991ec60f48cd33a359fb0c00942"/><section>
+    <title>pnRight</title>
+<indexterm><primary>pnRight</primary><secondary>Node</secondary></indexterm>
+<indexterm><primary>Node</primary><secondary>pnRight</secondary></indexterm>
+<para><computeroutput>struct <link linkend="_struct_node">Node</link>* pnRight</computeroutput></para></section>
+<anchor xml:id="_struct_node_1aef34b594003aef090557c68fa0976aef"/><section>
+    <title>usSymbol</title>
+<indexterm><primary>usSymbol</primary><secondary>Node</secondary></indexterm>
+<indexterm><primary>Node</primary><secondary>usSymbol</secondary></indexterm>
+<para><computeroutput>unsigned short usSymbol</computeroutput></para></section>
+<para>
+The documentation for this struct was generated from the following file:</para>
+<link linkend="_node_8h">node.h</link></section>
+</section>

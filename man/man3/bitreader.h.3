@@ -1,0 +1,125 @@
+.TH "bitreader.h" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+bitreader.h
+.SH SYNOPSIS
+.br
+.PP
+\fR#include <stdbool\&.h>\fP
+.br
+\fR#include <stdint\&.h>\fP
+.br
+\fR#include <stdio\&.h>\fP
+.br
+
+.SS "Data Structures"
+
+.in +1c
+.ti -1c
+.RI "struct \fBBIT_READER\fP"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBBIT_READER\fP * \fBinit_bit_reader\fP (const char *filePath)"
+.br
+.ti -1c
+.RI "int \fBread_bit\fP (\fBBIT_READER\fP *reader)"
+.br
+.ti -1c
+.RI "uint32_t \fBread_bits\fP (\fBBIT_READER\fP *reader, int numBits)"
+.br
+.RI "Processes the 10-byte GZIP header and any optional fields\&. "
+.ti -1c
+.RI "void \fBclose_bit_reader\fP (\fBBIT_READER\fP *reader)"
+.br
+.ti -1c
+.RI "bool \fBprocess_gzip_header\fP (\fBBIT_READER\fP *reader)"
+.br
+.ti -1c
+.RI "uint16_t \fBpeek_bits\fP (\fBBIT_READER\fP *reader, uint8_t n)"
+.br
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS "void close_bit_reader (\fBBIT_READER\fP * reader)"
+Closes the file handle and performs cleanup\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIreader\fP Pointer to the \fBBIT_READER\fP structure\&. 
+.RE
+.PP
+
+.SS "\fBBIT_READER\fP * init_bit_reader (const char * filePath)"
+Initializes the \fBBIT_READER\fP structure\&. Opens the file and resets the bit-reading state\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIfilePath\fP Path to the input file\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+0 on success, -1 on failure (e\&.g\&., file not found)\&. 
+.RE
+.PP
+
+.SS "uint16_t peek_bits (\fBBIT_READER\fP * reader, uint8_t n)\fR [extern]\fP"
+
+.SS "bool process_gzip_header (\fBBIT_READER\fP * reader)"
+
+.SS "int read_bit (\fBBIT_READER\fP * reader)"
+Reads a single bit from the stream\&. Handles reading new bytes from the file when the current byte is exhausted\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIreader\fP Pointer to the initialized \fBBIT_READER\fP\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The bit value (0 or 1), or -1 if the end of file is reached unexpectedly\&. 
+.RE
+.PP
+
+.SS "uint32_t read_bits (\fBBIT_READER\fP * reader, int numBits)"
+
+.PP
+Processes the 10-byte GZIP header and any optional fields\&. Reads a specified number of bits from the stream\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIreader\fP Pointer to the initialized \fBBIT_READER\fP\&. 
+.br
+\fInumBits\fP The number of bits to read (must be <= 32)\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The unsigned integer value represented by the bits, or 0xFFFFFFFF on error\&.
+.RE
+.PP
+.IP "\(bu" 2
+\fBParameters\fP
+.RS 4
+\fIreader\fP Pointer to the initialized \fBBIT_READER\fP\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if the header is valid and optional fields were processed (or skipped)\&. 
+
+.PP
+false if the file is not a valid GZIP stream or required features are unsupported\&. 
+.RE
+.PP
+
+.PP
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

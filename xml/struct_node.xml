@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="struct_node" kind="struct" language="C++" prot="public">
+    <compoundname>Node</compoundname>
+    <includes refid="node_8h" local="no">node.h</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="struct_node_1a598b58eb0ea6750cee33aa0ea62f6ccc" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int iFrequency</definition>
+        <argsstring></argsstring>
+        <name>iFrequency</name>
+        <qualifiedname>Node::iFrequency</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="node.h" line="12" column="9" bodyfile="node.h" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_node_1aef34b594003aef090557c68fa0976aef" prot="public" static="no" mutable="no">
+        <type>unsigned short</type>
+        <definition>unsigned short usSymbol</definition>
+        <argsstring></argsstring>
+        <name>usSymbol</name>
+        <qualifiedname>Node::usSymbol</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="node.h" line="13" column="20" bodyfile="node.h" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_node_1a3fbc6e3132038d871c08e9b71391893f" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="struct_node" kindref="compound">Node</ref> *</type>
+        <definition>struct Node* pnLeft</definition>
+        <argsstring></argsstring>
+        <name>pnLeft</name>
+        <qualifiedname>Node::pnLeft</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="node.h" line="14" column="16" bodyfile="node.h" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_node_1a72a7b991ec60f48cd33a359fb0c00942" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="struct_node" kindref="compound">Node</ref> *</type>
+        <definition>struct Node* pnRight</definition>
+        <argsstring></argsstring>
+        <name>pnRight</name>
+        <qualifiedname>Node::pnRight</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="node.h" line="15" column="16" bodyfile="node.h" bodystart="15" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>Node</label>
+        <link refid="struct_node"/>
+        <childnode refid="1" relation="usage">
+          <edgelabel>pnLeft</edgelabel>
+          <edgelabel>pnRight</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="node.h" line="11" column="1" bodyfile="node.h" bodystart="11" bodyend="16"/>
+    <listofallmembers>
+      <member refid="struct_node_1a598b58eb0ea6750cee33aa0ea62f6ccc" prot="public" virt="non-virtual"><scope>Node</scope><name>iFrequency</name></member>
+      <member refid="struct_node_1a3fbc6e3132038d871c08e9b71391893f" prot="public" virt="non-virtual"><scope>Node</scope><name>pnLeft</name></member>
+      <member refid="struct_node_1a72a7b991ec60f48cd33a359fb0c00942" prot="public" virt="non-virtual"><scope>Node</scope><name>pnRight</name></member>
+      <member refid="struct_node_1aef34b594003aef090557c68fa0976aef" prot="public" virt="non-virtual"><scope>Node</scope><name>usSymbol</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

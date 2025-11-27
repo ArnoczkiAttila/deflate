@@ -1,0 +1,236 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_node_8c" xml:lang="en-US">
+<title>node.c File Reference</title>
+<indexterm><primary>node.c</primary></indexterm>
+<programlisting linenumbering="unnumbered">#include &quot;node.h&quot;<?linebreak?>#include &lt;stdint.h&gt;<?linebreak?>#include &lt;stdlib.h&gt;<?linebreak?>#include &lt;stdio.h&gt;<?linebreak?>#include &quot;debugmalloc.h&quot;<?linebreak?></programlisting>Include dependency graph for node.c:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="node_8c__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Macros    </title>
+        <itemizedlist>
+            <listitem><para>#define <link linkend="_node_8c_1a90344de9a45f0d60f23aff3fea165e05">INVALID_NODE_SYMBOL</link>&#160;&#160;&#160;286</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_struct_node">Node</link> * <link linkend="_node_8c_1a476e2695789ae31745b5cd5cc5877792">createNode</link> (unsigned short usSymbol, int freq)</para>
+</listitem>
+            <listitem><para>void <link linkend="_node_8c_1afdf92c04775f1fdb56a48a6063f30b51">freeTree</link> (<link linkend="_struct_node">Node</link> *top)</para>
+</listitem>
+            <listitem><para>void <link linkend="_node_8c_1aa1c5f84fe9f09a17b82d2ed396c1e1ad">compressCodeLengths</link> (const uint8_t *all_lengths, size_t count, uint8_t *compressed_lengths, uint16_t *cl_frequencies, uint8_t *extra_bits_values, size_t *compressed_count)</para>
+</listitem>
+            <listitem><para>void <link linkend="_node_8c_1a25107a4508c2ffd75825c42e1239fa90">findCodeLengthsInTree</link> (<link linkend="_struct_node">Node</link> *node, uint8_t *lengths, uint8_t depth)</para>
+</listitem>
+            <listitem><para><link linkend="_struct_min_heap">MinHeap</link> * <link linkend="_node_8c_1a86c7eb4d5e202d4087bde685ae659e52">createMinHeap</link> (int capacity)</para>
+</listitem>
+            <listitem><para>void <link linkend="_node_8c_1ac9a5be012917c9c86e4cc688eb700e0c">addToMinHeap</link> (<link linkend="_struct_min_heap">MinHeap</link> *minHeap, <link linkend="_struct_node">Node</link> *node)</para>
+</listitem>
+            <listitem><para>void <link linkend="_node_8c_1abb1491b2a66959d3dea01a9b552c8e86">swapNodePointers</link> (<link linkend="_struct_node">Node</link> **a, <link linkend="_struct_node">Node</link> **b)</para>
+</listitem>
+            <listitem><para>void <link linkend="_node_8c_1ae90b32976c0036dd23f82b402230cb84">minHeapify</link> (<link linkend="_struct_min_heap">MinHeap</link> *minHeap, int i)</para>
+</listitem>
+            <listitem><para><link linkend="_struct_node">Node</link> * <link linkend="_node_8c_1aecbec578e3e80350306dd708f0e24b99">extractMin</link> (<link linkend="_struct_min_heap">MinHeap</link> *minHeap)</para>
+</listitem>
+            <listitem><para>void <link linkend="_node_8c_1afbdba32d1543027eda02773bce2ab102">freeMinHeap</link> (<link linkend="_struct_min_heap">MinHeap</link> *minHeap)</para>
+</listitem>
+            <listitem><para>void <link linkend="_node_8c_1a8196a5fffc96ca854a325d1fe349e8da">printHeap</link> (<link linkend="_struct_min_heap">MinHeap</link> *minHeap)</para>
+</listitem>
+            <listitem><para>void <link linkend="_node_8c_1ae6e53a77c8389ec5fa741eeab2e95cd9">buildMinHeap</link> (<link linkend="_struct_min_heap">MinHeap</link> *minHeap)</para>
+</listitem>
+            <listitem><para>int <link linkend="_node_8c_1a3620a363633d7b5214f68fc8692fb075">parentIndex</link> (int i)</para>
+</listitem>
+            <listitem><para>int <link linkend="_node_8c_1abf874a257b47b5a785891cc3d9920251">leftChildIndex</link> (int i)</para>
+</listitem>
+            <listitem><para>void <link linkend="_node_8c_1a2fa8d61f1354f6602498abd3f4415417">insertMinHeap</link> (<link linkend="_struct_min_heap">MinHeap</link> *minHeap, <link linkend="_struct_node">Node</link> *newNode)</para>
+</listitem>
+            <listitem><para><link linkend="_struct_node">Node</link> * <link linkend="_node_8c_1a7dddf9d8d87a548cf9d63568af9f56fa">buildHuffmanTree</link> (<link linkend="_struct_min_heap">MinHeap</link> *minHeap)</para>
+
+<para>Creates the Huffman tree from the populated Min-Heap. </para>
+</listitem>
+            <listitem><para>void <link linkend="_node_8c_1aa5388bed3eaea8eee24e56c7e66b1e62">extract_code_lengths</link> (<link linkend="_struct_node">Node</link> *npCurrent, uint8_t uiCurrentDepth, uint8_t *uiLengthCodes)</para>
+
+<para>Traverses a Huffman tree to determine the bit length (depth) for every symbol. </para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Macro Definition Documentation</title>
+<anchor xml:id="_node_8c_1a90344de9a45f0d60f23aff3fea165e05"/><section>
+    <title>INVALID_NODE_SYMBOL</title>
+<indexterm><primary>INVALID_NODE_SYMBOL</primary><secondary>node.c</secondary></indexterm>
+<indexterm><primary>node.c</primary><secondary>INVALID_NODE_SYMBOL</secondary></indexterm>
+<para><computeroutput>#define INVALID_NODE_SYMBOL&#160;&#160;&#160;286</computeroutput></para></section>
+</section>
+<section>
+<title>Function Documentation</title>
+<anchor xml:id="_node_8c_1ac9a5be012917c9c86e4cc688eb700e0c"/><section>
+    <title>addToMinHeap()</title>
+<indexterm><primary>addToMinHeap</primary><secondary>node.c</secondary></indexterm>
+<indexterm><primary>node.c</primary><secondary>addToMinHeap</secondary></indexterm>
+<para><computeroutput>void addToMinHeap (<link linkend="_struct_min_heap">MinHeap</link> * minHeap, <link linkend="_struct_node">Node</link> * node)<computeroutput>[extern]</computeroutput></computeroutput></para></section>
+<anchor xml:id="_node_8c_1a7dddf9d8d87a548cf9d63568af9f56fa"/><section>
+    <title>buildHuffmanTree()</title>
+<indexterm><primary>buildHuffmanTree</primary><secondary>node.c</secondary></indexterm>
+<indexterm><primary>node.c</primary><secondary>buildHuffmanTree</secondary></indexterm>
+<para><computeroutput><link linkend="_struct_node">Node</link> * buildHuffmanTree (<link linkend="_struct_min_heap">MinHeap</link> * minHeap)</computeroutput></para><para>
+
+<para>Creates the Huffman tree from the populated Min-Heap. </para>
+</para>
+
+<para><itemizedlist>
+<listitem>
+<para>This is the greedy algorithm core: repeatedly combine the two smallest nodes.</para>
+</listitem><listitem>
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>minHeap</entry><entry>
+<para>The initialized Min-Heap containing all leaf nodes. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>Node* The root of the completed Huffman tree. </para>
+</formalpara>
+</para>
+</listitem></itemizedlist>
+</para>
+</section>
+<anchor xml:id="_node_8c_1ae6e53a77c8389ec5fa741eeab2e95cd9"/><section>
+    <title>buildMinHeap()</title>
+<indexterm><primary>buildMinHeap</primary><secondary>node.c</secondary></indexterm>
+<indexterm><primary>node.c</primary><secondary>buildMinHeap</secondary></indexterm>
+<para><computeroutput>void buildMinHeap (<link linkend="_struct_min_heap">MinHeap</link> * minHeap)</computeroutput></para></section>
+<anchor xml:id="_node_8c_1aa1c5f84fe9f09a17b82d2ed396c1e1ad"/><section>
+    <title>compressCodeLengths()</title>
+<indexterm><primary>compressCodeLengths</primary><secondary>node.c</secondary></indexterm>
+<indexterm><primary>node.c</primary><secondary>compressCodeLengths</secondary></indexterm>
+<para><computeroutput>void compressCodeLengths (const uint8_t * all_lengths, size_t count, uint8_t * compressed_lengths, uint16_t * cl_frequencies, uint8_t * extra_bits_values, size_t * compressed_count)<computeroutput>[extern]</computeroutput></computeroutput></para></section>
+<anchor xml:id="_node_8c_1a86c7eb4d5e202d4087bde685ae659e52"/><section>
+    <title>createMinHeap()</title>
+<indexterm><primary>createMinHeap</primary><secondary>node.c</secondary></indexterm>
+<indexterm><primary>node.c</primary><secondary>createMinHeap</secondary></indexterm>
+<para><computeroutput><link linkend="_struct_min_heap">MinHeap</link> * createMinHeap (int capacity)<computeroutput>[extern]</computeroutput></computeroutput></para></section>
+<anchor xml:id="_node_8c_1a476e2695789ae31745b5cd5cc5877792"/><section>
+    <title>createNode()</title>
+<indexterm><primary>createNode</primary><secondary>node.c</secondary></indexterm>
+<indexterm><primary>node.c</primary><secondary>createNode</secondary></indexterm>
+<para><computeroutput><link linkend="_struct_node">Node</link> * createNode (unsigned short usSymbol, int freq)</computeroutput></para></section>
+<anchor xml:id="_node_8c_1aa5388bed3eaea8eee24e56c7e66b1e62"/><section>
+    <title>extract_code_lengths()</title>
+<indexterm><primary>extract_code_lengths</primary><secondary>node.c</secondary></indexterm>
+<indexterm><primary>node.c</primary><secondary>extract_code_lengths</secondary></indexterm>
+<para><computeroutput>void extract_code_lengths (<link linkend="_struct_node">Node</link> * npCurrent, uint8_t uiCurrentDepth, uint8_t * uiLengthCodes)<computeroutput>[extern]</computeroutput></computeroutput></para><para>
+
+<para>Traverses a Huffman tree to determine the bit length (depth) for every symbol. </para>
+</para>
+
+<para><itemizedlist>
+<listitem>
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>current_node</entry><entry>
+<para>The current node in the traversal (start with the tree root). </para>
+</entry>
+                            </row>
+                            <row>
+<entry>uiCurrentDepth</entry><entry>
+<para>The depth of the current node (start with 0 for the root). </para>
+</entry>
+                            </row>
+                            <row>
+<entry>uiLengthCodes</entry><entry>
+<para>The array where the resulting code lengths are stored. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                </para>
+</listitem></itemizedlist>
+</para>
+</section>
+<anchor xml:id="_node_8c_1aecbec578e3e80350306dd708f0e24b99"/><section>
+    <title>extractMin()</title>
+<indexterm><primary>extractMin</primary><secondary>node.c</secondary></indexterm>
+<indexterm><primary>node.c</primary><secondary>extractMin</secondary></indexterm>
+<para><computeroutput><link linkend="_struct_node">Node</link> * extractMin (<link linkend="_struct_min_heap">MinHeap</link> * minHeap)<computeroutput>[extern]</computeroutput></computeroutput></para></section>
+<anchor xml:id="_node_8c_1a25107a4508c2ffd75825c42e1239fa90"/><section>
+    <title>findCodeLengthsInTree()</title>
+<indexterm><primary>findCodeLengthsInTree</primary><secondary>node.c</secondary></indexterm>
+<indexterm><primary>node.c</primary><secondary>findCodeLengthsInTree</secondary></indexterm>
+<para><computeroutput>void findCodeLengthsInTree (<link linkend="_struct_node">Node</link> * node, uint8_t * lengths, uint8_t depth)<computeroutput>[extern]</computeroutput></computeroutput></para></section>
+<anchor xml:id="_node_8c_1afbdba32d1543027eda02773bce2ab102"/><section>
+    <title>freeMinHeap()</title>
+<indexterm><primary>freeMinHeap</primary><secondary>node.c</secondary></indexterm>
+<indexterm><primary>node.c</primary><secondary>freeMinHeap</secondary></indexterm>
+<para><computeroutput>void freeMinHeap (<link linkend="_struct_min_heap">MinHeap</link> * minHeap)<computeroutput>[extern]</computeroutput></computeroutput></para></section>
+<anchor xml:id="_node_8c_1afdf92c04775f1fdb56a48a6063f30b51"/><section>
+    <title>freeTree()</title>
+<indexterm><primary>freeTree</primary><secondary>node.c</secondary></indexterm>
+<indexterm><primary>node.c</primary><secondary>freeTree</secondary></indexterm>
+<para><computeroutput>void freeTree (<link linkend="_struct_node">Node</link> * top)<computeroutput>[extern]</computeroutput></computeroutput></para></section>
+<anchor xml:id="_node_8c_1a2fa8d61f1354f6602498abd3f4415417"/><section>
+    <title>insertMinHeap()</title>
+<indexterm><primary>insertMinHeap</primary><secondary>node.c</secondary></indexterm>
+<indexterm><primary>node.c</primary><secondary>insertMinHeap</secondary></indexterm>
+<para><computeroutput>void insertMinHeap (<link linkend="_struct_min_heap">MinHeap</link> * minHeap, <link linkend="_struct_node">Node</link> * newNode)</computeroutput></para></section>
+<anchor xml:id="_node_8c_1abf874a257b47b5a785891cc3d9920251"/><section>
+    <title>leftChildIndex()</title>
+<indexterm><primary>leftChildIndex</primary><secondary>node.c</secondary></indexterm>
+<indexterm><primary>node.c</primary><secondary>leftChildIndex</secondary></indexterm>
+<para><computeroutput>int leftChildIndex (int i)</computeroutput></para></section>
+<anchor xml:id="_node_8c_1ae90b32976c0036dd23f82b402230cb84"/><section>
+    <title>minHeapify()</title>
+<indexterm><primary>minHeapify</primary><secondary>node.c</secondary></indexterm>
+<indexterm><primary>node.c</primary><secondary>minHeapify</secondary></indexterm>
+<para><computeroutput>void minHeapify (<link linkend="_struct_min_heap">MinHeap</link> * minHeap, int i)</computeroutput></para></section>
+<anchor xml:id="_node_8c_1a3620a363633d7b5214f68fc8692fb075"/><section>
+    <title>parentIndex()</title>
+<indexterm><primary>parentIndex</primary><secondary>node.c</secondary></indexterm>
+<indexterm><primary>node.c</primary><secondary>parentIndex</secondary></indexterm>
+<para><computeroutput>int parentIndex (int i)</computeroutput></para></section>
+<anchor xml:id="_node_8c_1a8196a5fffc96ca854a325d1fe349e8da"/><section>
+    <title>printHeap()</title>
+<indexterm><primary>printHeap</primary><secondary>node.c</secondary></indexterm>
+<indexterm><primary>node.c</primary><secondary>printHeap</secondary></indexterm>
+<para><computeroutput>void printHeap (<link linkend="_struct_min_heap">MinHeap</link> * minHeap)</computeroutput></para></section>
+<anchor xml:id="_node_8c_1abb1491b2a66959d3dea01a9b552c8e86"/><section>
+    <title>swapNodePointers()</title>
+<indexterm><primary>swapNodePointers</primary><secondary>node.c</secondary></indexterm>
+<indexterm><primary>node.c</primary><secondary>swapNodePointers</secondary></indexterm>
+<para><computeroutput>void swapNodePointers (<link linkend="_struct_node">Node</link> ** a, <link linkend="_struct_node">Node</link> ** b)</computeroutput></para></section>
+</section>
+</section>

@@ -12,4 +12,11 @@ CMakeFiles/deflate.dir/HUFFMAN_TABLE.c.obj: \
  C:/Program\ Files/JetBrains/CLion\ 2025.2.2/bin/mingw/x86_64-w64-mingw32/include/sdks/_mingw_ddk.h \
  C:/Program\ Files/JetBrains/CLion\ 2025.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/stddef.h \
  C:/Program\ Files/JetBrains/CLion\ 2025.2.2/bin/mingw/x86_64-w64-mingw32/include/stddef.h \
+ C:\Users\Attila\Documents\GitHub\deflate\bitreader.h \
+ C:/Program\ Files/JetBrains/CLion\ 2025.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/stdbool.h \
+ C:/Program\ Files/JetBrains/CLion\ 2025.2.2/bin/mingw/x86_64-w64-mingw32/include/stdio.h \
+ C:/Program\ Files/JetBrains/CLion\ 2025.2.2/bin/mingw/x86_64-w64-mingw32/include/corecrt_stdio_config.h \
+ C:/Program\ Files/JetBrains/CLion\ 2025.2.2/bin/mingw/x86_64-w64-mingw32/include/_mingw_off_t.h \
+ C:/Program\ Files/JetBrains/CLion\ 2025.2.2/bin/mingw/x86_64-w64-mingw32/include/swprintf.inl \
+ C:/Program\ Files/JetBrains/CLion\ 2025.2.2/bin/mingw/x86_64-w64-mingw32/include/sec_api/stdio_s.h \
  C:\Users\Attila\Documents\GitHub\deflate\node.h

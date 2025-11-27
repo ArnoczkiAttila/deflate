@@ -1,0 +1,54 @@
+.TH "LZ77_buffer" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+LZ77_buffer \- Structure to manage a dynamic array (growing buffer) of LZ77 tokens\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <LZ77\&.h>\fP
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "\fBLZ77_compressed\fP * \fBtokens\fP"
+.br
+.RI "Pointer to the start of the dynamic array of tokens\&. "
+.ti -1c
+.RI "size_t \fBsize\fP"
+.br
+.RI "The current number of tokens stored (using size_t for large files)\&. "
+.ti -1c
+.RI "size_t \fBcapacity\fP"
+.br
+.RI "The total number of tokens the buffer can hold\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+Structure to manage a dynamic array (growing buffer) of LZ77 tokens\&. 
+
+
+.IP "\(bu" 2
+Stores the tokens directly in a contiguous array (LZ77_compressed*), avoiding per-token allocations for better performance and cache utilization\&. 
+.PP
+
+.SH "Field Documentation"
+.PP 
+.SS "size_t capacity"
+
+.PP
+The total number of tokens the buffer can hold\&. 
+.SS "size_t size"
+
+.PP
+The current number of tokens stored (using size_t for large files)\&. 
+.SS "\fBLZ77_compressed\fP* tokens"
+
+.PP
+Pointer to the start of the dynamic array of tokens\&. 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

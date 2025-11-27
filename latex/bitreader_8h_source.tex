@@ -1,0 +1,39 @@
+\doxysection{bitreader.\+h}
+\label{bitreader_8h_source}\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ Created\ by\ Attila\ on\ 11/24/2025.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#ifndef\ DEFLATE\_BITREADER\_H}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ DEFLATE\_BITREADER\_H}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00012\ \ \ \ \ FILE\ *file;}
+\DoxyCodeLine{00013\ \ \ \ \ uint8\_t*\ buffer;}
+\DoxyCodeLine{00014\ \ \ \ \ uint8\_t\ byte;}
+\DoxyCodeLine{00015\ \ \ \ \ uint8\_t\ currentPosition;}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ bufferSize;}
+\DoxyCodeLine{00017\ \ \ \ \ uint16\_t\ index;}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordtype}{char}*\ fileName;}
+\DoxyCodeLine{00019\ \}\ BIT\_READER;}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00027\ BIT\_READER*\ init\_bit\_reader(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *filePath);}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00035\ \textcolor{keywordtype}{int}\ read\_bit(BIT\_READER\ *reader);}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00043\ uint32\_t\ read\_bits(BIT\_READER\ *reader,\ \textcolor{keywordtype}{int}\ numBits);}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00049\ \textcolor{keywordtype}{void}\ close\_bit\_reader(BIT\_READER\ *reader);}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \textcolor{comment}{//void\ createFile(BIT\_READER*\ bw,\ char*\ fileName,\ char*\ extension);}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{keywordtype}{bool}\ process\_gzip\_header(BIT\_READER\ *reader);}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \textcolor{keyword}{extern}\ uint16\_t\ peek\_bits(BIT\_READER*\ reader,\ uint8\_t\ n);}
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//DEFLATE\_BITREADER\_H}}
+
+\end{DoxyCode}

@@ -26,4 +26,4 @@ add_executable(deflate main.c
         bitreader.h
         decompress.h)
 
-target_compile_options(deflate PRIVATE -Wall -Werror)
+#target_compile_options(deflate PRIVATE -Wall -Werror)

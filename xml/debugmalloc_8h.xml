@@ -1,0 +1,1285 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="debugmalloc_8h" kind="file" language="C++">
+    <compoundname>debugmalloc.h</compoundname>
+    <includes local="no">stdbool.h</includes>
+    <includes local="no">stddef.h</includes>
+    <includes local="no">stdlib.h</includes>
+    <includes local="no">stdio.h</includes>
+    <includes local="no">ctype.h</includes>
+    <includes local="no">string.h</includes>
+    <includes local="no">stdarg.h</includes>
+    <includes local="no">unistd.h</includes>
+    <includedby refid="bitreader_8c" local="yes">bitreader.c</includedby>
+    <includedby refid="compress_8c" local="yes">compress.c</includedby>
+    <includedby refid="node_8c" local="yes">node.c</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>debugmalloc.h</label>
+        <link refid="debugmalloc_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>ctype.h</label>
+      </node>
+      <node id="8">
+        <label>stdarg.h</label>
+      </node>
+      <node id="2">
+        <label>stdbool.h</label>
+      </node>
+      <node id="3">
+        <label>stddef.h</label>
+      </node>
+      <node id="5">
+        <label>stdio.h</label>
+      </node>
+      <node id="4">
+        <label>stdlib.h</label>
+      </node>
+      <node id="7">
+        <label>string.h</label>
+      </node>
+      <node id="9">
+        <label>unistd.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2">
+        <label>bitreader.c</label>
+        <link refid="bitreader_8c"/>
+      </node>
+      <node id="3">
+        <label>compress.c</label>
+        <link refid="compress_8c"/>
+      </node>
+      <node id="1">
+        <label>debugmalloc.h</label>
+        <link refid="debugmalloc_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>node.c</label>
+        <link refid="node_8c"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="struct_debugmalloc_entry" prot="public">DebugmallocEntry</innerclass>
+    <innerclass refid="struct_debugmalloc_data" prot="public">DebugmallocData</innerclass>
+    <sectiondef kind="define">
+      <memberdef kind="define" id="debugmalloc_8h_1a535b58ab5aa48e2e86073e334d43fd32" prot="public" static="no">
+        <name>malloc</name>
+        <param><defname>S</defname></param>
+        <initializer>debugmalloc_malloc_full((S), &quot;malloc&quot;, #S, __FILE__, __LINE__, false)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="debugmalloc.h" line="501" column="9" bodyfile="debugmalloc.h" bodystart="501" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="debugmalloc_8h_1ac07b71d27b6b37e81ac3a4c230f5794e" prot="public" static="no">
+        <name>calloc</name>
+        <param><defname>N</defname></param>
+        <param><defname>S</defname></param>
+        <initializer>debugmalloc_malloc_full((N)*(S), &quot;calloc&quot;, #N &quot;, &quot; #S, __FILE__, __LINE__, true)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="debugmalloc.h" line="502" column="9" bodyfile="debugmalloc.h" bodystart="502" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="debugmalloc_8h_1a54df243d89c451240697d7d3afb5663f" prot="public" static="no">
+        <name>realloc</name>
+        <param><defname>P</defname></param>
+        <param><defname>S</defname></param>
+        <initializer>debugmalloc_realloc_full((P), (S), &quot;realloc&quot;, #S, __FILE__, __LINE__)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="debugmalloc.h" line="503" column="9" bodyfile="debugmalloc.h" bodystart="503" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="debugmalloc_8h_1aa7943e5d135734f6801bebcc37401fc0" prot="public" static="no">
+        <name>free</name>
+        <param><defname>P</defname></param>
+        <initializer>debugmalloc_free_full((P), &quot;free&quot;, __FILE__, __LINE__)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="debugmalloc.h" line="504" column="9" bodyfile="debugmalloc.h" bodystart="504" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="debugmalloc_8h_1a759f9c1272a31ed1e46a030091fe03e3" prot="public" static="no">
+        <name>strdup</name>
+        <param><defname>S</defname></param>
+        <initializer>debugmalloc_strdup((S), &quot;strdup&quot;, #S, __FILE__, __LINE__)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="debugmalloc.h" line="537" column="9" bodyfile="debugmalloc.h" bodystart="537" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="debugmalloc_8h_1a4db6dcbb705883ad4a28ff882964bb8a" prot="public" static="no">
+        <name>strndup</name>
+        <param><defname>S</defname></param>
+        <param><defname>N</defname></param>
+        <initializer>debugmalloc_strndup((S), (N), &quot;strndup&quot;, #S, __FILE__, __LINE__)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="debugmalloc.h" line="538" column="9" bodyfile="debugmalloc.h" bodystart="538" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="enum">
+      <memberdef kind="enum" id="debugmalloc_8h_1ad6725ad24902750bb8080fb21c8d6ec4" prot="public" static="no" strong="no">
+        <type></type>
+        <name></name>
+        <enumvalue id="debugmalloc_8h_1ad6725ad24902750bb8080fb21c8d6ec4ab345007cf28a2516c0ba24371a400520" prot="public">
+          <name>debugmalloc_canary_size</name>
+          <initializer>= 64</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="debugmalloc_8h_1ad6725ad24902750bb8080fb21c8d6ec4a8e3d5ad8628140edd887b8920f521cfd" prot="public">
+          <name>debugmalloc_canary_char</name>
+          <initializer>= &apos;K&apos;</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="debugmalloc_8h_1ad6725ad24902750bb8080fb21c8d6ec4a40803f0d5a26a349a78cbd998cb8a2a1" prot="public">
+          <name>debugmalloc_tablesize</name>
+          <initializer>= 256</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="debugmalloc_8h_1ad6725ad24902750bb8080fb21c8d6ec4ae8726dfde3f35d4345009234ee734f6c" prot="public">
+          <name>debugmalloc_max_block_size_default</name>
+          <initializer>= 1048576</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="debugmalloc.h" line="13" column="1" bodyfile="debugmalloc.h" bodystart="13" bodyend="26"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="debugmalloc_8h_1a69e016f03a024f815bedf07ed671d4ea" prot="public" static="no">
+        <type>struct DebugmallocEntry</type>
+        <definition>typedef struct DebugmallocEntry DebugmallocEntry</definition>
+        <argsstring></argsstring>
+        <name>DebugmallocEntry</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="debugmalloc.h" line="63" column="18"/>
+      </memberdef>
+      <memberdef kind="typedef" id="debugmalloc_8h_1a6270b6c4128e9715c7e47c0d007e4367" prot="public" static="no">
+        <type>struct DebugmallocData</type>
+        <definition>typedef struct DebugmallocData DebugmallocData</definition>
+        <argsstring></argsstring>
+        <name>DebugmallocData</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="debugmalloc.h" line="75" column="17"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="debugmalloc_8h_1a5dd0c329b734eeefd1909d15385f8b95" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int putenv</definition>
+        <argsstring>(char *)</argsstring>
+        <name>putenv</name>
+        <param>
+          <type>char *</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="debugmalloc.h" line="47" column="9" declfile="debugmalloc.h" declline="47" declcolumn="9"/>
+      </memberdef>
+      <memberdef kind="function" id="debugmalloc_8h_1aab3876bb3571062c705e80ca0f784c34" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="struct_debugmalloc_data" kindref="compound">DebugmallocData</ref> *</type>
+        <definition>static DebugmallocData * debugmalloc_create</definition>
+        <argsstring>(void)</argsstring>
+        <name>debugmalloc_create</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="debugmalloc.h" line="451" column="25" bodyfile="debugmalloc.h" bodystart="451" bodyend="487" declfile="debugmalloc.h" declline="79" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="function" id="debugmalloc_8h_1a3932cdc596c201d121302ea5313baf8b" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="struct_debugmalloc_data" kindref="compound">DebugmallocData</ref> *</type>
+        <definition>static DebugmallocData * debugmalloc_singleton</definition>
+        <argsstring>(void)</argsstring>
+        <name>debugmalloc_singleton</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="debugmalloc.h" line="88" column="25" bodyfile="debugmalloc.h" bodystart="88" bodyend="115"/>
+      </memberdef>
+      <memberdef kind="function" id="debugmalloc_8h_1a965222182c436acb6f4594b9e8448275" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void debugmalloc_strlcpy</definition>
+        <argsstring>(char *dest, char const *src, size_t destsize)</argsstring>
+        <name>debugmalloc_strlcpy</name>
+        <param>
+          <type>char *</type>
+          <declname>dest</declname>
+        </param>
+        <param>
+          <type>char const *</type>
+          <declname>src</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>destsize</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="debugmalloc.h" line="119" column="13" bodyfile="debugmalloc.h" bodystart="119" bodyend="122"/>
+      </memberdef>
+      <memberdef kind="function" id="debugmalloc_8h_1a1e79d2804b927b8bd199ea3ac7cd5896" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void debugmalloc_log_file</definition>
+        <argsstring>(char const *logfilename)</argsstring>
+        <name>debugmalloc_log_file</name>
+        <param>
+          <type>char const *</type>
+          <declname>logfilename</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="debugmalloc.h" line="127" column="13" bodyfile="debugmalloc.h" bodystart="127" bodyend="132"/>
+      </memberdef>
+      <memberdef kind="function" id="debugmalloc_8h_1a17a4cd966d1cfccf33672d4796a3b4fd" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void debugmalloc_max_block_size</definition>
+        <argsstring>(long max_block_size)</argsstring>
+        <name>debugmalloc_max_block_size</name>
+        <param>
+          <type>long</type>
+          <declname>max_block_size</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="debugmalloc.h" line="136" column="13" bodyfile="debugmalloc.h" bodystart="136" bodyend="139"/>
+      </memberdef>
+      <memberdef kind="function" id="debugmalloc_8h_1a1506f2d2201b845c99f845e888772bb0" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void debugmalloc_log</definition>
+        <argsstring>(char const *format,...)</argsstring>
+        <name>debugmalloc_log</name>
+        <param>
+          <type>char const *</type>
+          <declname>format</declname>
+        </param>
+        <param>
+          <type>...</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="debugmalloc.h" line="144" column="13" bodyfile="debugmalloc.h" bodystart="144" bodyend="163"/>
+      </memberdef>
+      <memberdef kind="function" id="debugmalloc_8h_1aa96f75910b1726e5ad36c4f06383bfba" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void debugmalloc_memory_init</definition>
+        <argsstring>(DebugmallocEntry *elem, bool zero)</argsstring>
+        <name>debugmalloc_memory_init</name>
+        <param>
+          <type><ref refid="struct_debugmalloc_entry" kindref="compound">DebugmallocEntry</ref> *</type>
+          <declname>elem</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>zero</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="debugmalloc.h" line="170" column="13" bodyfile="debugmalloc.h" bodystart="170" bodyend="178"/>
+      </memberdef>
+      <memberdef kind="function" id="debugmalloc_8h_1ac475ae3432c576aa37be2c49f3137cb0" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool debugmalloc_canary_ok</definition>
+        <argsstring>(DebugmallocEntry const *elem)</argsstring>
+        <name>debugmalloc_canary_ok</name>
+        <param>
+          <type><ref refid="struct_debugmalloc_entry" kindref="compound">DebugmallocEntry</ref> const *</type>
+          <declname>elem</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="debugmalloc.h" line="181" column="13" bodyfile="debugmalloc.h" bodystart="181" bodyend="192"/>
+      </memberdef>
+      <memberdef kind="function" id="debugmalloc_8h_1ad415effac3de0ce0e60ac6d4e44f8cf4" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void debugmalloc_dump_memory</definition>
+        <argsstring>(char const *mem, size_t size)</argsstring>
+        <name>debugmalloc_dump_memory</name>
+        <param>
+          <type>char const *</type>
+          <declname>mem</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>size</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="debugmalloc.h" line="196" column="13" bodyfile="debugmalloc.h" bodystart="196" bodyend="219"/>
+      </memberdef>
+      <memberdef kind="function" id="debugmalloc_8h_1aec75e4c3d06515f6e9dfbfba702fd8fd" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void debugmalloc_dump_elem</definition>
+        <argsstring>(DebugmallocEntry const *elem)</argsstring>
+        <name>debugmalloc_dump_elem</name>
+        <param>
+          <type><ref refid="struct_debugmalloc_entry" kindref="compound">DebugmallocEntry</ref> const *</type>
+          <declname>elem</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="debugmalloc.h" line="224" column="13" bodyfile="debugmalloc.h" bodystart="224" bodyend="244"/>
+      </memberdef>
+      <memberdef kind="function" id="debugmalloc_8h_1a265eedf9a85f7ae8dc3d4f075878a42a" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void debugmalloc_dump</definition>
+        <argsstring>(void)</argsstring>
+        <name>debugmalloc_dump</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="debugmalloc.h" line="248" column="13" bodyfile="debugmalloc.h" bodystart="248" bodyend="261"/>
+      </memberdef>
+      <memberdef kind="function" id="debugmalloc_8h_1aeecc9624e06a6d448eb4588ec314f034" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void debugmalloc_atexit_dump</definition>
+        <argsstring>(void)</argsstring>
+        <name>debugmalloc_atexit_dump</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="debugmalloc.h" line="266" column="13" bodyfile="debugmalloc.h" bodystart="266" bodyend="283"/>
+      </memberdef>
+      <memberdef kind="function" id="debugmalloc_8h_1aada2abd5626cdd1cbb8629e84924bb95" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>static size_t debugmalloc_hash</definition>
+        <argsstring>(void *address)</argsstring>
+        <name>debugmalloc_hash</name>
+        <param>
+          <type>void *</type>
+          <declname>address</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="debugmalloc.h" line="287" column="15" bodyfile="debugmalloc.h" bodystart="287" bodyend="292"/>
+      </memberdef>
+      <memberdef kind="function" id="debugmalloc_8h_1ab28aa4016c741c44f64eec4a9dafdb56" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void debugmalloc_insert</definition>
+        <argsstring>(DebugmallocEntry *entry)</argsstring>
+        <name>debugmalloc_insert</name>
+        <param>
+          <type><ref refid="struct_debugmalloc_entry" kindref="compound">DebugmallocEntry</ref> *</type>
+          <declname>entry</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="debugmalloc.h" line="296" column="13" bodyfile="debugmalloc.h" bodystart="296" bodyend="308"/>
+      </memberdef>
+      <memberdef kind="function" id="debugmalloc_8h_1aa813633f8fc312a7265c9818aeec2081" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void debugmalloc_remove</definition>
+        <argsstring>(DebugmallocEntry *entry)</argsstring>
+        <name>debugmalloc_remove</name>
+        <param>
+          <type><ref refid="struct_debugmalloc_entry" kindref="compound">DebugmallocEntry</ref> *</type>
+          <declname>entry</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="debugmalloc.h" line="312" column="13" bodyfile="debugmalloc.h" bodystart="312" bodyend="318"/>
+      </memberdef>
+      <memberdef kind="function" id="debugmalloc_8h_1acde12e1cdc0e6d1815a026806dda4e23" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="struct_debugmalloc_entry" kindref="compound">DebugmallocEntry</ref> *</type>
+        <definition>static DebugmallocEntry * debugmalloc_find</definition>
+        <argsstring>(void *mem)</argsstring>
+        <name>debugmalloc_find</name>
+        <param>
+          <type>void *</type>
+          <declname>mem</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="debugmalloc.h" line="323" column="25" bodyfile="debugmalloc.h" bodystart="323" bodyend="331"/>
+      </memberdef>
+      <memberdef kind="function" id="debugmalloc_8h_1ab57618c537a845da121869a91f63355a" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void *</type>
+        <definition>static void * debugmalloc_malloc_full</definition>
+        <argsstring>(size_t size, char const *func, char const *expr, char const *file, unsigned line, bool zero)</argsstring>
+        <name>debugmalloc_malloc_full</name>
+        <param>
+          <type>size_t</type>
+          <declname>size</declname>
+        </param>
+        <param>
+          <type>char const *</type>
+          <declname>func</declname>
+        </param>
+        <param>
+          <type>char const *</type>
+          <declname>expr</declname>
+        </param>
+        <param>
+          <type>char const *</type>
+          <declname>file</declname>
+        </param>
+        <param>
+          <type>unsigned</type>
+          <declname>line</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>zero</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="debugmalloc.h" line="335" column="13" bodyfile="debugmalloc.h" bodystart="335" bodyend="377"/>
+      </memberdef>
+      <memberdef kind="function" id="debugmalloc_8h_1ae049fb355abd8925088e24275df2c68a" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void debugmalloc_free_inner</definition>
+        <argsstring>(DebugmallocEntry *deleted)</argsstring>
+        <name>debugmalloc_free_inner</name>
+        <param>
+          <type><ref refid="struct_debugmalloc_entry" kindref="compound">DebugmallocEntry</ref> *</type>
+          <declname>deleted</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="debugmalloc.h" line="383" column="13" bodyfile="debugmalloc.h" bodystart="383" bodyend="390"/>
+      </memberdef>
+      <memberdef kind="function" id="debugmalloc_8h_1aae2ed05eea0b0a287073d05b52adee63" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void debugmalloc_free_full</definition>
+        <argsstring>(void *mem, char const *func, char const *file, unsigned line)</argsstring>
+        <name>debugmalloc_free_full</name>
+        <param>
+          <type>void *</type>
+          <declname>mem</declname>
+        </param>
+        <param>
+          <type>char const *</type>
+          <declname>func</declname>
+        </param>
+        <param>
+          <type>char const *</type>
+          <declname>file</declname>
+        </param>
+        <param>
+          <type>unsigned</type>
+          <declname>line</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="debugmalloc.h" line="396" column="13" bodyfile="debugmalloc.h" bodystart="396" bodyend="414"/>
+      </memberdef>
+      <memberdef kind="function" id="debugmalloc_8h_1ad2a76c995a74df229fa8bb2cf780a389" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void *</type>
+        <definition>static void * debugmalloc_realloc_full</definition>
+        <argsstring>(void *oldmem, size_t newsize, char const *func, char const *expr, char const *file, unsigned line)</argsstring>
+        <name>debugmalloc_realloc_full</name>
+        <param>
+          <type>void *</type>
+          <declname>oldmem</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>newsize</declname>
+        </param>
+        <param>
+          <type>char const *</type>
+          <declname>func</declname>
+        </param>
+        <param>
+          <type>char const *</type>
+          <declname>expr</declname>
+        </param>
+        <param>
+          <type>char const *</type>
+          <declname>file</declname>
+        </param>
+        <param>
+          <type>unsigned</type>
+          <declname>line</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="debugmalloc.h" line="418" column="13" bodyfile="debugmalloc.h" bodystart="418" bodyend="447"/>
+      </memberdef>
+      <memberdef kind="function" id="debugmalloc_8h_1adb968bf34b97b72736d1ee55f0a9992e" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>char *</type>
+        <definition>static char * debugmalloc_strdup</definition>
+        <argsstring>(const char *s, char const *func, char const *expr, char const *file, unsigned line)</argsstring>
+        <name>debugmalloc_strdup</name>
+        <param>
+          <type>const char *</type>
+          <declname>s</declname>
+        </param>
+        <param>
+          <type>char const *</type>
+          <declname>func</declname>
+        </param>
+        <param>
+          <type>char const *</type>
+          <declname>expr</declname>
+        </param>
+        <param>
+          <type>char const *</type>
+          <declname>file</declname>
+        </param>
+        <param>
+          <type>unsigned</type>
+          <declname>line</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="debugmalloc.h" line="509" column="21" bodyfile="debugmalloc.h" bodystart="509" bodyend="518"/>
+      </memberdef>
+      <memberdef kind="function" id="debugmalloc_8h_1a7ac30a9294cfedfef7f91be83caffed5" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>char *</type>
+        <definition>static char * debugmalloc_strndup</definition>
+        <argsstring>(const char *s, size_t n, char const *func, char const *expr, char const *file, unsigned line)</argsstring>
+        <name>debugmalloc_strndup</name>
+        <param>
+          <type>const char *</type>
+          <declname>s</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>n</declname>
+        </param>
+        <param>
+          <type>char const *</type>
+          <declname>func</declname>
+        </param>
+        <param>
+          <type>char const *</type>
+          <declname>expr</declname>
+        </param>
+        <param>
+          <type>char const *</type>
+          <declname>file</declname>
+        </param>
+        <param>
+          <type>unsigned</type>
+          <declname>line</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="debugmalloc.h" line="521" column="21" bodyfile="debugmalloc.h" bodystart="521" bodyend="535"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>DEBUGMALLOC_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DEBUGMALLOC_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdbool.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stddef.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdlib.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;ctype.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdarg.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>size<sp/>of<sp/>canary<sp/>in<sp/>bytes.<sp/>should<sp/>be<sp/>multiple<sp/>of<sp/>largest<sp/>alignment</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>required<sp/>by<sp/>any<sp/>data<sp/>type<sp/>(usually<sp/>8<sp/>or<sp/>16)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16" refid="debugmalloc_8h_1ad6725ad24902750bb8080fb21c8d6ec4ab345007cf28a2516c0ba24371a400520" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="debugmalloc_8h_1ad6725ad24902750bb8080fb21c8d6ec4ab345007cf28a2516c0ba24371a400520" kindref="member">debugmalloc_canary_size</ref><sp/>=<sp/>64,</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>canary<sp/>byte<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19" refid="debugmalloc_8h_1ad6725ad24902750bb8080fb21c8d6ec4a8e3d5ad8628140edd887b8920f521cfd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="debugmalloc_8h_1ad6725ad24902750bb8080fb21c8d6ec4a8e3d5ad8628140edd887b8920f521cfd" kindref="member">debugmalloc_canary_char</ref><sp/>=<sp/></highlight><highlight class="charliteral">&apos;K&apos;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>hash<sp/>table<sp/>size<sp/>for<sp/>allocated<sp/>entries<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22" refid="debugmalloc_8h_1ad6725ad24902750bb8080fb21c8d6ec4a40803f0d5a26a349a78cbd998cb8a2a1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="debugmalloc_8h_1ad6725ad24902750bb8080fb21c8d6ec4a40803f0d5a26a349a78cbd998cb8a2a1" kindref="member">debugmalloc_tablesize</ref><sp/>=<sp/>256,</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>max<sp/>block<sp/>size<sp/>for<sp/>allocation,<sp/>can<sp/>be<sp/>modified<sp/>with<sp/>debugmalloc_max_block_size()<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25" refid="debugmalloc_8h_1ad6725ad24902750bb8080fb21c8d6ec4ae8726dfde3f35d4345009234ee734f6c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="debugmalloc_8h_1ad6725ad24902750bb8080fb21c8d6ec4ae8726dfde3f35d4345009234ee734f6c" kindref="member">debugmalloc_max_block_size_default</ref><sp/>=<sp/>1048576</highlight></codeline>
+<codeline lineno="26"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>make<sp/>getpid<sp/>and<sp/>putenv<sp/>&quot;crossplatform&quot;.<sp/>deprecated<sp/>on<sp/>windows<sp/>but<sp/>they<sp/>work<sp/>just<sp/>fine,</highlight></codeline>
+<codeline lineno="30"><highlight class="comment"><sp/>*<sp/>however<sp/>not<sp/>declared.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>_WIN32</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>windows<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#include<sp/>&lt;process.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#ifdef<sp/>_MSC_VER</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#pragma<sp/>warning(push)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>visual<sp/>studio,<sp/>getenv/getpid<sp/>deprecated<sp/>warning<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#pragma<sp/>warning(disable:<sp/>4996)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#pragma<sp/>warning(disable:<sp/>4127)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>other<sp/>windows.<sp/>the<sp/>declaration<sp/>is<sp/>unfortunately<sp/>hidden</highlight></codeline>
+<codeline lineno="41"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*<sp/>in<sp/>mingw<sp/>header<sp/>files<sp/>by<sp/>ifdefs.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="debugmalloc_8h_1a5dd0c329b734eeefd1909d15385f8b95" kindref="member">putenv</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*);</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>posix<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#include<sp/>&lt;unistd.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47" refid="debugmalloc_8h_1a5dd0c329b734eeefd1909d15385f8b95" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="debugmalloc_8h_1a5dd0c329b734eeefd1909d15385f8b95" kindref="member">putenv</ref>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*);</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>linked<sp/>list<sp/>entry<sp/>for<sp/>allocated<sp/>blocks<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52" refid="struct_debugmalloc_entry" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_debugmalloc_entry" kindref="compound">DebugmallocEntry</ref><sp/>{</highlight></codeline>
+<codeline lineno="53" refid="struct_debugmalloc_entry_1ae241706d126e0114e48ce7c4083d93d1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*<ref refid="struct_debugmalloc_entry_1ae241706d126e0114e48ce7c4083d93d1" kindref="member">real_mem</ref>;<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>the<sp/>address<sp/>of<sp/>the<sp/>real<sp/>allocation<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54" refid="struct_debugmalloc_entry_1a20cf96b6c21400f0123a6a3b6dae9876" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*<ref refid="struct_debugmalloc_entry_1a20cf96b6c21400f0123a6a3b6dae9876" kindref="member">user_mem</ref>;<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>address<sp/>shown<sp/>to<sp/>the<sp/>user<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="55" refid="struct_debugmalloc_entry_1a854352f53b148adc24983a58a1866d66" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="struct_debugmalloc_entry_1a854352f53b148adc24983a58a1866d66" kindref="member">size</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>size<sp/>of<sp/>block<sp/>requested<sp/>by<sp/>user<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57" refid="struct_debugmalloc_entry_1a353d29f9f9cc0db6fca9d49b5f88d34d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="struct_debugmalloc_entry_1a353d29f9f9cc0db6fca9d49b5f88d34d" kindref="member">file</ref>[64];<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>malloc<sp/>called<sp/>in<sp/>this<sp/>file<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="58" refid="struct_debugmalloc_entry_1a05ef0c4dbeec4fc8ccb225de9c26d896" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/><ref refid="struct_debugmalloc_entry_1a05ef0c4dbeec4fc8ccb225de9c26d896" kindref="member">line</ref>;<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>malloc<sp/>called<sp/>at<sp/>this<sp/>line<sp/>in<sp/>file<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="59" refid="struct_debugmalloc_entry_1ac8a2334cf5c64b1f708ced23ef569db4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="struct_debugmalloc_entry_1ac8a2334cf5c64b1f708ced23ef569db4" kindref="member">func</ref>[32];<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>allocation<sp/>function<sp/>called<sp/>(malloc,<sp/>calloc,<sp/>realloc)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60" refid="struct_debugmalloc_entry_1aa8f5b6d2256e18de50b9a17b5e3cda3b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="struct_debugmalloc_entry_1aa8f5b6d2256e18de50b9a17b5e3cda3b" kindref="member">expr</ref>[128];<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>expression<sp/>calculating<sp/>the<sp/>size<sp/>of<sp/>allocation<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight></codeline>
+<codeline lineno="62" refid="struct_debugmalloc_entry_1a7ebf7cb15f24577c59e05768d8f9ffc5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_debugmalloc_entry" kindref="compound">DebugmallocEntry</ref><sp/>*<ref refid="struct_debugmalloc_entry_1aae87f43e5df8141aedca245507e8d790" kindref="member">prev</ref>,<sp/>*<ref refid="struct_debugmalloc_entry_1a7ebf7cb15f24577c59e05768d8f9ffc5" kindref="member">next</ref>;<sp/><sp/></highlight><highlight class="comment">/*<sp/>for<sp/>doubly<sp/>linked<sp/>list<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63" refid="debugmalloc_8h_1a69e016f03a024f815bedf07ed671d4ea" refkind="member"><highlight class="normal">}<sp/><ref refid="struct_debugmalloc_entry" kindref="compound">DebugmallocEntry</ref>;</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>debugmalloc<sp/>singleton,<sp/>storing<sp/>all<sp/>state<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67" refid="struct_debugmalloc_data" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_debugmalloc_data" kindref="compound">DebugmallocData</ref><sp/>{</highlight></codeline>
+<codeline lineno="68" refid="struct_debugmalloc_data_1af5ff893eedb28514f6f69c3687ca893b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="struct_debugmalloc_data_1af5ff893eedb28514f6f69c3687ca893b" kindref="member">logfile</ref>[256];<sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>log<sp/>file<sp/>name<sp/>or<sp/>empty<sp/>string<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="69" refid="struct_debugmalloc_data_1a5ff6535cb48e89d8b0707e889ba72b0d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/><ref refid="struct_debugmalloc_data_1a5ff6535cb48e89d8b0707e889ba72b0d" kindref="member">max_block_size</ref>;<sp/><sp/></highlight><highlight class="comment">/*<sp/>max<sp/>size<sp/>of<sp/>a<sp/>single<sp/>block<sp/>allocated<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="70" refid="struct_debugmalloc_data_1a15f42e819e77e27bc9e2f204ff15e871" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/><ref refid="struct_debugmalloc_data_1a15f42e819e77e27bc9e2f204ff15e871" kindref="member">alloc_count</ref>;<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>currently<sp/>allocated;<sp/>decreased<sp/>with<sp/>free<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="71" refid="struct_debugmalloc_data_1a23c9102a7df871da995e7aa887279e46" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/><ref refid="struct_debugmalloc_data_1a23c9102a7df871da995e7aa887279e46" kindref="member">alloc_bytes</ref>;</highlight></codeline>
+<codeline lineno="72" refid="struct_debugmalloc_data_1a42a37cfdec0b59c102e58457f5954962" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/><ref refid="struct_debugmalloc_data_1a42a37cfdec0b59c102e58457f5954962" kindref="member">all_alloc_count</ref>;<sp/></highlight><highlight class="comment">/*<sp/>all<sp/>allocations,<sp/>never<sp/>decreased<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="73" refid="struct_debugmalloc_data_1a9b9e3387235c1e2bebc84e38c230837e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/><ref refid="struct_debugmalloc_data_1a9b9e3387235c1e2bebc84e38c230837e" kindref="member">all_alloc_bytes</ref>;</highlight></codeline>
+<codeline lineno="74" refid="struct_debugmalloc_data_1a96730563c8ca3d98f4f9f40df5ecb3c0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_debugmalloc_entry" kindref="compound">DebugmallocEntry</ref><sp/><ref refid="struct_debugmalloc_data_1a96730563c8ca3d98f4f9f40df5ecb3c0" kindref="member">head</ref>[<ref refid="debugmalloc_8h_1ad6725ad24902750bb8080fb21c8d6ec4a40803f0d5a26a349a78cbd998cb8a2a1" kindref="member">debugmalloc_tablesize</ref>],<sp/><ref refid="struct_debugmalloc_data_1a6a489bd48f708358b171a68acf75de9f" kindref="member">tail</ref>[<ref refid="debugmalloc_8h_1ad6725ad24902750bb8080fb21c8d6ec4a40803f0d5a26a349a78cbd998cb8a2a1" kindref="member">debugmalloc_tablesize</ref>];<sp/><sp/></highlight><highlight class="comment">/*<sp/>head<sp/>and<sp/>tail<sp/>elements<sp/>of<sp/>allocation<sp/>lists<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="75" refid="debugmalloc_8h_1a6270b6c4128e9715c7e47c0d007e4367" refkind="member"><highlight class="normal">}<sp/><ref refid="struct_debugmalloc_data" kindref="compound">DebugmallocData</ref>;</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>this<sp/>forward<sp/>declaration<sp/>is<sp/>required<sp/>by<sp/>the<sp/>singleton<sp/>manager<sp/>function<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="struct_debugmalloc_data" kindref="compound">DebugmallocData</ref><sp/>*<sp/>debugmalloc_create(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>creates<sp/>singleton<sp/>instance.<sp/>as<sp/>this<sp/>function<sp/>is<sp/>static<sp/>included<sp/>to<sp/>different</highlight></codeline>
+<codeline lineno="83"><highlight class="comment"><sp/>*<sp/>translation<sp/>units,<sp/>multiple<sp/>instances<sp/>of<sp/>the<sp/>static<sp/>variables<sp/>are<sp/>created.</highlight></codeline>
+<codeline lineno="84"><highlight class="comment"><sp/>*<sp/>to<sp/>make<sp/>sure<sp/>it<sp/>is<sp/>really<sp/>a<sp/>singleton,<sp/>these<sp/>instances<sp/>must<sp/>know<sp/>each<sp/>other</highlight></codeline>
+<codeline lineno="85"><highlight class="comment"><sp/>*<sp/>somethow.<sp/>an<sp/>environment<sp/>variable<sp/>is<sp/>used<sp/>for<sp/>that<sp/>purpose,<sp/>ie.<sp/>the<sp/>address</highlight></codeline>
+<codeline lineno="86"><highlight class="comment"><sp/>*<sp/>of<sp/>the<sp/>singleton<sp/>allocated<sp/>is<sp/>stored<sp/>by<sp/>the<sp/>operating<sp/>system.</highlight></codeline>
+<codeline lineno="87"><highlight class="comment"><sp/>*<sp/>this<sp/>implementation<sp/>is<sp/>not<sp/>thread-safe.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="struct_debugmalloc_data" kindref="compound">DebugmallocData</ref><sp/>*<sp/>debugmalloc_singleton(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)<sp/>{</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>envstr[100];</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*instance<sp/>=<sp/>NULL;</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>if<sp/>we<sp/>do<sp/>not<sp/>know<sp/>the<sp/>address<sp/>of<sp/>the<sp/>singleton:</highlight></codeline>
+<codeline lineno="93"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>-<sp/>maybe<sp/>we<sp/>are<sp/>the<sp/>one<sp/>to<sp/>create<sp/>it<sp/>(env<sp/>variable<sp/>also<sp/>does<sp/>not<sp/>exist)</highlight></codeline>
+<codeline lineno="94"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>-<sp/>or<sp/>it<sp/>is<sp/>already<sp/>created,<sp/>and<sp/>stored<sp/>in<sp/>the<sp/>env<sp/>variable.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(instance<sp/>==<sp/>NULL)<sp/>{</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>envvarname[100]<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sprintf(envvarname,<sp/></highlight><highlight class="stringliteral">&quot;%s%d&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;debugmallocsingleton&quot;</highlight><highlight class="normal">,<sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">)<sp/>getpid());</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*envptr<sp/>=<sp/>getenv(envvarname);</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(envptr<sp/>==<sp/>NULL)<sp/>{</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>no<sp/>env<sp/>variable:<sp/>create<sp/>singleton.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>instance<sp/>=<sp/>debugmalloc_create();</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sprintf(envstr,<sp/></highlight><highlight class="stringliteral">&quot;%s=%p&quot;</highlight><highlight class="normal">,<sp/>envvarname,<sp/>instance);</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="debugmalloc_8h_1a5dd0c329b734eeefd1909d15385f8b95" kindref="member">putenv</ref>(envstr);</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>another<sp/>copy<sp/>of<sp/>this<sp/>function<sp/>already<sp/>created<sp/>it.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ok<sp/>=<sp/>sscanf(envptr,<sp/></highlight><highlight class="stringliteral">&quot;%p&quot;</highlight><highlight class="normal">,<sp/>&amp;instance);</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(ok<sp/>!=<sp/>1)<sp/>{</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fprintf(stderr,<sp/></highlight><highlight class="stringliteral">&quot;debugmalloc:<sp/>nem<sp/>lehet<sp/>ertelmezni:<sp/>%s!\n&quot;</highlight><highlight class="normal">,<sp/>envptr);</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>abort();</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(<ref refid="struct_debugmalloc_data" kindref="compound">DebugmallocData</ref><sp/>*)<sp/>instance;</highlight></codeline>
+<codeline lineno="115"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>better<sp/>version<sp/>of<sp/>strncpy,<sp/>always<sp/>terminates<sp/>string<sp/>with<sp/>\0.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>debugmalloc_strlcpy(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*dest,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>*src,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>destsize)<sp/>{</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/>strncpy(dest,<sp/>src,<sp/>destsize-1);<sp/></highlight><highlight class="comment">/*<sp/>03.09.2025<sp/>by<sp/>KZs:<sp/>destsize<sp/>changed<sp/>to<sp/>destsize-1<sp/>according<sp/>to<sp/>warnings*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/>dest[destsize<sp/>-<sp/>1]<sp/>=<sp/></highlight><highlight class="charliteral">&apos;\0&apos;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="122"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"></highlight></codeline>
+<codeline lineno="125"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>set<sp/>the<sp/>name<sp/>of<sp/>the<sp/>log<sp/>file<sp/>for<sp/>debugmalloc.<sp/>empty<sp/>filename</highlight></codeline>
+<codeline lineno="126"><highlight class="comment"><sp/>*<sp/>means<sp/>logging<sp/>to<sp/>stderr.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>debugmalloc_log_file(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>*logfilename)<sp/>{</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(logfilename<sp/>==<sp/>NULL)</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>logfilename<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_debugmalloc_data" kindref="compound">DebugmallocData</ref><sp/>*instance<sp/>=<sp/>debugmalloc_singleton();</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/>debugmalloc_strlcpy(instance-&gt;<ref refid="struct_debugmalloc_data_1af5ff893eedb28514f6f69c3687ca893b" kindref="member">logfile</ref>,<sp/>logfilename,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(instance-&gt;<ref refid="struct_debugmalloc_data_1af5ff893eedb28514f6f69c3687ca893b" kindref="member">logfile</ref>));</highlight></codeline>
+<codeline lineno="132"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"></highlight></codeline>
+<codeline lineno="134"><highlight class="normal"></highlight></codeline>
+<codeline lineno="135"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>set<sp/>the<sp/>maximum<sp/>size<sp/>of<sp/>one<sp/>block.<sp/>useful<sp/>for<sp/>debugging<sp/>purposes.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="136"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>debugmalloc_max_block_size(</highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>max_block_size)<sp/>{</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_debugmalloc_data" kindref="compound">DebugmallocData</ref><sp/>*instance<sp/>=<sp/>debugmalloc_singleton();</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/>instance-&gt;<ref refid="struct_debugmalloc_data_1a5ff6535cb48e89d8b0707e889ba72b0d" kindref="member">max_block_size</ref><sp/>=<sp/>max_block_size;</highlight></codeline>
+<codeline lineno="139"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"></highlight></codeline>
+<codeline lineno="141"><highlight class="normal"></highlight></codeline>
+<codeline lineno="142"><highlight class="normal"></highlight></codeline>
+<codeline lineno="143"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>printf<sp/>to<sp/>the<sp/>log<sp/>file,<sp/>or<sp/>stderr.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="144"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>debugmalloc_log(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>*format,<sp/>...)<sp/>{</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_debugmalloc_data" kindref="compound">DebugmallocData</ref><sp/>*instance<sp/>=<sp/>debugmalloc_singleton();</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/>FILE<sp/>*f<sp/>=<sp/>stderr;</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(instance-&gt;<ref refid="struct_debugmalloc_data_1af5ff893eedb28514f6f69c3687ca893b" kindref="member">logfile</ref>[0]<sp/>!=<sp/></highlight><highlight class="charliteral">&apos;\0&apos;</highlight><highlight class="normal">)<sp/>{</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>f<sp/>=<sp/>fopen(instance-&gt;<ref refid="struct_debugmalloc_data_1af5ff893eedb28514f6f69c3687ca893b" kindref="member">logfile</ref>,<sp/></highlight><highlight class="stringliteral">&quot;at&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(f<sp/>==<sp/>NULL)<sp/>{</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>f<sp/>=<sp/>stderr;</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fprintf(stderr,<sp/></highlight><highlight class="stringliteral">&quot;debugmalloc:<sp/>nem<sp/>tudom<sp/>megnyitni<sp/>a<sp/>%s<sp/>fajlt<sp/>irasra!\n&quot;</highlight><highlight class="normal">,<sp/>instance-&gt;<ref refid="struct_debugmalloc_data_1af5ff893eedb28514f6f69c3687ca893b" kindref="member">logfile</ref>);</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>debugmalloc_strlcpy(instance-&gt;<ref refid="struct_debugmalloc_data_1af5ff893eedb28514f6f69c3687ca893b" kindref="member">logfile</ref>,<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(instance-&gt;<ref refid="struct_debugmalloc_data_1af5ff893eedb28514f6f69c3687ca893b" kindref="member">logfile</ref>));</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"></highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/>va_list<sp/>ap;</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/>va_start(ap,<sp/>format);</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/>vfprintf(f,<sp/>format,<sp/>ap);</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/>va_end(ap);</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"></highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(f<sp/>!=<sp/>stderr)</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fclose(f);</highlight></codeline>
+<codeline lineno="163"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"></highlight></codeline>
+<codeline lineno="165"><highlight class="normal"></highlight></codeline>
+<codeline lineno="166"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>initialize<sp/>a<sp/>memory<sp/>block<sp/>allocated<sp/>for<sp/>the<sp/>user.<sp/>the<sp/>start<sp/>and<sp/>the<sp/>end</highlight></codeline>
+<codeline lineno="167"><highlight class="comment"><sp/>*<sp/>of<sp/>the<sp/>block<sp/>is<sp/>initialized<sp/>with<sp/>the<sp/>canary<sp/>characters.<sp/>if<sp/>&apos;zero&apos;<sp/>is</highlight></codeline>
+<codeline lineno="168"><highlight class="comment"><sp/>*<sp/>true,<sp/>the<sp/>user<sp/>memory<sp/>area<sp/>is<sp/>zero-initialized,<sp/>otherwise<sp/>it<sp/>is<sp/>also</highlight></codeline>
+<codeline lineno="169"><highlight class="comment"><sp/>*<sp/>filled<sp/>with<sp/>the<sp/>canary<sp/>character<sp/>to<sp/>simulate<sp/>garbage<sp/>in<sp/>memory.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="170"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>debugmalloc_memory_init(<ref refid="struct_debugmalloc_entry" kindref="compound">DebugmallocEntry</ref><sp/>*elem,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>zero)<sp/>{</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*real_mem<sp/>=<sp/>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*)<sp/>elem-&gt;<ref refid="struct_debugmalloc_entry_1ae241706d126e0114e48ce7c4083d93d1" kindref="member">real_mem</ref>;</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*user_mem<sp/>=<sp/>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*)<sp/>elem-&gt;user_mem;</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*canary1<sp/>=<sp/>real_mem;</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*canary2<sp/>=<sp/>real_mem<sp/>+<sp/><ref refid="debugmalloc_8h_1ad6725ad24902750bb8080fb21c8d6ec4ab345007cf28a2516c0ba24371a400520" kindref="member">debugmalloc_canary_size</ref><sp/>+<sp/>elem-&gt;size;</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/>memset(canary1,<sp/><ref refid="debugmalloc_8h_1ad6725ad24902750bb8080fb21c8d6ec4a8e3d5ad8628140edd887b8920f521cfd" kindref="member">debugmalloc_canary_char</ref>,<sp/><ref refid="debugmalloc_8h_1ad6725ad24902750bb8080fb21c8d6ec4ab345007cf28a2516c0ba24371a400520" kindref="member">debugmalloc_canary_size</ref>);</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/>memset(canary2,<sp/><ref refid="debugmalloc_8h_1ad6725ad24902750bb8080fb21c8d6ec4a8e3d5ad8628140edd887b8920f521cfd" kindref="member">debugmalloc_canary_char</ref>,<sp/><ref refid="debugmalloc_8h_1ad6725ad24902750bb8080fb21c8d6ec4ab345007cf28a2516c0ba24371a400520" kindref="member">debugmalloc_canary_size</ref>);</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/>memset(user_mem,<sp/>zero<sp/>?<sp/>0<sp/>:<sp/><ref refid="debugmalloc_8h_1ad6725ad24902750bb8080fb21c8d6ec4a8e3d5ad8628140edd887b8920f521cfd" kindref="member">debugmalloc_canary_char</ref>,<sp/>elem-&gt;size);</highlight></codeline>
+<codeline lineno="178"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"></highlight></codeline>
+<codeline lineno="180"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>check<sp/>canary,<sp/>return<sp/>true<sp/>if<sp/>ok,<sp/>false<sp/>if<sp/>corrupted.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="181"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>debugmalloc_canary_ok(<ref refid="struct_debugmalloc_entry" kindref="compound">DebugmallocEntry</ref><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>*elem)<sp/>{</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*real_mem<sp/>=<sp/>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*)<sp/>elem-&gt;<ref refid="struct_debugmalloc_entry_1ae241706d126e0114e48ce7c4083d93d1" kindref="member">real_mem</ref>;</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*canary1<sp/>=<sp/>real_mem;</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*canary2<sp/>=<sp/>real_mem<sp/>+<sp/><ref refid="debugmalloc_8h_1ad6725ad24902750bb8080fb21c8d6ec4ab345007cf28a2516c0ba24371a400520" kindref="member">debugmalloc_canary_size</ref><sp/>+<sp/>elem-&gt;size;</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/><ref refid="debugmalloc_8h_1ad6725ad24902750bb8080fb21c8d6ec4ab345007cf28a2516c0ba24371a400520" kindref="member">debugmalloc_canary_size</ref>;<sp/>++i)<sp/>{</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(canary1[i]<sp/>!=<sp/><ref refid="debugmalloc_8h_1ad6725ad24902750bb8080fb21c8d6ec4a8e3d5ad8628140edd887b8920f521cfd" kindref="member">debugmalloc_canary_char</ref>)</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(canary2[i]<sp/>!=<sp/><ref refid="debugmalloc_8h_1ad6725ad24902750bb8080fb21c8d6ec4a8e3d5ad8628140edd887b8920f521cfd" kindref="member">debugmalloc_canary_char</ref>)</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="192"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"></highlight></codeline>
+<codeline lineno="194"><highlight class="normal"></highlight></codeline>
+<codeline lineno="195"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>dump<sp/>memory<sp/>contents<sp/>to<sp/>log<sp/>file.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="196"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>debugmalloc_dump_memory(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>*mem,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>size)<sp/>{</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/>y<sp/>=<sp/>0;<sp/>y<sp/>&lt;<sp/>(size<sp/>+<sp/>15)<sp/>/<sp/>16;<sp/>y++)<sp/>{</highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>line[80];</highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>pos<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pos<sp/>+=<sp/>sprintf(line<sp/>+<sp/>pos,<sp/></highlight><highlight class="stringliteral">&quot;<sp/><sp/><sp/><sp/><sp/><sp/>%04x<sp/><sp/>&quot;</highlight><highlight class="normal">,<sp/>y<sp/>*<sp/>16);</highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/>x<sp/>=<sp/>0;<sp/>x<sp/>&lt;<sp/>16;<sp/>x++)<sp/>{</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(y<sp/>*<sp/>16<sp/>+<sp/>x<sp/>&lt;<sp/>size)</highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pos<sp/>+=<sp/>sprintf(line<sp/>+<sp/>pos,<sp/></highlight><highlight class="stringliteral">&quot;%02x<sp/>&quot;</highlight><highlight class="normal">,<sp/>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">)mem[y<sp/>*<sp/>16<sp/>+<sp/>x]);</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pos<sp/>+=<sp/>sprintf(line<sp/>+<sp/>pos,<sp/></highlight><highlight class="stringliteral">&quot;<sp/><sp/><sp/>&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pos<sp/>+=<sp/>sprintf(line<sp/>+<sp/>pos,<sp/></highlight><highlight class="stringliteral">&quot;<sp/><sp/>&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="208"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/>x<sp/>=<sp/>0;<sp/>x<sp/>&lt;<sp/>16;<sp/>x++)<sp/>{</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(y<sp/>*<sp/>16<sp/>+<sp/>x<sp/>&lt;<sp/>size)<sp/>{</highlight></codeline>
+<codeline lineno="210"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>c<sp/>=<sp/>mem[y<sp/>*<sp/>16<sp/>+<sp/>x];</highlight></codeline>
+<codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pos<sp/>+=<sp/>sprintf(line<sp/>+<sp/>pos,<sp/></highlight><highlight class="stringliteral">&quot;%c&quot;</highlight><highlight class="normal">,<sp/>isprint(c)<sp/>?<sp/>c<sp/>:<sp/></highlight><highlight class="charliteral">&apos;.&apos;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="212"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="213"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pos<sp/>+=<sp/>sprintf(line<sp/>+<sp/>pos,<sp/></highlight><highlight class="stringliteral">&quot;<sp/>&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="215"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="216"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="217"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>debugmalloc_log(</highlight><highlight class="stringliteral">&quot;%s\n&quot;</highlight><highlight class="normal">,<sp/>line);</highlight></codeline>
+<codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="219"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="220"><highlight class="normal"></highlight></codeline>
+<codeline lineno="221"><highlight class="normal"></highlight></codeline>
+<codeline lineno="222"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>dump<sp/>data<sp/>of<sp/>allocated<sp/>memory<sp/>block.</highlight></codeline>
+<codeline lineno="223"><highlight class="comment"><sp/>*<sp/>if<sp/>the<sp/>canary<sp/>is<sp/>corrupted,<sp/>it<sp/>is<sp/>also<sp/>written<sp/>to<sp/>the<sp/>log.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="224"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>debugmalloc_dump_elem(<ref refid="struct_debugmalloc_entry" kindref="compound">DebugmallocEntry</ref><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>*elem)<sp/>{</highlight></codeline>
+<codeline lineno="225"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>canary_ok<sp/>=<sp/>debugmalloc_canary_ok(elem);</highlight></codeline>
+<codeline lineno="226"><highlight class="normal"></highlight></codeline>
+<codeline lineno="227"><highlight class="normal"><sp/><sp/><sp/><sp/>debugmalloc_log(</highlight><highlight class="stringliteral">&quot;<sp/><sp/>%p,<sp/>%u<sp/>bajt,<sp/>kanari:<sp/>%s\n&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="228"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;<sp/><sp/>%s:%u,<sp/>%s(%s)\n&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="229"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>elem-&gt;<ref refid="struct_debugmalloc_entry_1a20cf96b6c21400f0123a6a3b6dae9876" kindref="member">user_mem</ref>,<sp/>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal">)<sp/>elem-&gt;<ref refid="struct_debugmalloc_entry_1a854352f53b148adc24983a58a1866d66" kindref="member">size</ref>,<sp/>canary_ok<sp/>?<sp/></highlight><highlight class="stringliteral">&quot;ok&quot;</highlight><highlight class="normal"><sp/>:<sp/></highlight><highlight class="stringliteral">&quot;**SERULT**&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="230"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>elem-&gt;<ref refid="struct_debugmalloc_entry_1a353d29f9f9cc0db6fca9d49b5f88d34d" kindref="member">file</ref>,<sp/>elem-&gt;<ref refid="struct_debugmalloc_entry_1a05ef0c4dbeec4fc8ccb225de9c26d896" kindref="member">line</ref>,</highlight></codeline>
+<codeline lineno="231"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>elem-&gt;<ref refid="struct_debugmalloc_entry_1ac8a2334cf5c64b1f708ced23ef569db4" kindref="member">func</ref>,<sp/>elem-&gt;<ref refid="struct_debugmalloc_entry_1aa8f5b6d2256e18de50b9a17b5e3cda3b" kindref="member">expr</ref>);</highlight></codeline>
+<codeline lineno="232"><highlight class="normal"></highlight></codeline>
+<codeline lineno="233"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!canary_ok)<sp/>{</highlight></codeline>
+<codeline lineno="234"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>debugmalloc_log(</highlight><highlight class="stringliteral">&quot;<sp/><sp/><sp/><sp/>ELOTTE<sp/>kanari:<sp/>\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="235"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>debugmalloc_dump_memory((</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>*)<sp/>elem-&gt;<ref refid="struct_debugmalloc_entry_1ae241706d126e0114e48ce7c4083d93d1" kindref="member">real_mem</ref>,<sp/><ref refid="debugmalloc_8h_1ad6725ad24902750bb8080fb21c8d6ec4ab345007cf28a2516c0ba24371a400520" kindref="member">debugmalloc_canary_size</ref>);</highlight></codeline>
+<codeline lineno="236"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="237"><highlight class="normal"></highlight></codeline>
+<codeline lineno="238"><highlight class="normal"><sp/><sp/><sp/><sp/>debugmalloc_dump_memory((</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>*)<sp/>elem-&gt;<ref refid="struct_debugmalloc_entry_1a20cf96b6c21400f0123a6a3b6dae9876" kindref="member">user_mem</ref>,<sp/>elem-&gt;<ref refid="struct_debugmalloc_entry_1a854352f53b148adc24983a58a1866d66" kindref="member">size</ref><sp/>&gt;<sp/>64<sp/>?<sp/>64<sp/>:<sp/>elem-&gt;<ref refid="struct_debugmalloc_entry_1a854352f53b148adc24983a58a1866d66" kindref="member">size</ref>);</highlight></codeline>
+<codeline lineno="239"><highlight class="normal"></highlight></codeline>
+<codeline lineno="240"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!canary_ok)<sp/>{</highlight></codeline>
+<codeline lineno="241"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>debugmalloc_log(</highlight><highlight class="stringliteral">&quot;<sp/><sp/><sp/><sp/>UTANA<sp/>kanari:<sp/>\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="242"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>debugmalloc_dump_memory((</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>*)<sp/>elem-&gt;<ref refid="struct_debugmalloc_entry_1ae241706d126e0114e48ce7c4083d93d1" kindref="member">real_mem</ref><sp/>+<sp/><ref refid="debugmalloc_8h_1ad6725ad24902750bb8080fb21c8d6ec4ab345007cf28a2516c0ba24371a400520" kindref="member">debugmalloc_canary_size</ref><sp/>+<sp/>elem-&gt;<ref refid="struct_debugmalloc_entry_1a854352f53b148adc24983a58a1866d66" kindref="member">size</ref>,<sp/><ref refid="debugmalloc_8h_1ad6725ad24902750bb8080fb21c8d6ec4ab345007cf28a2516c0ba24371a400520" kindref="member">debugmalloc_canary_size</ref>);</highlight></codeline>
+<codeline lineno="243"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="244"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="245"><highlight class="normal"></highlight></codeline>
+<codeline lineno="246"><highlight class="normal"></highlight></codeline>
+<codeline lineno="247"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>dump<sp/>data<sp/>of<sp/>all<sp/>memory<sp/>blocks<sp/>allocated.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="248"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>debugmalloc_dump(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)<sp/>{</highlight></codeline>
+<codeline lineno="249"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_debugmalloc_data" kindref="compound">DebugmallocData</ref><sp/>*instance<sp/>=<sp/>debugmalloc_singleton();</highlight></codeline>
+<codeline lineno="250"><highlight class="normal"><sp/><sp/><sp/><sp/>debugmalloc_log(</highlight><highlight class="stringliteral">&quot;**<sp/>DEBUGMALLOC<sp/>DUMP<sp/>************************************\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="251"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>cnt<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="252"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/><ref refid="debugmalloc_8h_1ad6725ad24902750bb8080fb21c8d6ec4a40803f0d5a26a349a78cbd998cb8a2a1" kindref="member">debugmalloc_tablesize</ref>;<sp/>i++)<sp/>{</highlight></codeline>
+<codeline lineno="253"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_debugmalloc_entry" kindref="compound">DebugmallocEntry</ref><sp/>*head<sp/>=<sp/>&amp;instance-&gt;<ref refid="struct_debugmalloc_data_1a96730563c8ca3d98f4f9f40df5ecb3c0" kindref="member">head</ref>[i];</highlight></codeline>
+<codeline lineno="254"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(<ref refid="struct_debugmalloc_entry" kindref="compound">DebugmallocEntry</ref><sp/>*iter<sp/>=<sp/>head-&gt;<ref refid="struct_debugmalloc_entry_1a7ebf7cb15f24577c59e05768d8f9ffc5" kindref="member">next</ref>;<sp/>iter-&gt;<ref refid="struct_debugmalloc_entry_1a7ebf7cb15f24577c59e05768d8f9ffc5" kindref="member">next</ref><sp/>!=<sp/>NULL;<sp/>iter<sp/>=<sp/>iter-&gt;<ref refid="struct_debugmalloc_entry_1a7ebf7cb15f24577c59e05768d8f9ffc5" kindref="member">next</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="255"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>++cnt;</highlight></codeline>
+<codeline lineno="256"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>debugmalloc_log(</highlight><highlight class="stringliteral">&quot;**<sp/>%d/%d.<sp/>rekord:\n&quot;</highlight><highlight class="normal">,<sp/>cnt,<sp/>instance-&gt;<ref refid="struct_debugmalloc_data_1a15f42e819e77e27bc9e2f204ff15e871" kindref="member">alloc_count</ref>);</highlight></codeline>
+<codeline lineno="257"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>debugmalloc_dump_elem(iter);</highlight></codeline>
+<codeline lineno="258"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="259"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="260"><highlight class="normal"><sp/><sp/><sp/><sp/>debugmalloc_log(</highlight><highlight class="stringliteral">&quot;**<sp/>DEBUGMALLOC<sp/>DUMP<sp/>VEGE<sp/>*******************************\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="261"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="262"><highlight class="normal"></highlight></codeline>
+<codeline lineno="263"><highlight class="normal"></highlight></codeline>
+<codeline lineno="264"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>called<sp/>at<sp/>program<sp/>exit<sp/>to<sp/>dump<sp/>data<sp/>if<sp/>there<sp/>is<sp/>a<sp/>leak,</highlight></codeline>
+<codeline lineno="265"><highlight class="comment"><sp/>*<sp/>ie.<sp/>allocated<sp/>block<sp/>remained.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="266"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>debugmalloc_atexit_dump(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)<sp/>{</highlight></codeline>
+<codeline lineno="267"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_debugmalloc_data" kindref="compound">DebugmallocData</ref><sp/>*instance<sp/>=<sp/>debugmalloc_singleton();</highlight></codeline>
+<codeline lineno="268"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="269"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(instance-&gt;<ref refid="struct_debugmalloc_data_1a15f42e819e77e27bc9e2f204ff15e871" kindref="member">alloc_count</ref><sp/>&gt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="270"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>debugmalloc_log(</highlight><highlight class="stringliteral">&quot;\n&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="271"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;********************************************************\n&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="272"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;*<sp/>MEMORIASZIVARGAS<sp/>VAN<sp/>A<sp/>PROGRAMBAN!!!\n&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="273"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;********************************************************\n&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="274"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="275"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>debugmalloc_dump();</highlight></codeline>
+<codeline lineno="276"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="277"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>debugmalloc_log(</highlight><highlight class="stringliteral">&quot;****************************************************\n&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="278"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;*<sp/>Debugmalloc:<sp/>nincs<sp/>memoriaszivargas<sp/>a<sp/>programban.\n&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="279"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;*<sp/>Osszes<sp/>foglalas:<sp/>%d<sp/>blokk,<sp/>%d<sp/>bajt.\n&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="280"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;****************************************************\n&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="281"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>instance-&gt;<ref refid="struct_debugmalloc_data_1a42a37cfdec0b59c102e58457f5954962" kindref="member">all_alloc_count</ref>,<sp/>instance-&gt;<ref refid="struct_debugmalloc_data_1a9b9e3387235c1e2bebc84e38c230837e" kindref="member">all_alloc_bytes</ref>);</highlight></codeline>
+<codeline lineno="282"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="283"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="284"><highlight class="normal"></highlight></codeline>
+<codeline lineno="285"><highlight class="normal"></highlight></codeline>
+<codeline lineno="286"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>hash<sp/>function<sp/>for<sp/>bucket<sp/>hash.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="287"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>debugmalloc_hash(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*address)<sp/>{</highlight></codeline>
+<codeline lineno="288"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>the<sp/>last<sp/>few<sp/>bits<sp/>are<sp/>ignored,<sp/>as<sp/>they<sp/>are<sp/>usually<sp/>zero<sp/>for</highlight></codeline>
+<codeline lineno="289"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>alignment<sp/>purposes.<sp/>all<sp/>tested<sp/>architectures<sp/>used<sp/>16<sp/>byte<sp/>allocation.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="290"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>cut<sp/>=<sp/>(size_t)address<sp/>&gt;&gt;<sp/>4;</highlight></codeline>
+<codeline lineno="291"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>cut<sp/>%<sp/><ref refid="debugmalloc_8h_1ad6725ad24902750bb8080fb21c8d6ec4a40803f0d5a26a349a78cbd998cb8a2a1" kindref="member">debugmalloc_tablesize</ref>;</highlight></codeline>
+<codeline lineno="292"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="293"><highlight class="normal"></highlight></codeline>
+<codeline lineno="294"><highlight class="normal"></highlight></codeline>
+<codeline lineno="295"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>insert<sp/>element<sp/>to<sp/>hash<sp/>table.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="296"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>debugmalloc_insert(<ref refid="struct_debugmalloc_entry" kindref="compound">DebugmallocEntry</ref><sp/>*entry)<sp/>{</highlight></codeline>
+<codeline lineno="297"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_debugmalloc_data" kindref="compound">DebugmallocData</ref><sp/>*instance<sp/>=<sp/>debugmalloc_singleton();</highlight></codeline>
+<codeline lineno="298"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>idx<sp/>=<sp/>debugmalloc_hash(entry-&gt;<ref refid="struct_debugmalloc_entry_1a20cf96b6c21400f0123a6a3b6dae9876" kindref="member">user_mem</ref>);</highlight></codeline>
+<codeline lineno="299"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_debugmalloc_entry" kindref="compound">DebugmallocEntry</ref><sp/>*head<sp/>=<sp/>&amp;instance-&gt;<ref refid="struct_debugmalloc_data_1a96730563c8ca3d98f4f9f40df5ecb3c0" kindref="member">head</ref>[idx];</highlight></codeline>
+<codeline lineno="300"><highlight class="normal"><sp/><sp/><sp/><sp/>entry-&gt;<ref refid="struct_debugmalloc_entry_1aae87f43e5df8141aedca245507e8d790" kindref="member">prev</ref><sp/>=<sp/>head;</highlight></codeline>
+<codeline lineno="301"><highlight class="normal"><sp/><sp/><sp/><sp/>entry-&gt;<ref refid="struct_debugmalloc_entry_1a7ebf7cb15f24577c59e05768d8f9ffc5" kindref="member">next</ref><sp/>=<sp/>head-&gt;<ref refid="struct_debugmalloc_entry_1a7ebf7cb15f24577c59e05768d8f9ffc5" kindref="member">next</ref>;</highlight></codeline>
+<codeline lineno="302"><highlight class="normal"><sp/><sp/><sp/><sp/>head-&gt;<ref refid="struct_debugmalloc_entry_1a7ebf7cb15f24577c59e05768d8f9ffc5" kindref="member">next</ref>-&gt;<ref refid="struct_debugmalloc_entry_1aae87f43e5df8141aedca245507e8d790" kindref="member">prev</ref><sp/>=<sp/>entry;</highlight></codeline>
+<codeline lineno="303"><highlight class="normal"><sp/><sp/><sp/><sp/>head-&gt;<ref refid="struct_debugmalloc_entry_1a7ebf7cb15f24577c59e05768d8f9ffc5" kindref="member">next</ref><sp/>=<sp/>entry;</highlight></codeline>
+<codeline lineno="304"><highlight class="normal"><sp/><sp/><sp/><sp/>instance-&gt;<ref refid="struct_debugmalloc_data_1a15f42e819e77e27bc9e2f204ff15e871" kindref="member">alloc_count</ref><sp/>+=<sp/>1;</highlight></codeline>
+<codeline lineno="305"><highlight class="normal"><sp/><sp/><sp/><sp/>instance-&gt;<ref refid="struct_debugmalloc_data_1a23c9102a7df871da995e7aa887279e46" kindref="member">alloc_bytes</ref><sp/>+=<sp/>entry-&gt;<ref refid="struct_debugmalloc_entry_1a854352f53b148adc24983a58a1866d66" kindref="member">size</ref>;</highlight></codeline>
+<codeline lineno="306"><highlight class="normal"><sp/><sp/><sp/><sp/>instance-&gt;<ref refid="struct_debugmalloc_data_1a42a37cfdec0b59c102e58457f5954962" kindref="member">all_alloc_count</ref><sp/>+=<sp/>1;</highlight></codeline>
+<codeline lineno="307"><highlight class="normal"><sp/><sp/><sp/><sp/>instance-&gt;<ref refid="struct_debugmalloc_data_1a9b9e3387235c1e2bebc84e38c230837e" kindref="member">all_alloc_bytes</ref><sp/>+=<sp/>entry-&gt;<ref refid="struct_debugmalloc_entry_1a854352f53b148adc24983a58a1866d66" kindref="member">size</ref>;</highlight></codeline>
+<codeline lineno="308"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="309"><highlight class="normal"></highlight></codeline>
+<codeline lineno="310"><highlight class="normal"></highlight></codeline>
+<codeline lineno="311"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>remove<sp/>element<sp/>from<sp/>hash<sp/>table<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="312"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>debugmalloc_remove(<ref refid="struct_debugmalloc_entry" kindref="compound">DebugmallocEntry</ref><sp/>*entry)<sp/>{</highlight></codeline>
+<codeline lineno="313"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_debugmalloc_data" kindref="compound">DebugmallocData</ref><sp/>*instance<sp/>=<sp/>debugmalloc_singleton();</highlight></codeline>
+<codeline lineno="314"><highlight class="normal"><sp/><sp/><sp/><sp/>entry-&gt;<ref refid="struct_debugmalloc_entry_1a7ebf7cb15f24577c59e05768d8f9ffc5" kindref="member">next</ref>-&gt;<ref refid="struct_debugmalloc_entry_1aae87f43e5df8141aedca245507e8d790" kindref="member">prev</ref><sp/>=<sp/>entry-&gt;<ref refid="struct_debugmalloc_entry_1aae87f43e5df8141aedca245507e8d790" kindref="member">prev</ref>;</highlight></codeline>
+<codeline lineno="315"><highlight class="normal"><sp/><sp/><sp/><sp/>entry-&gt;<ref refid="struct_debugmalloc_entry_1aae87f43e5df8141aedca245507e8d790" kindref="member">prev</ref>-&gt;<ref refid="struct_debugmalloc_entry_1a7ebf7cb15f24577c59e05768d8f9ffc5" kindref="member">next</ref><sp/>=<sp/>entry-&gt;<ref refid="struct_debugmalloc_entry_1a7ebf7cb15f24577c59e05768d8f9ffc5" kindref="member">next</ref>;</highlight></codeline>
+<codeline lineno="316"><highlight class="normal"><sp/><sp/><sp/><sp/>instance-&gt;<ref refid="struct_debugmalloc_data_1a15f42e819e77e27bc9e2f204ff15e871" kindref="member">alloc_count</ref><sp/>-=<sp/>1;</highlight></codeline>
+<codeline lineno="317"><highlight class="normal"><sp/><sp/><sp/><sp/>instance-&gt;<ref refid="struct_debugmalloc_data_1a23c9102a7df871da995e7aa887279e46" kindref="member">alloc_bytes</ref><sp/>-=<sp/>entry-&gt;<ref refid="struct_debugmalloc_entry_1a854352f53b148adc24983a58a1866d66" kindref="member">size</ref>;</highlight></codeline>
+<codeline lineno="318"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="319"><highlight class="normal"></highlight></codeline>
+<codeline lineno="320"><highlight class="normal"></highlight></codeline>
+<codeline lineno="321"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>find<sp/>element<sp/>in<sp/>hash<sp/>table,<sp/>given<sp/>with<sp/>the<sp/>memory<sp/>address<sp/>that<sp/>the<sp/>user<sp/>sees.</highlight></codeline>
+<codeline lineno="322"><highlight class="comment"><sp/>*<sp/>@return<sp/>the<sp/>linked<sp/>list<sp/>entry,<sp/>or<sp/>null<sp/>if<sp/>not<sp/>found.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="323"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="struct_debugmalloc_entry" kindref="compound">DebugmallocEntry</ref><sp/>*debugmalloc_find(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*mem)<sp/>{</highlight></codeline>
+<codeline lineno="324"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_debugmalloc_data" kindref="compound">DebugmallocData</ref><sp/>*instance<sp/>=<sp/>debugmalloc_singleton();</highlight></codeline>
+<codeline lineno="325"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>idx<sp/>=<sp/>debugmalloc_hash(mem);</highlight></codeline>
+<codeline lineno="326"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_debugmalloc_entry" kindref="compound">DebugmallocEntry</ref><sp/>*head<sp/>=<sp/>&amp;instance-&gt;<ref refid="struct_debugmalloc_data_1a96730563c8ca3d98f4f9f40df5ecb3c0" kindref="member">head</ref>[idx];</highlight></codeline>
+<codeline lineno="327"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(<ref refid="struct_debugmalloc_entry" kindref="compound">DebugmallocEntry</ref><sp/>*iter<sp/>=<sp/>head-&gt;<ref refid="struct_debugmalloc_entry_1a7ebf7cb15f24577c59e05768d8f9ffc5" kindref="member">next</ref>;<sp/>iter-&gt;<ref refid="struct_debugmalloc_entry_1a7ebf7cb15f24577c59e05768d8f9ffc5" kindref="member">next</ref><sp/>!=<sp/>NULL;<sp/>iter<sp/>=<sp/>iter-&gt;<ref refid="struct_debugmalloc_entry_1a7ebf7cb15f24577c59e05768d8f9ffc5" kindref="member">next</ref>)</highlight></codeline>
+<codeline lineno="328"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(iter-&gt;user_mem<sp/>==<sp/>mem)</highlight></codeline>
+<codeline lineno="329"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>iter;</highlight></codeline>
+<codeline lineno="330"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>NULL;</highlight></codeline>
+<codeline lineno="331"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="332"><highlight class="normal"></highlight></codeline>
+<codeline lineno="333"><highlight class="normal"></highlight></codeline>
+<codeline lineno="334"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>allocate<sp/>memory.<sp/>this<sp/>function<sp/>is<sp/>called<sp/>via<sp/>the<sp/>macro.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="335"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*debugmalloc_malloc_full(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>size,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>*func,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>*expr,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>*file,<sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/>line,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>zero)<sp/>{</highlight></codeline>
+<codeline lineno="336"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>imitate<sp/>standard<sp/>malloc:<sp/>return<sp/>null<sp/>if<sp/>size<sp/>is<sp/>zero<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="337"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(size<sp/>==<sp/>0)</highlight></codeline>
+<codeline lineno="338"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>NULL;</highlight></codeline>
+<codeline lineno="339"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="340"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>check<sp/>max<sp/>size<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="341"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_debugmalloc_data" kindref="compound">DebugmallocData</ref><sp/>*instance<sp/>=<sp/>debugmalloc_singleton();</highlight></codeline>
+<codeline lineno="342"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(size<sp/>&gt;<sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)(instance-&gt;<ref refid="struct_debugmalloc_data_1a5ff6535cb48e89d8b0707e889ba72b0d" kindref="member">max_block_size</ref>))<sp/>{</highlight></codeline>
+<codeline lineno="343"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>debugmalloc_log(</highlight><highlight class="stringliteral">&quot;debugmalloc:<sp/>%s<sp/>@<sp/>%s:%u:<sp/>a<sp/>blokk<sp/>merete<sp/>tul<sp/>nagy,<sp/>%u<sp/>bajt;<sp/>debugmalloc_max_block_size()<sp/>fuggvennyel<sp/>novelheto.\n&quot;</highlight><highlight class="normal">,<sp/>func,<sp/>file,<sp/>line,<sp/>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal">)<sp/>size);</highlight></codeline>
+<codeline lineno="344"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>abort();</highlight></codeline>
+<codeline lineno="345"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="346"><highlight class="normal"></highlight></codeline>
+<codeline lineno="347"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>allocate<sp/>more<sp/>memory,<sp/>make<sp/>room<sp/>for<sp/>canary<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="348"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*real_mem<sp/>=<sp/><ref refid="debugmalloc_8h_1a535b58ab5aa48e2e86073e334d43fd32" kindref="member">malloc</ref>(size<sp/>+<sp/>2<sp/>*<sp/><ref refid="debugmalloc_8h_1ad6725ad24902750bb8080fb21c8d6ec4ab345007cf28a2516c0ba24371a400520" kindref="member">debugmalloc_canary_size</ref>);</highlight></codeline>
+<codeline lineno="349"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(real_mem<sp/>==<sp/>NULL)<sp/>{</highlight></codeline>
+<codeline lineno="350"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>debugmalloc_log(</highlight><highlight class="stringliteral">&quot;debugmalloc:<sp/>%s<sp/>@<sp/>%s:%u:<sp/>nem<sp/>sikerult<sp/>%u<sp/>meretu<sp/>memoriat<sp/>foglalni!\n&quot;</highlight><highlight class="normal">,<sp/>func,<sp/>file,<sp/>line,<sp/>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal">)<sp/>size);</highlight></codeline>
+<codeline lineno="351"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>NULL;</highlight></codeline>
+<codeline lineno="352"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="353"><highlight class="normal"></highlight></codeline>
+<codeline lineno="354"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>allocate<sp/>memory<sp/>for<sp/>linked<sp/>list<sp/>element<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="355"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_debugmalloc_entry" kindref="compound">DebugmallocEntry</ref><sp/>*newentry<sp/>=<sp/>(<ref refid="struct_debugmalloc_entry" kindref="compound">DebugmallocEntry</ref><sp/>*)<sp/><ref refid="debugmalloc_8h_1a535b58ab5aa48e2e86073e334d43fd32" kindref="member">malloc</ref>(</highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<ref refid="struct_debugmalloc_entry" kindref="compound">DebugmallocEntry</ref>));</highlight></codeline>
+<codeline lineno="356"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(newentry<sp/>==<sp/>NULL)<sp/>{</highlight></codeline>
+<codeline lineno="357"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="debugmalloc_8h_1aa7943e5d135734f6801bebcc37401fc0" kindref="member">free</ref>(real_mem);</highlight></codeline>
+<codeline lineno="358"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>debugmalloc_log(</highlight><highlight class="stringliteral">&quot;debugmalloc:<sp/>%s<sp/>@<sp/>%s:%u:<sp/>le<sp/>tudtam<sp/>foglalni<sp/>%u<sp/>memoriat,<sp/>de<sp/>utana<sp/>a<sp/>sajatnak<sp/>nem,<sp/>sry\n&quot;</highlight><highlight class="normal">,<sp/>func,<sp/>file,<sp/>line,<sp/>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal">)<sp/>size);</highlight></codeline>
+<codeline lineno="359"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>abort();</highlight></codeline>
+<codeline lineno="360"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="361"><highlight class="normal"></highlight></codeline>
+<codeline lineno="362"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>metadata<sp/>of<sp/>allocation:<sp/>caller<sp/>function,<sp/>code<sp/>line<sp/>etc.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="363"><highlight class="normal"><sp/><sp/><sp/><sp/>debugmalloc_strlcpy(newentry-&gt;<ref refid="struct_debugmalloc_entry_1ac8a2334cf5c64b1f708ced23ef569db4" kindref="member">func</ref>,<sp/>func,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(newentry-&gt;<ref refid="struct_debugmalloc_entry_1ac8a2334cf5c64b1f708ced23ef569db4" kindref="member">func</ref>));</highlight></codeline>
+<codeline lineno="364"><highlight class="normal"><sp/><sp/><sp/><sp/>debugmalloc_strlcpy(newentry-&gt;<ref refid="struct_debugmalloc_entry_1aa8f5b6d2256e18de50b9a17b5e3cda3b" kindref="member">expr</ref>,<sp/>expr,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(newentry-&gt;<ref refid="struct_debugmalloc_entry_1aa8f5b6d2256e18de50b9a17b5e3cda3b" kindref="member">expr</ref>));</highlight></codeline>
+<codeline lineno="365"><highlight class="normal"><sp/><sp/><sp/><sp/>debugmalloc_strlcpy(newentry-&gt;<ref refid="struct_debugmalloc_entry_1a353d29f9f9cc0db6fca9d49b5f88d34d" kindref="member">file</ref>,<sp/>file,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(newentry-&gt;<ref refid="struct_debugmalloc_entry_1a353d29f9f9cc0db6fca9d49b5f88d34d" kindref="member">file</ref>));</highlight></codeline>
+<codeline lineno="366"><highlight class="normal"><sp/><sp/><sp/><sp/>newentry-&gt;<ref refid="struct_debugmalloc_entry_1a05ef0c4dbeec4fc8ccb225de9c26d896" kindref="member">line</ref><sp/>=<sp/>line;</highlight></codeline>
+<codeline lineno="367"><highlight class="normal"></highlight></codeline>
+<codeline lineno="368"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>address<sp/>of<sp/>allocated<sp/>memory<sp/>chunk<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="369"><highlight class="normal"><sp/><sp/><sp/><sp/>newentry-&gt;<ref refid="struct_debugmalloc_entry_1ae241706d126e0114e48ce7c4083d93d1" kindref="member">real_mem</ref><sp/>=<sp/>real_mem;</highlight></codeline>
+<codeline lineno="370"><highlight class="normal"><sp/><sp/><sp/><sp/>newentry-&gt;<ref refid="struct_debugmalloc_entry_1a20cf96b6c21400f0123a6a3b6dae9876" kindref="member">user_mem</ref><sp/>=<sp/>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*)<sp/>real_mem<sp/>+<sp/><ref refid="debugmalloc_8h_1ad6725ad24902750bb8080fb21c8d6ec4ab345007cf28a2516c0ba24371a400520" kindref="member">debugmalloc_canary_size</ref>;</highlight></codeline>
+<codeline lineno="371"><highlight class="normal"><sp/><sp/><sp/><sp/>newentry-&gt;<ref refid="struct_debugmalloc_entry_1a854352f53b148adc24983a58a1866d66" kindref="member">size</ref><sp/>=<sp/>size;</highlight></codeline>
+<codeline lineno="372"><highlight class="normal"><sp/><sp/><sp/><sp/>debugmalloc_memory_init(newentry,<sp/>zero);</highlight></codeline>
+<codeline lineno="373"><highlight class="normal"></highlight></codeline>
+<codeline lineno="374"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>store<sp/>in<sp/>list<sp/>and<sp/>return<sp/>pointer<sp/>to<sp/>user<sp/>area<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="375"><highlight class="normal"><sp/><sp/><sp/><sp/>debugmalloc_insert(newentry);</highlight></codeline>
+<codeline lineno="376"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>newentry-&gt;<ref refid="struct_debugmalloc_entry_1a20cf96b6c21400f0123a6a3b6dae9876" kindref="member">user_mem</ref>;</highlight></codeline>
+<codeline lineno="377"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="378"><highlight class="normal"></highlight></codeline>
+<codeline lineno="379"><highlight class="normal"></highlight></codeline>
+<codeline lineno="380"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>free<sp/>memory<sp/>and<sp/>remove<sp/>list<sp/>item.<sp/>before<sp/>deleting,<sp/>the<sp/>chuck<sp/>is<sp/>filled<sp/>with</highlight></codeline>
+<codeline lineno="381"><highlight class="comment"><sp/>*<sp/>the<sp/>canary<sp/>byte<sp/>to<sp/>make<sp/>sure<sp/>that<sp/>the<sp/>user<sp/>will<sp/>see<sp/>garbage<sp/>if<sp/>the<sp/>memory</highlight></codeline>
+<codeline lineno="382"><highlight class="comment"><sp/>*<sp/>is<sp/>accessed<sp/>after<sp/>freeing.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="383"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>debugmalloc_free_inner(<ref refid="struct_debugmalloc_entry" kindref="compound">DebugmallocEntry</ref><sp/>*deleted)<sp/>{</highlight></codeline>
+<codeline lineno="384"><highlight class="normal"><sp/><sp/><sp/><sp/>debugmalloc_remove(deleted);</highlight></codeline>
+<codeline lineno="385"><highlight class="normal"></highlight></codeline>
+<codeline lineno="386"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>fill<sp/>with<sp/>garbage,<sp/>then<sp/>remove<sp/>from<sp/>linked<sp/>list<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="387"><highlight class="normal"><sp/><sp/><sp/><sp/>memset(deleted-&gt;<ref refid="struct_debugmalloc_entry_1ae241706d126e0114e48ce7c4083d93d1" kindref="member">real_mem</ref>,<sp/><ref refid="debugmalloc_8h_1ad6725ad24902750bb8080fb21c8d6ec4a8e3d5ad8628140edd887b8920f521cfd" kindref="member">debugmalloc_canary_char</ref>,<sp/>deleted-&gt;<ref refid="struct_debugmalloc_entry_1a854352f53b148adc24983a58a1866d66" kindref="member">size</ref><sp/>+<sp/>2<sp/>*<sp/><ref refid="debugmalloc_8h_1ad6725ad24902750bb8080fb21c8d6ec4ab345007cf28a2516c0ba24371a400520" kindref="member">debugmalloc_canary_size</ref>);</highlight></codeline>
+<codeline lineno="388"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="debugmalloc_8h_1aa7943e5d135734f6801bebcc37401fc0" kindref="member">free</ref>(deleted-&gt;<ref refid="struct_debugmalloc_entry_1ae241706d126e0114e48ce7c4083d93d1" kindref="member">real_mem</ref>);</highlight></codeline>
+<codeline lineno="389"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="debugmalloc_8h_1aa7943e5d135734f6801bebcc37401fc0" kindref="member">free</ref>(deleted);</highlight></codeline>
+<codeline lineno="390"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="391"><highlight class="normal"></highlight></codeline>
+<codeline lineno="392"><highlight class="normal"></highlight></codeline>
+<codeline lineno="393"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>free<sp/>memory<sp/>-<sp/>called<sp/>via<sp/>the<sp/>macro.</highlight></codeline>
+<codeline lineno="394"><highlight class="comment"><sp/>*<sp/>as<sp/>all<sp/>allocations<sp/>are<sp/>tracked<sp/>in<sp/>the<sp/>list,<sp/>this<sp/>function<sp/>can<sp/>terminate<sp/>the<sp/>program</highlight></codeline>
+<codeline lineno="395"><highlight class="comment"><sp/>*<sp/>if<sp/>a<sp/>block<sp/>is<sp/>freed<sp/>twice<sp/>or<sp/>the<sp/>free<sp/>function<sp/>is<sp/>called<sp/>with<sp/>an<sp/>invalid<sp/>address.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="396"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>debugmalloc_free_full(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*mem,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>*func,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>*file,<sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/>line)<sp/>{</highlight></codeline>
+<codeline lineno="397"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>imitate<sp/>standard<sp/>free<sp/>function:<sp/>if<sp/>ptr<sp/>is<sp/>null,<sp/>no<sp/>operation<sp/>is<sp/>performed<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="398"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(mem<sp/>==<sp/>NULL)</highlight></codeline>
+<codeline lineno="399"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="400"><highlight class="normal"></highlight></codeline>
+<codeline lineno="401"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>find<sp/>allocation,<sp/>abort<sp/>if<sp/>not<sp/>found<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="402"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_debugmalloc_entry" kindref="compound">DebugmallocEntry</ref><sp/>*deleted<sp/>=<sp/>debugmalloc_find(mem);</highlight></codeline>
+<codeline lineno="403"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(deleted<sp/>==<sp/>NULL)<sp/>{</highlight></codeline>
+<codeline lineno="404"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>debugmalloc_log(</highlight><highlight class="stringliteral">&quot;debugmalloc:<sp/>%s<sp/>@<sp/>%s:%u:<sp/>olyan<sp/>teruletet<sp/>probalsz<sp/>felszabaditani,<sp/>ami<sp/>nincs<sp/>lefoglalva!\n&quot;</highlight><highlight class="normal">,<sp/>func,<sp/>file,<sp/>line);</highlight></codeline>
+<codeline lineno="405"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>abort();</highlight></codeline>
+<codeline lineno="406"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="407"><highlight class="normal"></highlight></codeline>
+<codeline lineno="408"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>check<sp/>canary<sp/>and<sp/>then<sp/>free<sp/>memory<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="409"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!debugmalloc_canary_ok(deleted))<sp/>{</highlight></codeline>
+<codeline lineno="410"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>debugmalloc_log(</highlight><highlight class="stringliteral">&quot;debugmalloc:<sp/>%s<sp/>@<sp/>%s:%u:<sp/>a<sp/>%p<sp/>memoriateruletet<sp/>tulindexelted!\n&quot;</highlight><highlight class="normal">,<sp/>func,<sp/>file,<sp/>line,<sp/>mem);</highlight></codeline>
+<codeline lineno="411"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>debugmalloc_dump_elem(deleted);</highlight></codeline>
+<codeline lineno="412"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="413"><highlight class="normal"><sp/><sp/><sp/><sp/>debugmalloc_free_inner(deleted);</highlight></codeline>
+<codeline lineno="414"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="415"><highlight class="normal"></highlight></codeline>
+<codeline lineno="416"><highlight class="normal"></highlight></codeline>
+<codeline lineno="417"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>realloc-like<sp/>function.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="418"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*debugmalloc_realloc_full(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*oldmem,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>newsize,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>*func,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>*expr,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>*file,<sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/>line)<sp/>{</highlight></codeline>
+<codeline lineno="419"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>imitate<sp/>standard<sp/>realloc:<sp/>equivalent<sp/>to<sp/>free<sp/>if<sp/>size<sp/>is<sp/>null.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="420"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(newsize<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="421"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>debugmalloc_free_full(oldmem,<sp/>func,<sp/>file,<sp/>line);</highlight></codeline>
+<codeline lineno="422"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>NULL;</highlight></codeline>
+<codeline lineno="423"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="424"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>imitate<sp/>standard<sp/>realloc:<sp/>equivalent<sp/>to<sp/>malloc<sp/>if<sp/>first<sp/>param<sp/>is<sp/>NULL<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="425"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(oldmem<sp/>==<sp/>NULL)</highlight></codeline>
+<codeline lineno="426"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>debugmalloc_malloc_full(newsize,<sp/>func,<sp/>expr,<sp/>file,<sp/>line,<sp/>0);</highlight></codeline>
+<codeline lineno="427"><highlight class="normal"></highlight></codeline>
+<codeline lineno="428"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>find<sp/>old<sp/>allocation.<sp/>abort<sp/>if<sp/>not<sp/>found.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="429"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_debugmalloc_entry" kindref="compound">DebugmallocEntry</ref><sp/>*oldentry<sp/>=<sp/>debugmalloc_find(oldmem);</highlight></codeline>
+<codeline lineno="430"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(oldentry<sp/>==<sp/>NULL)<sp/>{</highlight></codeline>
+<codeline lineno="431"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>debugmalloc_log(</highlight><highlight class="stringliteral">&quot;debugmalloc:<sp/>%s<sp/>@<sp/>%s:%u:<sp/>olyan<sp/>teruletet<sp/>probalsz<sp/>atmeretezni,<sp/>ami<sp/>nincs<sp/>lefoglalva!\n&quot;</highlight><highlight class="normal">,<sp/>func,<sp/>file,<sp/>line);</highlight></codeline>
+<codeline lineno="432"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>abort();</highlight></codeline>
+<codeline lineno="433"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="434"><highlight class="normal"></highlight></codeline>
+<codeline lineno="435"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>create<sp/>new<sp/>allocation,<sp/>copy<sp/>&amp;<sp/>free<sp/>old<sp/>data<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="436"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*newmem<sp/>=<sp/>debugmalloc_malloc_full(newsize,<sp/>func,<sp/>expr,<sp/>file,<sp/>line,<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="437"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(newmem<sp/>==<sp/>NULL)<sp/>{</highlight></codeline>
+<codeline lineno="438"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>debugmalloc_log(</highlight><highlight class="stringliteral">&quot;debugmalloc:<sp/>%s<sp/>@<sp/>%s:%u:<sp/>nem<sp/>sikerult<sp/>uj<sp/>memoriat<sp/>foglalni<sp/>az<sp/>atmeretezeshez!\n&quot;</highlight><highlight class="normal">,<sp/>func,<sp/>file,<sp/>line);</highlight></codeline>
+<codeline lineno="439"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>imitate<sp/>standard<sp/>realloc:<sp/>original<sp/>block<sp/>is<sp/>untouched,<sp/>but<sp/>return<sp/>NULL<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="440"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>NULL;</highlight></codeline>
+<codeline lineno="441"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="442"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>smaller<sp/>=<sp/>oldentry-&gt;<ref refid="struct_debugmalloc_entry_1a854352f53b148adc24983a58a1866d66" kindref="member">size</ref><sp/>&lt;<sp/>newsize<sp/>?<sp/>oldentry-&gt;<ref refid="struct_debugmalloc_entry_1a854352f53b148adc24983a58a1866d66" kindref="member">size</ref><sp/>:<sp/>newsize;</highlight></codeline>
+<codeline lineno="443"><highlight class="normal"><sp/><sp/><sp/><sp/>memcpy(newmem,<sp/>oldmem,<sp/>smaller);</highlight></codeline>
+<codeline lineno="444"><highlight class="normal"><sp/><sp/><sp/><sp/>debugmalloc_free_inner(oldentry);</highlight></codeline>
+<codeline lineno="445"><highlight class="normal"></highlight></codeline>
+<codeline lineno="446"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>newmem;</highlight></codeline>
+<codeline lineno="447"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="448"><highlight class="normal"></highlight></codeline>
+<codeline lineno="449"><highlight class="normal"></highlight></codeline>
+<codeline lineno="450"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>initialize<sp/>debugmalloc<sp/>singleton.<sp/>returns<sp/>the<sp/>newly<sp/>allocated<sp/>instance<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="451"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="struct_debugmalloc_data" kindref="compound">DebugmallocData</ref><sp/>*<sp/>debugmalloc_create(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)<sp/>{</highlight></codeline>
+<codeline lineno="452"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>config<sp/>check<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="453"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="debugmalloc_8h_1ad6725ad24902750bb8080fb21c8d6ec4ab345007cf28a2516c0ba24371a400520" kindref="member">debugmalloc_canary_size</ref><sp/>%<sp/>16<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="454"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>debugmalloc_log(</highlight><highlight class="stringliteral">&quot;debugmalloc:<sp/>a<sp/>kanari<sp/>merete<sp/>legyen<sp/>16-tal<sp/>oszthato\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="455"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>abort();</highlight></codeline>
+<codeline lineno="456"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="457"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="debugmalloc_8h_1ad6725ad24902750bb8080fb21c8d6ec4a8e3d5ad8628140edd887b8920f521cfd" kindref="member">debugmalloc_canary_char</ref><sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="458"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>debugmalloc_log(</highlight><highlight class="stringliteral">&quot;debugmalloc:<sp/>a<sp/>kanari<sp/>legyen<sp/>0-tol<sp/>kulonbozo\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="459"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>abort();</highlight></codeline>
+<codeline lineno="460"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="461"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>avoid<sp/>compiler<sp/>warning<sp/>if<sp/>these<sp/>functions<sp/>are<sp/>not<sp/>used<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="462"><highlight class="normal"><sp/><sp/><sp/><sp/>(void)<sp/>debugmalloc_realloc_full;</highlight></codeline>
+<codeline lineno="463"><highlight class="normal"><sp/><sp/><sp/><sp/>(void)<sp/>debugmalloc_log_file;</highlight></codeline>
+<codeline lineno="464"><highlight class="normal"><sp/><sp/><sp/><sp/>(void)<sp/>debugmalloc_max_block_size;</highlight></codeline>
+<codeline lineno="465"><highlight class="normal"></highlight></codeline>
+<codeline lineno="466"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>create<sp/>and<sp/>initialize<sp/>instance<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="467"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_debugmalloc_data" kindref="compound">DebugmallocData</ref><sp/>*instance<sp/>=<sp/>(<ref refid="struct_debugmalloc_data" kindref="compound">DebugmallocData</ref><sp/>*)<sp/><ref refid="debugmalloc_8h_1a535b58ab5aa48e2e86073e334d43fd32" kindref="member">malloc</ref>(</highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<ref refid="struct_debugmalloc_data" kindref="compound">DebugmallocData</ref>));</highlight></codeline>
+<codeline lineno="468"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(instance<sp/>==<sp/>NULL)<sp/>{</highlight></codeline>
+<codeline lineno="469"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>debugmalloc_log(</highlight><highlight class="stringliteral">&quot;debugmalloc:<sp/>nem<sp/>sikerult<sp/>elinditani<sp/>a<sp/>memoriakezelest\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="470"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>abort();</highlight></codeline>
+<codeline lineno="471"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="472"><highlight class="normal"><sp/><sp/><sp/><sp/>debugmalloc_strlcpy(instance-&gt;<ref refid="struct_debugmalloc_data_1af5ff893eedb28514f6f69c3687ca893b" kindref="member">logfile</ref>,<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(instance-&gt;<ref refid="struct_debugmalloc_data_1af5ff893eedb28514f6f69c3687ca893b" kindref="member">logfile</ref>));</highlight></codeline>
+<codeline lineno="473"><highlight class="normal"><sp/><sp/><sp/><sp/>instance-&gt;<ref refid="struct_debugmalloc_data_1a5ff6535cb48e89d8b0707e889ba72b0d" kindref="member">max_block_size</ref><sp/>=<sp/><ref refid="debugmalloc_8h_1ad6725ad24902750bb8080fb21c8d6ec4ae8726dfde3f35d4345009234ee734f6c" kindref="member">debugmalloc_max_block_size_default</ref>;</highlight></codeline>
+<codeline lineno="474"><highlight class="normal"><sp/><sp/><sp/><sp/>instance-&gt;<ref refid="struct_debugmalloc_data_1a15f42e819e77e27bc9e2f204ff15e871" kindref="member">alloc_count</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="475"><highlight class="normal"><sp/><sp/><sp/><sp/>instance-&gt;<ref refid="struct_debugmalloc_data_1a23c9102a7df871da995e7aa887279e46" kindref="member">alloc_bytes</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="476"><highlight class="normal"><sp/><sp/><sp/><sp/>instance-&gt;<ref refid="struct_debugmalloc_data_1a42a37cfdec0b59c102e58457f5954962" kindref="member">all_alloc_count</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="477"><highlight class="normal"><sp/><sp/><sp/><sp/>instance-&gt;<ref refid="struct_debugmalloc_data_1a9b9e3387235c1e2bebc84e38c230837e" kindref="member">all_alloc_bytes</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="478"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/><ref refid="debugmalloc_8h_1ad6725ad24902750bb8080fb21c8d6ec4a40803f0d5a26a349a78cbd998cb8a2a1" kindref="member">debugmalloc_tablesize</ref>;<sp/>i++)<sp/>{</highlight></codeline>
+<codeline lineno="479"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>instance-&gt;<ref refid="struct_debugmalloc_data_1a96730563c8ca3d98f4f9f40df5ecb3c0" kindref="member">head</ref>[i].<ref refid="struct_debugmalloc_entry_1aae87f43e5df8141aedca245507e8d790" kindref="member">prev</ref><sp/>=<sp/>NULL;</highlight></codeline>
+<codeline lineno="480"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>instance-&gt;<ref refid="struct_debugmalloc_data_1a96730563c8ca3d98f4f9f40df5ecb3c0" kindref="member">head</ref>[i].<ref refid="struct_debugmalloc_entry_1a7ebf7cb15f24577c59e05768d8f9ffc5" kindref="member">next</ref><sp/>=<sp/>&amp;instance-&gt;<ref refid="struct_debugmalloc_data_1a6a489bd48f708358b171a68acf75de9f" kindref="member">tail</ref>[i];</highlight></codeline>
+<codeline lineno="481"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>instance-&gt;<ref refid="struct_debugmalloc_data_1a6a489bd48f708358b171a68acf75de9f" kindref="member">tail</ref>[i].<ref refid="struct_debugmalloc_entry_1a7ebf7cb15f24577c59e05768d8f9ffc5" kindref="member">next</ref><sp/>=<sp/>NULL;</highlight></codeline>
+<codeline lineno="482"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>instance-&gt;<ref refid="struct_debugmalloc_data_1a6a489bd48f708358b171a68acf75de9f" kindref="member">tail</ref>[i].<ref refid="struct_debugmalloc_entry_1aae87f43e5df8141aedca245507e8d790" kindref="member">prev</ref><sp/>=<sp/>&amp;instance-&gt;<ref refid="struct_debugmalloc_data_1a96730563c8ca3d98f4f9f40df5ecb3c0" kindref="member">head</ref>[i];</highlight></codeline>
+<codeline lineno="483"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="484"><highlight class="normal"></highlight></codeline>
+<codeline lineno="485"><highlight class="normal"><sp/><sp/><sp/><sp/>atexit(debugmalloc_atexit_dump);</highlight></codeline>
+<codeline lineno="486"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>instance;</highlight></codeline>
+<codeline lineno="487"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="488"><highlight class="normal"></highlight></codeline>
+<codeline lineno="489"><highlight class="normal"></highlight></codeline>
+<codeline lineno="490"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>These<sp/>macro-like<sp/>functions<sp/>forward<sp/>all<sp/>allocation/free</highlight></codeline>
+<codeline lineno="491"><highlight class="comment"><sp/>*<sp/>calls<sp/>to<sp/>debugmalloc.<sp/>Usage<sp/>is<sp/>the<sp/>same,<sp/>malloc(size)</highlight></codeline>
+<codeline lineno="492"><highlight class="comment"><sp/>*<sp/>gives<sp/>the<sp/>address<sp/>of<sp/>a<sp/>new<sp/>memory<sp/>block,<sp/>free(ptr)</highlight></codeline>
+<codeline lineno="493"><highlight class="comment"><sp/>*<sp/>deallocates<sp/>etc.</highlight></codeline>
+<codeline lineno="494"><highlight class="comment"><sp/>*<sp/></highlight></codeline>
+<codeline lineno="495"><highlight class="comment"><sp/>*<sp/>If<sp/>you<sp/>use<sp/>this<sp/>file,<sp/>make<sp/>sure<sp/>that<sp/>you<sp/>include<sp/>this</highlight></codeline>
+<codeline lineno="496"><highlight class="comment"><sp/>*<sp/>in<sp/>*ALL*<sp/>translation<sp/>units<sp/>(*.c)<sp/>of<sp/>your<sp/>source.<sp/>The</highlight></codeline>
+<codeline lineno="497"><highlight class="comment"><sp/>*<sp/>builtin<sp/>free()<sp/>function<sp/>cannot<sp/>deallocate<sp/>a<sp/>memory<sp/>block</highlight></codeline>
+<codeline lineno="498"><highlight class="comment"><sp/>*<sp/>that<sp/>was<sp/>allocated<sp/>via<sp/>debugmalloc,<sp/>yet<sp/>the<sp/>name<sp/>of</highlight></codeline>
+<codeline lineno="499"><highlight class="comment"><sp/>*<sp/>the<sp/>function<sp/>is<sp/>the<sp/>same!<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="500"><highlight class="normal"></highlight></codeline>
+<codeline lineno="501" refid="debugmalloc_8h_1a535b58ab5aa48e2e86073e334d43fd32" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>malloc(S)<sp/>debugmalloc_malloc_full((S),<sp/>&quot;malloc&quot;,<sp/>#S,<sp/>__FILE__,<sp/>__LINE__,<sp/>false)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="502" refid="debugmalloc_8h_1ac07b71d27b6b37e81ac3a4c230f5794e" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>calloc(N,S)<sp/>debugmalloc_malloc_full((N)*(S),<sp/>&quot;calloc&quot;,<sp/>#N<sp/>&quot;,<sp/>&quot;<sp/>#S,<sp/>__FILE__,<sp/>__LINE__,<sp/>true)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="503" refid="debugmalloc_8h_1a54df243d89c451240697d7d3afb5663f" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>realloc(P,S)<sp/>debugmalloc_realloc_full((P),<sp/>(S),<sp/>&quot;realloc&quot;,<sp/>#S,<sp/>__FILE__,<sp/>__LINE__)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="504" refid="debugmalloc_8h_1aa7943e5d135734f6801bebcc37401fc0" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>free(P)<sp/>debugmalloc_free_full((P),<sp/>&quot;free&quot;,<sp/>__FILE__,<sp/>__LINE__)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="505"><highlight class="normal"></highlight></codeline>
+<codeline lineno="506"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>To<sp/>include<sp/>strdup<sp/>and<sp/>strndup<sp/>functions<sp/>(since<sp/>c20)<sp/></highlight></codeline>
+<codeline lineno="507"><highlight class="comment"><sp/>*<sp/>in<sp/>debugmalloc<sp/>administration<sp/>mechanism.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="508"><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="509"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<sp/>debugmalloc_strdup<sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*s,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>*func,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>*expr,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>*file,<sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/>line)</highlight></codeline>
+<codeline lineno="510"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="511"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>len<sp/>=<sp/>strlen<sp/>(s)<sp/>+<sp/>1;</highlight></codeline>
+<codeline lineno="512"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*</highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>=<sp/>debugmalloc_malloc_full<sp/>(len,<sp/>func,<sp/>expr,<sp/>file,<sp/>line,<sp/>0);</highlight></codeline>
+<codeline lineno="513"><highlight class="normal"></highlight></codeline>
+<codeline lineno="514"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>==<sp/>NULL)</highlight></codeline>
+<codeline lineno="515"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>NULL;</highlight></codeline>
+<codeline lineno="516"><highlight class="normal"></highlight></codeline>
+<codeline lineno="517"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*)<sp/>memcpy<sp/>(</highlight><highlight class="keyword">new</highlight><highlight class="normal">,<sp/>s,<sp/>len);</highlight></codeline>
+<codeline lineno="518"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="519"><highlight class="normal"></highlight></codeline>
+<codeline lineno="520"><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="521"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<sp/>debugmalloc_strndup<sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*s,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>n,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>*func,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>*expr,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>*file,<sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/>line)</highlight></codeline>
+<codeline lineno="522"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="523"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>len<sp/>=<sp/>strlen<sp/>(s);</highlight></codeline>
+<codeline lineno="524"><highlight class="normal"><sp/><sp/></highlight></codeline>
+<codeline lineno="525"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(n<sp/>&lt;<sp/>len)</highlight></codeline>
+<codeline lineno="526"><highlight class="normal"><sp/><sp/><sp/><sp/>len<sp/>=<sp/>n;</highlight></codeline>
+<codeline lineno="527"><highlight class="normal"><sp/><sp/></highlight></codeline>
+<codeline lineno="528"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*</highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>=<sp/>debugmalloc_malloc_full<sp/>(len+1,<sp/>func,<sp/>expr,<sp/>file,<sp/>line,<sp/>0);</highlight></codeline>
+<codeline lineno="529"><highlight class="normal"></highlight></codeline>
+<codeline lineno="530"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>==<sp/>NULL)</highlight></codeline>
+<codeline lineno="531"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>NULL;</highlight></codeline>
+<codeline lineno="532"><highlight class="normal"></highlight></codeline>
+<codeline lineno="533"><highlight class="normal"><sp/><sp/>((</highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*)</highlight><highlight class="keyword">new</highlight><highlight class="normal">)[len]<sp/>=<sp/></highlight><highlight class="charliteral">&apos;\0&apos;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="534"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*)<sp/>memcpy<sp/>(</highlight><highlight class="keyword">new</highlight><highlight class="normal">,<sp/>s,<sp/>len);</highlight></codeline>
+<codeline lineno="535"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="536"><highlight class="normal"></highlight></codeline>
+<codeline lineno="537" refid="debugmalloc_8h_1a759f9c1272a31ed1e46a030091fe03e3" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>strdup(S)<sp/>debugmalloc_strdup((S),<sp/>&quot;strdup&quot;,<sp/>#S,<sp/>__FILE__,<sp/>__LINE__)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="538" refid="debugmalloc_8h_1a4db6dcbb705883ad4a28ff882964bb8a" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>strndup(S,N)<sp/>debugmalloc_strndup((S),<sp/>(N),<sp/>&quot;strndup&quot;,<sp/>#S,<sp/>__FILE__,<sp/>__LINE__)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="539"><highlight class="normal"></highlight></codeline>
+<codeline lineno="540"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>defined(_WIN32)<sp/>&amp;&amp;<sp/>defined(_MSC_VER)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="541"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#pragma<sp/>warning(pop)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="542"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="543"><highlight class="normal"></highlight></codeline>
+<codeline lineno="544"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="debugmalloc.h"/>
+  </compounddef>
+</doxygen>

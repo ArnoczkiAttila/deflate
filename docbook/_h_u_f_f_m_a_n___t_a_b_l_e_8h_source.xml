@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="__h_u_f_f_m_a_n___t_a_b_l_e_8h_source" xml:lang="en-US">
+<title>HUFFMAN_TABLE.h</title>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered">1 <emphasis role="comment">//</emphasis>
+2 <emphasis role="comment">//&#32;Created&#32;by&#32;Rendszergazda&#32;on&#32;11/23/2025.</emphasis>
+3 <emphasis role="comment">//</emphasis>
+4 
+5 <emphasis role="preprocessor">#ifndef&#32;DEFLATE_HUFFMAN_TABLE_H</emphasis>
+6 <emphasis role="preprocessor">#define&#32;DEFLATE_HUFFMAN_TABLE_H</emphasis>
+7 
+8 <emphasis role="preprocessor">#include&#32;&lt;stdint.h&gt;</emphasis>
+9 
+10 <emphasis role="preprocessor">#include&#32;&quot;<link linkend="_bitreader_8h">bitreader.h</link>&quot;</emphasis>
+11 <emphasis role="preprocessor">#include&#32;&quot;<link linkend="_node_8h">node.h</link>&quot;</emphasis>
+12 
+13 <emphasis role="keyword">typedef</emphasis>&#32;<emphasis role="keyword">struct&#32;</emphasis>{
+14 &#32;&#32;&#32;&#32;uint16_t&#32;<link linkend="_struct_h_u_f_f_m_a_n___c_o_d_e_1a70008c0b7822b172472813e6730ea565">code</link>;&#32;<emphasis role="comment">//for&#32;example&#32;101&#32;in&#32;binary&#32;which&#32;means&#32;right,&#32;left,&#32;right&#32;in&#32;the&#32;tree</emphasis>
+15 &#32;&#32;&#32;&#32;uint8_t&#32;<link linkend="_struct_h_u_f_f_m_a_n___c_o_d_e_1ab2b3adeb2a67e656ff030b56727fd0ac">length</link>;&#32;<emphasis role="comment">//in&#32;this&#32;example&#32;3&#32;which&#32;says&#32;how&#32;many&#32;bits&#32;are&#32;there</emphasis>
+16 }&#32;<link linkend="_struct_h_u_f_f_m_a_n___c_o_d_e">HUFFMAN_CODE</link>;
+17 
+18 <emphasis role="preprocessor">#define&#32;FAST_BITS&#32;9</emphasis>
+19 <emphasis role="preprocessor">#define&#32;FAST_SIZE&#32;(1&#32;&lt;&lt;&#32;FAST_BITS)&#32;</emphasis><emphasis role="comment">//&#32;512&#32;entries</emphasis>
+20 <emphasis role="preprocessor">#define&#32;MAX_CODE_SYMBOLS&#32;286&#32;</emphasis><emphasis role="comment">//&#32;Max&#32;symbols&#32;for&#32;T_LL&#32;(the&#32;largest&#32;tree)</emphasis>
+21 
+22 <emphasis role="keyword">typedef</emphasis>&#32;<emphasis role="keyword">struct&#32;</emphasis>{
+23 &#32;&#32;&#32;&#32;uint16_t&#32;<link linkend="_struct_huffman_entry_1aec17ee1083424a4709c461d47ff05a45">symbol</link>;&#32;<emphasis role="comment">//&#32;The&#32;decoded&#32;symbol</emphasis>
+24 &#32;&#32;&#32;&#32;uint8_t&#32;<link linkend="_struct_huffman_entry_1a46a6da6b1936191571fd30b2a749f38c">bits</link>;&#32;&#32;&#32;<emphasis role="comment">//&#32;Number&#32;of&#32;bits&#32;consumed&#32;(Length)</emphasis>
+25 }&#32;<link linkend="_struct_huffman_entry">HuffmanEntry</link>;
+26 
+27 <emphasis role="comment">//&#32;---&#32;2.&#32;Full&#32;Code/Length&#32;Storage&#32;(for&#32;the&#32;Slow&#32;Path)&#32;---</emphasis>
+28 <emphasis role="comment">//&#32;This&#32;stores&#32;the&#32;mathematically&#32;generated&#32;canonical&#32;codes&#32;for&#32;*all*&#32;symbols.</emphasis>
+29 <emphasis role="keyword">typedef</emphasis>&#32;<emphasis role="keyword">struct&#32;</emphasis>{
+30 &#32;&#32;&#32;&#32;uint16_t&#32;<link linkend="_struct_canonical_code_1a70008c0b7822b172472813e6730ea565">code</link>;&#32;&#32;&#32;<emphasis role="comment">//&#32;The&#32;Canonical&#32;Code&#32;value&#32;(must&#32;be&#32;bit-reversed&#32;if&#32;using&#32;LSB-first&#32;reading)</emphasis>
+31 &#32;&#32;&#32;&#32;uint8_t&#32;<link linkend="_struct_canonical_code_1ab2b3adeb2a67e656ff030b56727fd0ac">length</link>;&#32;<emphasis role="comment">//&#32;The&#32;length&#32;of&#32;the&#32;code&#32;(up&#32;to&#32;15)</emphasis>
+32 }&#32;<link linkend="_struct_canonical_code">CanonicalCode</link>;
+33 
+34 <emphasis role="comment">//&#32;---&#32;3.&#32;The&#32;Unified&#32;Tree&#32;Structure&#32;---</emphasis>
+35 <emphasis role="keyword">typedef</emphasis>&#32;<emphasis role="keyword">struct&#32;</emphasis>{
+36 &#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;I.&#32;Fast&#32;Lookup&#32;Table:&#32;Resolves&#32;all&#32;codes&#32;&lt;=&#32;FAST_BITS</emphasis>
+37 &#32;&#32;&#32;&#32;<link linkend="_struct_huffman_entry">HuffmanEntry</link>&#32;<link linkend="_struct_huffman_tree_1a972c94cb32177e802b2d8f97714e2968">lookup_table</link>[1&#32;&lt;&lt;&#32;<link linkend="__h_u_f_f_m_a_n___t_a_b_l_e_8h_1add78822c51f4692289f2ce174bdf82b0">FAST_BITS</link>];
+38 
+39 &#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;II.&#32;Storage&#32;for&#32;Long&#32;Codes&#32;(The&#32;Slow&#32;Path&#32;Data):</emphasis>
+40 &#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Used&#32;to&#32;resolve&#32;codes&#32;longer&#32;than&#32;FAST_BITS.</emphasis>
+41 &#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;This&#32;allows&#32;the&#32;slow&#32;path&#32;in&#32;decode_symbol&#32;to&#32;check&#32;all&#32;possible&#32;codes.</emphasis>
+42 &#32;&#32;&#32;&#32;<link linkend="_struct_canonical_code">CanonicalCode</link>&#32;<link linkend="_struct_huffman_tree_1ab6510f0d6074676a0c7a2cf6d2216def">codes_list</link>[<link linkend="__h_u_f_f_m_a_n___t_a_b_l_e_8h_1a8e78a9fcd1b3afab6bff573299f76ed1">MAX_CODE_SYMBOLS</link>];
+43 
+44 &#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;III.&#32;Metadata</emphasis>
+45 &#32;&#32;&#32;&#32;uint16_t&#32;<link linkend="_struct_huffman_tree_1a9fdb3f3c936b832f2b67b6b97555b2c5">total_symbols</link>;&#32;<emphasis role="comment">//&#32;e.g.,&#32;19,&#32;HLIT,&#32;or&#32;HDIST+1</emphasis>
+46 &#32;&#32;&#32;&#32;uint8_t&#32;<link linkend="_struct_huffman_tree_1afdcd30ccd185619f804c9cc7a5b1870e">max_length</link>;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Max&#32;code&#32;length&#32;observed&#32;in&#32;this&#32;tree&#32;(up&#32;to&#32;15)</emphasis>
+47 
+48 }&#32;<link linkend="_struct_huffman_tree">HuffmanTree</link>;
+49 
+50 
+51 <emphasis role="keyword">extern</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;<link linkend="__h_u_f_f_m_a_n___t_a_b_l_e_8h_1a32e731d206254fe2aa33026e72d81cf0">buildCodeLookupTable</link>(<link linkend="_struct_node">Node</link>*&#32;node,&#32;<link linkend="_struct_h_u_f_f_m_a_n___c_o_d_e">HUFFMAN_CODE</link>*&#32;table,&#32;uint16_t&#32;current_code,&#32;<emphasis role="keywordtype">int</emphasis>&#32;depth);
+52 
+53 <emphasis role="keyword">extern</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;<link linkend="__h_u_f_f_m_a_n___t_a_b_l_e_8h_1a2499274512be997926ea1464b3d09628">buildFastLookupTable</link>(
+54 &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_struct_h_u_f_f_m_a_n___c_o_d_e">HUFFMAN_CODE</link>*&#32;canonical_codes,
+55 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">int</emphasis>&#32;total_symbols,
+56 &#32;&#32;&#32;&#32;<link linkend="_struct_huffman_entry">HuffmanEntry</link>*&#32;lookup_table
+57 );
+58 uint16_t&#32;<link linkend="__h_u_f_f_m_a_n___t_a_b_l_e_8h_1ac5c5c75eec8b54cf307c41e22253540f">decode_symbol</link>(<link linkend="_struct_b_i_t___r_e_a_d_e_r">BIT_READER</link>*&#32;reader,&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_struct_huffman_tree">HuffmanTree</link>*&#32;tree);
+59 <emphasis role="preprocessor">#endif&#32;</emphasis><emphasis role="comment">//DEFLATE_HUFFMAN_TABLE_H</emphasis>
+</programlisting></section>

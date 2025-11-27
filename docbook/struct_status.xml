@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_struct_status" xml:lang="en-US">
+<title>Status Struct Reference</title>
+<indexterm><primary>Status</primary></indexterm>
+<para>
+<computeroutput>#include &lt;status.h&gt;</computeroutput>
+</para>
+<simplesect>
+    <title>Data Fields    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_status_8h_1ae98a46f4ea1a43ca48acaf15d2eb7113">StatusCode</link> <link linkend="_struct_status_1a0ecce7ac25584e143ec56590e89efacd">code</link></para>
+</listitem>
+            <listitem><para>char * <link linkend="_struct_status_1a0b2e8c7f76df48129f994ecc46d5c66c">message</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Field Documentation</title>
+<anchor xml:id="_struct_status_1a0ecce7ac25584e143ec56590e89efacd"/><section>
+    <title>code</title>
+<indexterm><primary>code</primary><secondary>Status</secondary></indexterm>
+<indexterm><primary>Status</primary><secondary>code</secondary></indexterm>
+<para><computeroutput><link linkend="_status_8h_1ae98a46f4ea1a43ca48acaf15d2eb7113">StatusCode</link> code</computeroutput></para></section>
+<anchor xml:id="_struct_status_1a0b2e8c7f76df48129f994ecc46d5c66c"/><section>
+    <title>message</title>
+<indexterm><primary>message</primary><secondary>Status</secondary></indexterm>
+<indexterm><primary>Status</primary><secondary>message</secondary></indexterm>
+<para><computeroutput>char* message</computeroutput></para></section>
+<para>
+The documentation for this struct was generated from the following file:</para>
+<link linkend="_status_8h">status.h</link></section>
+</section>

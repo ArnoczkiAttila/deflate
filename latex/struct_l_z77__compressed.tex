@@ -1,0 +1,80 @@
+\doxysection{LZ77\+\_\+compressed Struct Reference}
+\label{struct_l_z77__compressed}\index{LZ77\_compressed@{LZ77\_compressed}}
+
+
+The fundamental LZ77 token structure.  
+
+
+
+
+{\ttfamily \#include $<$LZ77.\+h$>$}
+
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ LZ77\+\_\+encoded\+\_\+type} \textbf{ type}
+\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+union \{\\
+\>uint8\_t \textbf{ literal}\\
+\>struct \{\\
+\>\>uint16\_t \textbf{ distance}\\
+\>\>uint16\_t \textbf{ length}\\
+\>\} \textbf{ match}\\
+\} \textbf{ data}\\
+
+\end{tabbing}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The fundamental LZ77 token structure. 
+
+
+\begin{DoxyItemize}
+\item Uses a struct for the match data to correctly store both distance and length. Uses a union to ensure the token only takes the size of the largest data type (the match struct). 
+\end{DoxyItemize}
+
+\label{doc-variable-members}
+\doxysubsection{Field Documentation}
+\index{LZ77\_compressed@{LZ77\_compressed}!data@{data}}
+\index{data@{data}!LZ77\_compressed@{LZ77\_compressed}}
+\doxysubsubsection{[union]}
+{\footnotesize\ttfamily \label{struct_l_z77__compressed_a7871b753ccbbfe74395eb47be0a9f46e} 
+union  \{ ... \}  data}
+
+\index{LZ77\_compressed@{LZ77\_compressed}!distance@{distance}}
+\index{distance@{distance}!LZ77\_compressed@{LZ77\_compressed}}
+\doxysubsubsection{distance}
+{\footnotesize\ttfamily \label{struct_l_z77__compressed_a7ae9d3ad463ec7a0eb38ee23a15c51e7} 
+uint16\+\_\+t distance}
+
+\index{LZ77\_compressed@{LZ77\_compressed}!length@{length}}
+\index{length@{length}!LZ77\_compressed@{LZ77\_compressed}}
+\doxysubsubsection{length}
+{\footnotesize\ttfamily \label{struct_l_z77__compressed_a1892eba2086d12ac2b09005aeb09ea3b} 
+uint16\+\_\+t length}
+
+\index{LZ77\_compressed@{LZ77\_compressed}!literal@{literal}}
+\index{literal@{literal}!LZ77\_compressed@{LZ77\_compressed}}
+\doxysubsubsection{literal}
+{\footnotesize\ttfamily \label{struct_l_z77__compressed_a66a4fabf3d4457878d3a90d39cdd524f} 
+uint8\+\_\+t literal}
+
+\index{LZ77\_compressed@{LZ77\_compressed}!match@{match}}
+\index{match@{match}!LZ77\_compressed@{LZ77\_compressed}}
+\doxysubsubsection{[struct]}
+{\footnotesize\ttfamily \label{struct_l_z77__compressed_a54e81a285c801cbd44309f0d3f1658bd} 
+struct  \{ ... \}  match}
+
+\index{LZ77\_compressed@{LZ77\_compressed}!type@{type}}
+\index{type@{type}!LZ77\_compressed@{LZ77\_compressed}}
+\doxysubsubsection{type}
+{\footnotesize\ttfamily \label{struct_l_z77__compressed_a35706548b8a67e870f95e47317246787} 
+\textbf{ LZ77\+\_\+encoded\+\_\+type} type}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\textbf{ LZ77.\+h}\end{DoxyCompactItemize}

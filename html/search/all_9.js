@@ -1,0 +1,20 @@
+var searchData=
+[
+  ['leftchildindex_0',['leftChildIndex',['../node_8c.html#abf874a257b47b5a785891cc3d9920251',1,'node.c']]],
+  ['length_1',['length',['../struct_h_u_f_f_m_a_n___c_o_d_e.html#ab2b3adeb2a67e656ff030b56727fd0ac',1,'HUFFMAN_CODE::length'],['../struct_canonical_code.html#ab2b3adeb2a67e656ff030b56727fd0ac',1,'CanonicalCode::length'],['../struct_l_z77__compressed.html#a1892eba2086d12ac2b09005aeb09ea3b',1,'LZ77_compressed::length']]],
+  ['length_2ec_2',['length.c',['../length_8c.html',1,'']]],
+  ['length_2eh_3',['length.h',['../length_8h.html',1,'']]],
+  ['length_5fcode_4',['LENGTH_CODE',['../struct_l_e_n_g_t_h___c_o_d_e.html',1,'']]],
+  ['line_5',['line',['../struct_debugmalloc_entry.html#a05ef0c4dbeec4fc8ccb225de9c26d896',1,'DebugmallocEntry']]],
+  ['literal_6',['LITERAL',['../_l_z77_8h.html#aa2dfc75cd7ffec5a645d9d50841b6403a01168ce90eea67d7bb43776fb0c139e5',1,'LZ77.h']]],
+  ['literal_7',['literal',['../struct_l_z77__compressed.html#a66a4fabf3d4457878d3a90d39cdd524f',1,'LZ77_compressed']]],
+  ['literal_5flength_5fcode_5fstart_8',['LITERAL_LENGTH_CODE_START',['../length_8c.html#a33a80a995347c0556981f23d363e89eb',1,'length.c']]],
+  ['literal_5flength_5fsize_9',['LITERAL_LENGTH_SIZE',['../compress_8c.html#a7c4eca8fe59888352807b89daed94258',1,'compress.c']]],
+  ['logfile_10',['logfile',['../struct_debugmalloc_data.html#af5ff893eedb28514f6f69c3687ca893b',1,'DebugmallocData']]],
+  ['lookup_5ftable_11',['lookup_table',['../struct_huffman_tree.html#a972c94cb32177e802b2d8f97714e2968',1,'HuffmanTree']]],
+  ['lz77_2ec_12',['LZ77.c',['../_l_z77_8c.html',1,'']]],
+  ['lz77_2eh_13',['LZ77.h',['../_l_z77_8h.html',1,'']]],
+  ['lz77_5fbuffer_14',['LZ77_buffer',['../struct_l_z77__buffer.html',1,'']]],
+  ['lz77_5fcompressed_15',['LZ77_compressed',['../struct_l_z77__compressed.html',1,'']]],
+  ['lz77_5fencoded_5ftype_16',['LZ77_encoded_type',['../_l_z77_8h.html#aa2dfc75cd7ffec5a645d9d50841b6403',1,'LZ77.h']]]
+];

@@ -1,0 +1,69 @@
+.TH "length.c" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+length.c
+.SH SYNOPSIS
+.br
+.PP
+\fR#include 'length\&.h'\fP
+.br
+\fR#include <stdio\&.h>\fP
+.br
+
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBMIN_MATCH_LENGTH\fP   3"
+.br
+.ti -1c
+.RI "#define \fBMAX_MATCH_LENGTH\fP   258"
+.br
+.ti -1c
+.RI "#define \fBLITERAL_LENGTH_CODE_START\fP   257"
+.br
+.ti -1c
+.RI "#define \fBNUM_LENGTH_CODES\fP   29"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBLENGTH_CODE\fP \fBgetLengthCode\fP (int length)"
+.br
+.RI "LengthCode\&. "
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define LITERAL_LENGTH_CODE_START   257"
+
+.SS "#define MAX_MATCH_LENGTH   258"
+
+.SS "#define MIN_MATCH_LENGTH   3"
+
+.SS "#define NUM_LENGTH_CODES   29"
+
+.SH "Function Documentation"
+.PP 
+.SS "\fBLENGTH_CODE\fP getLengthCode (int length)\fR [extern]\fP"
+
+.PP
+LengthCode\&. The getLengthCode function calculates the Length Code for each match length, and returns a struct with the necessary data in it\&. For more information on Length Code's check out the official rfc1951 standard documentation\&. (https://datatracker.ietf.org/doc/html/rfc1951#page-11)
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIlength\fP The actual length between (3 and 258) 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+LengthCode struct which stores the length code, the required extra bits, and then the extra value in those extra bits, 
+.RE
+.PP
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

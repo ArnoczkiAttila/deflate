@@ -1,0 +1,102 @@
+.TH "bitwriter.c" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+bitwriter.c
+.SH SYNOPSIS
+.br
+.PP
+\fR#include 'bitwriter\&.h'\fP
+.br
+\fR#include <stdlib\&.h>\fP
+.br
+\fR#include <string\&.h>\fP
+.br
+\fR#include <time\&.h>\fP
+.br
+
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBBUFFER_SIZE\fP   4096"
+.br
+.ti -1c
+.RI "#define \fBMAGIC_NUMER\fP   0x8B1F"
+.br
+.ti -1c
+.RI "#define \fBCOMPRESSION_METHOD\fP   0x08"
+.br
+.ti -1c
+.RI "#define \fBFLAG\fP   0b00000000"
+.br
+.ti -1c
+.RI "#define \fBXFL\fP   0x00"
+.br
+.ti -1c
+.RI "#define \fBOS\fP   0x03"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "size_t \fBflushBitWriterBuffer\fP (\fBBitWriter\fP *bw)"
+.br
+.ti -1c
+.RI "\fBBitWriter\fP * \fBinitBitWriter\fP (void)"
+.br
+.ti -1c
+.RI "void \fBaddData\fP (\fBBitWriter\fP *bw, uint32_t value, uint8_t bitLength)"
+.br
+.ti -1c
+.RI "void \fBflush_bitstream_writer\fP (\fBBitWriter\fP *bw)"
+.br
+.ti -1c
+.RI "void \fBaddBytesFromMSB\fP (\fBBitWriter\fP *bw, uint32_t value, uint8_t bytes)"
+.br
+.ti -1c
+.RI "void \fBaddBytesFromMSB2\fP (\fBBitWriter\fP *bw, uint32_t value, uint8_t bytes)"
+.br
+.ti -1c
+.RI "void \fBcreateFile\fP (\fBBitWriter\fP *bw, char *fileName, char *extension)"
+.br
+.ti -1c
+.RI "void \fBfreeBitWriter\fP (\fBBitWriter\fP *bw)"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define BUFFER_SIZE   4096"
+
+.SS "#define COMPRESSION_METHOD   0x08"
+
+.SS "#define FLAG   0b00000000"
+
+.SS "#define MAGIC_NUMER   0x8B1F"
+
+.SS "#define OS   0x03"
+
+.SS "#define XFL   0x00"
+
+.SH "Function Documentation"
+.PP 
+.SS "void addBytesFromMSB (\fBBitWriter\fP * bw, uint32_t value, uint8_t bytes)\fR [extern]\fP"
+
+.SS "void addBytesFromMSB2 (\fBBitWriter\fP * bw, uint32_t value, uint8_t bytes)\fR [extern]\fP"
+
+.SS "void addData (\fBBitWriter\fP * bw, uint32_t value, uint8_t bitLength)\fR [extern]\fP"
+
+.SS "void createFile (\fBBitWriter\fP * bw, char * fileName, char * extension)\fR [extern]\fP"
+
+.SS "void flush_bitstream_writer (\fBBitWriter\fP * bw)\fR [extern]\fP"
+
+.SS "size_t flushBitWriterBuffer (\fBBitWriter\fP * bw)\fR [extern]\fP"
+
+.SS "void freeBitWriter (\fBBitWriter\fP * bw)\fR [extern]\fP"
+
+.SS "\fBBitWriter\fP * initBitWriter (void )\fR [extern]\fP"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

@@ -1,0 +1,52 @@
+\doxysection{compress.\+h File Reference}
+\label{compress_8h}\index{compress.h@{compress.h}}
+{\ttfamily \#include $<$stddef.\+h$>$}\newline
+{\ttfamily \#include "{}bitwriter.\+h"{}}\newline
+{\ttfamily \#include "{}status.\+h"{}}\newline
+Include dependency graph for compress.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Status} \textbf{ compress} (char $\ast$file\+Name)
+\item 
+FILE $\ast$ \textbf{ ff\+Open\+File} (const char $\ast$filename)
+\begin{DoxyCompactList}\small\item\em Opens a file in rb (read binary) mode. \end{DoxyCompactList}\item 
+size\+\_\+t \textbf{ flush\+Bit\+Writer\+Buffer} (\textbf{ Bit\+Writer} $\ast$bw)
+\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\doxysubsection{Function Documentation}
+\index{compress.h@{compress.h}!compress@{compress}}
+\index{compress@{compress}!compress.h@{compress.h}}
+\doxysubsubsection{compress()}
+{\footnotesize\ttfamily \label{compress_8h_a2d72f4404a1d2679275850f8a4fb836f} 
+\textbf{ Status} compress (\begin{DoxyParamCaption}\item[{char $\ast$}]{file\+Name}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+
+\index{compress.h@{compress.h}!ffOpenFile@{ffOpenFile}}
+\index{ffOpenFile@{ffOpenFile}!compress.h@{compress.h}}
+\doxysubsubsection{ffOpenFile()}
+{\footnotesize\ttfamily \label{compress_8h_af23a493c40a7e0aff72b6ecf7f54c06b} 
+FILE $\ast$ ff\+Open\+File (\begin{DoxyParamCaption}\item[{const char $\ast$}]{filename}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Opens a file in rb (read binary) mode. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & The name of the file. (probably with absolute path)\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+FILE$\ast$ or NULL 
+\end{DoxyReturn}
+\index{compress.h@{compress.h}!flushBitWriterBuffer@{flushBitWriterBuffer}}
+\index{flushBitWriterBuffer@{flushBitWriterBuffer}!compress.h@{compress.h}}
+\doxysubsubsection{flushBitWriterBuffer()}
+{\footnotesize\ttfamily \label{compress_8h_a0c9a8a4752fd0144d7c5556083545ca1} 
+size\+\_\+t flush\+Bit\+Writer\+Buffer (\begin{DoxyParamCaption}\item[{\textbf{ Bit\+Writer} $\ast$}]{bw}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+

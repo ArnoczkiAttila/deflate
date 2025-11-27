@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_distance_8h" xml:lang="en-US">
+<title>distance.h File Reference</title>
+<indexterm><primary>distance.h</primary></indexterm>
+This graph shows which files directly or indirectly include this file:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="distance_8h__dep__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Data Structures    </title>
+        <itemizedlist>
+            <listitem><para>struct <link linkend="_struct_d_i_s_t_a_n_c_e___c_o_d_e">DISTANCE_CODE</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_struct_d_i_s_t_a_n_c_e___c_o_d_e">DISTANCE_CODE</link> <link linkend="_distance_8h_1a3129c724dbfe713ed85671d9eb6c41a5">getDistanceCode</link> (int distance)</para>
+
+<para>Maps a raw LZ77 distance to its Deflate Symbol ID and extra bit information. </para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Function Documentation</title>
+<anchor xml:id="_distance_8h_1a3129c724dbfe713ed85671d9eb6c41a5"/><section>
+    <title>getDistanceCode()</title>
+<indexterm><primary>getDistanceCode</primary><secondary>distance.h</secondary></indexterm>
+<indexterm><primary>distance.h</primary><secondary>getDistanceCode</secondary></indexterm>
+<para><computeroutput><link linkend="_struct_d_i_s_t_a_n_c_e___c_o_d_e">DISTANCE_CODE</link> getDistanceCode (int distance)<computeroutput>[extern]</computeroutput></computeroutput></para><para>
+
+<para>Maps a raw LZ77 distance to its Deflate Symbol ID and extra bit information. </para>
+</para>
+
+<para><itemizedlist>
+<listitem>
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>distance</entry><entry>
+<para>The raw look-back distance (1 to 32768). </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para><link linkend="_struct_d_i_s_t_a_n_c_e___c_o_d_e">DISTANCE_CODE</link> The structure containing the Symbol ID, extra bits count, and value. </para>
+</formalpara>
+</para>
+</listitem></itemizedlist>
+</para>
+</section>
+</section>
+</section>

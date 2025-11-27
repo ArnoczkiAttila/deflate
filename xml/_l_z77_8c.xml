@@ -1,0 +1,314 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="_l_z77_8c" kind="file" language="C++">
+    <compoundname>LZ77.c</compoundname>
+    <includes local="no">stdint.h</includes>
+    <includes refid="_l_z77_8h" local="yes">LZ77.h</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>LZ77.c</label>
+        <link refid="_l_z77_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>LZ77.h</label>
+        <link refid="_l_z77_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>stdint.h</label>
+      </node>
+      <node id="4">
+        <label>stdlib.h</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="_l_z77_8c_1a39a4b9657ba7447c0a42d1cc318b2a7b" prot="public" static="no" extern="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="struct_l_z77__compressed" kindref="compound">LZ77_compressed</ref></type>
+        <definition>LZ77_compressed createLiteralLZ77</definition>
+        <argsstring>(const uint8_t byte)</argsstring>
+        <name>createLiteralLZ77</name>
+        <param>
+          <type>const uint8_t</type>
+          <declname>byte</declname>
+        </param>
+        <briefdescription>
+<para>Create Literal Struct for LZ77 compression. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The createLiteralLZ77 function allocates memory for one single LZ77_compresed struct filled with enum LITERAL and the actual byte.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>byte</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The actual byte to be written into the file </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="struct_l_z77__compressed" kindref="compound">LZ77_compressed</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="LZ77.c" line="16" column="24" bodyfile="LZ77.c" bodystart="16" bodyend="23" declfile="LZ77.c" declline="16" declcolumn="24"/>
+      </memberdef>
+      <memberdef kind="function" id="_l_z77_8c_1ab1cea1d7293ff705a0980fbdb3047eef" prot="public" static="no" extern="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="struct_l_z77__compressed" kindref="compound">LZ77_compressed</ref></type>
+        <definition>LZ77_compressed createMatchLZ77</definition>
+        <argsstring>(const uint16_t distance, const uint16_t length)</argsstring>
+        <name>createMatchLZ77</name>
+        <param>
+          <type>const uint16_t</type>
+          <declname>distance</declname>
+        </param>
+        <param>
+          <type>const uint16_t</type>
+          <declname>length</declname>
+        </param>
+        <briefdescription>
+<para>Create MATCH Struct for LZ77 compression. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The createMatchLZ77 function allocates memory for one single LZ77_compresed struct filled with enum MATCH and the actual distance / length pair.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>distance</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The distance from the last occurrence </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>length</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The length which specifies the length from last occurrence </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="struct_l_z77__compressed" kindref="compound">LZ77_compressed</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="LZ77.c" line="35" column="24" bodyfile="LZ77.c" bodystart="35" bodyend="45" declfile="LZ77.c" declline="35" declcolumn="24"/>
+      </memberdef>
+      <memberdef kind="function" id="_l_z77_8c_1a17ad95ccbd3d7d4a7ac4ffbee2c989ed" prot="public" static="no" extern="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="struct_l_z77__buffer" kindref="compound">LZ77_buffer</ref> *</type>
+        <definition>LZ77_buffer * initLZ77Buffer</definition>
+        <argsstring>(void)</argsstring>
+        <name>initLZ77Buffer</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Initalizes the <ref refid="struct_l_z77__buffer" kindref="compound">LZ77_buffer</ref> struct. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Allocates initial memory for the token array.</para>
+<para><simplesect kind="return"><para>LZ77_buffer* The location in memory. MUST BE FREED afterward! </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="LZ77.c" line="57" column="20" bodyfile="LZ77.c" bodystart="57" bodyend="75" declfile="LZ77.c" declline="57" declcolumn="20"/>
+      </memberdef>
+      <memberdef kind="function" id="_l_z77_8c_1adab308ae1377a2287dcc12153ef47457" prot="public" static="no" extern="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void expandBuffer</definition>
+        <argsstring>(LZ77_buffer *buffer)</argsstring>
+        <name>expandBuffer</name>
+        <param>
+          <type><ref refid="struct_l_z77__buffer" kindref="compound">LZ77_buffer</ref> *</type>
+          <declname>buffer</declname>
+        </param>
+        <briefdescription>
+<para>Expands the buffer capacity by EXPAND_BY tokens. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>buffer</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The buffer to expand. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>void </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="LZ77.c" line="83" column="13" bodyfile="LZ77.c" bodystart="83" bodyend="96" declfile="LZ77.c" declline="83" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="_l_z77_8c_1ae7e9aa7991f2359ab5168b98783544a9" prot="public" static="no" extern="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void appendToken</definition>
+        <argsstring>(LZ77_buffer *buffer, const LZ77_compressed token)</argsstring>
+        <name>appendToken</name>
+        <param>
+          <type><ref refid="struct_l_z77__buffer" kindref="compound">LZ77_buffer</ref> *</type>
+          <declname>buffer</declname>
+        </param>
+        <param>
+          <type>const <ref refid="struct_l_z77__compressed" kindref="compound">LZ77_compressed</ref></type>
+          <declname>token</declname>
+        </param>
+        <briefdescription>
+<para>Appends a token to the buffer. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>buffer</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The buffer to append the token to. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>void </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="LZ77.c" line="104" column="13" bodyfile="LZ77.c" bodystart="104" bodyend="111" declfile="LZ77.c" declline="104" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="_l_z77_8c_1aae1527487667bef65a7944ecb3ba6bac" prot="public" static="no" extern="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void freeLZ77Buffer</definition>
+        <argsstring>(LZ77_buffer *buffer)</argsstring>
+        <name>freeLZ77Buffer</name>
+        <param>
+          <type><ref refid="struct_l_z77__buffer" kindref="compound">LZ77_buffer</ref> *</type>
+          <declname>buffer</declname>
+        </param>
+        <briefdescription>
+<para>Frees all dynamically allocated memory associated with the buffer. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>buffer</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The buffer structure to be freed. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>void </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="LZ77.c" line="119" column="13" bodyfile="LZ77.c" bodystart="119" bodyend="128" declfile="LZ77.c" declline="119" declcolumn="13"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&lt;stdint.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_l_z77_8h" kindref="compound">LZ77.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Created<sp/>by<sp/>Rendszergazda<sp/>on<sp/>11/16/2025.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/><ref refid="struct_l_z77__compressed" kindref="compound">LZ77_compressed</ref><sp/><ref refid="_l_z77_8c_1a39a4b9657ba7447c0a42d1cc318b2a7b" kindref="member">createLiteralLZ77</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>uint8_t<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">)<sp/>{</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="struct_l_z77__compressed" kindref="compound">LZ77_compressed</ref><sp/><ref refid="struct_l_z77__compressed" kindref="compound">LZ77_compressed</ref><sp/>=<sp/>{</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.type<sp/>=<sp/><ref refid="_l_z77_8h_1aa2dfc75cd7ffec5a645d9d50841b6403a01168ce90eea67d7bb43776fb0c139e5" kindref="member">LITERAL</ref>,</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.data.literal<sp/>=<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="struct_l_z77__compressed" kindref="compound">LZ77_compressed</ref>;</highlight></codeline>
+<codeline lineno="23"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/><ref refid="struct_l_z77__compressed" kindref="compound">LZ77_compressed</ref><sp/><ref refid="_l_z77_8c_1ab1cea1d7293ff705a0980fbdb3047eef" kindref="member">createMatchLZ77</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>uint16_t<sp/>distance,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>uint16_t<sp/>length)<sp/>{</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="struct_l_z77__compressed" kindref="compound">LZ77_compressed</ref><sp/><ref refid="struct_l_z77__compressed" kindref="compound">LZ77_compressed</ref><sp/>=<sp/>{</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.type<sp/>=<sp/><ref refid="_l_z77_8h_1aa2dfc75cd7ffec5a645d9d50841b6403a1155ee5305ebe5bb9407faa9d395ae93" kindref="member">MATCH</ref>,</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.data.match<sp/>=<sp/>{</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.distance<sp/>=<sp/>distance,</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.length<sp/>=<sp/>length</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="struct_l_z77__compressed" kindref="compound">LZ77_compressed</ref>;</highlight></codeline>
+<codeline lineno="45"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="comment">//<sp/>---<sp/>Buffer<sp/>Management<sp/>Functions<sp/>---</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/><ref refid="struct_l_z77__buffer" kindref="compound">LZ77_buffer</ref>*<sp/><ref refid="_l_z77_8c_1a17ad95ccbd3d7d4a7ac4ffbee2c989ed" kindref="member">initLZ77Buffer</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)<sp/>{</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_l_z77__buffer" kindref="compound">LZ77_buffer</ref>*<sp/>buffer<sp/>=<sp/>(<ref refid="struct_l_z77__buffer" kindref="compound">LZ77_buffer</ref>*)<sp/><ref refid="debugmalloc_8h_1a535b58ab5aa48e2e86073e334d43fd32" kindref="member">malloc</ref>(</highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<ref refid="struct_l_z77__buffer" kindref="compound">LZ77_buffer</ref>));</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(buffer<sp/>==<sp/>NULL)<sp/>{</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>perror(</highlight><highlight class="stringliteral">&quot;Error<sp/>allocating<sp/>LZ77_buffer<sp/>structure&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>exit(EXIT_FAILURE);</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/>buffer-&gt;<ref refid="struct_l_z77__buffer_1a854352f53b148adc24983a58a1866d66" kindref="member">size</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/>buffer-&gt;<ref refid="struct_l_z77__buffer_1ad721fc6ca6a3d6ba3bc506576622aab0" kindref="member">capacity</ref><sp/>=<sp/><ref refid="_l_z77_8h_1a694faee39d721469e5de4847e2939c8f" kindref="member">EXPAND_BY</ref>;</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/>buffer-&gt;<ref refid="struct_l_z77__buffer_1a28dd3a7c2db4aa8526cb4b1dedb376a8" kindref="member">tokens</ref><sp/>=<sp/>(<ref refid="struct_l_z77__compressed" kindref="compound">LZ77_compressed</ref>*)<sp/><ref refid="debugmalloc_8h_1a535b58ab5aa48e2e86073e334d43fd32" kindref="member">malloc</ref>(</highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<ref refid="struct_l_z77__compressed" kindref="compound">LZ77_compressed</ref>)<sp/>*<sp/>buffer-&gt;<ref refid="struct_l_z77__buffer_1ad721fc6ca6a3d6ba3bc506576622aab0" kindref="member">capacity</ref>);</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(buffer-&gt;<ref refid="struct_l_z77__buffer_1a28dd3a7c2db4aa8526cb4b1dedb376a8" kindref="member">tokens</ref><sp/>==<sp/>NULL)<sp/>{</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>perror(</highlight><highlight class="stringliteral">&quot;Error<sp/>allocating<sp/>initial<sp/>token<sp/>array&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="debugmalloc_8h_1aa7943e5d135734f6801bebcc37401fc0" kindref="member">free</ref>(buffer);</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>exit(EXIT_FAILURE);</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>buffer;</highlight></codeline>
+<codeline lineno="75"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="_l_z77_8c_1adab308ae1377a2287dcc12153ef47457" kindref="member">expandBuffer</ref>(<ref refid="struct_l_z77__buffer" kindref="compound">LZ77_buffer</ref>*<sp/>buffer)<sp/>{</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>new_capacity<sp/>=<sp/>buffer-&gt;<ref refid="struct_l_z77__buffer_1ad721fc6ca6a3d6ba3bc506576622aab0" kindref="member">capacity</ref><sp/>+<sp/><ref refid="_l_z77_8h_1a694faee39d721469e5de4847e2939c8f" kindref="member">EXPAND_BY</ref>;</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Use<sp/>realloc<sp/>to<sp/>resize<sp/>the<sp/>contiguous<sp/>array<sp/>of<sp/>structs</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_l_z77__compressed" kindref="compound">LZ77_compressed</ref>*<sp/>new_tokens<sp/>=<sp/>(<ref refid="struct_l_z77__compressed" kindref="compound">LZ77_compressed</ref>*)<sp/><ref refid="debugmalloc_8h_1a54df243d89c451240697d7d3afb5663f" kindref="member">realloc</ref>(buffer-&gt;<ref refid="struct_l_z77__buffer_1a28dd3a7c2db4aa8526cb4b1dedb376a8" kindref="member">tokens</ref>,<sp/>new_capacity<sp/>*<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<ref refid="struct_l_z77__compressed" kindref="compound">LZ77_compressed</ref>));</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(new_tokens<sp/>==<sp/>NULL)<sp/>{</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>perror(</highlight><highlight class="stringliteral">&quot;Error<sp/>reallocating<sp/>token<sp/>buffer&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>exit(EXIT_FAILURE);</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/>buffer-&gt;<ref refid="struct_l_z77__buffer_1a28dd3a7c2db4aa8526cb4b1dedb376a8" kindref="member">tokens</ref><sp/>=<sp/>new_tokens;</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/>buffer-&gt;<ref refid="struct_l_z77__buffer_1ad721fc6ca6a3d6ba3bc506576622aab0" kindref="member">capacity</ref><sp/>=<sp/>new_capacity;</highlight></codeline>
+<codeline lineno="96"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="_l_z77_8c_1ae7e9aa7991f2359ab5168b98783544a9" kindref="member">appendToken</ref>(<ref refid="struct_l_z77__buffer" kindref="compound">LZ77_buffer</ref>*<sp/>buffer,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="struct_l_z77__compressed" kindref="compound">LZ77_compressed</ref><sp/>token)<sp/>{</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(buffer-&gt;<ref refid="struct_l_z77__buffer_1a854352f53b148adc24983a58a1866d66" kindref="member">size</ref><sp/>&gt;=<sp/>buffer-&gt;<ref refid="struct_l_z77__buffer_1ad721fc6ca6a3d6ba3bc506576622aab0" kindref="member">capacity</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_l_z77_8c_1adab308ae1377a2287dcc12153ef47457" kindref="member">expandBuffer</ref>(buffer);</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/>buffer-&gt;<ref refid="struct_l_z77__buffer_1a28dd3a7c2db4aa8526cb4b1dedb376a8" kindref="member">tokens</ref>[buffer-&gt;<ref refid="struct_l_z77__buffer_1a854352f53b148adc24983a58a1866d66" kindref="member">size</ref>]<sp/>=<sp/>token;</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/>buffer-&gt;<ref refid="struct_l_z77__buffer_1a854352f53b148adc24983a58a1866d66" kindref="member">size</ref>++;</highlight></codeline>
+<codeline lineno="111"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="_l_z77_8c_1aae1527487667bef65a7944ecb3ba6bac" kindref="member">freeLZ77Buffer</ref>(<ref refid="struct_l_z77__buffer" kindref="compound">LZ77_buffer</ref>*<sp/>buffer)<sp/>{</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(buffer<sp/>==<sp/>NULL)<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(buffer-&gt;<ref refid="struct_l_z77__buffer_1a28dd3a7c2db4aa8526cb4b1dedb376a8" kindref="member">tokens</ref><sp/>!=<sp/>NULL)<sp/>{</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="debugmalloc_8h_1aa7943e5d135734f6801bebcc37401fc0" kindref="member">free</ref>(buffer-&gt;<ref refid="struct_l_z77__buffer_1a28dd3a7c2db4aa8526cb4b1dedb376a8" kindref="member">tokens</ref>);</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>buffer-&gt;<ref refid="struct_l_z77__buffer_1a28dd3a7c2db4aa8526cb4b1dedb376a8" kindref="member">tokens</ref><sp/>=<sp/>NULL;</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="debugmalloc_8h_1aa7943e5d135734f6801bebcc37401fc0" kindref="member">free</ref>(buffer);</highlight></codeline>
+<codeline lineno="128"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="LZ77.c"/>
+  </compounddef>
+</doxygen>

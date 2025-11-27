@@ -1,0 +1,22 @@
+\doxysection{CRC\+\_\+\+CHECKSUM.\+h}
+\label{_c_r_c___c_h_e_c_k_s_u_m_8h_source}\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ Created\ by\ Rendszergazda\ on\ 11/24/2025.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#ifndef\ DEFLATE\_CRC\_CHECKSUM\_H}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ DEFLATE\_CRC\_CHECKSUM\_H}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ The\ standard\ polynomial\ used\ for\ Gzip/Zlib\ (IEEE\ 802.3)}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ CRC32\_POLYNOMIAL\ 0xEDB88320UL}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ The\ initial\ value\ for\ the\ CRC32\ calculation\ in\ Gzip/Zlib\ is\ 0xFFFFFFFF}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#define\ CRC32\_INITIAL\_VALUE\ 0xFFFFFFFFUL}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{extern}\ uint32\_t\ calculate\_crc32(uint32\_t\ current\_crc,\ \textcolor{keyword}{const}\ uint8\_t*\ data,\ \textcolor{keywordtype}{size\_t}\ length);}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//DEFLATE\_CRC\_CHECKSUM\_H}}
+
+\end{DoxyCode}

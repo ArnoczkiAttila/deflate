@@ -1,0 +1,225 @@
+.TH "LZ77.h" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+LZ77.h
+.SH SYNOPSIS
+.br
+.PP
+\fR#include <stdint\&.h>\fP
+.br
+\fR#include <stdlib\&.h>\fP
+.br
+
+.SS "Data Structures"
+
+.in +1c
+.ti -1c
+.RI "struct \fBLZ77_compressed\fP"
+.br
+.RI "The fundamental LZ77 token structure\&. "
+.ti -1c
+.RI "struct \fBLZ77_buffer\fP"
+.br
+.RI "Structure to manage a dynamic array (growing buffer) of LZ77 tokens\&. "
+.in -1c
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBEXPAND_BY\fP   50"
+.br
+.RI "The amount to expand the buffer's capacity when full\&. "
+.in -1c
+.SS "Enumerations"
+
+.in +1c
+.ti -1c
+.RI "enum \fBLZ77_encoded_type\fP { \fBLITERAL\fP, \fBMATCH\fP }"
+.br
+.RI "Enumeration to distinguish between a literal byte and a match pair\&. "
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBLZ77_compressed\fP \fBcreateLiteralLZ77\fP (const uint8_t byte)"
+.br
+.RI "Create Literal Struct for LZ77 compression\&. "
+.ti -1c
+.RI "\fBLZ77_compressed\fP \fBcreateMatchLZ77\fP (const uint16_t distance, const uint16_t length)"
+.br
+.RI "Create MATCH Struct for LZ77 compression\&. "
+.ti -1c
+.RI "\fBLZ77_buffer\fP * \fBinitLZ77Buffer\fP (void)"
+.br
+.RI "Initalizes the \fBLZ77_buffer\fP struct\&. "
+.ti -1c
+.RI "void \fBexpandBuffer\fP (\fBLZ77_buffer\fP *buffer)"
+.br
+.RI "Expands the buffer capacity by EXPAND_BY tokens\&. "
+.ti -1c
+.RI "void \fBappendToken\fP (\fBLZ77_buffer\fP *buffer, \fBLZ77_compressed\fP token)"
+.br
+.RI "Appends a token to the buffer\&. "
+.ti -1c
+.RI "void \fBfreeLZ77Buffer\fP (\fBLZ77_buffer\fP *buffer)"
+.br
+.RI "Frees all dynamically allocated memory associated with the buffer\&. "
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define EXPAND_BY   50"
+
+.PP
+The amount to expand the buffer's capacity when full\&. 
+.SH "Enumeration Type Documentation"
+.PP 
+.SS "enum \fBLZ77_encoded_type\fP"
+
+.PP
+Enumeration to distinguish between a literal byte and a match pair\&. 
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\f(BILITERAL \fP
+.TP
+\f(BIMATCH \fP
+.SH "Function Documentation"
+.PP 
+.SS "void appendToken (\fBLZ77_buffer\fP * buffer, const \fBLZ77_compressed\fP token)"
+
+.PP
+Appends a token to the buffer\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbuffer\fP The buffer to append the token to\&. 
+.br
+\fItoken\fP The \fBLZ77_compressed\fP token\&.
+.br
+\fIbuffer\fP The buffer to append the token to\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+void 
+.RE
+.PP
+
+.SS "\fBLZ77_compressed\fP createLiteralLZ77 (const uint8_t byte)"
+
+.PP
+Create Literal Struct for LZ77 compression\&. The createLiteralLZ77 function allocates memory for one single LZ77_compresed struct filled with enum LITERAL and the actual byte\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIbyte\fP The actual byte to be written into the file 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+LZ77_compressed* The location in memory\&. MUST BE FREED afterward!
+.RE
+.PP
+The createLiteralLZ77 function allocates memory for one single LZ77_compresed struct filled with enum LITERAL and the actual byte\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIbyte\fP The actual byte to be written into the file 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+\fBLZ77_compressed\fP 
+.RE
+.PP
+
+.SS "\fBLZ77_compressed\fP createMatchLZ77 (const uint16_t distance, const uint16_t length)"
+
+.PP
+Create MATCH Struct for LZ77 compression\&. The createMatchLZ77 function allocates memory for one single LZ77_compresed struct filled with enum MATCH and the actual distance / length pair\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIdistance\fP The distance from the last occurrence 
+.br
+\fIlength\fP The length which specifies the length from last occurrence 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+LZ77_compressed* The location in memory\&. MUST BE FREED afterward!
+.RE
+.PP
+The createMatchLZ77 function allocates memory for one single LZ77_compresed struct filled with enum MATCH and the actual distance / length pair\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIdistance\fP The distance from the last occurrence 
+.br
+\fIlength\fP The length which specifies the length from last occurrence 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+\fBLZ77_compressed\fP 
+.RE
+.PP
+
+.SS "void expandBuffer (\fBLZ77_buffer\fP * buffer)"
+
+.PP
+Expands the buffer capacity by EXPAND_BY tokens\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbuffer\fP The buffer to expand\&.
+.br
+\fIbuffer\fP The buffer to expand\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+void 
+.RE
+.PP
+
+.SS "void freeLZ77Buffer (\fBLZ77_buffer\fP * buffer)"
+
+.PP
+Frees all dynamically allocated memory associated with the buffer\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbuffer\fP The buffer structure to be freed\&.
+.br
+\fIbuffer\fP The buffer structure to be freed\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+void 
+.RE
+.PP
+
+.SS "\fBLZ77_buffer\fP * initLZ77Buffer (void )"
+
+.PP
+Initalizes the \fBLZ77_buffer\fP struct\&. Allocates initial memory for the token array\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+LZ77_buffer* The location in memory\&. MUST BE FREED afterward! 
+.RE
+.PP
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

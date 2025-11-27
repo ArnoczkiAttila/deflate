@@ -1,0 +1,159 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_debugmalloc_8h" xml:lang="en-US">
+<title>debugmalloc.h File Reference</title>
+<indexterm><primary>debugmalloc.h</primary></indexterm>
+<programlisting linenumbering="unnumbered">#include &lt;stdbool.h&gt;<?linebreak?>#include &lt;stddef.h&gt;<?linebreak?>#include &lt;stdlib.h&gt;<?linebreak?>#include &lt;stdio.h&gt;<?linebreak?>#include &lt;ctype.h&gt;<?linebreak?>#include &lt;string.h&gt;<?linebreak?>#include &lt;stdarg.h&gt;<?linebreak?>#include &lt;unistd.h&gt;<?linebreak?></programlisting>Include dependency graph for debugmalloc.h:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="debugmalloc_8h__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+This graph shows which files directly or indirectly include this file:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="debugmalloc_8h__dep__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Data Structures    </title>
+        <itemizedlist>
+            <listitem><para>struct <link linkend="_struct_debugmalloc_entry">DebugmallocEntry</link></para>
+</listitem>
+            <listitem><para>struct <link linkend="_struct_debugmalloc_data">DebugmallocData</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Macros    </title>
+        <itemizedlist>
+            <listitem><para>#define <link linkend="_debugmalloc_8h_1a535b58ab5aa48e2e86073e334d43fd32">malloc</link>(S)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_debugmalloc_8h_1ac07b71d27b6b37e81ac3a4c230f5794e">calloc</link>(N,  S)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_debugmalloc_8h_1a54df243d89c451240697d7d3afb5663f">realloc</link>(P,  S)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_debugmalloc_8h_1aa7943e5d135734f6801bebcc37401fc0">free</link>(P)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_debugmalloc_8h_1a759f9c1272a31ed1e46a030091fe03e3">strdup</link>(S)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_debugmalloc_8h_1a4db6dcbb705883ad4a28ff882964bb8a">strndup</link>(S,  N)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Typedefs    </title>
+        <itemizedlist>
+            <listitem><para>typedef struct DebugmallocEntry <link linkend="_debugmalloc_8h_1a69e016f03a024f815bedf07ed671d4ea">DebugmallocEntry</link></para>
+</listitem>
+            <listitem><para>typedef struct DebugmallocData <link linkend="_debugmalloc_8h_1a6270b6c4128e9715c7e47c0d007e4367">DebugmallocData</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Enumerations    </title>
+        <itemizedlist>
+            <listitem><para>enum { <link linkend="_debugmalloc_8h_1ad6725ad24902750bb8080fb21c8d6ec4ab345007cf28a2516c0ba24371a400520">debugmalloc_canary_size</link> = 64
+, <link linkend="_debugmalloc_8h_1ad6725ad24902750bb8080fb21c8d6ec4a8e3d5ad8628140edd887b8920f521cfd">debugmalloc_canary_char</link> = &apos;K&apos;
+, <link linkend="_debugmalloc_8h_1ad6725ad24902750bb8080fb21c8d6ec4a40803f0d5a26a349a78cbd998cb8a2a1">debugmalloc_tablesize</link> = 256
+, <link linkend="_debugmalloc_8h_1ad6725ad24902750bb8080fb21c8d6ec4ae8726dfde3f35d4345009234ee734f6c">debugmalloc_max_block_size_default</link> = 1048576
+ }</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Functions    </title>
+        <itemizedlist>
+            <listitem><para>int <link linkend="_debugmalloc_8h_1a5dd0c329b734eeefd1909d15385f8b95">putenv</link> (char *)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Macro Definition Documentation</title>
+<anchor xml:id="_debugmalloc_8h_1ac07b71d27b6b37e81ac3a4c230f5794e"/><section>
+    <title>calloc</title>
+<indexterm><primary>calloc</primary><secondary>debugmalloc.h</secondary></indexterm>
+<indexterm><primary>debugmalloc.h</primary><secondary>calloc</secondary></indexterm>
+<para><computeroutput>#define calloc( N,  S)</computeroutput></para><emphasis role="strong">Value:</emphasis><programlisting linenumbering="unnumbered">debugmalloc_malloc_full((N)*(S),&#32;<emphasis role="stringliteral">&quot;calloc&quot;</emphasis>,&#32;#N&#32;<emphasis role="stringliteral">&quot;,&#32;&quot;</emphasis>&#32;#S,&#32;__FILE__,&#32;__LINE__,&#32;<emphasis role="keyword">true</emphasis>)
+</programlisting></section>
+<anchor xml:id="_debugmalloc_8h_1aa7943e5d135734f6801bebcc37401fc0"/><section>
+    <title>free</title>
+<indexterm><primary>free</primary><secondary>debugmalloc.h</secondary></indexterm>
+<indexterm><primary>debugmalloc.h</primary><secondary>free</secondary></indexterm>
+<para><computeroutput>#define free( P)</computeroutput></para><emphasis role="strong">Value:</emphasis><programlisting linenumbering="unnumbered">debugmalloc_free_full((P),&#32;<emphasis role="stringliteral">&quot;free&quot;</emphasis>,&#32;__FILE__,&#32;__LINE__)
+</programlisting></section>
+<anchor xml:id="_debugmalloc_8h_1a535b58ab5aa48e2e86073e334d43fd32"/><section>
+    <title>malloc</title>
+<indexterm><primary>malloc</primary><secondary>debugmalloc.h</secondary></indexterm>
+<indexterm><primary>debugmalloc.h</primary><secondary>malloc</secondary></indexterm>
+<para><computeroutput>#define malloc( S)</computeroutput></para><emphasis role="strong">Value:</emphasis><programlisting linenumbering="unnumbered">debugmalloc_malloc_full((S),&#32;<emphasis role="stringliteral">&quot;malloc&quot;</emphasis>,&#32;#S,&#32;__FILE__,&#32;__LINE__,&#32;<emphasis role="keyword">false</emphasis>)
+</programlisting></section>
+<anchor xml:id="_debugmalloc_8h_1a54df243d89c451240697d7d3afb5663f"/><section>
+    <title>realloc</title>
+<indexterm><primary>realloc</primary><secondary>debugmalloc.h</secondary></indexterm>
+<indexterm><primary>debugmalloc.h</primary><secondary>realloc</secondary></indexterm>
+<para><computeroutput>#define realloc( P,  S)</computeroutput></para><emphasis role="strong">Value:</emphasis><programlisting linenumbering="unnumbered">debugmalloc_realloc_full((P),&#32;(S),&#32;<emphasis role="stringliteral">&quot;realloc&quot;</emphasis>,&#32;#S,&#32;__FILE__,&#32;__LINE__)
+</programlisting></section>
+<anchor xml:id="_debugmalloc_8h_1a759f9c1272a31ed1e46a030091fe03e3"/><section>
+    <title>strdup</title>
+<indexterm><primary>strdup</primary><secondary>debugmalloc.h</secondary></indexterm>
+<indexterm><primary>debugmalloc.h</primary><secondary>strdup</secondary></indexterm>
+<para><computeroutput>#define strdup( S)</computeroutput></para><emphasis role="strong">Value:</emphasis><programlisting linenumbering="unnumbered">debugmalloc_strdup((S),&#32;<emphasis role="stringliteral">&quot;strdup&quot;</emphasis>,&#32;#S,&#32;__FILE__,&#32;__LINE__)
+</programlisting></section>
+<anchor xml:id="_debugmalloc_8h_1a4db6dcbb705883ad4a28ff882964bb8a"/><section>
+    <title>strndup</title>
+<indexterm><primary>strndup</primary><secondary>debugmalloc.h</secondary></indexterm>
+<indexterm><primary>debugmalloc.h</primary><secondary>strndup</secondary></indexterm>
+<para><computeroutput>#define strndup( S,  N)</computeroutput></para><emphasis role="strong">Value:</emphasis><programlisting linenumbering="unnumbered">debugmalloc_strndup((S),&#32;(N),&#32;<emphasis role="stringliteral">&quot;strndup&quot;</emphasis>,&#32;#S,&#32;__FILE__,&#32;__LINE__)
+</programlisting></section>
+</section>
+<section>
+<title>Typedef Documentation</title>
+<anchor xml:id="_debugmalloc_8h_1a6270b6c4128e9715c7e47c0d007e4367"/><section>
+    <title>DebugmallocData</title>
+<indexterm><primary>DebugmallocData</primary><secondary>debugmalloc.h</secondary></indexterm>
+<indexterm><primary>debugmalloc.h</primary><secondary>DebugmallocData</secondary></indexterm>
+<para><computeroutput>typedef struct DebugmallocData DebugmallocData</computeroutput></para></section>
+<anchor xml:id="_debugmalloc_8h_1a69e016f03a024f815bedf07ed671d4ea"/><section>
+    <title>DebugmallocEntry</title>
+<indexterm><primary>DebugmallocEntry</primary><secondary>debugmalloc.h</secondary></indexterm>
+<indexterm><primary>debugmalloc.h</primary><secondary>DebugmallocEntry</secondary></indexterm>
+<para><computeroutput>typedef struct DebugmallocEntry DebugmallocEntry</computeroutput></para></section>
+</section>
+<section>
+<title>Enumeration Type Documentation</title>
+<anchor xml:id="_debugmalloc_8h_1ad6725ad24902750bb8080fb21c8d6ec4"/><section>
+    <title>anonymous enum</title>
+<para><computeroutput>anonymous enum</computeroutput></para><informaltable frame="all">
+<title>Enumerator</title>
+    <tgroup cols="2" align="left" colsep="1" rowsep="1">
+      <colspec colname='c1'/>
+      <colspec colname='c2'/>
+<tbody>
+<row><entry><indexterm><primary>debugmalloc_canary_size</primary><secondary>debugmalloc.h</secondary></indexterm>
+<indexterm><primary>debugmalloc.h</primary><secondary>debugmalloc_canary_size</secondary></indexterm>
+<anchor xml:id="_debugmalloc_8h_1ad6725ad24902750bb8080fb21c8d6ec4ab345007cf28a2516c0ba24371a400520"/>debugmalloc_canary_size</entry><entry></entry></row><row><entry><indexterm><primary>debugmalloc_canary_char</primary><secondary>debugmalloc.h</secondary></indexterm>
+<indexterm><primary>debugmalloc.h</primary><secondary>debugmalloc_canary_char</secondary></indexterm>
+<anchor xml:id="_debugmalloc_8h_1ad6725ad24902750bb8080fb21c8d6ec4a8e3d5ad8628140edd887b8920f521cfd"/>debugmalloc_canary_char</entry><entry></entry></row><row><entry><indexterm><primary>debugmalloc_tablesize</primary><secondary>debugmalloc.h</secondary></indexterm>
+<indexterm><primary>debugmalloc.h</primary><secondary>debugmalloc_tablesize</secondary></indexterm>
+<anchor xml:id="_debugmalloc_8h_1ad6725ad24902750bb8080fb21c8d6ec4a40803f0d5a26a349a78cbd998cb8a2a1"/>debugmalloc_tablesize</entry><entry></entry></row><row><entry><indexterm><primary>debugmalloc_max_block_size_default</primary><secondary>debugmalloc.h</secondary></indexterm>
+<indexterm><primary>debugmalloc.h</primary><secondary>debugmalloc_max_block_size_default</secondary></indexterm>
+<anchor xml:id="_debugmalloc_8h_1ad6725ad24902750bb8080fb21c8d6ec4ae8726dfde3f35d4345009234ee734f6c"/>debugmalloc_max_block_size_default</entry><entry></entry></row>    </tbody>
+    </tgroup>
+</informaltable>
+</section>
+</section>
+<section>
+<title>Function Documentation</title>
+<anchor xml:id="_debugmalloc_8h_1a5dd0c329b734eeefd1909d15385f8b95"/><section>
+    <title>putenv()</title>
+<indexterm><primary>putenv</primary><secondary>debugmalloc.h</secondary></indexterm>
+<indexterm><primary>debugmalloc.h</primary><secondary>putenv</secondary></indexterm>
+<para><computeroutput>int putenv (char * )</computeroutput></para></section>
+</section>
+</section>

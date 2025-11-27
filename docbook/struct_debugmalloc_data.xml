@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_struct_debugmalloc_data" xml:lang="en-US">
+<title>DebugmallocData Struct Reference</title>
+<indexterm><primary>DebugmallocData</primary></indexterm>
+<para>
+<computeroutput>#include &lt;debugmalloc.h&gt;</computeroutput>
+</para>
+Collaboration diagram for DebugmallocData:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="struct_debugmalloc_data__coll__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Data Fields    </title>
+        <itemizedlist>
+            <listitem><para>char <link linkend="_struct_debugmalloc_data_1af5ff893eedb28514f6f69c3687ca893b">logfile</link> [256]</para>
+</listitem>
+            <listitem><para>long <link linkend="_struct_debugmalloc_data_1a5ff6535cb48e89d8b0707e889ba72b0d">max_block_size</link></para>
+</listitem>
+            <listitem><para>long <link linkend="_struct_debugmalloc_data_1a15f42e819e77e27bc9e2f204ff15e871">alloc_count</link></para>
+</listitem>
+            <listitem><para>long long <link linkend="_struct_debugmalloc_data_1a23c9102a7df871da995e7aa887279e46">alloc_bytes</link></para>
+</listitem>
+            <listitem><para>long <link linkend="_struct_debugmalloc_data_1a42a37cfdec0b59c102e58457f5954962">all_alloc_count</link></para>
+</listitem>
+            <listitem><para>long long <link linkend="_struct_debugmalloc_data_1a9b9e3387235c1e2bebc84e38c230837e">all_alloc_bytes</link></para>
+</listitem>
+            <listitem><para><link linkend="_struct_debugmalloc_entry">DebugmallocEntry</link> <link linkend="_struct_debugmalloc_data_1a96730563c8ca3d98f4f9f40df5ecb3c0">head</link> [<link linkend="_debugmalloc_8h_1ad6725ad24902750bb8080fb21c8d6ec4a40803f0d5a26a349a78cbd998cb8a2a1">debugmalloc_tablesize</link>]</para>
+</listitem>
+            <listitem><para><link linkend="_struct_debugmalloc_entry">DebugmallocEntry</link> <link linkend="_struct_debugmalloc_data_1a6a489bd48f708358b171a68acf75de9f">tail</link> [<link linkend="_debugmalloc_8h_1ad6725ad24902750bb8080fb21c8d6ec4a40803f0d5a26a349a78cbd998cb8a2a1">debugmalloc_tablesize</link>]</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Field Documentation</title>
+<anchor xml:id="_struct_debugmalloc_data_1a9b9e3387235c1e2bebc84e38c230837e"/><section>
+    <title>all_alloc_bytes</title>
+<indexterm><primary>all_alloc_bytes</primary><secondary>DebugmallocData</secondary></indexterm>
+<indexterm><primary>DebugmallocData</primary><secondary>all_alloc_bytes</secondary></indexterm>
+<para><computeroutput>long long all_alloc_bytes</computeroutput></para></section>
+<anchor xml:id="_struct_debugmalloc_data_1a42a37cfdec0b59c102e58457f5954962"/><section>
+    <title>all_alloc_count</title>
+<indexterm><primary>all_alloc_count</primary><secondary>DebugmallocData</secondary></indexterm>
+<indexterm><primary>DebugmallocData</primary><secondary>all_alloc_count</secondary></indexterm>
+<para><computeroutput>long all_alloc_count</computeroutput></para></section>
+<anchor xml:id="_struct_debugmalloc_data_1a23c9102a7df871da995e7aa887279e46"/><section>
+    <title>alloc_bytes</title>
+<indexterm><primary>alloc_bytes</primary><secondary>DebugmallocData</secondary></indexterm>
+<indexterm><primary>DebugmallocData</primary><secondary>alloc_bytes</secondary></indexterm>
+<para><computeroutput>long long alloc_bytes</computeroutput></para></section>
+<anchor xml:id="_struct_debugmalloc_data_1a15f42e819e77e27bc9e2f204ff15e871"/><section>
+    <title>alloc_count</title>
+<indexterm><primary>alloc_count</primary><secondary>DebugmallocData</secondary></indexterm>
+<indexterm><primary>DebugmallocData</primary><secondary>alloc_count</secondary></indexterm>
+<para><computeroutput>long alloc_count</computeroutput></para></section>
+<anchor xml:id="_struct_debugmalloc_data_1a96730563c8ca3d98f4f9f40df5ecb3c0"/><section>
+    <title>head</title>
+<indexterm><primary>head</primary><secondary>DebugmallocData</secondary></indexterm>
+<indexterm><primary>DebugmallocData</primary><secondary>head</secondary></indexterm>
+<para><computeroutput><link linkend="_struct_debugmalloc_entry">DebugmallocEntry</link> head[<link linkend="_debugmalloc_8h_1ad6725ad24902750bb8080fb21c8d6ec4a40803f0d5a26a349a78cbd998cb8a2a1">debugmalloc_tablesize</link>]</computeroutput></para></section>
+<anchor xml:id="_struct_debugmalloc_data_1af5ff893eedb28514f6f69c3687ca893b"/><section>
+    <title>logfile</title>
+<indexterm><primary>logfile</primary><secondary>DebugmallocData</secondary></indexterm>
+<indexterm><primary>DebugmallocData</primary><secondary>logfile</secondary></indexterm>
+<para><computeroutput>char logfile[256]</computeroutput></para></section>
+<anchor xml:id="_struct_debugmalloc_data_1a5ff6535cb48e89d8b0707e889ba72b0d"/><section>
+    <title>max_block_size</title>
+<indexterm><primary>max_block_size</primary><secondary>DebugmallocData</secondary></indexterm>
+<indexterm><primary>DebugmallocData</primary><secondary>max_block_size</secondary></indexterm>
+<para><computeroutput>long max_block_size</computeroutput></para></section>
+<anchor xml:id="_struct_debugmalloc_data_1a6a489bd48f708358b171a68acf75de9f"/><section>
+    <title>tail</title>
+<indexterm><primary>tail</primary><secondary>DebugmallocData</secondary></indexterm>
+<indexterm><primary>DebugmallocData</primary><secondary>tail</secondary></indexterm>
+<para><computeroutput><link linkend="_struct_debugmalloc_entry">DebugmallocEntry</link> tail[<link linkend="_debugmalloc_8h_1ad6725ad24902750bb8080fb21c8d6ec4a40803f0d5a26a349a78cbd998cb8a2a1">debugmalloc_tablesize</link>]</computeroutput></para></section>
+<para>
+The documentation for this struct was generated from the following file:</para>
+<link linkend="_debugmalloc_8h">debugmalloc.h</link></section>
+</section>

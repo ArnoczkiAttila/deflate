@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_struct_huffman_tree" xml:lang="en-US">
+<title>HuffmanTree Struct Reference</title>
+<indexterm><primary>HuffmanTree</primary></indexterm>
+<para>
+<computeroutput>#include &lt;HUFFMAN_TABLE.h&gt;</computeroutput>
+</para>
+Collaboration diagram for HuffmanTree:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="struct_huffman_tree__coll__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Data Fields    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_struct_huffman_entry">HuffmanEntry</link> <link linkend="_struct_huffman_tree_1a972c94cb32177e802b2d8f97714e2968">lookup_table</link> [1&lt;&lt; <link linkend="__h_u_f_f_m_a_n___t_a_b_l_e_8h_1add78822c51f4692289f2ce174bdf82b0">FAST_BITS</link>]</para>
+</listitem>
+            <listitem><para><link linkend="_struct_canonical_code">CanonicalCode</link> <link linkend="_struct_huffman_tree_1ab6510f0d6074676a0c7a2cf6d2216def">codes_list</link> [<link linkend="__h_u_f_f_m_a_n___t_a_b_l_e_8h_1a8e78a9fcd1b3afab6bff573299f76ed1">MAX_CODE_SYMBOLS</link>]</para>
+</listitem>
+            <listitem><para>uint16_t <link linkend="_struct_huffman_tree_1a9fdb3f3c936b832f2b67b6b97555b2c5">total_symbols</link></para>
+</listitem>
+            <listitem><para>uint8_t <link linkend="_struct_huffman_tree_1afdcd30ccd185619f804c9cc7a5b1870e">max_length</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Field Documentation</title>
+<anchor xml:id="_struct_huffman_tree_1ab6510f0d6074676a0c7a2cf6d2216def"/><section>
+    <title>codes_list</title>
+<indexterm><primary>codes_list</primary><secondary>HuffmanTree</secondary></indexterm>
+<indexterm><primary>HuffmanTree</primary><secondary>codes_list</secondary></indexterm>
+<para><computeroutput><link linkend="_struct_canonical_code">CanonicalCode</link> codes_list[<link linkend="__h_u_f_f_m_a_n___t_a_b_l_e_8h_1a8e78a9fcd1b3afab6bff573299f76ed1">MAX_CODE_SYMBOLS</link>]</computeroutput></para></section>
+<anchor xml:id="_struct_huffman_tree_1a972c94cb32177e802b2d8f97714e2968"/><section>
+    <title>lookup_table</title>
+<indexterm><primary>lookup_table</primary><secondary>HuffmanTree</secondary></indexterm>
+<indexterm><primary>HuffmanTree</primary><secondary>lookup_table</secondary></indexterm>
+<para><computeroutput><link linkend="_struct_huffman_entry">HuffmanEntry</link> lookup_table[1&lt;&lt; <link linkend="__h_u_f_f_m_a_n___t_a_b_l_e_8h_1add78822c51f4692289f2ce174bdf82b0">FAST_BITS</link>]</computeroutput></para></section>
+<anchor xml:id="_struct_huffman_tree_1afdcd30ccd185619f804c9cc7a5b1870e"/><section>
+    <title>max_length</title>
+<indexterm><primary>max_length</primary><secondary>HuffmanTree</secondary></indexterm>
+<indexterm><primary>HuffmanTree</primary><secondary>max_length</secondary></indexterm>
+<para><computeroutput>uint8_t max_length</computeroutput></para></section>
+<anchor xml:id="_struct_huffman_tree_1a9fdb3f3c936b832f2b67b6b97555b2c5"/><section>
+    <title>total_symbols</title>
+<indexterm><primary>total_symbols</primary><secondary>HuffmanTree</secondary></indexterm>
+<indexterm><primary>HuffmanTree</primary><secondary>total_symbols</secondary></indexterm>
+<para><computeroutput>uint16_t total_symbols</computeroutput></para></section>
+<para>
+The documentation for this struct was generated from the following file:</para>
+<link linkend="__h_u_f_f_m_a_n___t_a_b_l_e_8h">HUFFMAN_TABLE.h</link></section>
+</section>

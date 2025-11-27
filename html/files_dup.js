@@ -1,0 +1,26 @@
+var files_dup =
+[
+    [ "bitreader.c", "bitreader_8c.html", "bitreader_8c" ],
+    [ "bitreader.h", "bitreader_8h.html", "bitreader_8h" ],
+    [ "bitwriter.c", "bitwriter_8c.html", "bitwriter_8c" ],
+    [ "bitwriter.h", "bitwriter_8h.html", "bitwriter_8h" ],
+    [ "compress.c", "compress_8c.html", "compress_8c" ],
+    [ "compress.h", "compress_8h.html", "compress_8h" ],
+    [ "CRC_CHECKSUM.c", "_c_r_c___c_h_e_c_k_s_u_m_8c.html", "_c_r_c___c_h_e_c_k_s_u_m_8c" ],
+    [ "CRC_CHECKSUM.h", "_c_r_c___c_h_e_c_k_s_u_m_8h.html", "_c_r_c___c_h_e_c_k_s_u_m_8h" ],
+    [ "debugmalloc.h", "debugmalloc_8h.html", "debugmalloc_8h" ],
+    [ "decompress.c", "decompress_8c.html", "decompress_8c" ],
+    [ "decompress.h", "decompress_8h.html", "decompress_8h" ],
+    [ "distance.c", "distance_8c.html", "distance_8c" ],
+    [ "distance.h", "distance_8h.html", "distance_8h" ],
+    [ "HUFFMAN_TABLE.c", "_h_u_f_f_m_a_n___t_a_b_l_e_8c.html", "_h_u_f_f_m_a_n___t_a_b_l_e_8c" ],
+    [ "HUFFMAN_TABLE.h", "_h_u_f_f_m_a_n___t_a_b_l_e_8h.html", "_h_u_f_f_m_a_n___t_a_b_l_e_8h" ],
+    [ "length.c", "length_8c.html", "length_8c" ],
+    [ "length.h", "length_8h.html", "length_8h" ],
+    [ "LZ77.c", "_l_z77_8c.html", "_l_z77_8c" ],
+    [ "LZ77.h", "_l_z77_8h.html", "_l_z77_8h" ],
+    [ "main.c", "main_8c.html", "main_8c" ],
+    [ "node.c", "node_8c.html", "node_8c" ],
+    [ "node.h", "node_8h.html", "node_8h" ],
+    [ "status.h", "status_8h.html", "status_8h" ]
+];

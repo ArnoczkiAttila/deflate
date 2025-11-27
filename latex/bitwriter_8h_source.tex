@@ -1,0 +1,40 @@
+\doxysection{bitwriter.\+h}
+\label{bitwriter_8h_source}\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ Created\ by\ Attila\ on\ 11/19/2025.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#ifndef\ DEFLATE\_BITWRITER\_H}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ DEFLATE\_BITWRITER\_H}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00012\ \ \ \ \ FILE\ *file;}
+\DoxyCodeLine{00013\ \ \ \ \ uint8\_t*\ buffer;}
+\DoxyCodeLine{00014\ \ \ \ \ uint8\_t\ byte;}
+\DoxyCodeLine{00015\ \ \ \ \ uint8\_t\ currentPosition;}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ bufferSize;}
+\DoxyCodeLine{00017\ \ \ \ \ uint16\_t\ index;}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordtype}{char}*\ fileName;}
+\DoxyCodeLine{00019\ \}\ BitWriter;}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ BitWriter*\ initBitWriter(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{keywordtype}{void}\ addData(BitWriter*\ bw,\ uint32\_t\ value,\ uint8\_t\ bitLength);}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{keywordtype}{void}\ createFile(BitWriter*\ bw,\ \textcolor{keywordtype}{char}*\ fileName,\ \textcolor{keywordtype}{char}*\ extension);}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keywordtype}{void}\ freeBitWriter(BitWriter*\ bw);}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ addBytesFromMSB(BitWriter*\ bw,\ uint32\_t\ value,\ uint8\_t\ bytes);}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ addBytesFromMSB2(BitWriter*\ bw,\ uint32\_t\ value,\ uint8\_t\ bytes);}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ flush\_bitstream\_writer(BitWriter*\ bw);}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//DEFLATE\_BITWRITER\_H}}
+
+\end{DoxyCode}

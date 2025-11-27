@@ -1,0 +1,808 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="node_8c" kind="file" language="C++">
+    <compoundname>node.c</compoundname>
+    <includes refid="node_8h" local="yes">node.h</includes>
+    <includes local="no">stdint.h</includes>
+    <includes local="no">stdlib.h</includes>
+    <includes local="no">stdio.h</includes>
+    <includes refid="debugmalloc_8h" local="yes">debugmalloc.h</includes>
+    <incdepgraph>
+      <node id="6">
+        <label>debugmalloc.h</label>
+        <link refid="debugmalloc_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>node.c</label>
+        <link refid="node_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>node.h</label>
+        <link refid="node_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>ctype.h</label>
+      </node>
+      <node id="11">
+        <label>stdarg.h</label>
+      </node>
+      <node id="7">
+        <label>stdbool.h</label>
+      </node>
+      <node id="8">
+        <label>stddef.h</label>
+      </node>
+      <node id="3">
+        <label>stdint.h</label>
+      </node>
+      <node id="5">
+        <label>stdio.h</label>
+      </node>
+      <node id="4">
+        <label>stdlib.h</label>
+      </node>
+      <node id="10">
+        <label>string.h</label>
+      </node>
+      <node id="12">
+        <label>unistd.h</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="define">
+      <memberdef kind="define" id="node_8c_1a90344de9a45f0d60f23aff3fea165e05" prot="public" static="no">
+        <name>INVALID_NODE_SYMBOL</name>
+        <initializer>286</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="node.c" line="13" column="9" bodyfile="node.c" bodystart="13" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="node_8c_1a476e2695789ae31745b5cd5cc5877792" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="struct_node" kindref="compound">Node</ref> *</type>
+        <definition>Node * createNode</definition>
+        <argsstring>(unsigned short usSymbol, int freq)</argsstring>
+        <name>createNode</name>
+        <param>
+          <type>unsigned short</type>
+          <declname>usSymbol</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>freq</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="node.c" line="15" column="6" bodyfile="node.c" bodystart="15" bodyend="22"/>
+      </memberdef>
+      <memberdef kind="function" id="node_8c_1afdf92c04775f1fdb56a48a6063f30b51" prot="public" static="no" extern="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void freeTree</definition>
+        <argsstring>(Node *top)</argsstring>
+        <name>freeTree</name>
+        <param>
+          <type><ref refid="struct_node" kindref="compound">Node</ref> *</type>
+          <declname>top</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="node.c" line="24" column="13" bodyfile="node.c" bodystart="24" bodyend="34" declfile="node.c" declline="24" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="node_8c_1aa1c5f84fe9f09a17b82d2ed396c1e1ad" prot="public" static="no" extern="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void compressCodeLengths</definition>
+        <argsstring>(const uint8_t *all_lengths, size_t count, uint8_t *compressed_lengths, uint16_t *cl_frequencies, uint8_t *extra_bits_values, size_t *compressed_count)</argsstring>
+        <name>compressCodeLengths</name>
+        <param>
+          <type>const uint8_t *</type>
+          <declname>all_lengths</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>count</declname>
+        </param>
+        <param>
+          <type>uint8_t *</type>
+          <declname>compressed_lengths</declname>
+        </param>
+        <param>
+          <type>uint16_t *</type>
+          <declname>cl_frequencies</declname>
+        </param>
+        <param>
+          <type>uint8_t *</type>
+          <declname>extra_bits_values</declname>
+        </param>
+        <param>
+          <type>size_t *</type>
+          <declname>compressed_count</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="node.c" line="36" column="13" bodyfile="node.c" bodystart="36" bodyend="128" declfile="node.c" declline="36" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="node_8c_1a25107a4508c2ffd75825c42e1239fa90" prot="public" static="no" extern="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void findCodeLengthsInTree</definition>
+        <argsstring>(Node *node, uint8_t *lengths, uint8_t depth)</argsstring>
+        <name>findCodeLengthsInTree</name>
+        <param>
+          <type><ref refid="struct_node" kindref="compound">Node</ref> *</type>
+          <declname>node</declname>
+        </param>
+        <param>
+          <type>uint8_t *</type>
+          <declname>lengths</declname>
+        </param>
+        <param>
+          <type>uint8_t</type>
+          <declname>depth</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="node.c" line="130" column="13" bodyfile="node.c" bodystart="130" bodyend="138" declfile="node.c" declline="130" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="node_8c_1a86c7eb4d5e202d4087bde685ae659e52" prot="public" static="no" extern="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="struct_min_heap" kindref="compound">MinHeap</ref> *</type>
+        <definition>MinHeap * createMinHeap</definition>
+        <argsstring>(int capacity)</argsstring>
+        <name>createMinHeap</name>
+        <param>
+          <type>int</type>
+          <declname>capacity</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="node.c" line="140" column="16" bodyfile="node.c" bodystart="140" bodyend="154" declfile="node.c" declline="140" declcolumn="16"/>
+      </memberdef>
+      <memberdef kind="function" id="node_8c_1ac9a5be012917c9c86e4cc688eb700e0c" prot="public" static="no" extern="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void addToMinHeap</definition>
+        <argsstring>(MinHeap *minHeap, Node *node)</argsstring>
+        <name>addToMinHeap</name>
+        <param>
+          <type><ref refid="struct_min_heap" kindref="compound">MinHeap</ref> *</type>
+          <declname>minHeap</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_node" kindref="compound">Node</ref> *</type>
+          <declname>node</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="node.c" line="156" column="13" bodyfile="node.c" bodystart="156" bodyend="159" declfile="node.c" declline="156" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="node_8c_1abb1491b2a66959d3dea01a9b552c8e86" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void swapNodePointers</definition>
+        <argsstring>(Node **a, Node **b)</argsstring>
+        <name>swapNodePointers</name>
+        <param>
+          <type><ref refid="struct_node" kindref="compound">Node</ref> **</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_node" kindref="compound">Node</ref> **</type>
+          <declname>b</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="node.c" line="161" column="6" bodyfile="node.c" bodystart="161" bodyend="165"/>
+      </memberdef>
+      <memberdef kind="function" id="node_8c_1ae90b32976c0036dd23f82b402230cb84" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void minHeapify</definition>
+        <argsstring>(MinHeap *minHeap, int i)</argsstring>
+        <name>minHeapify</name>
+        <param>
+          <type><ref refid="struct_min_heap" kindref="compound">MinHeap</ref> *</type>
+          <declname>minHeap</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="node.c" line="167" column="6" bodyfile="node.c" bodystart="167" bodyend="195"/>
+      </memberdef>
+      <memberdef kind="function" id="node_8c_1aecbec578e3e80350306dd708f0e24b99" prot="public" static="no" extern="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="struct_node" kindref="compound">Node</ref> *</type>
+        <definition>Node * extractMin</definition>
+        <argsstring>(MinHeap *minHeap)</argsstring>
+        <name>extractMin</name>
+        <param>
+          <type><ref refid="struct_min_heap" kindref="compound">MinHeap</ref> *</type>
+          <declname>minHeap</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="node.c" line="198" column="13" bodyfile="node.c" bodystart="198" bodyend="217" declfile="node.c" declline="198" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="node_8c_1afbdba32d1543027eda02773bce2ab102" prot="public" static="no" extern="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void freeMinHeap</definition>
+        <argsstring>(MinHeap *minHeap)</argsstring>
+        <name>freeMinHeap</name>
+        <param>
+          <type><ref refid="struct_min_heap" kindref="compound">MinHeap</ref> *</type>
+          <declname>minHeap</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="node.c" line="219" column="13" bodyfile="node.c" bodystart="219" bodyend="227" declfile="node.c" declline="219" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="node_8c_1a8196a5fffc96ca854a325d1fe349e8da" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void printHeap</definition>
+        <argsstring>(MinHeap *minHeap)</argsstring>
+        <name>printHeap</name>
+        <param>
+          <type><ref refid="struct_min_heap" kindref="compound">MinHeap</ref> *</type>
+          <declname>minHeap</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="node.c" line="229" column="6" bodyfile="node.c" bodystart="229" bodyend="238"/>
+      </memberdef>
+      <memberdef kind="function" id="node_8c_1ae6e53a77c8389ec5fa741eeab2e95cd9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void buildMinHeap</definition>
+        <argsstring>(MinHeap *minHeap)</argsstring>
+        <name>buildMinHeap</name>
+        <param>
+          <type><ref refid="struct_min_heap" kindref="compound">MinHeap</ref> *</type>
+          <declname>minHeap</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="node.c" line="240" column="6" bodyfile="node.c" bodystart="240" bodyend="246"/>
+      </memberdef>
+      <memberdef kind="function" id="node_8c_1a3620a363633d7b5214f68fc8692fb075" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int parentIndex</definition>
+        <argsstring>(int i)</argsstring>
+        <name>parentIndex</name>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="node.c" line="249" column="5" bodyfile="node.c" bodystart="249" bodyend="251"/>
+      </memberdef>
+      <memberdef kind="function" id="node_8c_1abf874a257b47b5a785891cc3d9920251" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int leftChildIndex</definition>
+        <argsstring>(int i)</argsstring>
+        <name>leftChildIndex</name>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="node.c" line="254" column="5" bodyfile="node.c" bodystart="254" bodyend="256"/>
+      </memberdef>
+      <memberdef kind="function" id="node_8c_1a2fa8d61f1354f6602498abd3f4415417" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void insertMinHeap</definition>
+        <argsstring>(MinHeap *minHeap, Node *newNode)</argsstring>
+        <name>insertMinHeap</name>
+        <param>
+          <type><ref refid="struct_min_heap" kindref="compound">MinHeap</ref> *</type>
+          <declname>minHeap</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_node" kindref="compound">Node</ref> *</type>
+          <declname>newNode</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="node.c" line="259" column="6" bodyfile="node.c" bodystart="259" bodyend="276"/>
+      </memberdef>
+      <memberdef kind="function" id="node_8c_1a7dddf9d8d87a548cf9d63568af9f56fa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="struct_node" kindref="compound">Node</ref> *</type>
+        <definition>Node * buildHuffmanTree</definition>
+        <argsstring>(MinHeap *minHeap)</argsstring>
+        <name>buildHuffmanTree</name>
+        <param>
+          <type><ref refid="struct_min_heap" kindref="compound">MinHeap</ref> *</type>
+          <declname>minHeap</declname>
+        </param>
+        <briefdescription>
+<para>Creates the Huffman tree from the populated Min-Heap. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><itemizedlist>
+<listitem><para>This is the greedy algorithm core: repeatedly combine the two smallest nodes.</para>
+</listitem><listitem><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>minHeap</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The initialized Min-Heap containing all leaf nodes. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Node* The root of the completed Huffman tree. </para>
+</simplesect>
+</para>
+</listitem></itemizedlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="node.c" line="286" column="6" bodyfile="node.c" bodystart="286" bodyend="304"/>
+      </memberdef>
+      <memberdef kind="function" id="node_8c_1aa5388bed3eaea8eee24e56c7e66b1e62" prot="public" static="no" extern="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void extract_code_lengths</definition>
+        <argsstring>(Node *npCurrent, uint8_t uiCurrentDepth, uint8_t *uiLengthCodes)</argsstring>
+        <name>extract_code_lengths</name>
+        <param>
+          <type><ref refid="struct_node" kindref="compound">Node</ref> *</type>
+          <declname>npCurrent</declname>
+        </param>
+        <param>
+          <type>uint8_t</type>
+          <declname>uiCurrentDepth</declname>
+        </param>
+        <param>
+          <type>uint8_t *</type>
+          <declname>uiLengthCodes</declname>
+        </param>
+        <briefdescription>
+<para>Traverses a Huffman tree to determine the bit length (depth) for every symbol. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><itemizedlist>
+<listitem><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>current_node</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The current node in the traversal (start with the tree root). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>uiCurrentDepth</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The depth of the current node (start with 0 for the root). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>uiLengthCodes</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The array where the resulting code lengths are stored. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+</listitem></itemizedlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="node.c" line="312" column="13" bodyfile="node.c" bodystart="312" bodyend="326" declfile="node.c" declline="312" declcolumn="13"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Created<sp/>by<sp/>Attila<sp/>Arnóczki<sp/>on<sp/>10/18/2025.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Node<sp/>version<sp/>0.0.1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="node_8h" kindref="compound">node.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdint.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdlib.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="debugmalloc_8h" kindref="compound">debugmalloc.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>INVALID_NODE_SYMBOL<sp/>286</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><ref refid="struct_node" kindref="compound">Node</ref>*<sp/><ref refid="node_8c_1a476e2695789ae31745b5cd5cc5877792" kindref="member">createNode</ref>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/>usSymbol,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>freq)<sp/>{</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_node" kindref="compound">Node</ref>*<sp/>n<sp/>=<sp/>(<ref refid="struct_node" kindref="compound">Node</ref>*)<ref refid="debugmalloc_8h_1a535b58ab5aa48e2e86073e334d43fd32" kindref="member">malloc</ref>(</highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<ref refid="struct_node" kindref="compound">Node</ref>));</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(n<sp/>==<sp/>NULL)<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>NULL;<sp/>}</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/>n-&gt;<ref refid="struct_node_1a598b58eb0ea6750cee33aa0ea62f6ccc" kindref="member">iFrequency</ref><sp/>=<sp/>freq;</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/>n-&gt;<ref refid="struct_node_1aef34b594003aef090557c68fa0976aef" kindref="member">usSymbol</ref><sp/>=<sp/>usSymbol;</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/>n-&gt;<ref refid="struct_node_1a3fbc6e3132038d871c08e9b71391893f" kindref="member">pnLeft</ref><sp/>=<sp/>n-&gt;<ref refid="struct_node_1a72a7b991ec60f48cd33a359fb0c00942" kindref="member">pnRight</ref><sp/>=<sp/>NULL;</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>n;</highlight></codeline>
+<codeline lineno="22"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="node_8c_1afdf92c04775f1fdb56a48a6063f30b51" kindref="member">freeTree</ref>(<ref refid="struct_node" kindref="compound">Node</ref>*<sp/>top)<sp/>{</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(top<sp/>==<sp/>NULL)<sp/>{</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="node_8c_1afdf92c04775f1fdb56a48a6063f30b51" kindref="member">freeTree</ref>(top-&gt;<ref refid="struct_node_1a3fbc6e3132038d871c08e9b71391893f" kindref="member">pnLeft</ref>);</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="node_8c_1afdf92c04775f1fdb56a48a6063f30b51" kindref="member">freeTree</ref>(top-&gt;<ref refid="struct_node_1a72a7b991ec60f48cd33a359fb0c00942" kindref="member">pnRight</ref>);</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="debugmalloc_8h_1aa7943e5d135734f6801bebcc37401fc0" kindref="member">free</ref>(top);</highlight></codeline>
+<codeline lineno="34"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="node_8c_1aa1c5f84fe9f09a17b82d2ed396c1e1ad" kindref="member">compressCodeLengths</ref>(</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>uint8_t*<sp/>all_lengths,</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>count,</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t*<sp/>compressed_lengths,<sp/></highlight><highlight class="comment">//<sp/>Output<sp/>buffer<sp/>for<sp/>RLE<sp/>symbols<sp/>(0-18)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/>uint16_t*<sp/>cl_frequencies,<sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Output<sp/>array<sp/>of<sp/>size<sp/>19</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t*<sp/>extra_bits_values,<sp/><sp/></highlight><highlight class="comment">//<sp/>Output<sp/>buffer<sp/>for<sp/>RLE<sp/>extra<sp/>bit<sp/>values</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">*<sp/>compressed_count<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Final<sp/>count<sp/>of<sp/>symbols<sp/>generated</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal">)<sp/>{</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>output_idx<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Note:<sp/>The<sp/>maximum<sp/>possible<sp/>length<sp/>of<sp/>the<sp/>output<sp/>stream<sp/>is<sp/>286+30<sp/>=<sp/>316.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>However,<sp/>due<sp/>to<sp/>expansion<sp/>via<sp/>symbol<sp/>16<sp/>(where<sp/>3<sp/>raw<sp/>lengths<sp/>become<sp/>1<sp/>symbol<sp/>+<sp/>2<sp/>extra<sp/>bits),</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>the<sp/>output<sp/>array<sp/>size<sp/>must<sp/>be<sp/>sufficient.<sp/>We<sp/>rely<sp/>on<sp/>the<sp/>caller<sp/>to<sp/>provide<sp/>a<sp/>large<sp/>enough<sp/>buffer.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>count;<sp/>)<sp/>{</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint8_t<sp/>current_len<sp/>=<sp/>all_lengths[i];</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>run_start<sp/>=<sp/>i;</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>1.<sp/>Calculate<sp/>the<sp/>length<sp/>of<sp/>the<sp/>current<sp/>run</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(i<sp/>&lt;<sp/>count<sp/>&amp;&amp;<sp/>all_lengths[i]<sp/>==<sp/>current_len)<sp/>{</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>i++;</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>run_length<sp/>=<sp/>i<sp/>-<sp/>run_start;</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(current_len<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>---<sp/>Run<sp/>of<sp/>Zeros<sp/>(Symbols<sp/>17<sp/>and<sp/>18)<sp/>---</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(run_length<sp/>&gt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(run_length<sp/>&gt;=<sp/>11)<sp/>{</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Use<sp/>Symbol<sp/>18:<sp/>Repeat<sp/>0<sp/>for<sp/>11<sp/>to<sp/>138<sp/>times<sp/>(7<sp/>extra<sp/>bits)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>repeat_count<sp/>=<sp/>run_length<sp/>&gt;<sp/>138<sp/>?<sp/>138<sp/>:<sp/>run_length;</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>compressed_lengths[output_idx]<sp/>=<sp/>18;</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>extra_bits_values[output_idx]<sp/>=<sp/>repeat_count<sp/>-<sp/>11;<sp/></highlight><highlight class="comment">//<sp/>7-bit<sp/>extra<sp/>value</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cl_frequencies[18]++;</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>output_idx++;</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>run_length<sp/>-=<sp/>repeat_count;</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(run_length<sp/>&gt;=<sp/>3)<sp/>{</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Use<sp/>Symbol<sp/>17:<sp/>Repeat<sp/>0<sp/>for<sp/>3<sp/>to<sp/>10<sp/>times<sp/>(3<sp/>extra<sp/>bits)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>repeat_count<sp/>=<sp/>run_length<sp/>&gt;<sp/>10<sp/>?<sp/>10<sp/>:<sp/>run_length;</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>compressed_lengths[output_idx]<sp/>=<sp/>17;</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>extra_bits_values[output_idx]<sp/>=<sp/>repeat_count<sp/>-<sp/>3;<sp/></highlight><highlight class="comment">//<sp/>3-bit<sp/>extra<sp/>value</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cl_frequencies[17]++;</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>output_idx++;</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>run_length<sp/>-=<sp/>repeat_count;</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Write<sp/>1<sp/>or<sp/>2<sp/>zeros<sp/>as<sp/>literal<sp/>zeros<sp/>(Symbol<sp/>0)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>j<sp/>=<sp/>0;<sp/>j<sp/>&lt;<sp/>run_length;<sp/>++j)<sp/>{</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>compressed_lengths[output_idx]<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>extra_bits_values[output_idx]<sp/>=<sp/>0;<sp/></highlight><highlight class="comment">//<sp/>No<sp/>extra<sp/>bits</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cl_frequencies[0]++;</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>output_idx++;</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>run_length<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>---<sp/>Run<sp/>of<sp/>Non-Zero<sp/>Lengths<sp/>(Symbol<sp/>16<sp/>and<sp/>Literals)<sp/>---</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>A.<sp/>Write<sp/>the<sp/>first<sp/>instance<sp/>as<sp/>a<sp/>literal<sp/>(0-15)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>compressed_lengths[output_idx]<sp/>=<sp/>current_len;</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>extra_bits_values[output_idx]<sp/>=<sp/>0;<sp/></highlight><highlight class="comment">//<sp/>No<sp/>extra<sp/>bits</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cl_frequencies[current_len]++;</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>output_idx++;</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>run_length--;</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>B.<sp/>Use<sp/>Symbol<sp/>16<sp/>for<sp/>any<sp/>remaining<sp/>run<sp/>(3<sp/>to<sp/>6<sp/>times)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(run_length<sp/>&gt;=<sp/>3)<sp/>{</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Use<sp/>Symbol<sp/>16:<sp/>Repeat<sp/>previous<sp/>length<sp/>3<sp/>to<sp/>6<sp/>times<sp/>(2<sp/>extra<sp/>bits)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>repeat_count<sp/>=<sp/>run_length<sp/>&gt;<sp/>6<sp/>?<sp/>6<sp/>:<sp/>run_length;</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>compressed_lengths[output_idx]<sp/>=<sp/>16;</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>extra_bits_values[output_idx]<sp/>=<sp/>repeat_count<sp/>-<sp/>3;<sp/></highlight><highlight class="comment">//<sp/>2-bit<sp/>extra<sp/>value</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cl_frequencies[16]++;</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>output_idx++;</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>run_length<sp/>-=<sp/>repeat_count;</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"></highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>C.<sp/>Write<sp/>any<sp/>remaining<sp/>1<sp/>or<sp/>2<sp/>instances<sp/>as<sp/>literals<sp/>(0-15)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>j<sp/>=<sp/>0;<sp/>j<sp/>&lt;<sp/>run_length;<sp/>++j)<sp/>{</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>compressed_lengths[output_idx]<sp/>=<sp/>current_len;</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>extra_bits_values[output_idx]<sp/>=<sp/>0;<sp/></highlight><highlight class="comment">//<sp/>No<sp/>extra<sp/>bits</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cl_frequencies[current_len]++;</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>output_idx++;</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"></highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/>*compressed_count<sp/>=<sp/>output_idx;</highlight></codeline>
+<codeline lineno="128"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"></highlight></codeline>
+<codeline lineno="130"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="node_8c_1a25107a4508c2ffd75825c42e1239fa90" kindref="member">findCodeLengthsInTree</ref>(<ref refid="struct_node" kindref="compound">Node</ref>*<sp/>node,<sp/>uint8_t*<sp/>lengths,<sp/>uint8_t<sp/>depth)<sp/>{</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!node)<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(node-&gt;<ref refid="struct_node_1aef34b594003aef090557c68fa0976aef" kindref="member">usSymbol</ref><sp/>!=<sp/><ref refid="_h_u_f_f_m_a_n___t_a_b_l_e_8c_1a90344de9a45f0d60f23aff3fea165e05" kindref="member">INVALID_NODE_SYMBOL</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>lengths[node-&gt;<ref refid="struct_node_1aef34b594003aef090557c68fa0976aef" kindref="member">usSymbol</ref>]<sp/>=<sp/>depth;</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="node_8c_1a25107a4508c2ffd75825c42e1239fa90" kindref="member">findCodeLengthsInTree</ref>(node-&gt;<ref refid="struct_node_1a3fbc6e3132038d871c08e9b71391893f" kindref="member">pnLeft</ref>,lengths,depth+1);</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="node_8c_1a25107a4508c2ffd75825c42e1239fa90" kindref="member">findCodeLengthsInTree</ref>(node-&gt;<ref refid="struct_node_1a72a7b991ec60f48cd33a359fb0c00942" kindref="member">pnRight</ref>,lengths,depth+1);</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="138"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"></highlight></codeline>
+<codeline lineno="140"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/><ref refid="struct_min_heap" kindref="compound">MinHeap</ref>*<sp/><ref refid="node_8c_1a86c7eb4d5e202d4087bde685ae659e52" kindref="member">createMinHeap</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>capacity)<sp/>{</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_min_heap" kindref="compound">MinHeap</ref>*<sp/>minHeap<sp/>=<sp/>(<ref refid="struct_min_heap" kindref="compound">MinHeap</ref>*)<sp/><ref refid="debugmalloc_8h_1a535b58ab5aa48e2e86073e334d43fd32" kindref="member">malloc</ref>(</highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<ref refid="struct_min_heap" kindref="compound">MinHeap</ref>));</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(minHeap<sp/>==<sp/>NULL)<sp/>{</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>NULL;</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/>minHeap-&gt;<ref refid="struct_min_heap_1aafdd50fc8bfa4a3f01987e9bc816fc1e" kindref="member">iCapacity</ref><sp/>=<sp/>capacity;</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/>minHeap-&gt;<ref refid="struct_min_heap_1afccb13ff89743172794c40bd66b9b85b" kindref="member">iSize</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_node" kindref="compound">Node</ref>**<sp/>array<sp/>=<sp/>(<ref refid="struct_node" kindref="compound">Node</ref>**)<sp/><ref refid="debugmalloc_8h_1a535b58ab5aa48e2e86073e334d43fd32" kindref="member">malloc</ref>(</highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<ref refid="struct_node" kindref="compound">Node</ref>*)*capacity);</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(array<sp/>==<sp/>NULL)<sp/>{</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="debugmalloc_8h_1aa7943e5d135734f6801bebcc37401fc0" kindref="member">free</ref>(minHeap);</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>NULL;</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/>minHeap-&gt;<ref refid="struct_min_heap_1a734ed6d54bc63dbb1c7079dbdf0bebc7" kindref="member">ppnArray</ref><sp/>=<sp/>array;</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>minHeap;</highlight></codeline>
+<codeline lineno="154"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"></highlight></codeline>
+<codeline lineno="156"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="node_8c_1ac9a5be012917c9c86e4cc688eb700e0c" kindref="member">addToMinHeap</ref>(<ref refid="struct_min_heap" kindref="compound">MinHeap</ref>*<sp/>minHeap,<sp/><ref refid="struct_node" kindref="compound">Node</ref>*<sp/>node)<sp/>{</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/>minHeap-&gt;<ref refid="struct_min_heap_1a734ed6d54bc63dbb1c7079dbdf0bebc7" kindref="member">ppnArray</ref>[minHeap-&gt;<ref refid="struct_min_heap_1afccb13ff89743172794c40bd66b9b85b" kindref="member">iSize</ref>]<sp/>=<sp/>node;</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/>minHeap-&gt;<ref refid="struct_min_heap_1afccb13ff89743172794c40bd66b9b85b" kindref="member">iSize</ref>++;</highlight></codeline>
+<codeline lineno="159"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"></highlight></codeline>
+<codeline lineno="161"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="node_8c_1abb1491b2a66959d3dea01a9b552c8e86" kindref="member">swapNodePointers</ref>(<ref refid="struct_node" kindref="compound">Node</ref>**<sp/>a,<sp/><ref refid="struct_node" kindref="compound">Node</ref>**<sp/>b)<sp/>{</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_node" kindref="compound">Node</ref>*<sp/>t<sp/>=<sp/>*a;</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/>*a<sp/>=<sp/>*b;</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/>*b<sp/>=<sp/>t;</highlight></codeline>
+<codeline lineno="165"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"></highlight></codeline>
+<codeline lineno="167"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="node_8c_1ae90b32976c0036dd23f82b402230cb84" kindref="member">minHeapify</ref>(<ref refid="struct_min_heap" kindref="compound">MinHeap</ref>*<sp/>minHeap,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i)<sp/>{</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>1.<sp/>Calculate<sp/>indices<sp/>of<sp/>children</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>iLeft<sp/>=<sp/>2<sp/>*<sp/>i<sp/>+<sp/>1;<sp/><sp/></highlight><highlight class="comment">//<sp/>Index<sp/>of<sp/>the<sp/>left<sp/>child</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>iRight<sp/>=<sp/>2<sp/>*<sp/>i<sp/>+<sp/>2;<sp/></highlight><highlight class="comment">//<sp/>Index<sp/>of<sp/>the<sp/>right<sp/>child</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>iSmallest<sp/>=<sp/>i;<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Assume<sp/>the<sp/>current<sp/>node<sp/>is<sp/>the<sp/>smallest</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="172"><highlight class="normal"></highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>2.<sp/>Check<sp/>if<sp/>the<sp/>left<sp/>child<sp/>exists<sp/>and<sp/>is<sp/>smaller<sp/>than<sp/>the<sp/>current<sp/>node</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(iLeft<sp/>&lt;<sp/>minHeap-&gt;iSize<sp/>&amp;&amp;</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>minHeap-&gt;<ref refid="struct_min_heap_1a734ed6d54bc63dbb1c7079dbdf0bebc7" kindref="member">ppnArray</ref>[iLeft]-&gt;<ref refid="struct_node_1a598b58eb0ea6750cee33aa0ea62f6ccc" kindref="member">iFrequency</ref><sp/>&lt;<sp/>minHeap-&gt;<ref refid="struct_min_heap_1a734ed6d54bc63dbb1c7079dbdf0bebc7" kindref="member">ppnArray</ref>[iSmallest]-&gt;<ref refid="struct_node_1a598b58eb0ea6750cee33aa0ea62f6ccc" kindref="member">iFrequency</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"></highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>iSmallest<sp/>=<sp/>iLeft;</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"></highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>3.<sp/>Check<sp/>if<sp/>the<sp/>right<sp/>child<sp/>exists<sp/>and<sp/>is<sp/>smaller<sp/>than<sp/>the<sp/>current<sp/>smallest<sp/>(i<sp/>or<sp/>iLeft)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(iRight<sp/>&lt;<sp/>minHeap-&gt;iSize<sp/>&amp;&amp;</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>minHeap-&gt;<ref refid="struct_min_heap_1a734ed6d54bc63dbb1c7079dbdf0bebc7" kindref="member">ppnArray</ref>[iRight]-&gt;<ref refid="struct_node_1a598b58eb0ea6750cee33aa0ea62f6ccc" kindref="member">iFrequency</ref><sp/>&lt;<sp/>minHeap-&gt;<ref refid="struct_min_heap_1a734ed6d54bc63dbb1c7079dbdf0bebc7" kindref="member">ppnArray</ref>[iSmallest]-&gt;<ref refid="struct_node_1a598b58eb0ea6750cee33aa0ea62f6ccc" kindref="member">iFrequency</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"></highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>iSmallest<sp/>=<sp/>iRight;</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"></highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>4.<sp/>If<sp/>the<sp/>smallest<sp/>is<sp/>not<sp/>the<sp/>current<sp/>node,<sp/>swap<sp/>and<sp/>recursively<sp/>call<sp/>minHeapify</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(iSmallest<sp/>!=<sp/>i)<sp/>{</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="node_8c_1abb1491b2a66959d3dea01a9b552c8e86" kindref="member">swapNodePointers</ref>(&amp;minHeap-&gt;<ref refid="struct_min_heap_1a734ed6d54bc63dbb1c7079dbdf0bebc7" kindref="member">ppnArray</ref>[i],<sp/>&amp;minHeap-&gt;<ref refid="struct_min_heap_1a734ed6d54bc63dbb1c7079dbdf0bebc7" kindref="member">ppnArray</ref>[iSmallest]);</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"></highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Recursively<sp/>call<sp/>minHeapify<sp/>on<sp/>the<sp/>affected<sp/>subtree</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="node_8c_1ae90b32976c0036dd23f82b402230cb84" kindref="member">minHeapify</ref>(minHeap,<sp/>iSmallest);</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>If<sp/>iSmallest<sp/>==<sp/>i,<sp/>the<sp/>heap<sp/>property<sp/>is<sp/>satisfied<sp/>in<sp/>this<sp/>subtree,<sp/>and<sp/>the<sp/>function<sp/>terminates.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="195"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="196"><highlight class="normal"></highlight></codeline>
+<codeline lineno="197"><highlight class="normal"></highlight></codeline>
+<codeline lineno="198"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/><ref refid="struct_node" kindref="compound">Node</ref>*<sp/><ref refid="node_8c_1aecbec578e3e80350306dd708f0e24b99" kindref="member">extractMin</ref>(<ref refid="struct_min_heap" kindref="compound">MinHeap</ref>*<sp/>minHeap)<sp/>{</highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(minHeap-&gt;<ref refid="struct_min_heap_1afccb13ff89743172794c40bd66b9b85b" kindref="member">iSize</ref><sp/>&lt;=<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>NULL;<sp/></highlight><highlight class="comment">//<sp/>Heap<sp/>is<sp/>empty</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"></highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>1.<sp/>Store<sp/>the<sp/>root<sp/>(minimum)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_node" kindref="compound">Node</ref>*<sp/>root<sp/>=<sp/>minHeap-&gt;<ref refid="struct_min_heap_1a734ed6d54bc63dbb1c7079dbdf0bebc7" kindref="member">ppnArray</ref>[0];</highlight></codeline>
+<codeline lineno="205"><highlight class="normal"></highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>2.<sp/>Move<sp/>the<sp/>last<sp/>node<sp/>to<sp/>the<sp/>root</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/>minHeap-&gt;<ref refid="struct_min_heap_1afccb13ff89743172794c40bd66b9b85b" kindref="member">iSize</ref>--;</highlight></codeline>
+<codeline lineno="208"><highlight class="normal"><sp/><sp/><sp/><sp/>minHeap-&gt;<ref refid="struct_min_heap_1a734ed6d54bc63dbb1c7079dbdf0bebc7" kindref="member">ppnArray</ref>[0]<sp/>=<sp/>minHeap-&gt;<ref refid="struct_min_heap_1a734ed6d54bc63dbb1c7079dbdf0bebc7" kindref="member">ppnArray</ref>[minHeap-&gt;<ref refid="struct_min_heap_1afccb13ff89743172794c40bd66b9b85b" kindref="member">iSize</ref>];</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Note:<sp/>The<sp/>last<sp/>element<sp/>is<sp/>effectively<sp/>removed<sp/>by<sp/>decrementing<sp/>iSize</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="210"><highlight class="normal"></highlight></codeline>
+<codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>3.<sp/>Sift<sp/>down<sp/>the<sp/>new<sp/>root<sp/>to<sp/>maintain<sp/>the<sp/>heap<sp/>property</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="212"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(minHeap-&gt;<ref refid="struct_min_heap_1afccb13ff89743172794c40bd66b9b85b" kindref="member">iSize</ref><sp/>&gt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="213"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="node_8c_1ae90b32976c0036dd23f82b402230cb84" kindref="member">minHeapify</ref>(minHeap,<sp/>0);<sp/></highlight><highlight class="comment">//<sp/>O(log<sp/>n)<sp/>operation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="215"><highlight class="normal"></highlight></codeline>
+<codeline lineno="216"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>root;</highlight></codeline>
+<codeline lineno="217"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="218"><highlight class="normal"></highlight></codeline>
+<codeline lineno="219"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="node_8c_1afbdba32d1543027eda02773bce2ab102" kindref="member">freeMinHeap</ref>(<ref refid="struct_min_heap" kindref="compound">MinHeap</ref>*<sp/>minHeap)<sp/>{</highlight></codeline>
+<codeline lineno="220"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>minHeap-&gt;<ref refid="struct_min_heap_1afccb13ff89743172794c40bd66b9b85b" kindref="member">iSize</ref>;<sp/>i++)<sp/>{</highlight></codeline>
+<codeline lineno="221"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(minHeap-&gt;<ref refid="struct_min_heap_1a734ed6d54bc63dbb1c7079dbdf0bebc7" kindref="member">ppnArray</ref>[i]<sp/>!=<sp/>NULL)<sp/>{</highlight></codeline>
+<codeline lineno="222"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="debugmalloc_8h_1aa7943e5d135734f6801bebcc37401fc0" kindref="member">free</ref>(minHeap-&gt;<ref refid="struct_min_heap_1a734ed6d54bc63dbb1c7079dbdf0bebc7" kindref="member">ppnArray</ref>[i]);</highlight></codeline>
+<codeline lineno="223"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="224"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="225"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="debugmalloc_8h_1aa7943e5d135734f6801bebcc37401fc0" kindref="member">free</ref>(minHeap-&gt;<ref refid="struct_min_heap_1a734ed6d54bc63dbb1c7079dbdf0bebc7" kindref="member">ppnArray</ref>);</highlight></codeline>
+<codeline lineno="226"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="debugmalloc_8h_1aa7943e5d135734f6801bebcc37401fc0" kindref="member">free</ref>(minHeap);</highlight></codeline>
+<codeline lineno="227"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="228"><highlight class="normal"></highlight></codeline>
+<codeline lineno="229"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="node_8c_1a8196a5fffc96ca854a325d1fe349e8da" kindref="member">printHeap</ref>(<ref refid="struct_min_heap" kindref="compound">MinHeap</ref>*<sp/>minHeap)<sp/>{</highlight></codeline>
+<codeline lineno="230"><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;Heap<sp/>Array<sp/>(Size<sp/>%d):<sp/>[&quot;</highlight><highlight class="normal">,<sp/>minHeap-&gt;<ref refid="struct_min_heap_1afccb13ff89743172794c40bd66b9b85b" kindref="member">iSize</ref>);</highlight></codeline>
+<codeline lineno="231"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>minHeap-&gt;<ref refid="struct_min_heap_1afccb13ff89743172794c40bd66b9b85b" kindref="member">iSize</ref>;<sp/>i++)<sp/>{</highlight></codeline>
+<codeline lineno="232"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;%d&quot;</highlight><highlight class="normal">,<sp/>minHeap-&gt;<ref refid="struct_min_heap_1a734ed6d54bc63dbb1c7079dbdf0bebc7" kindref="member">ppnArray</ref>[i]-&gt;<ref refid="struct_node_1a598b58eb0ea6750cee33aa0ea62f6ccc" kindref="member">iFrequency</ref>);</highlight></codeline>
+<codeline lineno="233"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(i<sp/>&lt;<sp/>minHeap-&gt;iSize<sp/>-<sp/>1)<sp/>{</highlight></codeline>
+<codeline lineno="234"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;,<sp/>&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="235"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="236"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="237"><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;]\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="238"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="239"><highlight class="normal"></highlight></codeline>
+<codeline lineno="240"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="node_8c_1ae6e53a77c8389ec5fa741eeab2e95cd9" kindref="member">buildMinHeap</ref>(<ref refid="struct_min_heap" kindref="compound">MinHeap</ref>*<sp/>minHeap)<sp/>{</highlight></codeline>
+<codeline lineno="241"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>n<sp/>=<sp/>minHeap-&gt;<ref refid="struct_min_heap_1afccb13ff89743172794c40bd66b9b85b" kindref="member">iSize</ref>;</highlight></codeline>
+<codeline lineno="242"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Start<sp/>from<sp/>the<sp/>last<sp/>internal<sp/>node:<sp/>floor(n/2)<sp/>-<sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="243"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>(n<sp/>/<sp/>2)<sp/>-<sp/>1;<sp/>i<sp/>&gt;=<sp/>0;<sp/>--i)<sp/>{</highlight></codeline>
+<codeline lineno="244"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="node_8c_1ae90b32976c0036dd23f82b402230cb84" kindref="member">minHeapify</ref>(minHeap,<sp/>i);</highlight></codeline>
+<codeline lineno="245"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="246"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="247"><highlight class="normal"></highlight></codeline>
+<codeline lineno="248"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Function<sp/>to<sp/>get<sp/>the<sp/>index<sp/>of<sp/>the<sp/>parent<sp/>node</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="249"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="node_8c_1a3620a363633d7b5214f68fc8692fb075" kindref="member">parentIndex</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i)<sp/>{</highlight></codeline>
+<codeline lineno="250"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(i<sp/>-<sp/>1)<sp/>/<sp/>2;</highlight></codeline>
+<codeline lineno="251"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="252"><highlight class="normal"></highlight></codeline>
+<codeline lineno="253"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Function<sp/>to<sp/>get<sp/>the<sp/>index<sp/>of<sp/>the<sp/>left<sp/>child</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="254"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="node_8c_1abf874a257b47b5a785891cc3d9920251" kindref="member">leftChildIndex</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i)<sp/>{</highlight></codeline>
+<codeline lineno="255"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>2<sp/>*<sp/>i<sp/>+<sp/>1;</highlight></codeline>
+<codeline lineno="256"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="257"><highlight class="normal"></highlight></codeline>
+<codeline lineno="258"><highlight class="normal"></highlight></codeline>
+<codeline lineno="259"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="node_8c_1a2fa8d61f1354f6602498abd3f4415417" kindref="member">insertMinHeap</ref>(<ref refid="struct_min_heap" kindref="compound">MinHeap</ref>*<sp/>minHeap,<sp/><ref refid="struct_node" kindref="compound">Node</ref>*<sp/>newNode)<sp/>{</highlight></codeline>
+<codeline lineno="260"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Check<sp/>for<sp/>capacity</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="261"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(minHeap-&gt;<ref refid="struct_min_heap_1afccb13ff89743172794c40bd66b9b85b" kindref="member">iSize</ref><sp/>==<sp/>minHeap-&gt;<ref refid="struct_min_heap_1aafdd50fc8bfa4a3f01987e9bc816fc1e" kindref="member">iCapacity</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="262"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fprintf(stderr,<sp/></highlight><highlight class="stringliteral">&quot;Error:<sp/>Heap<sp/>capacity<sp/>exceeded.\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="263"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="264"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="265"><highlight class="normal"></highlight></codeline>
+<codeline lineno="266"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>1.<sp/>Place<sp/>the<sp/>new<sp/>node<sp/>at<sp/>the<sp/>end<sp/>of<sp/>the<sp/>array</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="267"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>minHeap-&gt;<ref refid="struct_min_heap_1afccb13ff89743172794c40bd66b9b85b" kindref="member">iSize</ref>;</highlight></codeline>
+<codeline lineno="268"><highlight class="normal"><sp/><sp/><sp/><sp/>minHeap-&gt;<ref refid="struct_min_heap_1a734ed6d54bc63dbb1c7079dbdf0bebc7" kindref="member">ppnArray</ref>[i]<sp/>=<sp/>newNode;</highlight></codeline>
+<codeline lineno="269"><highlight class="normal"><sp/><sp/><sp/><sp/>minHeap-&gt;<ref refid="struct_min_heap_1afccb13ff89743172794c40bd66b9b85b" kindref="member">iSize</ref>++;</highlight></codeline>
+<codeline lineno="270"><highlight class="normal"></highlight></codeline>
+<codeline lineno="271"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>2.<sp/>&quot;Sift<sp/>up&quot;<sp/>the<sp/>new<sp/>node<sp/>to<sp/>maintain<sp/>the<sp/>heap<sp/>property</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="272"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(i<sp/>!=<sp/>0<sp/>&amp;&amp;<sp/>minHeap-&gt;<ref refid="struct_min_heap_1a734ed6d54bc63dbb1c7079dbdf0bebc7" kindref="member">ppnArray</ref>[<ref refid="node_8c_1a3620a363633d7b5214f68fc8692fb075" kindref="member">parentIndex</ref>(i)]-&gt;iFrequency<sp/>&gt;<sp/>minHeap-&gt;<ref refid="struct_min_heap_1a734ed6d54bc63dbb1c7079dbdf0bebc7" kindref="member">ppnArray</ref>[i]-&gt;<ref refid="struct_node_1a598b58eb0ea6750cee33aa0ea62f6ccc" kindref="member">iFrequency</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="273"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="node_8c_1abb1491b2a66959d3dea01a9b552c8e86" kindref="member">swapNodePointers</ref>(&amp;minHeap-&gt;<ref refid="struct_min_heap_1a734ed6d54bc63dbb1c7079dbdf0bebc7" kindref="member">ppnArray</ref>[i],<sp/>&amp;minHeap-&gt;<ref refid="struct_min_heap_1a734ed6d54bc63dbb1c7079dbdf0bebc7" kindref="member">ppnArray</ref>[<ref refid="node_8c_1a3620a363633d7b5214f68fc8692fb075" kindref="member">parentIndex</ref>(i)]);</highlight></codeline>
+<codeline lineno="274"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>i<sp/>=<sp/><ref refid="node_8c_1a3620a363633d7b5214f68fc8692fb075" kindref="member">parentIndex</ref>(i);</highlight></codeline>
+<codeline lineno="275"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="276"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="277"><highlight class="normal"></highlight></codeline>
+<codeline lineno="278"><highlight class="normal"></highlight><highlight class="comment">//<sp/>---<sp/>HUFFMAN<sp/>TREE<sp/>CONSTRUCTION<sp/>---</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="279"><highlight class="normal"></highlight></codeline>
+<codeline lineno="286"><highlight class="normal"><ref refid="struct_node" kindref="compound">Node</ref>*<sp/><ref refid="node_8c_1a7dddf9d8d87a548cf9d63568af9f56fa" kindref="member">buildHuffmanTree</ref>(<ref refid="struct_min_heap" kindref="compound">MinHeap</ref>*<sp/>minHeap)<sp/>{</highlight></codeline>
+<codeline lineno="287"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_node" kindref="compound">Node</ref><sp/>*pnLeft,<sp/>*pnRight,<sp/>*pnParent;</highlight></codeline>
+<codeline lineno="288"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(minHeap-&gt;<ref refid="struct_min_heap_1afccb13ff89743172794c40bd66b9b85b" kindref="member">iSize</ref><sp/>&gt;<sp/>1)<sp/>{</highlight></codeline>
+<codeline lineno="289"><highlight class="normal"></highlight></codeline>
+<codeline lineno="290"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pnLeft<sp/>=<sp/><ref refid="node_8c_1aecbec578e3e80350306dd708f0e24b99" kindref="member">extractMin</ref>(minHeap);</highlight></codeline>
+<codeline lineno="291"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pnRight<sp/>=<sp/><ref refid="node_8c_1aecbec578e3e80350306dd708f0e24b99" kindref="member">extractMin</ref>(minHeap);</highlight></codeline>
+<codeline lineno="292"><highlight class="normal"></highlight></codeline>
+<codeline lineno="293"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pnParent<sp/>=<sp/><ref refid="node_8c_1a476e2695789ae31745b5cd5cc5877792" kindref="member">createNode</ref>(286,<sp/>0);</highlight></codeline>
+<codeline lineno="294"><highlight class="normal"></highlight></codeline>
+<codeline lineno="295"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pnParent-&gt;<ref refid="struct_node_1a3fbc6e3132038d871c08e9b71391893f" kindref="member">pnLeft</ref><sp/>=<sp/>pnLeft;</highlight></codeline>
+<codeline lineno="296"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pnParent-&gt;<ref refid="struct_node_1a72a7b991ec60f48cd33a359fb0c00942" kindref="member">pnRight</ref><sp/>=<sp/>pnRight;</highlight></codeline>
+<codeline lineno="297"><highlight class="normal"></highlight></codeline>
+<codeline lineno="298"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pnParent-&gt;<ref refid="struct_node_1a598b58eb0ea6750cee33aa0ea62f6ccc" kindref="member">iFrequency</ref><sp/>=<sp/>pnLeft-&gt;<ref refid="struct_node_1a598b58eb0ea6750cee33aa0ea62f6ccc" kindref="member">iFrequency</ref><sp/>+<sp/>pnRight-&gt;<ref refid="struct_node_1a598b58eb0ea6750cee33aa0ea62f6ccc" kindref="member">iFrequency</ref>;</highlight></codeline>
+<codeline lineno="299"><highlight class="normal"></highlight></codeline>
+<codeline lineno="300"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="node_8c_1a2fa8d61f1354f6602498abd3f4415417" kindref="member">insertMinHeap</ref>(minHeap,<sp/>pnParent);</highlight></codeline>
+<codeline lineno="301"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="302"><highlight class="normal"></highlight></codeline>
+<codeline lineno="303"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="node_8c_1aecbec578e3e80350306dd708f0e24b99" kindref="member">extractMin</ref>(minHeap);</highlight></codeline>
+<codeline lineno="304"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="305"><highlight class="normal"></highlight></codeline>
+<codeline lineno="312"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="node_8c_1aa5388bed3eaea8eee24e56c7e66b1e62" kindref="member">extract_code_lengths</ref>(<ref refid="struct_node" kindref="compound">Node</ref>*<sp/>npCurrent,<sp/>uint8_t<sp/>uiCurrentDepth,<sp/>uint8_t*<sp/>uiLengthCodes)<sp/>{</highlight></codeline>
+<codeline lineno="313"><highlight class="normal"></highlight></codeline>
+<codeline lineno="314"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(npCurrent<sp/>==<sp/>NULL)<sp/>{</highlight></codeline>
+<codeline lineno="315"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="316"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="317"><highlight class="normal"></highlight></codeline>
+<codeline lineno="318"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(npCurrent-&gt;<ref refid="struct_node_1aef34b594003aef090557c68fa0976aef" kindref="member">usSymbol</ref><sp/>!=<sp/><ref refid="_h_u_f_f_m_a_n___t_a_b_l_e_8c_1a90344de9a45f0d60f23aff3fea165e05" kindref="member">INVALID_NODE_SYMBOL</ref>)<sp/>{<sp/></highlight><highlight class="comment">//tehát<sp/>valid</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="319"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uiLengthCodes[npCurrent-&gt;<ref refid="struct_node_1aef34b594003aef090557c68fa0976aef" kindref="member">usSymbol</ref>]<sp/>=<sp/>uiCurrentDepth;</highlight></codeline>
+<codeline lineno="320"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="321"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="322"><highlight class="normal"></highlight></codeline>
+<codeline lineno="323"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="node_8c_1aa5388bed3eaea8eee24e56c7e66b1e62" kindref="member">extract_code_lengths</ref>(npCurrent-&gt;<ref refid="struct_node_1a3fbc6e3132038d871c08e9b71391893f" kindref="member">pnLeft</ref>,<sp/>uiCurrentDepth<sp/>+<sp/>1,<sp/>uiLengthCodes);</highlight></codeline>
+<codeline lineno="324"><highlight class="normal"></highlight></codeline>
+<codeline lineno="325"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="node_8c_1aa5388bed3eaea8eee24e56c7e66b1e62" kindref="member">extract_code_lengths</ref>(npCurrent-&gt;<ref refid="struct_node_1a72a7b991ec60f48cd33a359fb0c00942" kindref="member">pnRight</ref>,<sp/>uiCurrentDepth<sp/>+<sp/>1,<sp/>uiLengthCodes);</highlight></codeline>
+<codeline lineno="326"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="node.c"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,548 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_debugmalloc_8h_source" xml:lang="en-US">
+<title>debugmalloc.h</title>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered">1 <emphasis role="preprocessor">#ifndef&#32;DEBUGMALLOC_H</emphasis>
+2 <emphasis role="preprocessor">#define&#32;DEBUGMALLOC_H</emphasis>
+3 
+4 <emphasis role="preprocessor">#include&#32;&lt;stdbool.h&gt;</emphasis>
+5 <emphasis role="preprocessor">#include&#32;&lt;stddef.h&gt;</emphasis>
+6 <emphasis role="preprocessor">#include&#32;&lt;stdlib.h&gt;</emphasis>
+7 <emphasis role="preprocessor">#include&#32;&lt;stdio.h&gt;</emphasis>
+8 <emphasis role="preprocessor">#include&#32;&lt;ctype.h&gt;</emphasis>
+9 <emphasis role="preprocessor">#include&#32;&lt;string.h&gt;</emphasis>
+10 <emphasis role="preprocessor">#include&#32;&lt;stdarg.h&gt;</emphasis>
+11 
+12 
+13 <emphasis role="keyword">enum</emphasis>&#32;{
+14 &#32;&#32;&#32;&#32;<emphasis role="comment">/*&#32;size&#32;of&#32;canary&#32;in&#32;bytes.&#32;should&#32;be&#32;multiple&#32;of&#32;largest&#32;alignment</emphasis>
+15 <emphasis role="comment">&#32;&#32;&#32;&#32;&#32;*&#32;required&#32;by&#32;any&#32;data&#32;type&#32;(usually&#32;8&#32;or&#32;16)&#32;*/</emphasis>
+16 &#32;&#32;&#32;&#32;<link linkend="_debugmalloc_8h_1ad6725ad24902750bb8080fb21c8d6ec4ab345007cf28a2516c0ba24371a400520">debugmalloc_canary_size</link>&#32;=&#32;64,
+17 &#32;&#32;&#32;&#32;
+18 &#32;&#32;&#32;&#32;<emphasis role="comment">/*&#32;canary&#32;byte&#32;*/</emphasis>
+19 &#32;&#32;&#32;&#32;<link linkend="_debugmalloc_8h_1ad6725ad24902750bb8080fb21c8d6ec4a8e3d5ad8628140edd887b8920f521cfd">debugmalloc_canary_char</link>&#32;=&#32;<emphasis role="charliteral">&apos;K&apos;</emphasis>,
+20 
+21 &#32;&#32;&#32;&#32;<emphasis role="comment">/*&#32;hash&#32;table&#32;size&#32;for&#32;allocated&#32;entries&#32;*/</emphasis>
+22 &#32;&#32;&#32;&#32;<link linkend="_debugmalloc_8h_1ad6725ad24902750bb8080fb21c8d6ec4a40803f0d5a26a349a78cbd998cb8a2a1">debugmalloc_tablesize</link>&#32;=&#32;256,
+23 &#32;&#32;&#32;&#32;
+24 &#32;&#32;&#32;&#32;<emphasis role="comment">/*&#32;max&#32;block&#32;size&#32;for&#32;allocation,&#32;can&#32;be&#32;modified&#32;with&#32;debugmalloc_max_block_size()&#32;*/</emphasis>
+25 &#32;&#32;&#32;&#32;<link linkend="_debugmalloc_8h_1ad6725ad24902750bb8080fb21c8d6ec4ae8726dfde3f35d4345009234ee734f6c">debugmalloc_max_block_size_default</link>&#32;=&#32;1048576
+26 };
+27 
+28 
+29 <emphasis role="comment">/*&#32;make&#32;getpid&#32;and&#32;putenv&#32;&quot;crossplatform&quot;.&#32;deprecated&#32;on&#32;windows&#32;but&#32;they&#32;work&#32;just&#32;fine,</emphasis>
+30 <emphasis role="comment">&#32;*&#32;however&#32;not&#32;declared.&#32;*/</emphasis>
+31 <emphasis role="preprocessor">#ifdef&#32;_WIN32</emphasis>
+32 &#32;&#32;&#32;&#32;<emphasis role="comment">/*&#32;windows&#32;*/</emphasis>
+33 <emphasis role="preprocessor">&#32;&#32;&#32;&#32;#include&#32;&lt;process.h&gt;</emphasis>
+34 <emphasis role="preprocessor">&#32;&#32;&#32;&#32;#ifdef&#32;_MSC_VER</emphasis>
+35 <emphasis role="preprocessor">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;#pragma&#32;warning(push)</emphasis>
+36 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">/*&#32;visual&#32;studio,&#32;getenv/getpid&#32;deprecated&#32;warning&#32;*/</emphasis>
+37 <emphasis role="preprocessor">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;#pragma&#32;warning(disable:&#32;4996)</emphasis>
+38 <emphasis role="preprocessor">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;#pragma&#32;warning(disable:&#32;4127)</emphasis>
+39 <emphasis role="preprocessor">&#32;&#32;&#32;&#32;#else</emphasis>
+40 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">/*&#32;other&#32;windows.&#32;the&#32;declaration&#32;is&#32;unfortunately&#32;hidden</emphasis>
+41 <emphasis role="comment">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;*&#32;in&#32;mingw&#32;header&#32;files&#32;by&#32;ifdefs.&#32;*/</emphasis>
+42 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">int</emphasis>&#32;<link linkend="_debugmalloc_8h_1a5dd0c329b734eeefd1909d15385f8b95">putenv</link>(<emphasis role="keyword">const</emphasis>&#32;<emphasis role="keywordtype">char</emphasis>&#32;*);
+43 <emphasis role="preprocessor">&#32;&#32;&#32;&#32;#endif</emphasis>
+44 <emphasis role="preprocessor">#else</emphasis>
+45 &#32;&#32;&#32;&#32;<emphasis role="comment">/*&#32;posix&#32;*/</emphasis>
+46 <emphasis role="preprocessor">&#32;&#32;&#32;&#32;#include&#32;&lt;unistd.h&gt;</emphasis>
+47 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">int</emphasis>&#32;<link linkend="_debugmalloc_8h_1a5dd0c329b734eeefd1909d15385f8b95">putenv</link>(<emphasis role="keywordtype">char</emphasis>&#32;*);
+48 <emphasis role="preprocessor">#endif</emphasis>
+49 
+50 
+51 <emphasis role="comment">/*&#32;linked&#32;list&#32;entry&#32;for&#32;allocated&#32;blocks&#32;*/</emphasis>
+52 <emphasis role="keyword">typedef</emphasis>&#32;<emphasis role="keyword">struct&#32;</emphasis><link linkend="_struct_debugmalloc_entry">DebugmallocEntry</link>&#32;{
+53 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">void</emphasis>&#32;*<link linkend="_struct_debugmalloc_entry_1ae241706d126e0114e48ce7c4083d93d1">real_mem</link>;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">/*&#32;the&#32;address&#32;of&#32;the&#32;real&#32;allocation&#32;*/</emphasis>
+54 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">void</emphasis>&#32;*<link linkend="_struct_debugmalloc_entry_1a20cf96b6c21400f0123a6a3b6dae9876">user_mem</link>;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">/*&#32;address&#32;shown&#32;to&#32;the&#32;user&#32;*/</emphasis>
+55 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">size_t</emphasis>&#32;<link linkend="_struct_debugmalloc_entry_1a854352f53b148adc24983a58a1866d66">size</link>;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">/*&#32;size&#32;of&#32;block&#32;requested&#32;by&#32;user&#32;*/</emphasis>
+56 
+57 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">char</emphasis>&#32;<link linkend="_struct_debugmalloc_entry_1a353d29f9f9cc0db6fca9d49b5f88d34d">file</link>[64];&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">/*&#32;malloc&#32;called&#32;in&#32;this&#32;file&#32;*/</emphasis>
+58 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">unsigned</emphasis>&#32;<link linkend="_struct_debugmalloc_entry_1a05ef0c4dbeec4fc8ccb225de9c26d896">line</link>;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">/*&#32;malloc&#32;called&#32;at&#32;this&#32;line&#32;in&#32;file&#32;*/</emphasis>
+59 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">char</emphasis>&#32;<link linkend="_struct_debugmalloc_entry_1ac8a2334cf5c64b1f708ced23ef569db4">func</link>[32];&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">/*&#32;allocation&#32;function&#32;called&#32;(malloc,&#32;calloc,&#32;realloc)&#32;*/</emphasis>
+60 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">char</emphasis>&#32;<link linkend="_struct_debugmalloc_entry_1aa8f5b6d2256e18de50b9a17b5e3cda3b">expr</link>[128];&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">/*&#32;expression&#32;calculating&#32;the&#32;size&#32;of&#32;allocation&#32;*/</emphasis>
+61 
+62 &#32;&#32;&#32;&#32;<emphasis role="keyword">struct&#32;</emphasis><link linkend="_struct_debugmalloc_entry">DebugmallocEntry</link>&#32;*<link linkend="_struct_debugmalloc_entry_1aae87f43e5df8141aedca245507e8d790">prev</link>,&#32;*<link linkend="_struct_debugmalloc_entry_1a7ebf7cb15f24577c59e05768d8f9ffc5">next</link>;&#32;&#32;<emphasis role="comment">/*&#32;for&#32;doubly&#32;linked&#32;list&#32;*/</emphasis>
+63 }&#32;<link linkend="_struct_debugmalloc_entry">DebugmallocEntry</link>;
+64 
+65 
+66 <emphasis role="comment">/*&#32;debugmalloc&#32;singleton,&#32;storing&#32;all&#32;state&#32;*/</emphasis>
+67 <emphasis role="keyword">typedef</emphasis>&#32;<emphasis role="keyword">struct&#32;</emphasis><link linkend="_struct_debugmalloc_data">DebugmallocData</link>&#32;{
+68 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">char</emphasis>&#32;<link linkend="_struct_debugmalloc_data_1af5ff893eedb28514f6f69c3687ca893b">logfile</link>[256];&#32;&#32;&#32;&#32;<emphasis role="comment">/*&#32;log&#32;file&#32;name&#32;or&#32;empty&#32;string&#32;*/</emphasis>
+69 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">long</emphasis>&#32;<link linkend="_struct_debugmalloc_data_1a5ff6535cb48e89d8b0707e889ba72b0d">max_block_size</link>;&#32;&#32;<emphasis role="comment">/*&#32;max&#32;size&#32;of&#32;a&#32;single&#32;block&#32;allocated&#32;*/</emphasis>
+70 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">long</emphasis>&#32;<link linkend="_struct_debugmalloc_data_1a15f42e819e77e27bc9e2f204ff15e871">alloc_count</link>;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">/*&#32;currently&#32;allocated;&#32;decreased&#32;with&#32;free&#32;*/</emphasis>
+71 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">long</emphasis>&#32;<emphasis role="keywordtype">long</emphasis>&#32;<link linkend="_struct_debugmalloc_data_1a23c9102a7df871da995e7aa887279e46">alloc_bytes</link>;
+72 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">long</emphasis>&#32;<link linkend="_struct_debugmalloc_data_1a42a37cfdec0b59c102e58457f5954962">all_alloc_count</link>;&#32;<emphasis role="comment">/*&#32;all&#32;allocations,&#32;never&#32;decreased&#32;*/</emphasis>
+73 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">long</emphasis>&#32;<emphasis role="keywordtype">long</emphasis>&#32;<link linkend="_struct_debugmalloc_data_1a9b9e3387235c1e2bebc84e38c230837e">all_alloc_bytes</link>;
+74 &#32;&#32;&#32;&#32;<link linkend="_struct_debugmalloc_entry">DebugmallocEntry</link>&#32;<link linkend="_struct_debugmalloc_data_1a96730563c8ca3d98f4f9f40df5ecb3c0">head</link>[<link linkend="_debugmalloc_8h_1ad6725ad24902750bb8080fb21c8d6ec4a40803f0d5a26a349a78cbd998cb8a2a1">debugmalloc_tablesize</link>],&#32;<link linkend="_struct_debugmalloc_data_1a6a489bd48f708358b171a68acf75de9f">tail</link>[<link linkend="_debugmalloc_8h_1ad6725ad24902750bb8080fb21c8d6ec4a40803f0d5a26a349a78cbd998cb8a2a1">debugmalloc_tablesize</link>];&#32;&#32;<emphasis role="comment">/*&#32;head&#32;and&#32;tail&#32;elements&#32;of&#32;allocation&#32;lists&#32;*/</emphasis>
+75 }&#32;<link linkend="_struct_debugmalloc_data">DebugmallocData</link>;
+76 
+77 
+78 <emphasis role="comment">/*&#32;this&#32;forward&#32;declaration&#32;is&#32;required&#32;by&#32;the&#32;singleton&#32;manager&#32;function&#32;*/</emphasis>
+79 <emphasis role="keyword">static</emphasis>&#32;<link linkend="_struct_debugmalloc_data">DebugmallocData</link>&#32;*&#32;debugmalloc_create(<emphasis role="keywordtype">void</emphasis>);
+80 
+81 
+82 <emphasis role="comment">/*&#32;creates&#32;singleton&#32;instance.&#32;as&#32;this&#32;function&#32;is&#32;static&#32;included&#32;to&#32;different</emphasis>
+83 <emphasis role="comment">&#32;*&#32;translation&#32;units,&#32;multiple&#32;instances&#32;of&#32;the&#32;static&#32;variables&#32;are&#32;created.</emphasis>
+84 <emphasis role="comment">&#32;*&#32;to&#32;make&#32;sure&#32;it&#32;is&#32;really&#32;a&#32;singleton,&#32;these&#32;instances&#32;must&#32;know&#32;each&#32;other</emphasis>
+85 <emphasis role="comment">&#32;*&#32;somethow.&#32;an&#32;environment&#32;variable&#32;is&#32;used&#32;for&#32;that&#32;purpose,&#32;ie.&#32;the&#32;address</emphasis>
+86 <emphasis role="comment">&#32;*&#32;of&#32;the&#32;singleton&#32;allocated&#32;is&#32;stored&#32;by&#32;the&#32;operating&#32;system.</emphasis>
+87 <emphasis role="comment">&#32;*&#32;this&#32;implementation&#32;is&#32;not&#32;thread-safe.&#32;*/</emphasis>
+88 <emphasis role="keyword">static</emphasis>&#32;<link linkend="_struct_debugmalloc_data">DebugmallocData</link>&#32;*&#32;debugmalloc_singleton(<emphasis role="keywordtype">void</emphasis>)&#32;{
+89 &#32;&#32;&#32;&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keywordtype">char</emphasis>&#32;envstr[100];
+90 &#32;&#32;&#32;&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;*instance&#32;=&#32;NULL;
+91 
+92 &#32;&#32;&#32;&#32;<emphasis role="comment">/*&#32;if&#32;we&#32;do&#32;not&#32;know&#32;the&#32;address&#32;of&#32;the&#32;singleton:</emphasis>
+93 <emphasis role="comment">&#32;&#32;&#32;&#32;&#32;*&#32;-&#32;maybe&#32;we&#32;are&#32;the&#32;one&#32;to&#32;create&#32;it&#32;(env&#32;variable&#32;also&#32;does&#32;not&#32;exist)</emphasis>
+94 <emphasis role="comment">&#32;&#32;&#32;&#32;&#32;*&#32;-&#32;or&#32;it&#32;is&#32;already&#32;created,&#32;and&#32;stored&#32;in&#32;the&#32;env&#32;variable.&#32;*/</emphasis>
+95 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(instance&#32;==&#32;NULL)&#32;{
+96 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">char</emphasis>&#32;envvarname[100]&#32;=&#32;<emphasis role="stringliteral">&quot;&quot;</emphasis>;
+97 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;sprintf(envvarname,&#32;<emphasis role="stringliteral">&quot;%s%d&quot;</emphasis>,&#32;<emphasis role="stringliteral">&quot;debugmallocsingleton&quot;</emphasis>,&#32;(<emphasis role="keywordtype">int</emphasis>)&#32;getpid());
+98 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">char</emphasis>&#32;*envptr&#32;=&#32;getenv(envvarname);
+99 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(envptr&#32;==&#32;NULL)&#32;{
+100 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">/*&#32;no&#32;env&#32;variable:&#32;create&#32;singleton.&#32;*/</emphasis>
+101 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;instance&#32;=&#32;debugmalloc_create();
+102 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;sprintf(envstr,&#32;<emphasis role="stringliteral">&quot;%s=%p&quot;</emphasis>,&#32;envvarname,&#32;instance);
+103 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_debugmalloc_8h_1a5dd0c329b734eeefd1909d15385f8b95">putenv</link>(envstr);
+104 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+105 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">/*&#32;another&#32;copy&#32;of&#32;this&#32;function&#32;already&#32;created&#32;it.&#32;*/</emphasis>
+106 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">int</emphasis>&#32;ok&#32;=&#32;sscanf(envptr,&#32;<emphasis role="stringliteral">&quot;%p&quot;</emphasis>,&#32;&amp;instance);
+107 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(ok&#32;!=&#32;1)&#32;{
+108 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;fprintf(stderr,&#32;<emphasis role="stringliteral">&quot;debugmalloc:&#32;nem&#32;lehet&#32;ertelmezni:&#32;%s!\n&quot;</emphasis>,&#32;envptr);
+109 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;abort();
+110 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+111 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+112 &#32;&#32;&#32;&#32;}
+113 
+114 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;(<link linkend="_struct_debugmalloc_data">DebugmallocData</link>&#32;*)&#32;instance;
+115 }
+116 
+117 
+118 <emphasis role="comment">/*&#32;better&#32;version&#32;of&#32;strncpy,&#32;always&#32;terminates&#32;string&#32;with&#32;\0.&#32;*/</emphasis>
+119 <emphasis role="keyword">static</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;debugmalloc_strlcpy(<emphasis role="keywordtype">char</emphasis>&#32;*dest,&#32;<emphasis role="keywordtype">char</emphasis>&#32;<emphasis role="keyword">const</emphasis>&#32;*src,&#32;<emphasis role="keywordtype">size_t</emphasis>&#32;destsize)&#32;{
+120 &#32;&#32;&#32;&#32;strncpy(dest,&#32;src,&#32;destsize-1);&#32;<emphasis role="comment">/*&#32;03.09.2025&#32;by&#32;KZs:&#32;destsize&#32;changed&#32;to&#32;destsize-1&#32;according&#32;to&#32;warnings*/</emphasis>
+121 &#32;&#32;&#32;&#32;dest[destsize&#32;-&#32;1]&#32;=&#32;<emphasis role="charliteral">&apos;\0&apos;</emphasis>;
+122 }
+123 
+124 
+125 <emphasis role="comment">/*&#32;set&#32;the&#32;name&#32;of&#32;the&#32;log&#32;file&#32;for&#32;debugmalloc.&#32;empty&#32;filename</emphasis>
+126 <emphasis role="comment">&#32;*&#32;means&#32;logging&#32;to&#32;stderr.&#32;*/</emphasis>
+127 <emphasis role="keyword">static</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;debugmalloc_log_file(<emphasis role="keywordtype">char</emphasis>&#32;<emphasis role="keyword">const</emphasis>&#32;*logfilename)&#32;{
+128 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(logfilename&#32;==&#32;NULL)
+129 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;logfilename&#32;=&#32;<emphasis role="stringliteral">&quot;&quot;</emphasis>;
+130 &#32;&#32;&#32;&#32;<link linkend="_struct_debugmalloc_data">DebugmallocData</link>&#32;*instance&#32;=&#32;debugmalloc_singleton();
+131 &#32;&#32;&#32;&#32;debugmalloc_strlcpy(instance-&gt;<link linkend="_struct_debugmalloc_data_1af5ff893eedb28514f6f69c3687ca893b">logfile</link>,&#32;logfilename,&#32;<emphasis role="keyword">sizeof</emphasis>(instance-&gt;<link linkend="_struct_debugmalloc_data_1af5ff893eedb28514f6f69c3687ca893b">logfile</link>));
+132 }
+133 
+134 
+135 <emphasis role="comment">/*&#32;set&#32;the&#32;maximum&#32;size&#32;of&#32;one&#32;block.&#32;useful&#32;for&#32;debugging&#32;purposes.&#32;*/</emphasis>
+136 <emphasis role="keyword">static</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;debugmalloc_max_block_size(<emphasis role="keywordtype">long</emphasis>&#32;max_block_size)&#32;{
+137 &#32;&#32;&#32;&#32;<link linkend="_struct_debugmalloc_data">DebugmallocData</link>&#32;*instance&#32;=&#32;debugmalloc_singleton();
+138 &#32;&#32;&#32;&#32;instance-&gt;<link linkend="_struct_debugmalloc_data_1a5ff6535cb48e89d8b0707e889ba72b0d">max_block_size</link>&#32;=&#32;max_block_size;
+139 }
+140 
+141 
+142 
+143 <emphasis role="comment">/*&#32;printf&#32;to&#32;the&#32;log&#32;file,&#32;or&#32;stderr.&#32;*/</emphasis>
+144 <emphasis role="keyword">static</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;debugmalloc_log(<emphasis role="keywordtype">char</emphasis>&#32;<emphasis role="keyword">const</emphasis>&#32;*format,&#32;...)&#32;{
+145 &#32;&#32;&#32;&#32;<link linkend="_struct_debugmalloc_data">DebugmallocData</link>&#32;*instance&#32;=&#32;debugmalloc_singleton();
+146 &#32;&#32;&#32;&#32;FILE&#32;*f&#32;=&#32;stderr;
+147 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(instance-&gt;<link linkend="_struct_debugmalloc_data_1af5ff893eedb28514f6f69c3687ca893b">logfile</link>[0]&#32;!=&#32;<emphasis role="charliteral">&apos;\0&apos;</emphasis>)&#32;{
+148 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;f&#32;=&#32;fopen(instance-&gt;<link linkend="_struct_debugmalloc_data_1af5ff893eedb28514f6f69c3687ca893b">logfile</link>,&#32;<emphasis role="stringliteral">&quot;at&quot;</emphasis>);
+149 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(f&#32;==&#32;NULL)&#32;{
+150 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;f&#32;=&#32;stderr;
+151 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;fprintf(stderr,&#32;<emphasis role="stringliteral">&quot;debugmalloc:&#32;nem&#32;tudom&#32;megnyitni&#32;a&#32;%s&#32;fajlt&#32;irasra!\n&quot;</emphasis>,&#32;instance-&gt;<link linkend="_struct_debugmalloc_data_1af5ff893eedb28514f6f69c3687ca893b">logfile</link>);
+152 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;debugmalloc_strlcpy(instance-&gt;<link linkend="_struct_debugmalloc_data_1af5ff893eedb28514f6f69c3687ca893b">logfile</link>,&#32;<emphasis role="stringliteral">&quot;&quot;</emphasis>,&#32;<emphasis role="keyword">sizeof</emphasis>(instance-&gt;<link linkend="_struct_debugmalloc_data_1af5ff893eedb28514f6f69c3687ca893b">logfile</link>));
+153 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+154 &#32;&#32;&#32;&#32;}
+155 
+156 &#32;&#32;&#32;&#32;va_list&#32;ap;
+157 &#32;&#32;&#32;&#32;va_start(ap,&#32;format);
+158 &#32;&#32;&#32;&#32;vfprintf(f,&#32;format,&#32;ap);
+159 &#32;&#32;&#32;&#32;va_end(ap);
+160 
+161 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(f&#32;!=&#32;stderr)
+162 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;fclose(f);
+163 }
+164 
+165 
+166 <emphasis role="comment">/*&#32;initialize&#32;a&#32;memory&#32;block&#32;allocated&#32;for&#32;the&#32;user.&#32;the&#32;start&#32;and&#32;the&#32;end</emphasis>
+167 <emphasis role="comment">&#32;*&#32;of&#32;the&#32;block&#32;is&#32;initialized&#32;with&#32;the&#32;canary&#32;characters.&#32;if&#32;&apos;zero&apos;&#32;is</emphasis>
+168 <emphasis role="comment">&#32;*&#32;true,&#32;the&#32;user&#32;memory&#32;area&#32;is&#32;zero-initialized,&#32;otherwise&#32;it&#32;is&#32;also</emphasis>
+169 <emphasis role="comment">&#32;*&#32;filled&#32;with&#32;the&#32;canary&#32;character&#32;to&#32;simulate&#32;garbage&#32;in&#32;memory.&#32;*/</emphasis>
+170 <emphasis role="keyword">static</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;debugmalloc_memory_init(<link linkend="_struct_debugmalloc_entry">DebugmallocEntry</link>&#32;*elem,&#32;<emphasis role="keywordtype">bool</emphasis>&#32;zero)&#32;{
+171 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">unsigned</emphasis>&#32;<emphasis role="keywordtype">char</emphasis>&#32;*real_mem&#32;=&#32;(<emphasis role="keywordtype">unsigned</emphasis>&#32;<emphasis role="keywordtype">char</emphasis>&#32;*)&#32;elem-&gt;<link linkend="_struct_debugmalloc_entry_1ae241706d126e0114e48ce7c4083d93d1">real_mem</link>;
+172 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">unsigned</emphasis>&#32;<emphasis role="keywordtype">char</emphasis>&#32;*user_mem&#32;=&#32;(<emphasis role="keywordtype">unsigned</emphasis>&#32;<emphasis role="keywordtype">char</emphasis>&#32;*)&#32;elem-&gt;user_mem;
+173 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">unsigned</emphasis>&#32;<emphasis role="keywordtype">char</emphasis>&#32;*canary1&#32;=&#32;real_mem;
+174 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">unsigned</emphasis>&#32;<emphasis role="keywordtype">char</emphasis>&#32;*canary2&#32;=&#32;real_mem&#32;+&#32;<link linkend="_debugmalloc_8h_1ad6725ad24902750bb8080fb21c8d6ec4ab345007cf28a2516c0ba24371a400520">debugmalloc_canary_size</link>&#32;+&#32;elem-&gt;size;
+175 &#32;&#32;&#32;&#32;memset(canary1,&#32;<link linkend="_debugmalloc_8h_1ad6725ad24902750bb8080fb21c8d6ec4a8e3d5ad8628140edd887b8920f521cfd">debugmalloc_canary_char</link>,&#32;<link linkend="_debugmalloc_8h_1ad6725ad24902750bb8080fb21c8d6ec4ab345007cf28a2516c0ba24371a400520">debugmalloc_canary_size</link>);
+176 &#32;&#32;&#32;&#32;memset(canary2,&#32;<link linkend="_debugmalloc_8h_1ad6725ad24902750bb8080fb21c8d6ec4a8e3d5ad8628140edd887b8920f521cfd">debugmalloc_canary_char</link>,&#32;<link linkend="_debugmalloc_8h_1ad6725ad24902750bb8080fb21c8d6ec4ab345007cf28a2516c0ba24371a400520">debugmalloc_canary_size</link>);
+177 &#32;&#32;&#32;&#32;memset(user_mem,&#32;zero&#32;?&#32;0&#32;:&#32;<link linkend="_debugmalloc_8h_1ad6725ad24902750bb8080fb21c8d6ec4a8e3d5ad8628140edd887b8920f521cfd">debugmalloc_canary_char</link>,&#32;elem-&gt;size);
+178 }
+179 
+180 <emphasis role="comment">/*&#32;check&#32;canary,&#32;return&#32;true&#32;if&#32;ok,&#32;false&#32;if&#32;corrupted.&#32;*/</emphasis>
+181 <emphasis role="keyword">static</emphasis>&#32;<emphasis role="keywordtype">bool</emphasis>&#32;debugmalloc_canary_ok(<link linkend="_struct_debugmalloc_entry">DebugmallocEntry</link>&#32;<emphasis role="keyword">const</emphasis>&#32;*elem)&#32;{
+182 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">unsigned</emphasis>&#32;<emphasis role="keywordtype">char</emphasis>&#32;*real_mem&#32;=&#32;(<emphasis role="keywordtype">unsigned</emphasis>&#32;<emphasis role="keywordtype">char</emphasis>&#32;*)&#32;elem-&gt;<link linkend="_struct_debugmalloc_entry_1ae241706d126e0114e48ce7c4083d93d1">real_mem</link>;
+183 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">unsigned</emphasis>&#32;<emphasis role="keywordtype">char</emphasis>&#32;*canary1&#32;=&#32;real_mem;
+184 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">unsigned</emphasis>&#32;<emphasis role="keywordtype">char</emphasis>&#32;*canary2&#32;=&#32;real_mem&#32;+&#32;<link linkend="_debugmalloc_8h_1ad6725ad24902750bb8080fb21c8d6ec4ab345007cf28a2516c0ba24371a400520">debugmalloc_canary_size</link>&#32;+&#32;elem-&gt;size;
+185 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">for</emphasis>&#32;(<emphasis role="keywordtype">size_t</emphasis>&#32;i&#32;=&#32;0;&#32;i&#32;&lt;&#32;<link linkend="_debugmalloc_8h_1ad6725ad24902750bb8080fb21c8d6ec4ab345007cf28a2516c0ba24371a400520">debugmalloc_canary_size</link>;&#32;++i)&#32;{
+186 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(canary1[i]&#32;!=&#32;<link linkend="_debugmalloc_8h_1ad6725ad24902750bb8080fb21c8d6ec4a8e3d5ad8628140edd887b8920f521cfd">debugmalloc_canary_char</link>)
+187 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+188 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(canary2[i]&#32;!=&#32;<link linkend="_debugmalloc_8h_1ad6725ad24902750bb8080fb21c8d6ec4a8e3d5ad8628140edd887b8920f521cfd">debugmalloc_canary_char</link>)
+189 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+190 &#32;&#32;&#32;&#32;}
+191 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">true</emphasis>;
+192 }
+193 
+194 
+195 <emphasis role="comment">/*&#32;dump&#32;memory&#32;contents&#32;to&#32;log&#32;file.&#32;*/</emphasis>
+196 <emphasis role="keyword">static</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;debugmalloc_dump_memory(<emphasis role="keywordtype">char</emphasis>&#32;<emphasis role="keyword">const</emphasis>&#32;*mem,&#32;<emphasis role="keywordtype">size_t</emphasis>&#32;size)&#32;{
+197 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">for</emphasis>&#32;(<emphasis role="keywordtype">unsigned</emphasis>&#32;y&#32;=&#32;0;&#32;y&#32;&lt;&#32;(size&#32;+&#32;15)&#32;/&#32;16;&#32;y++)&#32;{
+198 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">char</emphasis>&#32;line[80];
+199 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">int</emphasis>&#32;pos&#32;=&#32;0;
+200 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;pos&#32;+=&#32;sprintf(line&#32;+&#32;pos,&#32;<emphasis role="stringliteral">&quot;&#32;&#32;&#32;&#32;&#32;&#32;%04x&#32;&#32;&quot;</emphasis>,&#32;y&#32;*&#32;16);
+201 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">for</emphasis>&#32;(<emphasis role="keywordtype">unsigned</emphasis>&#32;x&#32;=&#32;0;&#32;x&#32;&lt;&#32;16;&#32;x++)&#32;{
+202 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(y&#32;*&#32;16&#32;+&#32;x&#32;&lt;&#32;size)
+203 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;pos&#32;+=&#32;sprintf(line&#32;+&#32;pos,&#32;<emphasis role="stringliteral">&quot;%02x&#32;&quot;</emphasis>,&#32;(<emphasis role="keywordtype">unsigned</emphasis>&#32;<emphasis role="keywordtype">char</emphasis>)mem[y&#32;*&#32;16&#32;+&#32;x]);
+204 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">else</emphasis>
+205 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;pos&#32;+=&#32;sprintf(line&#32;+&#32;pos,&#32;<emphasis role="stringliteral">&quot;&#32;&#32;&#32;&quot;</emphasis>);
+206 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+207 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;pos&#32;+=&#32;sprintf(line&#32;+&#32;pos,&#32;<emphasis role="stringliteral">&quot;&#32;&#32;&quot;</emphasis>);
+208 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">for</emphasis>&#32;(<emphasis role="keywordtype">unsigned</emphasis>&#32;x&#32;=&#32;0;&#32;x&#32;&lt;&#32;16;&#32;x++)&#32;{
+209 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(y&#32;*&#32;16&#32;+&#32;x&#32;&lt;&#32;size)&#32;{
+210 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">unsigned</emphasis>&#32;<emphasis role="keywordtype">char</emphasis>&#32;c&#32;=&#32;mem[y&#32;*&#32;16&#32;+&#32;x];
+211 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;pos&#32;+=&#32;sprintf(line&#32;+&#32;pos,&#32;<emphasis role="stringliteral">&quot;%c&quot;</emphasis>,&#32;isprint(c)&#32;?&#32;c&#32;:&#32;<emphasis role="charliteral">&apos;.&apos;</emphasis>);
+212 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+213 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+214 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;pos&#32;+=&#32;sprintf(line&#32;+&#32;pos,&#32;<emphasis role="stringliteral">&quot;&#32;&quot;</emphasis>);
+215 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+216 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+217 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;debugmalloc_log(<emphasis role="stringliteral">&quot;%s\n&quot;</emphasis>,&#32;line);
+218 &#32;&#32;&#32;&#32;}
+219 }
+220 
+221 
+222 <emphasis role="comment">/*&#32;dump&#32;data&#32;of&#32;allocated&#32;memory&#32;block.</emphasis>
+223 <emphasis role="comment">&#32;*&#32;if&#32;the&#32;canary&#32;is&#32;corrupted,&#32;it&#32;is&#32;also&#32;written&#32;to&#32;the&#32;log.&#32;*/</emphasis>
+224 <emphasis role="keyword">static</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;debugmalloc_dump_elem(<link linkend="_struct_debugmalloc_entry">DebugmallocEntry</link>&#32;<emphasis role="keyword">const</emphasis>&#32;*elem)&#32;{
+225 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">bool</emphasis>&#32;canary_ok&#32;=&#32;debugmalloc_canary_ok(elem);
+226 
+227 &#32;&#32;&#32;&#32;debugmalloc_log(<emphasis role="stringliteral">&quot;&#32;&#32;%p,&#32;%u&#32;bajt,&#32;kanari:&#32;%s\n&quot;</emphasis>
+228 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&quot;&#32;&#32;%s:%u,&#32;%s(%s)\n&quot;</emphasis>,
+229 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;elem-&gt;<link linkend="_struct_debugmalloc_entry_1a20cf96b6c21400f0123a6a3b6dae9876">user_mem</link>,&#32;(<emphasis role="keywordtype">unsigned</emphasis>)&#32;elem-&gt;<link linkend="_struct_debugmalloc_entry_1a854352f53b148adc24983a58a1866d66">size</link>,&#32;canary_ok&#32;?&#32;<emphasis role="stringliteral">&quot;ok&quot;</emphasis>&#32;:&#32;<emphasis role="stringliteral">&quot;**SERULT**&quot;</emphasis>,
+230 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;elem-&gt;<link linkend="_struct_debugmalloc_entry_1a353d29f9f9cc0db6fca9d49b5f88d34d">file</link>,&#32;elem-&gt;<link linkend="_struct_debugmalloc_entry_1a05ef0c4dbeec4fc8ccb225de9c26d896">line</link>,
+231 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;elem-&gt;<link linkend="_struct_debugmalloc_entry_1ac8a2334cf5c64b1f708ced23ef569db4">func</link>,&#32;elem-&gt;<link linkend="_struct_debugmalloc_entry_1aa8f5b6d2256e18de50b9a17b5e3cda3b">expr</link>);
+232 
+233 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!canary_ok)&#32;{
+234 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;debugmalloc_log(<emphasis role="stringliteral">&quot;&#32;&#32;&#32;&#32;ELOTTE&#32;kanari:&#32;\n&quot;</emphasis>);
+235 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;debugmalloc_dump_memory((<emphasis role="keywordtype">char</emphasis>&#32;<emphasis role="keyword">const</emphasis>&#32;*)&#32;elem-&gt;<link linkend="_struct_debugmalloc_entry_1ae241706d126e0114e48ce7c4083d93d1">real_mem</link>,&#32;<link linkend="_debugmalloc_8h_1ad6725ad24902750bb8080fb21c8d6ec4ab345007cf28a2516c0ba24371a400520">debugmalloc_canary_size</link>);
+236 &#32;&#32;&#32;&#32;}
+237 
+238 &#32;&#32;&#32;&#32;debugmalloc_dump_memory((<emphasis role="keywordtype">char</emphasis>&#32;<emphasis role="keyword">const</emphasis>&#32;*)&#32;elem-&gt;<link linkend="_struct_debugmalloc_entry_1a20cf96b6c21400f0123a6a3b6dae9876">user_mem</link>,&#32;elem-&gt;<link linkend="_struct_debugmalloc_entry_1a854352f53b148adc24983a58a1866d66">size</link>&#32;&gt;&#32;64&#32;?&#32;64&#32;:&#32;elem-&gt;<link linkend="_struct_debugmalloc_entry_1a854352f53b148adc24983a58a1866d66">size</link>);
+239 
+240 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!canary_ok)&#32;{
+241 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;debugmalloc_log(<emphasis role="stringliteral">&quot;&#32;&#32;&#32;&#32;UTANA&#32;kanari:&#32;\n&quot;</emphasis>);
+242 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;debugmalloc_dump_memory((<emphasis role="keywordtype">char</emphasis>&#32;<emphasis role="keyword">const</emphasis>&#32;*)&#32;elem-&gt;<link linkend="_struct_debugmalloc_entry_1ae241706d126e0114e48ce7c4083d93d1">real_mem</link>&#32;+&#32;<link linkend="_debugmalloc_8h_1ad6725ad24902750bb8080fb21c8d6ec4ab345007cf28a2516c0ba24371a400520">debugmalloc_canary_size</link>&#32;+&#32;elem-&gt;<link linkend="_struct_debugmalloc_entry_1a854352f53b148adc24983a58a1866d66">size</link>,&#32;<link linkend="_debugmalloc_8h_1ad6725ad24902750bb8080fb21c8d6ec4ab345007cf28a2516c0ba24371a400520">debugmalloc_canary_size</link>);
+243 &#32;&#32;&#32;&#32;}
+244 }
+245 
+246 
+247 <emphasis role="comment">/*&#32;dump&#32;data&#32;of&#32;all&#32;memory&#32;blocks&#32;allocated.&#32;*/</emphasis>
+248 <emphasis role="keyword">static</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;debugmalloc_dump(<emphasis role="keywordtype">void</emphasis>)&#32;{
+249 &#32;&#32;&#32;&#32;<link linkend="_struct_debugmalloc_data">DebugmallocData</link>&#32;*instance&#32;=&#32;debugmalloc_singleton();
+250 &#32;&#32;&#32;&#32;debugmalloc_log(<emphasis role="stringliteral">&quot;**&#32;DEBUGMALLOC&#32;DUMP&#32;************************************\n&quot;</emphasis>);
+251 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">int</emphasis>&#32;cnt&#32;=&#32;0;
+252 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">for</emphasis>&#32;(<emphasis role="keywordtype">size_t</emphasis>&#32;i&#32;=&#32;0;&#32;i&#32;&lt;&#32;<link linkend="_debugmalloc_8h_1ad6725ad24902750bb8080fb21c8d6ec4a40803f0d5a26a349a78cbd998cb8a2a1">debugmalloc_tablesize</link>;&#32;i++)&#32;{
+253 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_struct_debugmalloc_entry">DebugmallocEntry</link>&#32;*head&#32;=&#32;&amp;instance-&gt;<link linkend="_struct_debugmalloc_data_1a96730563c8ca3d98f4f9f40df5ecb3c0">head</link>[i];
+254 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">for</emphasis>&#32;(<link linkend="_struct_debugmalloc_entry">DebugmallocEntry</link>&#32;*iter&#32;=&#32;head-&gt;<link linkend="_struct_debugmalloc_entry_1a7ebf7cb15f24577c59e05768d8f9ffc5">next</link>;&#32;iter-&gt;<link linkend="_struct_debugmalloc_entry_1a7ebf7cb15f24577c59e05768d8f9ffc5">next</link>&#32;!=&#32;NULL;&#32;iter&#32;=&#32;iter-&gt;<link linkend="_struct_debugmalloc_entry_1a7ebf7cb15f24577c59e05768d8f9ffc5">next</link>)&#32;{
+255 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;++cnt;
+256 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;debugmalloc_log(<emphasis role="stringliteral">&quot;**&#32;%d/%d.&#32;rekord:\n&quot;</emphasis>,&#32;cnt,&#32;instance-&gt;<link linkend="_struct_debugmalloc_data_1a15f42e819e77e27bc9e2f204ff15e871">alloc_count</link>);
+257 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;debugmalloc_dump_elem(iter);
+258 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+259 &#32;&#32;&#32;&#32;}
+260 &#32;&#32;&#32;&#32;debugmalloc_log(<emphasis role="stringliteral">&quot;**&#32;DEBUGMALLOC&#32;DUMP&#32;VEGE&#32;*******************************\n&quot;</emphasis>);
+261 }
+262 
+263 
+264 <emphasis role="comment">/*&#32;called&#32;at&#32;program&#32;exit&#32;to&#32;dump&#32;data&#32;if&#32;there&#32;is&#32;a&#32;leak,</emphasis>
+265 <emphasis role="comment">&#32;*&#32;ie.&#32;allocated&#32;block&#32;remained.&#32;*/</emphasis>
+266 <emphasis role="keyword">static</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;debugmalloc_atexit_dump(<emphasis role="keywordtype">void</emphasis>)&#32;{
+267 &#32;&#32;&#32;&#32;<link linkend="_struct_debugmalloc_data">DebugmallocData</link>&#32;*instance&#32;=&#32;debugmalloc_singleton();
+268 &#32;&#32;&#32;&#32;
+269 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(instance-&gt;<link linkend="_struct_debugmalloc_data_1a15f42e819e77e27bc9e2f204ff15e871">alloc_count</link>&#32;&gt;&#32;0)&#32;{
+270 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;debugmalloc_log(<emphasis role="stringliteral">&quot;\n&quot;</emphasis>
+271 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&quot;********************************************************\n&quot;</emphasis>
+272 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&quot;*&#32;MEMORIASZIVARGAS&#32;VAN&#32;A&#32;PROGRAMBAN!!!\n&quot;</emphasis>
+273 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&quot;********************************************************\n&quot;</emphasis>
+274 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&quot;\n&quot;</emphasis>);
+275 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;debugmalloc_dump();
+276 &#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+277 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;debugmalloc_log(<emphasis role="stringliteral">&quot;****************************************************\n&quot;</emphasis>
+278 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&quot;*&#32;Debugmalloc:&#32;nincs&#32;memoriaszivargas&#32;a&#32;programban.\n&quot;</emphasis>
+279 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&quot;*&#32;Osszes&#32;foglalas:&#32;%d&#32;blokk,&#32;%d&#32;bajt.\n&quot;</emphasis>
+280 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&quot;****************************************************\n&quot;</emphasis>,
+281 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;instance-&gt;<link linkend="_struct_debugmalloc_data_1a42a37cfdec0b59c102e58457f5954962">all_alloc_count</link>,&#32;instance-&gt;<link linkend="_struct_debugmalloc_data_1a9b9e3387235c1e2bebc84e38c230837e">all_alloc_bytes</link>);
+282 &#32;&#32;&#32;&#32;}
+283 }
+284 
+285 
+286 <emphasis role="comment">/*&#32;hash&#32;function&#32;for&#32;bucket&#32;hash.&#32;*/</emphasis>
+287 <emphasis role="keyword">static</emphasis>&#32;<emphasis role="keywordtype">size_t</emphasis>&#32;debugmalloc_hash(<emphasis role="keywordtype">void</emphasis>&#32;*address)&#32;{
+288 &#32;&#32;&#32;&#32;<emphasis role="comment">/*&#32;the&#32;last&#32;few&#32;bits&#32;are&#32;ignored,&#32;as&#32;they&#32;are&#32;usually&#32;zero&#32;for</emphasis>
+289 <emphasis role="comment">&#32;&#32;&#32;&#32;&#32;*&#32;alignment&#32;purposes.&#32;all&#32;tested&#32;architectures&#32;used&#32;16&#32;byte&#32;allocation.&#32;*/</emphasis>
+290 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">size_t</emphasis>&#32;cut&#32;=&#32;(size_t)address&#32;&gt;&gt;&#32;4;
+291 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;cut&#32;%&#32;<link linkend="_debugmalloc_8h_1ad6725ad24902750bb8080fb21c8d6ec4a40803f0d5a26a349a78cbd998cb8a2a1">debugmalloc_tablesize</link>;
+292 }
+293 
+294 
+295 <emphasis role="comment">/*&#32;insert&#32;element&#32;to&#32;hash&#32;table.&#32;*/</emphasis>
+296 <emphasis role="keyword">static</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;debugmalloc_insert(<link linkend="_struct_debugmalloc_entry">DebugmallocEntry</link>&#32;*entry)&#32;{
+297 &#32;&#32;&#32;&#32;<link linkend="_struct_debugmalloc_data">DebugmallocData</link>&#32;*instance&#32;=&#32;debugmalloc_singleton();
+298 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">size_t</emphasis>&#32;idx&#32;=&#32;debugmalloc_hash(entry-&gt;<link linkend="_struct_debugmalloc_entry_1a20cf96b6c21400f0123a6a3b6dae9876">user_mem</link>);
+299 &#32;&#32;&#32;&#32;<link linkend="_struct_debugmalloc_entry">DebugmallocEntry</link>&#32;*head&#32;=&#32;&amp;instance-&gt;<link linkend="_struct_debugmalloc_data_1a96730563c8ca3d98f4f9f40df5ecb3c0">head</link>[idx];
+300 &#32;&#32;&#32;&#32;entry-&gt;<link linkend="_struct_debugmalloc_entry_1aae87f43e5df8141aedca245507e8d790">prev</link>&#32;=&#32;head;
+301 &#32;&#32;&#32;&#32;entry-&gt;<link linkend="_struct_debugmalloc_entry_1a7ebf7cb15f24577c59e05768d8f9ffc5">next</link>&#32;=&#32;head-&gt;<link linkend="_struct_debugmalloc_entry_1a7ebf7cb15f24577c59e05768d8f9ffc5">next</link>;
+302 &#32;&#32;&#32;&#32;head-&gt;<link linkend="_struct_debugmalloc_entry_1a7ebf7cb15f24577c59e05768d8f9ffc5">next</link>-&gt;<link linkend="_struct_debugmalloc_entry_1aae87f43e5df8141aedca245507e8d790">prev</link>&#32;=&#32;entry;
+303 &#32;&#32;&#32;&#32;head-&gt;<link linkend="_struct_debugmalloc_entry_1a7ebf7cb15f24577c59e05768d8f9ffc5">next</link>&#32;=&#32;entry;
+304 &#32;&#32;&#32;&#32;instance-&gt;<link linkend="_struct_debugmalloc_data_1a15f42e819e77e27bc9e2f204ff15e871">alloc_count</link>&#32;+=&#32;1;
+305 &#32;&#32;&#32;&#32;instance-&gt;<link linkend="_struct_debugmalloc_data_1a23c9102a7df871da995e7aa887279e46">alloc_bytes</link>&#32;+=&#32;entry-&gt;<link linkend="_struct_debugmalloc_entry_1a854352f53b148adc24983a58a1866d66">size</link>;
+306 &#32;&#32;&#32;&#32;instance-&gt;<link linkend="_struct_debugmalloc_data_1a42a37cfdec0b59c102e58457f5954962">all_alloc_count</link>&#32;+=&#32;1;
+307 &#32;&#32;&#32;&#32;instance-&gt;<link linkend="_struct_debugmalloc_data_1a9b9e3387235c1e2bebc84e38c230837e">all_alloc_bytes</link>&#32;+=&#32;entry-&gt;<link linkend="_struct_debugmalloc_entry_1a854352f53b148adc24983a58a1866d66">size</link>;
+308 }
+309 
+310 
+311 <emphasis role="comment">/*&#32;remove&#32;element&#32;from&#32;hash&#32;table&#32;*/</emphasis>
+312 <emphasis role="keyword">static</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;debugmalloc_remove(<link linkend="_struct_debugmalloc_entry">DebugmallocEntry</link>&#32;*entry)&#32;{
+313 &#32;&#32;&#32;&#32;<link linkend="_struct_debugmalloc_data">DebugmallocData</link>&#32;*instance&#32;=&#32;debugmalloc_singleton();
+314 &#32;&#32;&#32;&#32;entry-&gt;<link linkend="_struct_debugmalloc_entry_1a7ebf7cb15f24577c59e05768d8f9ffc5">next</link>-&gt;<link linkend="_struct_debugmalloc_entry_1aae87f43e5df8141aedca245507e8d790">prev</link>&#32;=&#32;entry-&gt;<link linkend="_struct_debugmalloc_entry_1aae87f43e5df8141aedca245507e8d790">prev</link>;
+315 &#32;&#32;&#32;&#32;entry-&gt;<link linkend="_struct_debugmalloc_entry_1aae87f43e5df8141aedca245507e8d790">prev</link>-&gt;<link linkend="_struct_debugmalloc_entry_1a7ebf7cb15f24577c59e05768d8f9ffc5">next</link>&#32;=&#32;entry-&gt;<link linkend="_struct_debugmalloc_entry_1a7ebf7cb15f24577c59e05768d8f9ffc5">next</link>;
+316 &#32;&#32;&#32;&#32;instance-&gt;<link linkend="_struct_debugmalloc_data_1a15f42e819e77e27bc9e2f204ff15e871">alloc_count</link>&#32;-=&#32;1;
+317 &#32;&#32;&#32;&#32;instance-&gt;<link linkend="_struct_debugmalloc_data_1a23c9102a7df871da995e7aa887279e46">alloc_bytes</link>&#32;-=&#32;entry-&gt;<link linkend="_struct_debugmalloc_entry_1a854352f53b148adc24983a58a1866d66">size</link>;
+318 }
+319 
+320 
+321 <emphasis role="comment">/*&#32;find&#32;element&#32;in&#32;hash&#32;table,&#32;given&#32;with&#32;the&#32;memory&#32;address&#32;that&#32;the&#32;user&#32;sees.</emphasis>
+322 <emphasis role="comment">&#32;*&#32;@return&#32;the&#32;linked&#32;list&#32;entry,&#32;or&#32;null&#32;if&#32;not&#32;found.&#32;*/</emphasis>
+323 <emphasis role="keyword">static</emphasis>&#32;<link linkend="_struct_debugmalloc_entry">DebugmallocEntry</link>&#32;*debugmalloc_find(<emphasis role="keywordtype">void</emphasis>&#32;*mem)&#32;{
+324 &#32;&#32;&#32;&#32;<link linkend="_struct_debugmalloc_data">DebugmallocData</link>&#32;*instance&#32;=&#32;debugmalloc_singleton();
+325 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">size_t</emphasis>&#32;idx&#32;=&#32;debugmalloc_hash(mem);
+326 &#32;&#32;&#32;&#32;<link linkend="_struct_debugmalloc_entry">DebugmallocEntry</link>&#32;*head&#32;=&#32;&amp;instance-&gt;<link linkend="_struct_debugmalloc_data_1a96730563c8ca3d98f4f9f40df5ecb3c0">head</link>[idx];
+327 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">for</emphasis>&#32;(<link linkend="_struct_debugmalloc_entry">DebugmallocEntry</link>&#32;*iter&#32;=&#32;head-&gt;<link linkend="_struct_debugmalloc_entry_1a7ebf7cb15f24577c59e05768d8f9ffc5">next</link>;&#32;iter-&gt;<link linkend="_struct_debugmalloc_entry_1a7ebf7cb15f24577c59e05768d8f9ffc5">next</link>&#32;!=&#32;NULL;&#32;iter&#32;=&#32;iter-&gt;<link linkend="_struct_debugmalloc_entry_1a7ebf7cb15f24577c59e05768d8f9ffc5">next</link>)
+328 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(iter-&gt;user_mem&#32;==&#32;mem)
+329 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;iter;
+330 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;NULL;
+331 }
+332 
+333 
+334 <emphasis role="comment">/*&#32;allocate&#32;memory.&#32;this&#32;function&#32;is&#32;called&#32;via&#32;the&#32;macro.&#32;*/</emphasis>
+335 <emphasis role="keyword">static</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;*debugmalloc_malloc_full(<emphasis role="keywordtype">size_t</emphasis>&#32;size,&#32;<emphasis role="keywordtype">char</emphasis>&#32;<emphasis role="keyword">const</emphasis>&#32;*func,&#32;<emphasis role="keywordtype">char</emphasis>&#32;<emphasis role="keyword">const</emphasis>&#32;*expr,&#32;<emphasis role="keywordtype">char</emphasis>&#32;<emphasis role="keyword">const</emphasis>&#32;*file,&#32;<emphasis role="keywordtype">unsigned</emphasis>&#32;line,&#32;<emphasis role="keywordtype">bool</emphasis>&#32;zero)&#32;{
+336 &#32;&#32;&#32;&#32;<emphasis role="comment">/*&#32;imitate&#32;standard&#32;malloc:&#32;return&#32;null&#32;if&#32;size&#32;is&#32;zero&#32;*/</emphasis>
+337 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(size&#32;==&#32;0)
+338 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;NULL;
+339 &#32;&#32;&#32;&#32;
+340 &#32;&#32;&#32;&#32;<emphasis role="comment">/*&#32;check&#32;max&#32;size&#32;*/</emphasis>
+341 &#32;&#32;&#32;&#32;<link linkend="_struct_debugmalloc_data">DebugmallocData</link>&#32;*instance&#32;=&#32;debugmalloc_singleton();
+342 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(size&#32;&gt;&#32;(<emphasis role="keywordtype">size_t</emphasis>)(instance-&gt;<link linkend="_struct_debugmalloc_data_1a5ff6535cb48e89d8b0707e889ba72b0d">max_block_size</link>))&#32;{
+343 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;debugmalloc_log(<emphasis role="stringliteral">&quot;debugmalloc:&#32;%s&#32;@&#32;%s:%u:&#32;a&#32;blokk&#32;merete&#32;tul&#32;nagy,&#32;%u&#32;bajt;&#32;debugmalloc_max_block_size()&#32;fuggvennyel&#32;novelheto.\n&quot;</emphasis>,&#32;func,&#32;file,&#32;line,&#32;(<emphasis role="keywordtype">unsigned</emphasis>)&#32;size);
+344 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;abort();
+345 &#32;&#32;&#32;&#32;}
+346 
+347 &#32;&#32;&#32;&#32;<emphasis role="comment">/*&#32;allocate&#32;more&#32;memory,&#32;make&#32;room&#32;for&#32;canary&#32;*/</emphasis>
+348 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">void</emphasis>&#32;*real_mem&#32;=&#32;<link linkend="_debugmalloc_8h_1a535b58ab5aa48e2e86073e334d43fd32">malloc</link>(size&#32;+&#32;2&#32;*&#32;<link linkend="_debugmalloc_8h_1ad6725ad24902750bb8080fb21c8d6ec4ab345007cf28a2516c0ba24371a400520">debugmalloc_canary_size</link>);
+349 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(real_mem&#32;==&#32;NULL)&#32;{
+350 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;debugmalloc_log(<emphasis role="stringliteral">&quot;debugmalloc:&#32;%s&#32;@&#32;%s:%u:&#32;nem&#32;sikerult&#32;%u&#32;meretu&#32;memoriat&#32;foglalni!\n&quot;</emphasis>,&#32;func,&#32;file,&#32;line,&#32;(<emphasis role="keywordtype">unsigned</emphasis>)&#32;size);
+351 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;NULL;
+352 &#32;&#32;&#32;&#32;}
+353 
+354 &#32;&#32;&#32;&#32;<emphasis role="comment">/*&#32;allocate&#32;memory&#32;for&#32;linked&#32;list&#32;element&#32;*/</emphasis>
+355 &#32;&#32;&#32;&#32;<link linkend="_struct_debugmalloc_entry">DebugmallocEntry</link>&#32;*newentry&#32;=&#32;(<link linkend="_struct_debugmalloc_entry">DebugmallocEntry</link>&#32;*)&#32;<link linkend="_debugmalloc_8h_1a535b58ab5aa48e2e86073e334d43fd32">malloc</link>(<emphasis role="keyword">sizeof</emphasis>(<link linkend="_struct_debugmalloc_entry">DebugmallocEntry</link>));
+356 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(newentry&#32;==&#32;NULL)&#32;{
+357 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_debugmalloc_8h_1aa7943e5d135734f6801bebcc37401fc0">free</link>(real_mem);
+358 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;debugmalloc_log(<emphasis role="stringliteral">&quot;debugmalloc:&#32;%s&#32;@&#32;%s:%u:&#32;le&#32;tudtam&#32;foglalni&#32;%u&#32;memoriat,&#32;de&#32;utana&#32;a&#32;sajatnak&#32;nem,&#32;sry\n&quot;</emphasis>,&#32;func,&#32;file,&#32;line,&#32;(<emphasis role="keywordtype">unsigned</emphasis>)&#32;size);
+359 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;abort();
+360 &#32;&#32;&#32;&#32;}
+361 
+362 &#32;&#32;&#32;&#32;<emphasis role="comment">/*&#32;metadata&#32;of&#32;allocation:&#32;caller&#32;function,&#32;code&#32;line&#32;etc.&#32;*/</emphasis>
+363 &#32;&#32;&#32;&#32;debugmalloc_strlcpy(newentry-&gt;<link linkend="_struct_debugmalloc_entry_1ac8a2334cf5c64b1f708ced23ef569db4">func</link>,&#32;func,&#32;<emphasis role="keyword">sizeof</emphasis>(newentry-&gt;<link linkend="_struct_debugmalloc_entry_1ac8a2334cf5c64b1f708ced23ef569db4">func</link>));
+364 &#32;&#32;&#32;&#32;debugmalloc_strlcpy(newentry-&gt;<link linkend="_struct_debugmalloc_entry_1aa8f5b6d2256e18de50b9a17b5e3cda3b">expr</link>,&#32;expr,&#32;<emphasis role="keyword">sizeof</emphasis>(newentry-&gt;<link linkend="_struct_debugmalloc_entry_1aa8f5b6d2256e18de50b9a17b5e3cda3b">expr</link>));
+365 &#32;&#32;&#32;&#32;debugmalloc_strlcpy(newentry-&gt;<link linkend="_struct_debugmalloc_entry_1a353d29f9f9cc0db6fca9d49b5f88d34d">file</link>,&#32;file,&#32;<emphasis role="keyword">sizeof</emphasis>(newentry-&gt;<link linkend="_struct_debugmalloc_entry_1a353d29f9f9cc0db6fca9d49b5f88d34d">file</link>));
+366 &#32;&#32;&#32;&#32;newentry-&gt;<link linkend="_struct_debugmalloc_entry_1a05ef0c4dbeec4fc8ccb225de9c26d896">line</link>&#32;=&#32;line;
+367 
+368 &#32;&#32;&#32;&#32;<emphasis role="comment">/*&#32;address&#32;of&#32;allocated&#32;memory&#32;chunk&#32;*/</emphasis>
+369 &#32;&#32;&#32;&#32;newentry-&gt;<link linkend="_struct_debugmalloc_entry_1ae241706d126e0114e48ce7c4083d93d1">real_mem</link>&#32;=&#32;real_mem;
+370 &#32;&#32;&#32;&#32;newentry-&gt;<link linkend="_struct_debugmalloc_entry_1a20cf96b6c21400f0123a6a3b6dae9876">user_mem</link>&#32;=&#32;(<emphasis role="keywordtype">unsigned</emphasis>&#32;<emphasis role="keywordtype">char</emphasis>&#32;*)&#32;real_mem&#32;+&#32;<link linkend="_debugmalloc_8h_1ad6725ad24902750bb8080fb21c8d6ec4ab345007cf28a2516c0ba24371a400520">debugmalloc_canary_size</link>;
+371 &#32;&#32;&#32;&#32;newentry-&gt;<link linkend="_struct_debugmalloc_entry_1a854352f53b148adc24983a58a1866d66">size</link>&#32;=&#32;size;
+372 &#32;&#32;&#32;&#32;debugmalloc_memory_init(newentry,&#32;zero);
+373 
+374 &#32;&#32;&#32;&#32;<emphasis role="comment">/*&#32;store&#32;in&#32;list&#32;and&#32;return&#32;pointer&#32;to&#32;user&#32;area&#32;*/</emphasis>
+375 &#32;&#32;&#32;&#32;debugmalloc_insert(newentry);
+376 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;newentry-&gt;<link linkend="_struct_debugmalloc_entry_1a20cf96b6c21400f0123a6a3b6dae9876">user_mem</link>;
+377 }
+378 
+379 
+380 <emphasis role="comment">/*&#32;free&#32;memory&#32;and&#32;remove&#32;list&#32;item.&#32;before&#32;deleting,&#32;the&#32;chuck&#32;is&#32;filled&#32;with</emphasis>
+381 <emphasis role="comment">&#32;*&#32;the&#32;canary&#32;byte&#32;to&#32;make&#32;sure&#32;that&#32;the&#32;user&#32;will&#32;see&#32;garbage&#32;if&#32;the&#32;memory</emphasis>
+382 <emphasis role="comment">&#32;*&#32;is&#32;accessed&#32;after&#32;freeing.&#32;*/</emphasis>
+383 <emphasis role="keyword">static</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;debugmalloc_free_inner(<link linkend="_struct_debugmalloc_entry">DebugmallocEntry</link>&#32;*deleted)&#32;{
+384 &#32;&#32;&#32;&#32;debugmalloc_remove(deleted);
+385 
+386 &#32;&#32;&#32;&#32;<emphasis role="comment">/*&#32;fill&#32;with&#32;garbage,&#32;then&#32;remove&#32;from&#32;linked&#32;list&#32;*/</emphasis>
+387 &#32;&#32;&#32;&#32;memset(deleted-&gt;<link linkend="_struct_debugmalloc_entry_1ae241706d126e0114e48ce7c4083d93d1">real_mem</link>,&#32;<link linkend="_debugmalloc_8h_1ad6725ad24902750bb8080fb21c8d6ec4a8e3d5ad8628140edd887b8920f521cfd">debugmalloc_canary_char</link>,&#32;deleted-&gt;<link linkend="_struct_debugmalloc_entry_1a854352f53b148adc24983a58a1866d66">size</link>&#32;+&#32;2&#32;*&#32;<link linkend="_debugmalloc_8h_1ad6725ad24902750bb8080fb21c8d6ec4ab345007cf28a2516c0ba24371a400520">debugmalloc_canary_size</link>);
+388 &#32;&#32;&#32;&#32;<link linkend="_debugmalloc_8h_1aa7943e5d135734f6801bebcc37401fc0">free</link>(deleted-&gt;<link linkend="_struct_debugmalloc_entry_1ae241706d126e0114e48ce7c4083d93d1">real_mem</link>);
+389 &#32;&#32;&#32;&#32;<link linkend="_debugmalloc_8h_1aa7943e5d135734f6801bebcc37401fc0">free</link>(deleted);
+390 }
+391 
+392 
+393 <emphasis role="comment">/*&#32;free&#32;memory&#32;-&#32;called&#32;via&#32;the&#32;macro.</emphasis>
+394 <emphasis role="comment">&#32;*&#32;as&#32;all&#32;allocations&#32;are&#32;tracked&#32;in&#32;the&#32;list,&#32;this&#32;function&#32;can&#32;terminate&#32;the&#32;program</emphasis>
+395 <emphasis role="comment">&#32;*&#32;if&#32;a&#32;block&#32;is&#32;freed&#32;twice&#32;or&#32;the&#32;free&#32;function&#32;is&#32;called&#32;with&#32;an&#32;invalid&#32;address.&#32;*/</emphasis>
+396 <emphasis role="keyword">static</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;debugmalloc_free_full(<emphasis role="keywordtype">void</emphasis>&#32;*mem,&#32;<emphasis role="keywordtype">char</emphasis>&#32;<emphasis role="keyword">const</emphasis>&#32;*func,&#32;<emphasis role="keywordtype">char</emphasis>&#32;<emphasis role="keyword">const</emphasis>&#32;*file,&#32;<emphasis role="keywordtype">unsigned</emphasis>&#32;line)&#32;{
+397 &#32;&#32;&#32;&#32;<emphasis role="comment">/*&#32;imitate&#32;standard&#32;free&#32;function:&#32;if&#32;ptr&#32;is&#32;null,&#32;no&#32;operation&#32;is&#32;performed&#32;*/</emphasis>
+398 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(mem&#32;==&#32;NULL)
+399 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>;
+400 
+401 &#32;&#32;&#32;&#32;<emphasis role="comment">/*&#32;find&#32;allocation,&#32;abort&#32;if&#32;not&#32;found&#32;*/</emphasis>
+402 &#32;&#32;&#32;&#32;<link linkend="_struct_debugmalloc_entry">DebugmallocEntry</link>&#32;*deleted&#32;=&#32;debugmalloc_find(mem);
+403 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(deleted&#32;==&#32;NULL)&#32;{
+404 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;debugmalloc_log(<emphasis role="stringliteral">&quot;debugmalloc:&#32;%s&#32;@&#32;%s:%u:&#32;olyan&#32;teruletet&#32;probalsz&#32;felszabaditani,&#32;ami&#32;nincs&#32;lefoglalva!\n&quot;</emphasis>,&#32;func,&#32;file,&#32;line);
+405 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;abort();
+406 &#32;&#32;&#32;&#32;}
+407 
+408 &#32;&#32;&#32;&#32;<emphasis role="comment">/*&#32;check&#32;canary&#32;and&#32;then&#32;free&#32;memory&#32;*/</emphasis>
+409 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!debugmalloc_canary_ok(deleted))&#32;{
+410 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;debugmalloc_log(<emphasis role="stringliteral">&quot;debugmalloc:&#32;%s&#32;@&#32;%s:%u:&#32;a&#32;%p&#32;memoriateruletet&#32;tulindexelted!\n&quot;</emphasis>,&#32;func,&#32;file,&#32;line,&#32;mem);
+411 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;debugmalloc_dump_elem(deleted);
+412 &#32;&#32;&#32;&#32;}
+413 &#32;&#32;&#32;&#32;debugmalloc_free_inner(deleted);
+414 }
+415 
+416 
+417 <emphasis role="comment">/*&#32;realloc-like&#32;function.&#32;*/</emphasis>
+418 <emphasis role="keyword">static</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;*debugmalloc_realloc_full(<emphasis role="keywordtype">void</emphasis>&#32;*oldmem,&#32;<emphasis role="keywordtype">size_t</emphasis>&#32;newsize,&#32;<emphasis role="keywordtype">char</emphasis>&#32;<emphasis role="keyword">const</emphasis>&#32;*func,&#32;<emphasis role="keywordtype">char</emphasis>&#32;<emphasis role="keyword">const</emphasis>&#32;*expr,&#32;<emphasis role="keywordtype">char</emphasis>&#32;<emphasis role="keyword">const</emphasis>&#32;*file,&#32;<emphasis role="keywordtype">unsigned</emphasis>&#32;line)&#32;{
+419 &#32;&#32;&#32;&#32;<emphasis role="comment">/*&#32;imitate&#32;standard&#32;realloc:&#32;equivalent&#32;to&#32;free&#32;if&#32;size&#32;is&#32;null.&#32;*/</emphasis>
+420 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(newsize&#32;==&#32;0)&#32;{
+421 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;debugmalloc_free_full(oldmem,&#32;func,&#32;file,&#32;line);
+422 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;NULL;
+423 &#32;&#32;&#32;&#32;}
+424 &#32;&#32;&#32;&#32;<emphasis role="comment">/*&#32;imitate&#32;standard&#32;realloc:&#32;equivalent&#32;to&#32;malloc&#32;if&#32;first&#32;param&#32;is&#32;NULL&#32;*/</emphasis>
+425 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(oldmem&#32;==&#32;NULL)
+426 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;debugmalloc_malloc_full(newsize,&#32;func,&#32;expr,&#32;file,&#32;line,&#32;0);
+427 
+428 &#32;&#32;&#32;&#32;<emphasis role="comment">/*&#32;find&#32;old&#32;allocation.&#32;abort&#32;if&#32;not&#32;found.&#32;*/</emphasis>
+429 &#32;&#32;&#32;&#32;<link linkend="_struct_debugmalloc_entry">DebugmallocEntry</link>&#32;*oldentry&#32;=&#32;debugmalloc_find(oldmem);
+430 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(oldentry&#32;==&#32;NULL)&#32;{
+431 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;debugmalloc_log(<emphasis role="stringliteral">&quot;debugmalloc:&#32;%s&#32;@&#32;%s:%u:&#32;olyan&#32;teruletet&#32;probalsz&#32;atmeretezni,&#32;ami&#32;nincs&#32;lefoglalva!\n&quot;</emphasis>,&#32;func,&#32;file,&#32;line);
+432 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;abort();
+433 &#32;&#32;&#32;&#32;}
+434 
+435 &#32;&#32;&#32;&#32;<emphasis role="comment">/*&#32;create&#32;new&#32;allocation,&#32;copy&#32;&amp;&#32;free&#32;old&#32;data&#32;*/</emphasis>
+436 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">void</emphasis>&#32;*newmem&#32;=&#32;debugmalloc_malloc_full(newsize,&#32;func,&#32;expr,&#32;file,&#32;line,&#32;<emphasis role="keyword">false</emphasis>);
+437 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(newmem&#32;==&#32;NULL)&#32;{
+438 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;debugmalloc_log(<emphasis role="stringliteral">&quot;debugmalloc:&#32;%s&#32;@&#32;%s:%u:&#32;nem&#32;sikerult&#32;uj&#32;memoriat&#32;foglalni&#32;az&#32;atmeretezeshez!\n&quot;</emphasis>,&#32;func,&#32;file,&#32;line);
+439 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">/*&#32;imitate&#32;standard&#32;realloc:&#32;original&#32;block&#32;is&#32;untouched,&#32;but&#32;return&#32;NULL&#32;*/</emphasis>
+440 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;NULL;
+441 &#32;&#32;&#32;&#32;}
+442 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">size_t</emphasis>&#32;smaller&#32;=&#32;oldentry-&gt;<link linkend="_struct_debugmalloc_entry_1a854352f53b148adc24983a58a1866d66">size</link>&#32;&lt;&#32;newsize&#32;?&#32;oldentry-&gt;<link linkend="_struct_debugmalloc_entry_1a854352f53b148adc24983a58a1866d66">size</link>&#32;:&#32;newsize;
+443 &#32;&#32;&#32;&#32;memcpy(newmem,&#32;oldmem,&#32;smaller);
+444 &#32;&#32;&#32;&#32;debugmalloc_free_inner(oldentry);
+445 
+446 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;newmem;
+447 }
+448 
+449 
+450 <emphasis role="comment">/*&#32;initialize&#32;debugmalloc&#32;singleton.&#32;returns&#32;the&#32;newly&#32;allocated&#32;instance&#32;*/</emphasis>
+451 <emphasis role="keyword">static</emphasis>&#32;<link linkend="_struct_debugmalloc_data">DebugmallocData</link>&#32;*&#32;debugmalloc_create(<emphasis role="keywordtype">void</emphasis>)&#32;{
+452 &#32;&#32;&#32;&#32;<emphasis role="comment">/*&#32;config&#32;check&#32;*/</emphasis>
+453 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(<link linkend="_debugmalloc_8h_1ad6725ad24902750bb8080fb21c8d6ec4ab345007cf28a2516c0ba24371a400520">debugmalloc_canary_size</link>&#32;%&#32;16&#32;!=&#32;0)&#32;{
+454 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;debugmalloc_log(<emphasis role="stringliteral">&quot;debugmalloc:&#32;a&#32;kanari&#32;merete&#32;legyen&#32;16-tal&#32;oszthato\n&quot;</emphasis>);
+455 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;abort();
+456 &#32;&#32;&#32;&#32;}
+457 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(<link linkend="_debugmalloc_8h_1ad6725ad24902750bb8080fb21c8d6ec4a8e3d5ad8628140edd887b8920f521cfd">debugmalloc_canary_char</link>&#32;==&#32;0)&#32;{
+458 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;debugmalloc_log(<emphasis role="stringliteral">&quot;debugmalloc:&#32;a&#32;kanari&#32;legyen&#32;0-tol&#32;kulonbozo\n&quot;</emphasis>);
+459 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;abort();
+460 &#32;&#32;&#32;&#32;}
+461 &#32;&#32;&#32;&#32;<emphasis role="comment">/*&#32;avoid&#32;compiler&#32;warning&#32;if&#32;these&#32;functions&#32;are&#32;not&#32;used&#32;*/</emphasis>
+462 &#32;&#32;&#32;&#32;(void)&#32;debugmalloc_realloc_full;
+463 &#32;&#32;&#32;&#32;(void)&#32;debugmalloc_log_file;
+464 &#32;&#32;&#32;&#32;(void)&#32;debugmalloc_max_block_size;
+465 
+466 &#32;&#32;&#32;&#32;<emphasis role="comment">/*&#32;create&#32;and&#32;initialize&#32;instance&#32;*/</emphasis>
+467 &#32;&#32;&#32;&#32;<link linkend="_struct_debugmalloc_data">DebugmallocData</link>&#32;*instance&#32;=&#32;(<link linkend="_struct_debugmalloc_data">DebugmallocData</link>&#32;*)&#32;<link linkend="_debugmalloc_8h_1a535b58ab5aa48e2e86073e334d43fd32">malloc</link>(<emphasis role="keyword">sizeof</emphasis>(<link linkend="_struct_debugmalloc_data">DebugmallocData</link>));
+468 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(instance&#32;==&#32;NULL)&#32;{
+469 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;debugmalloc_log(<emphasis role="stringliteral">&quot;debugmalloc:&#32;nem&#32;sikerult&#32;elinditani&#32;a&#32;memoriakezelest\n&quot;</emphasis>);
+470 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;abort();
+471 &#32;&#32;&#32;&#32;}
+472 &#32;&#32;&#32;&#32;debugmalloc_strlcpy(instance-&gt;<link linkend="_struct_debugmalloc_data_1af5ff893eedb28514f6f69c3687ca893b">logfile</link>,&#32;<emphasis role="stringliteral">&quot;&quot;</emphasis>,&#32;<emphasis role="keyword">sizeof</emphasis>(instance-&gt;<link linkend="_struct_debugmalloc_data_1af5ff893eedb28514f6f69c3687ca893b">logfile</link>));
+473 &#32;&#32;&#32;&#32;instance-&gt;<link linkend="_struct_debugmalloc_data_1a5ff6535cb48e89d8b0707e889ba72b0d">max_block_size</link>&#32;=&#32;<link linkend="_debugmalloc_8h_1ad6725ad24902750bb8080fb21c8d6ec4ae8726dfde3f35d4345009234ee734f6c">debugmalloc_max_block_size_default</link>;
+474 &#32;&#32;&#32;&#32;instance-&gt;<link linkend="_struct_debugmalloc_data_1a15f42e819e77e27bc9e2f204ff15e871">alloc_count</link>&#32;=&#32;0;
+475 &#32;&#32;&#32;&#32;instance-&gt;<link linkend="_struct_debugmalloc_data_1a23c9102a7df871da995e7aa887279e46">alloc_bytes</link>&#32;=&#32;0;
+476 &#32;&#32;&#32;&#32;instance-&gt;<link linkend="_struct_debugmalloc_data_1a42a37cfdec0b59c102e58457f5954962">all_alloc_count</link>&#32;=&#32;0;
+477 &#32;&#32;&#32;&#32;instance-&gt;<link linkend="_struct_debugmalloc_data_1a9b9e3387235c1e2bebc84e38c230837e">all_alloc_bytes</link>&#32;=&#32;0;
+478 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">for</emphasis>&#32;(<emphasis role="keywordtype">size_t</emphasis>&#32;i&#32;=&#32;0;&#32;i&#32;&lt;&#32;<link linkend="_debugmalloc_8h_1ad6725ad24902750bb8080fb21c8d6ec4a40803f0d5a26a349a78cbd998cb8a2a1">debugmalloc_tablesize</link>;&#32;i++)&#32;{
+479 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;instance-&gt;<link linkend="_struct_debugmalloc_data_1a96730563c8ca3d98f4f9f40df5ecb3c0">head</link>[i].<link linkend="_struct_debugmalloc_entry_1aae87f43e5df8141aedca245507e8d790">prev</link>&#32;=&#32;NULL;
+480 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;instance-&gt;<link linkend="_struct_debugmalloc_data_1a96730563c8ca3d98f4f9f40df5ecb3c0">head</link>[i].<link linkend="_struct_debugmalloc_entry_1a7ebf7cb15f24577c59e05768d8f9ffc5">next</link>&#32;=&#32;&amp;instance-&gt;<link linkend="_struct_debugmalloc_data_1a6a489bd48f708358b171a68acf75de9f">tail</link>[i];
+481 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;instance-&gt;<link linkend="_struct_debugmalloc_data_1a6a489bd48f708358b171a68acf75de9f">tail</link>[i].<link linkend="_struct_debugmalloc_entry_1a7ebf7cb15f24577c59e05768d8f9ffc5">next</link>&#32;=&#32;NULL;
+482 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;instance-&gt;<link linkend="_struct_debugmalloc_data_1a6a489bd48f708358b171a68acf75de9f">tail</link>[i].<link linkend="_struct_debugmalloc_entry_1aae87f43e5df8141aedca245507e8d790">prev</link>&#32;=&#32;&amp;instance-&gt;<link linkend="_struct_debugmalloc_data_1a96730563c8ca3d98f4f9f40df5ecb3c0">head</link>[i];
+483 &#32;&#32;&#32;&#32;}
+484 
+485 &#32;&#32;&#32;&#32;atexit(debugmalloc_atexit_dump);
+486 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;instance;
+487 }
+488 
+489 
+490 <emphasis role="comment">/*&#32;These&#32;macro-like&#32;functions&#32;forward&#32;all&#32;allocation/free</emphasis>
+491 <emphasis role="comment">&#32;*&#32;calls&#32;to&#32;debugmalloc.&#32;Usage&#32;is&#32;the&#32;same,&#32;malloc(size)</emphasis>
+492 <emphasis role="comment">&#32;*&#32;gives&#32;the&#32;address&#32;of&#32;a&#32;new&#32;memory&#32;block,&#32;free(ptr)</emphasis>
+493 <emphasis role="comment">&#32;*&#32;deallocates&#32;etc.</emphasis>
+494 <emphasis role="comment">&#32;*&#32;</emphasis>
+495 <emphasis role="comment">&#32;*&#32;If&#32;you&#32;use&#32;this&#32;file,&#32;make&#32;sure&#32;that&#32;you&#32;include&#32;this</emphasis>
+496 <emphasis role="comment">&#32;*&#32;in&#32;*ALL*&#32;translation&#32;units&#32;(*.c)&#32;of&#32;your&#32;source.&#32;The</emphasis>
+497 <emphasis role="comment">&#32;*&#32;builtin&#32;free()&#32;function&#32;cannot&#32;deallocate&#32;a&#32;memory&#32;block</emphasis>
+498 <emphasis role="comment">&#32;*&#32;that&#32;was&#32;allocated&#32;via&#32;debugmalloc,&#32;yet&#32;the&#32;name&#32;of</emphasis>
+499 <emphasis role="comment">&#32;*&#32;the&#32;function&#32;is&#32;the&#32;same!&#32;*/</emphasis>
+500 
+501 <emphasis role="preprocessor">#define&#32;malloc(S)&#32;debugmalloc_malloc_full((S),&#32;&quot;malloc&quot;,&#32;#S,&#32;__FILE__,&#32;__LINE__,&#32;false)</emphasis>
+502 <emphasis role="preprocessor">#define&#32;calloc(N,S)&#32;debugmalloc_malloc_full((N)*(S),&#32;&quot;calloc&quot;,&#32;#N&#32;&quot;,&#32;&quot;&#32;#S,&#32;__FILE__,&#32;__LINE__,&#32;true)</emphasis>
+503 <emphasis role="preprocessor">#define&#32;realloc(P,S)&#32;debugmalloc_realloc_full((P),&#32;(S),&#32;&quot;realloc&quot;,&#32;#S,&#32;__FILE__,&#32;__LINE__)</emphasis>
+504 <emphasis role="preprocessor">#define&#32;free(P)&#32;debugmalloc_free_full((P),&#32;&quot;free&quot;,&#32;__FILE__,&#32;__LINE__)</emphasis>
+505 
+506 <emphasis role="comment">/*&#32;To&#32;include&#32;strdup&#32;and&#32;strndup&#32;functions&#32;(since&#32;c20)&#32;</emphasis>
+507 <emphasis role="comment">&#32;*&#32;in&#32;debugmalloc&#32;administration&#32;mechanism.&#32;*/</emphasis>
+508 &#32;
+509 <emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">inline</emphasis>&#32;<emphasis role="keywordtype">char</emphasis>&#32;*&#32;debugmalloc_strdup&#32;(<emphasis role="keyword">const</emphasis>&#32;<emphasis role="keywordtype">char</emphasis>&#32;*s,&#32;<emphasis role="keywordtype">char</emphasis>&#32;<emphasis role="keyword">const</emphasis>&#32;*func,&#32;<emphasis role="keywordtype">char</emphasis>&#32;<emphasis role="keyword">const</emphasis>&#32;*expr,&#32;<emphasis role="keywordtype">char</emphasis>&#32;<emphasis role="keyword">const</emphasis>&#32;*file,&#32;<emphasis role="keywordtype">unsigned</emphasis>&#32;line)
+510 {
+511 &#32;&#32;<emphasis role="keywordtype">size_t</emphasis>&#32;len&#32;=&#32;strlen&#32;(s)&#32;+&#32;1;
+512 &#32;&#32;<emphasis role="keywordtype">void</emphasis>&#32;*<emphasis role="keyword">new</emphasis>&#32;=&#32;debugmalloc_malloc_full&#32;(len,&#32;func,&#32;expr,&#32;file,&#32;line,&#32;0);
+513 
+514 &#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(<emphasis role="keyword">new</emphasis>&#32;==&#32;NULL)
+515 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;NULL;
+516 
+517 &#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;(<emphasis role="keywordtype">char</emphasis>&#32;*)&#32;memcpy&#32;(<emphasis role="keyword">new</emphasis>,&#32;s,&#32;len);
+518 }
+519 
+520 &#32;
+521 <emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">inline</emphasis>&#32;<emphasis role="keywordtype">char</emphasis>&#32;*&#32;debugmalloc_strndup&#32;(<emphasis role="keyword">const</emphasis>&#32;<emphasis role="keywordtype">char</emphasis>&#32;*s,&#32;<emphasis role="keywordtype">size_t</emphasis>&#32;n,&#32;<emphasis role="keywordtype">char</emphasis>&#32;<emphasis role="keyword">const</emphasis>&#32;*func,&#32;<emphasis role="keywordtype">char</emphasis>&#32;<emphasis role="keyword">const</emphasis>&#32;*expr,&#32;<emphasis role="keywordtype">char</emphasis>&#32;<emphasis role="keyword">const</emphasis>&#32;*file,&#32;<emphasis role="keywordtype">unsigned</emphasis>&#32;line)
+522 {
+523 &#32;&#32;<emphasis role="keywordtype">size_t</emphasis>&#32;len&#32;=&#32;strlen&#32;(s);
+524 &#32;&#32;
+525 &#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(n&#32;&lt;&#32;len)
+526 &#32;&#32;&#32;&#32;len&#32;=&#32;n;
+527 &#32;&#32;
+528 &#32;&#32;<emphasis role="keywordtype">void</emphasis>&#32;*<emphasis role="keyword">new</emphasis>&#32;=&#32;debugmalloc_malloc_full&#32;(len+1,&#32;func,&#32;expr,&#32;file,&#32;line,&#32;0);
+529 
+530 &#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(<emphasis role="keyword">new</emphasis>&#32;==&#32;NULL)
+531 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;NULL;
+532 
+533 &#32;&#32;((<emphasis role="keywordtype">char</emphasis>*)<emphasis role="keyword">new</emphasis>)[len]&#32;=&#32;<emphasis role="charliteral">&apos;\0&apos;</emphasis>;
+534 &#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;(<emphasis role="keywordtype">char</emphasis>&#32;*)&#32;memcpy&#32;(<emphasis role="keyword">new</emphasis>,&#32;s,&#32;len);
+535 }
+536 
+537 <emphasis role="preprocessor">#define&#32;strdup(S)&#32;debugmalloc_strdup((S),&#32;&quot;strdup&quot;,&#32;#S,&#32;__FILE__,&#32;__LINE__)</emphasis>
+538 <emphasis role="preprocessor">#define&#32;strndup(S,N)&#32;debugmalloc_strndup((S),&#32;(N),&#32;&quot;strndup&quot;,&#32;#S,&#32;__FILE__,&#32;__LINE__)</emphasis>
+539 
+540 <emphasis role="preprocessor">#if&#32;defined(_WIN32)&#32;&amp;&amp;&#32;defined(_MSC_VER)</emphasis>
+541 <emphasis role="preprocessor">&#32;&#32;&#32;&#32;#pragma&#32;warning(pop)</emphasis>
+542 <emphasis role="preprocessor">#endif</emphasis>
+543 
+544 <emphasis role="preprocessor">#endif</emphasis>
+</programlisting></section>

@@ -1,0 +1,131 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="status_8h" kind="file" language="C++">
+    <compoundname>status.h</compoundname>
+    <includedby refid="compress_8c" local="yes">compress.c</includedby>
+    <includedby refid="compress_8h" local="yes">compress.h</includedby>
+    <includedby refid="decompress_8c" local="yes">decompress.c</includedby>
+    <includedby refid="main_8c" local="yes">main.c</includedby>
+    <invincdepgraph>
+      <node id="2">
+        <label>compress.c</label>
+        <link refid="compress_8c"/>
+      </node>
+      <node id="3">
+        <label>compress.h</label>
+        <link refid="compress_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>decompress.c</label>
+        <link refid="decompress_8c"/>
+      </node>
+      <node id="5">
+        <label>main.c</label>
+        <link refid="main_8c"/>
+      </node>
+      <node id="1">
+        <label>status.h</label>
+        <link refid="status_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="struct_status" prot="public">Status</innerclass>
+    <sectiondef kind="enum">
+      <memberdef kind="enum" id="status_8h_1ae98a46f4ea1a43ca48acaf15d2eb7113" prot="public" static="no" strong="no">
+        <type></type>
+        <name>StatusCode</name>
+        <enumvalue id="status_8h_1ae98a46f4ea1a43ca48acaf15d2eb7113a09cef15ce74dd210178fb13f499f9d45" prot="public">
+          <name>COMPRESSION_SUCCESS</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="status_8h_1ae98a46f4ea1a43ca48acaf15d2eb7113aa3d3284a3664d09abffa5741f9217e2f" prot="public">
+          <name>COMPRESSION_FAILED</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="status_8h_1ae98a46f4ea1a43ca48acaf15d2eb7113a7f2c49fa939c7752b915cc5e036d71f5" prot="public">
+          <name>CANT_OPEN_FILE</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="status_8h_1ae98a46f4ea1a43ca48acaf15d2eb7113aa0af6be8799bdc759439eaf5233f09ab" prot="public">
+          <name>CANT_ALLOCATE_MEMORY</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="status_8h_1ae98a46f4ea1a43ca48acaf15d2eb7113a4d178ed2ba1f38746200033ae89efe7f" prot="public">
+          <name>DECOMPRESS_SUCCESS</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="status_8h_1ae98a46f4ea1a43ca48acaf15d2eb7113afcfd2be855c94eaa71f1316316ac7c79" prot="public">
+          <name>DECOMPRESS_FAILED</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="status.h" line="8" column="1" bodyfile="status.h" bodystart="8" bodyend="15"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Created<sp/>by<sp/>Rendszergazda<sp/>on<sp/>11/19/2025.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>DEFLATE_STATUS_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DEFLATE_STATUS_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8" refid="status_8h_1ae98a46f4ea1a43ca48acaf15d2eb7113" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="9" refid="status_8h_1ae98a46f4ea1a43ca48acaf15d2eb7113a09cef15ce74dd210178fb13f499f9d45" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="status_8h_1ae98a46f4ea1a43ca48acaf15d2eb7113a09cef15ce74dd210178fb13f499f9d45" kindref="member">COMPRESSION_SUCCESS</ref>,</highlight></codeline>
+<codeline lineno="10" refid="status_8h_1ae98a46f4ea1a43ca48acaf15d2eb7113aa3d3284a3664d09abffa5741f9217e2f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="status_8h_1ae98a46f4ea1a43ca48acaf15d2eb7113aa3d3284a3664d09abffa5741f9217e2f" kindref="member">COMPRESSION_FAILED</ref>,</highlight></codeline>
+<codeline lineno="11" refid="status_8h_1ae98a46f4ea1a43ca48acaf15d2eb7113a7f2c49fa939c7752b915cc5e036d71f5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="status_8h_1ae98a46f4ea1a43ca48acaf15d2eb7113a7f2c49fa939c7752b915cc5e036d71f5" kindref="member">CANT_OPEN_FILE</ref>,</highlight></codeline>
+<codeline lineno="12" refid="status_8h_1ae98a46f4ea1a43ca48acaf15d2eb7113aa0af6be8799bdc759439eaf5233f09ab" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="status_8h_1ae98a46f4ea1a43ca48acaf15d2eb7113aa0af6be8799bdc759439eaf5233f09ab" kindref="member">CANT_ALLOCATE_MEMORY</ref>,</highlight></codeline>
+<codeline lineno="13" refid="status_8h_1ae98a46f4ea1a43ca48acaf15d2eb7113a4d178ed2ba1f38746200033ae89efe7f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="status_8h_1ae98a46f4ea1a43ca48acaf15d2eb7113a4d178ed2ba1f38746200033ae89efe7f" kindref="member">DECOMPRESS_SUCCESS</ref>,</highlight></codeline>
+<codeline lineno="14" refid="status_8h_1ae98a46f4ea1a43ca48acaf15d2eb7113afcfd2be855c94eaa71f1316316ac7c79" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="status_8h_1ae98a46f4ea1a43ca48acaf15d2eb7113afcfd2be855c94eaa71f1316316ac7c79" kindref="member">DECOMPRESS_FAILED</ref>,</highlight></codeline>
+<codeline lineno="15"><highlight class="normal">}<sp/><ref refid="status_8h_1ae98a46f4ea1a43ca48acaf15d2eb7113" kindref="member">StatusCode</ref>;</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17" refid="struct_status" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="18" refid="struct_status_1a0ecce7ac25584e143ec56590e89efacd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="status_8h_1ae98a46f4ea1a43ca48acaf15d2eb7113" kindref="member">StatusCode</ref><sp/><ref refid="struct_status_1a0ecce7ac25584e143ec56590e89efacd" kindref="member">code</ref>;</highlight></codeline>
+<codeline lineno="19" refid="struct_status_1a0b2e8c7f76df48129f994ecc46d5c66c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/><ref refid="struct_status_1a0b2e8c7f76df48129f994ecc46d5c66c" kindref="member">message</ref>;</highlight></codeline>
+<codeline lineno="20"><highlight class="normal">}<sp/><ref refid="struct_status" kindref="compound">Status</ref>;</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//DEFLATE_STATUS_H</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="status.h"/>
+  </compounddef>
+</doxygen>

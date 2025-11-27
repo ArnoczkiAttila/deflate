@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="distance_8h" kind="file" language="C++">
+    <compoundname>distance.h</compoundname>
+    <includedby refid="compress_8c" local="yes">compress.c</includedby>
+    <includedby refid="distance_8c" local="yes">distance.c</includedby>
+    <includedby refid="main_8c" local="yes">main.c</includedby>
+    <invincdepgraph>
+      <node id="2">
+        <label>compress.c</label>
+        <link refid="compress_8c"/>
+      </node>
+      <node id="3">
+        <label>distance.c</label>
+        <link refid="distance_8c"/>
+      </node>
+      <node id="1">
+        <label>distance.h</label>
+        <link refid="distance_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>main.c</label>
+        <link refid="main_8c"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="struct_d_i_s_t_a_n_c_e___c_o_d_e" prot="public">DISTANCE_CODE</innerclass>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="distance_8h_1a3129c724dbfe713ed85671d9eb6c41a5" prot="public" static="no" extern="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="struct_d_i_s_t_a_n_c_e___c_o_d_e" kindref="compound">DISTANCE_CODE</ref></type>
+        <definition>DISTANCE_CODE getDistanceCode</definition>
+        <argsstring>(int distance)</argsstring>
+        <name>getDistanceCode</name>
+        <param>
+          <type>int</type>
+          <declname>distance</declname>
+        </param>
+        <briefdescription>
+<para>Maps a raw LZ77 distance to its Deflate Symbol ID and extra bit information. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><itemizedlist>
+<listitem><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>distance</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The raw look-back distance (1 to 32768). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="struct_d_i_s_t_a_n_c_e___c_o_d_e" kindref="compound">DISTANCE_CODE</ref> The structure containing the Symbol ID, extra bits count, and value. </para>
+</simplesect>
+</para>
+</listitem></itemizedlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="distance.h" line="19" column="22" bodyfile="distance.c" bodystart="42" bodyend="86" declfile="distance.h" declline="19" declcolumn="22"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Created<sp/>by<sp/>Rendszergazda<sp/>on<sp/>11/19/2025.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>DEFLATE_DISTANCE_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DEFLATE_DISTANCE_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8" refid="struct_d_i_s_t_a_n_c_e___c_o_d_e" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="9" refid="struct_d_i_s_t_a_n_c_e___c_o_d_e_1a35a802f2592065224b239abeff51e12b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><ref refid="struct_d_i_s_t_a_n_c_e___c_o_d_e_1a35a802f2592065224b239abeff51e12b" kindref="member">usSymbolID</ref>;</highlight></codeline>
+<codeline lineno="10" refid="struct_d_i_s_t_a_n_c_e___c_o_d_e_1ad0421cae1a69a1e660a2ee6e36927944" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="struct_d_i_s_t_a_n_c_e___c_o_d_e_1ad0421cae1a69a1e660a2ee6e36927944" kindref="member">iExtraBits</ref>;</highlight></codeline>
+<codeline lineno="11" refid="struct_d_i_s_t_a_n_c_e___c_o_d_e_1ab7a5eb6abde049fad9d90625143477ee" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="struct_d_i_s_t_a_n_c_e___c_o_d_e_1ab7a5eb6abde049fad9d90625143477ee" kindref="member">iExtraValue</ref>;</highlight></codeline>
+<codeline lineno="12"><highlight class="normal">}<sp/><ref refid="struct_d_i_s_t_a_n_c_e___c_o_d_e" kindref="compound">DISTANCE_CODE</ref>;</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/><ref refid="struct_d_i_s_t_a_n_c_e___c_o_d_e" kindref="compound">DISTANCE_CODE</ref><sp/><ref refid="distance_8h_1a3129c724dbfe713ed85671d9eb6c41a5" kindref="member">getDistanceCode</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>distance);</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//DEFLATE_DISTANCE_H</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="distance.h"/>
+  </compounddef>
+</doxygen>

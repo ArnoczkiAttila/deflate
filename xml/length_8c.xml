@@ -1,0 +1,221 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="length_8c" kind="file" language="C++">
+    <compoundname>length.c</compoundname>
+    <includes refid="length_8h" local="yes">length.h</includes>
+    <includes local="no">stdio.h</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>length.c</label>
+        <link refid="length_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>length.h</label>
+        <link refid="length_8h"/>
+      </node>
+      <node id="3">
+        <label>stdio.h</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="define">
+      <memberdef kind="define" id="length_8c_1afe7f7fbaef84c75fa729fdcd890973a7" prot="public" static="no">
+        <name>MIN_MATCH_LENGTH</name>
+        <initializer>3</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="length.c" line="9" column="9" bodyfile="length.c" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="length_8c_1a4428f8b07f1c8e3ca317792334258f3d" prot="public" static="no">
+        <name>MAX_MATCH_LENGTH</name>
+        <initializer>258</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="length.c" line="10" column="9" bodyfile="length.c" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="length_8c_1a33a80a995347c0556981f23d363e89eb" prot="public" static="no">
+        <name>LITERAL_LENGTH_CODE_START</name>
+        <initializer>257</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="length.c" line="11" column="9" bodyfile="length.c" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="length_8c_1aa803921583cd0d074e424bd5a596e456" prot="public" static="no">
+        <name>NUM_LENGTH_CODES</name>
+        <initializer>29</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="length.c" line="12" column="9" bodyfile="length.c" bodystart="12" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="length_8c_1acd94d8df056eb1247ab1b0e0c56ab7db" prot="public" static="yes" mutable="no">
+        <type>const int</type>
+        <definition>const int LENGTH_BASE[]</definition>
+        <argsstring>[]</argsstring>
+        <name>LENGTH_BASE</name>
+        <initializer>= {
+    3, 4, 5, 6, 7, 8, 9, 10, 11, 13, 15, 17, 19, 23, 27, 31, 35, 43, 51, 59,
+    67, 83, 99, 115, 131, 163, 195, 227, 258
+}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>             Extra               Extra               Extra
+      Code Bits Length(s) Code Bits Lengths   Code Bits Length(s)
+      ---- ---- ------     ---- ---- -------   ---- ---- -------
+       257   0     3       267   1   15,16     277   4   67-82
+       258   0     4       268   1   17,18     278   4   83-98
+       259   0     5       269   2   19-22     279   4   99-114
+       260   0     6       270   2   23-26     280   4  115-130
+       261   0     7       271   2   27-30     281   5  131-162
+       262   0     8       272   2   31-34     282   5  163-194
+       263   0     9       273   3   35-42     283   5  195-226
+       264   0    10       274   3   43-50     284   5  227-257
+       265   1  11,12      275   3   51-58     285   0    258
+       266   1  13,14      276   3   59-66
+</verbatim></para>
+<para>For more information check out (<ulink url="https://datatracker.ietf.org/doc/html/rfc1951#page-11">https://datatracker.ietf.org/doc/html/rfc1951#page-11</ulink>) the rfc1951 standard.</para>
+<para>The table above represents the code for each length. Some length (almost all of them after 10) require extra bits to be represented. Since its more likely to have smaller match lengths in huge files, it is better to have less corresponding bits for smaller lengths and thus make the file even smaller. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="length.c" line="35" column="18" bodyfile="length.c" bodystart="35" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="variable" id="length_8c_1aa3dab201cd0922e53b808d3ef74013f9" prot="public" static="yes" mutable="no">
+        <type>const int</type>
+        <definition>const int LENGTH_EXTRA_BITS[]</definition>
+        <argsstring>[]</argsstring>
+        <name>LENGTH_EXTRA_BITS</name>
+        <initializer>= {
+    0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 0
+}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="length.c" line="39" column="18" bodyfile="length.c" bodystart="39" bodyend="41"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="length_8c_1ac1708113f9ba2b598b57c0290f24ddd2" prot="public" static="no" extern="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="struct_l_e_n_g_t_h___c_o_d_e" kindref="compound">LENGTH_CODE</ref></type>
+        <definition>LENGTH_CODE getLengthCode</definition>
+        <argsstring>(int length)</argsstring>
+        <name>getLengthCode</name>
+        <param>
+          <type>int</type>
+          <declname>length</declname>
+        </param>
+        <briefdescription>
+<para>LengthCode. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The getLengthCode function calculates the Length Code for each match length, and returns a struct with the necessary data in it. For more information on Length Code&apos;s check out the official rfc1951 standard documentation. (<ulink url="https://datatracker.ietf.org/doc/html/rfc1951#page-11">https://datatracker.ietf.org/doc/html/rfc1951#page-11</ulink>)</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>length</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The actual length between (3 and 258) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>LengthCode struct which stores the length code, the required extra bits, and then the extra value in those extra bits, </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="length.c" line="54" column="20" bodyfile="length.c" bodystart="54" bodyend="90" declfile="length.c" declline="54" declcolumn="20"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Created<sp/>by<sp/>Rendszergazda<sp/>on<sp/>11/19/2025.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="length_8h" kindref="compound">length.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MIN_MATCH_LENGTH<sp/>3</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MAX_MATCH_LENGTH<sp/>258</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>LITERAL_LENGTH_CODE_START<sp/>257</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NUM_LENGTH_CODES<sp/>29</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>LENGTH_BASE[]<sp/>=<sp/>{</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>3,<sp/>4,<sp/>5,<sp/>6,<sp/>7,<sp/>8,<sp/>9,<sp/>10,<sp/>11,<sp/>13,<sp/>15,<sp/>17,<sp/>19,<sp/>23,<sp/>27,<sp/>31,<sp/>35,<sp/>43,<sp/>51,<sp/>59,</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/>67,<sp/>83,<sp/>99,<sp/>115,<sp/>131,<sp/>163,<sp/>195,<sp/>227,<sp/>258</highlight></codeline>
+<codeline lineno="38"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>LENGTH_EXTRA_BITS[]<sp/>=<sp/>{</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/>0,<sp/>0,<sp/>0,<sp/>0,<sp/>0,<sp/>0,<sp/>0,<sp/>0,<sp/>1,<sp/>1,<sp/>1,<sp/>1,<sp/>2,<sp/>2,<sp/>2,<sp/>2,<sp/>3,<sp/>3,<sp/>3,<sp/>3,<sp/>4,<sp/>4,<sp/>4,<sp/>4,<sp/>5,<sp/>5,<sp/>5,<sp/>5,<sp/>0</highlight></codeline>
+<codeline lineno="41"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/><ref refid="struct_l_e_n_g_t_h___c_o_d_e" kindref="compound">LENGTH_CODE</ref><sp/><ref refid="length_8c_1ac1708113f9ba2b598b57c0290f24ddd2" kindref="member">getLengthCode</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>length)<sp/>{</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_l_e_n_g_t_h___c_o_d_e" kindref="compound">LENGTH_CODE</ref><sp/>result<sp/>=<sp/>{0,<sp/>0,<sp/>0};</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(length<sp/>&lt;<sp/><ref refid="length_8c_1afe7f7fbaef84c75fa729fdcd890973a7" kindref="member">MIN_MATCH_LENGTH</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fprintf(stderr,<sp/></highlight><highlight class="stringliteral">&quot;Error:<sp/>Length<sp/>%d<sp/>is<sp/>too<sp/>short<sp/>(min<sp/>is<sp/>%d).\n&quot;</highlight><highlight class="normal">,<sp/>length,<sp/><ref refid="length_8c_1afe7f7fbaef84c75fa729fdcd890973a7" kindref="member">MIN_MATCH_LENGTH</ref>);</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>result;</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(length<sp/>&gt;<sp/><ref refid="length_8c_1a4428f8b07f1c8e3ca317792334258f3d" kindref="member">MAX_MATCH_LENGTH</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fprintf(stderr,<sp/></highlight><highlight class="stringliteral">&quot;Warning:<sp/>Length<sp/>%d<sp/>truncated<sp/>to<sp/>max<sp/>allowed<sp/>(%d).\n&quot;</highlight><highlight class="normal">,<sp/>length,<sp/><ref refid="length_8c_1a4428f8b07f1c8e3ca317792334258f3d" kindref="member">MAX_MATCH_LENGTH</ref>);</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>length<sp/>=<sp/><ref refid="length_8c_1a4428f8b07f1c8e3ca317792334258f3d" kindref="member">MAX_MATCH_LENGTH</ref>;</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(length<sp/>==<sp/><ref refid="length_8c_1a4428f8b07f1c8e3ca317792334258f3d" kindref="member">MAX_MATCH_LENGTH</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>result.<ref refid="struct_l_e_n_g_t_h___c_o_d_e_1a35a802f2592065224b239abeff51e12b" kindref="member">usSymbolID</ref><sp/>=<sp/><ref refid="length_8c_1a33a80a995347c0556981f23d363e89eb" kindref="member">LITERAL_LENGTH_CODE_START</ref><sp/>+<sp/><ref refid="length_8c_1aa803921583cd0d074e424bd5a596e456" kindref="member">NUM_LENGTH_CODES</ref><sp/>-<sp/>1;<sp/></highlight><highlight class="comment">//<sp/>257<sp/>+<sp/>29<sp/>-<sp/>1<sp/>=<sp/>285</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>result.<ref refid="struct_l_e_n_g_t_h___c_o_d_e_1ad0421cae1a69a1e660a2ee6e36927944" kindref="member">iExtraBits</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>result.<ref refid="struct_l_e_n_g_t_h___c_o_d_e_1ab7a5eb6abde049fad9d90625143477ee" kindref="member">iExtraValue</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>result;</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/><ref refid="length_8c_1aa803921583cd0d074e424bd5a596e456" kindref="member">NUM_LENGTH_CODES</ref><sp/>-<sp/>1;<sp/>i++)<sp/>{</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>base<sp/>=<sp/>LENGTH_BASE[i];</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>extra_bits<sp/>=<sp/>LENGTH_EXTRA_BITS[i];</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>max_len<sp/>=<sp/>base<sp/>+<sp/>(<sp/>(1<sp/>&lt;&lt;<sp/>extra_bits)<sp/>-<sp/>1<sp/>);</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(length<sp/>&gt;=<sp/>base<sp/>&amp;&amp;<sp/>length<sp/>&lt;=<sp/>max_len)<sp/>{</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>result.<ref refid="struct_l_e_n_g_t_h___c_o_d_e_1a35a802f2592065224b239abeff51e12b" kindref="member">usSymbolID</ref><sp/>=<sp/><ref refid="length_8c_1a33a80a995347c0556981f23d363e89eb" kindref="member">LITERAL_LENGTH_CODE_START</ref><sp/>+<sp/>i;</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>result.<ref refid="struct_l_e_n_g_t_h___c_o_d_e_1ad0421cae1a69a1e660a2ee6e36927944" kindref="member">iExtraBits</ref><sp/>=<sp/>extra_bits;</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>result.<ref refid="struct_l_e_n_g_t_h___c_o_d_e_1ab7a5eb6abde049fad9d90625143477ee" kindref="member">iExtraValue</ref><sp/>=<sp/>length<sp/>-<sp/>base;</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>result;</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/>fprintf(stderr,<sp/></highlight><highlight class="stringliteral">&quot;Error:<sp/>Unexpected<sp/>length<sp/>%d<sp/>failed<sp/>mapping.\n&quot;</highlight><highlight class="normal">,<sp/>length);</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>result;</highlight></codeline>
+<codeline lineno="90"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="length.c"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,74 @@
+\doxysection{decompress.\+c File Reference}
+\label{decompress_8c}\index{decompress.c@{decompress.c}}
+{\ttfamily \#include "{}status.\+h"{}}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include "{}bitreader.\+h"{}}\newline
+{\ttfamily \#include "{}compress.\+h"{}}\newline
+{\ttfamily \#include "{}decompress.\+h"{}}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include "{}HUFFMAN\+\_\+\+TABLE.\+h"{}}\newline
+Include dependency graph for decompress.\+c\+:
+% FIG 0
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \textbf{ ID}~0x1\+F8B
+\item 
+\#define \textbf{ CM}~0x08
+\item 
+\#define \textbf{ FLAG}~0x00
+\item 
+\#define \textbf{ MAX\+\_\+\+BITS}~15
+\item 
+\#define \textbf{ CL\+\_\+\+SYMBOLS}~19
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Status} \textbf{ decompress} (char $\ast$filename)
+\end{DoxyCompactItemize}
+
+
+\label{doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\index{decompress.c@{decompress.c}!CL\_SYMBOLS@{CL\_SYMBOLS}}
+\index{CL\_SYMBOLS@{CL\_SYMBOLS}!decompress.c@{decompress.c}}
+\doxysubsubsection{CL\_SYMBOLS}
+{\footnotesize\ttfamily \label{decompress_8c_a4582373cc4af1d21e27cbd5322828a15} 
+\#define CL\+\_\+\+SYMBOLS~19}
+
+\index{decompress.c@{decompress.c}!CM@{CM}}
+\index{CM@{CM}!decompress.c@{decompress.c}}
+\doxysubsubsection{CM}
+{\footnotesize\ttfamily \label{decompress_8c_a86496c19c29b6c83337b300bfeef9c95} 
+\#define CM~0x08}
+
+\index{decompress.c@{decompress.c}!FLAG@{FLAG}}
+\index{FLAG@{FLAG}!decompress.c@{decompress.c}}
+\doxysubsubsection{FLAG}
+{\footnotesize\ttfamily \label{decompress_8c_af8bfae90c5d6853fcfb487e05b9f50c8} 
+\#define FLAG~0x00}
+
+\index{decompress.c@{decompress.c}!ID@{ID}}
+\index{ID@{ID}!decompress.c@{decompress.c}}
+\doxysubsubsection{ID}
+{\footnotesize\ttfamily \label{decompress_8c_a77ceac8d6af195fe72f95f6afd87c45e} 
+\#define ID~0x1\+F8B}
+
+\index{decompress.c@{decompress.c}!MAX\_BITS@{MAX\_BITS}}
+\index{MAX\_BITS@{MAX\_BITS}!decompress.c@{decompress.c}}
+\doxysubsubsection{MAX\_BITS}
+{\footnotesize\ttfamily \label{decompress_8c_a51c241e7ad52441b8d4c1fd5f498b3b9} 
+\#define MAX\+\_\+\+BITS~15}
+
+
+
+\label{doc-func-members}
+\doxysubsection{Function Documentation}
+\index{decompress.c@{decompress.c}!decompress@{decompress}}
+\index{decompress@{decompress}!decompress.c@{decompress.c}}
+\doxysubsubsection{decompress()}
+{\footnotesize\ttfamily \label{decompress_8c_ab1cc8aa166be00ccc453d7d2419219ed} 
+\textbf{ Status} decompress (\begin{DoxyParamCaption}\item[{char $\ast$}]{filename}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+

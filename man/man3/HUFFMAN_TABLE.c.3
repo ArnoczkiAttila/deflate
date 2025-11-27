@@ -1,0 +1,55 @@
+.TH "HUFFMAN_TABLE.c" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+HUFFMAN_TABLE.c
+.SH SYNOPSIS
+.br
+.PP
+\fR#include 'HUFFMAN_TABLE\&.h'\fP
+.br
+\fR#include 'bitreader\&.h'\fP
+.br
+\fR#include 'node\&.h'\fP
+.br
+
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBINVALID_NODE_SYMBOL\fP   286"
+.br
+.ti -1c
+.RI "#define \fBMAX_BITS\fP   15"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "uint16_t \fBdecode_symbol\fP (\fBBIT_READER\fP *reader, const \fBHuffmanTree\fP *tree)"
+.br
+.ti -1c
+.RI "void \fBbuildFastLookupTable\fP (const \fBHUFFMAN_CODE\fP *canonical_codes, int total_symbols, \fBHuffmanEntry\fP *lookup_table)"
+.br
+.ti -1c
+.RI "void \fBbuildCodeLookupTable\fP (\fBNode\fP *node, \fBHUFFMAN_CODE\fP *table, uint16_t current_code, int depth)"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define INVALID_NODE_SYMBOL   286"
+
+.SS "#define MAX_BITS   15"
+
+.SH "Function Documentation"
+.PP 
+.SS "void buildCodeLookupTable (\fBNode\fP * node, \fBHUFFMAN_CODE\fP * table, uint16_t current_code, int depth)\fR [extern]\fP"
+
+.SS "void buildFastLookupTable (const \fBHUFFMAN_CODE\fP * canonical_codes, int total_symbols, \fBHuffmanEntry\fP * lookup_table)\fR [extern]\fP"
+
+.SS "uint16_t decode_symbol (\fBBIT_READER\fP * reader, const \fBHuffmanTree\fP * tree)"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

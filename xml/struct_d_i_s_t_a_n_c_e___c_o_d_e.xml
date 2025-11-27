@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="struct_d_i_s_t_a_n_c_e___c_o_d_e" kind="struct" language="C++" prot="public">
+    <compoundname>DISTANCE_CODE</compoundname>
+    <includes refid="distance_8h" local="no">distance.h</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="struct_d_i_s_t_a_n_c_e___c_o_d_e_1a35a802f2592065224b239abeff51e12b" prot="public" static="no" mutable="no">
+        <type>unsigned short</type>
+        <definition>unsigned short usSymbolID</definition>
+        <argsstring></argsstring>
+        <name>usSymbolID</name>
+        <qualifiedname>DISTANCE_CODE::usSymbolID</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="distance.h" line="9" column="20" bodyfile="distance.h" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_d_i_s_t_a_n_c_e___c_o_d_e_1ad0421cae1a69a1e660a2ee6e36927944" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int iExtraBits</definition>
+        <argsstring></argsstring>
+        <name>iExtraBits</name>
+        <qualifiedname>DISTANCE_CODE::iExtraBits</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="distance.h" line="10" column="9" bodyfile="distance.h" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_d_i_s_t_a_n_c_e___c_o_d_e_1ab7a5eb6abde049fad9d90625143477ee" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int iExtraValue</definition>
+        <argsstring></argsstring>
+        <name>iExtraValue</name>
+        <qualifiedname>DISTANCE_CODE::iExtraValue</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="distance.h" line="11" column="9" bodyfile="distance.h" bodystart="11" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="distance.h" line="8" column="1" bodyfile="distance.h" bodystart="8" bodyend="12"/>
+    <listofallmembers>
+      <member refid="struct_d_i_s_t_a_n_c_e___c_o_d_e_1ad0421cae1a69a1e660a2ee6e36927944" prot="public" virt="non-virtual"><scope>DISTANCE_CODE</scope><name>iExtraBits</name></member>
+      <member refid="struct_d_i_s_t_a_n_c_e___c_o_d_e_1ab7a5eb6abde049fad9d90625143477ee" prot="public" virt="non-virtual"><scope>DISTANCE_CODE</scope><name>iExtraValue</name></member>
+      <member refid="struct_d_i_s_t_a_n_c_e___c_o_d_e_1a35a802f2592065224b239abeff51e12b" prot="public" virt="non-virtual"><scope>DISTANCE_CODE</scope><name>usSymbolID</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

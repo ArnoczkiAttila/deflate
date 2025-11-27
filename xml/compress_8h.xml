@@ -1,0 +1,159 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="compress_8h" kind="file" language="C++">
+    <compoundname>compress.h</compoundname>
+    <includes local="no">stddef.h</includes>
+    <includes refid="bitwriter_8h" local="yes">bitwriter.h</includes>
+    <includes refid="status_8h" local="yes">status.h</includes>
+    <includedby refid="compress_8c" local="yes">compress.c</includedby>
+    <includedby refid="decompress_8c" local="yes">decompress.c</includedby>
+    <includedby refid="main_8c" local="yes">main.c</includedby>
+    <incdepgraph>
+      <node id="3">
+        <label>bitwriter.h</label>
+        <link refid="bitwriter_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>compress.h</label>
+        <link refid="compress_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>status.h</label>
+        <link refid="status_8h"/>
+      </node>
+      <node id="2">
+        <label>stddef.h</label>
+      </node>
+      <node id="4">
+        <label>stdint.h</label>
+      </node>
+      <node id="5">
+        <label>stdio.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2">
+        <label>compress.c</label>
+        <link refid="compress_8c"/>
+      </node>
+      <node id="1">
+        <label>compress.h</label>
+        <link refid="compress_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>decompress.c</label>
+        <link refid="decompress_8c"/>
+      </node>
+      <node id="4">
+        <label>main.c</label>
+        <link refid="main_8c"/>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="compress_8h_1a2d72f4404a1d2679275850f8a4fb836f" prot="public" static="no" extern="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="struct_status" kindref="compound">Status</ref></type>
+        <definition>Status compress</definition>
+        <argsstring>(char *fileName)</argsstring>
+        <name>compress</name>
+        <param>
+          <type>char *</type>
+          <declname>fileName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="compress.h" line="13" column="15" bodyfile="compress.c" bodystart="557" bodyend="695" declfile="compress.h" declline="13" declcolumn="15"/>
+      </memberdef>
+      <memberdef kind="function" id="compress_8h_1af23a493c40a7e0aff72b6ecf7f54c06b" prot="public" static="no" extern="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>FILE *</type>
+        <definition>FILE * ffOpenFile</definition>
+        <argsstring>(const char *filename)</argsstring>
+        <name>ffOpenFile</name>
+        <param>
+          <type>const char *</type>
+          <declname>filename</declname>
+        </param>
+        <briefdescription>
+<para>Opens a file in rb (read binary) mode. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filename</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The name of the file. (probably with absolute path)</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>FILE* or NULL </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="compress.h" line="14" column="13" bodyfile="compress.c" bodystart="162" bodyend="165" declfile="compress.h" declline="14" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="compress_8h_1a0c9a8a4752fd0144d7c5556083545ca1" prot="public" static="no" extern="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t flushBitWriterBuffer</definition>
+        <argsstring>(BitWriter *bw)</argsstring>
+        <name>flushBitWriterBuffer</name>
+        <param>
+          <type><ref refid="struct_bit_writer" kindref="compound">BitWriter</ref> *</type>
+          <declname>bw</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="compress.h" line="15" column="15" bodyfile="bitwriter.c" bodystart="19" bodyend="25" declfile="compress.h" declline="15" declcolumn="15"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Created<sp/>by<sp/>Rendszergazda<sp/>on<sp/>11/19/2025.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>DEFLATE_COMPRESS_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DEFLATE_COMPRESS_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stddef.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="bitwriter_8h" kindref="compound">bitwriter.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="status_8h" kindref="compound">status.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/><ref refid="struct_status" kindref="compound">Status</ref><sp/><ref refid="compress_8h_1a2d72f4404a1d2679275850f8a4fb836f" kindref="member">compress</ref>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>fileName);</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/>FILE*<sp/><ref refid="compress_8h_1af23a493c40a7e0aff72b6ecf7f54c06b" kindref="member">ffOpenFile</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>filename);</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="compress_8h_1a0c9a8a4752fd0144d7c5556083545ca1" kindref="member">flushBitWriterBuffer</ref>(<ref refid="struct_bit_writer" kindref="compound">BitWriter</ref>*<sp/>bw);</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//DEFLATE_COMPRESS_H</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="compress.h"/>
+  </compounddef>
+</doxygen>

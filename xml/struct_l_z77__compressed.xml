@@ -1,0 +1,111 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="struct_l_z77__compressed" kind="struct" language="C++" prot="public">
+    <compoundname>LZ77_compressed</compoundname>
+    <includes refid="_l_z77_8h" local="no">LZ77.h</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="struct_l_z77__compressed_1a35706548b8a67e870f95e47317246787" prot="public" static="no" mutable="no">
+        <type><ref refid="_l_z77_8h_1aa2dfc75cd7ffec5a645d9d50841b6403" kindref="member">LZ77_encoded_type</ref></type>
+        <definition>LZ77_encoded_type type</definition>
+        <argsstring></argsstring>
+        <name>type</name>
+        <qualifiedname>LZ77_compressed::type</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="LZ77.h" line="29" column="23" bodyfile="LZ77.h" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_l_z77__compressed_1a66a4fabf3d4457878d3a90d39cdd524f" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t literal</definition>
+        <argsstring></argsstring>
+        <name>literal</name>
+        <qualifiedname>LZ77_compressed::literal</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="LZ77.h" line="32" column="17" bodyfile="LZ77.h" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_l_z77__compressed_1a7ae9d3ad463ec7a0eb38ee23a15c51e7" prot="public" static="no" mutable="no">
+        <type>uint16_t</type>
+        <definition>uint16_t distance</definition>
+        <argsstring></argsstring>
+        <name>distance</name>
+        <qualifiedname>LZ77_compressed::distance</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="LZ77.h" line="34" column="22" bodyfile="LZ77.h" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_l_z77__compressed_1a1892eba2086d12ac2b09005aeb09ea3b" prot="public" static="no" mutable="no">
+        <type>uint16_t</type>
+        <definition>uint16_t length</definition>
+        <argsstring></argsstring>
+        <name>length</name>
+        <qualifiedname>LZ77_compressed::length</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="LZ77.h" line="35" column="22" bodyfile="LZ77.h" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_l_z77__compressed_1a54e81a285c801cbd44309f0d3f1658bd" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="struct_l_z77__compressed" kindref="compound">LZ77_compressed</ref></type>
+        <definition>struct LZ77_compressed match</definition>
+        <argsstring></argsstring>
+        <name>match</name>
+        <qualifiedname>LZ77_compressed::match</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="LZ77.h" line="36" column="15"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_l_z77__compressed_1a7871b753ccbbfe74395eb47be0a9f46e" prot="public" static="no" mutable="no">
+        <type>union <ref refid="struct_l_z77__compressed" kindref="compound">LZ77_compressed</ref></type>
+        <definition>union LZ77_compressed data</definition>
+        <argsstring></argsstring>
+        <name>data</name>
+        <qualifiedname>LZ77_compressed::data</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="LZ77.h" line="37" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>The fundamental LZ77 token structure. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><itemizedlist>
+<listitem><para>Uses a struct for the match data to correctly store both distance and length. Uses a union to ensure the token only takes the size of the largest data type (the match struct). </para>
+</listitem></itemizedlist>
+</para>
+    </detaileddescription>
+    <location file="LZ77.h" line="28" column="1" bodyfile="LZ77.h" bodystart="28" bodyend="38"/>
+    <listofallmembers>
+      <member refid="struct_l_z77__compressed_1a7871b753ccbbfe74395eb47be0a9f46e" prot="public" virt="non-virtual"><scope>LZ77_compressed</scope><name>data</name></member>
+      <member refid="struct_l_z77__compressed_1a7ae9d3ad463ec7a0eb38ee23a15c51e7" prot="public" virt="non-virtual"><scope>LZ77_compressed</scope><name>distance</name></member>
+      <member refid="struct_l_z77__compressed_1a1892eba2086d12ac2b09005aeb09ea3b" prot="public" virt="non-virtual"><scope>LZ77_compressed</scope><name>length</name></member>
+      <member refid="struct_l_z77__compressed_1a66a4fabf3d4457878d3a90d39cdd524f" prot="public" virt="non-virtual"><scope>LZ77_compressed</scope><name>literal</name></member>
+      <member refid="struct_l_z77__compressed_1a54e81a285c801cbd44309f0d3f1658bd" prot="public" virt="non-virtual"><scope>LZ77_compressed</scope><name>match</name></member>
+      <member refid="struct_l_z77__compressed_1a35706548b8a67e870f95e47317246787" prot="public" virt="non-virtual"><scope>LZ77_compressed</scope><name>type</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,65 @@
+.TH "DebugmallocEntry" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+DebugmallocEntry
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <debugmalloc\&.h>\fP
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "void * \fBreal_mem\fP"
+.br
+.ti -1c
+.RI "void * \fBuser_mem\fP"
+.br
+.ti -1c
+.RI "size_t \fBsize\fP"
+.br
+.ti -1c
+.RI "char \fBfile\fP [64]"
+.br
+.ti -1c
+.RI "unsigned \fBline\fP"
+.br
+.ti -1c
+.RI "char \fBfunc\fP [32]"
+.br
+.ti -1c
+.RI "char \fBexpr\fP [128]"
+.br
+.ti -1c
+.RI "struct \fBDebugmallocEntry\fP * \fBprev\fP"
+.br
+.ti -1c
+.RI "struct \fBDebugmallocEntry\fP * \fBnext\fP"
+.br
+.in -1c
+.SH "Field Documentation"
+.PP 
+.SS "char expr[128]"
+
+.SS "char file[64]"
+
+.SS "char func[32]"
+
+.SS "unsigned line"
+
+.SS "struct \fBDebugmallocEntry\fP * next"
+
+.SS "struct \fBDebugmallocEntry\fP* prev"
+
+.SS "void* real_mem"
+
+.SS "size_t size"
+
+.SS "void* user_mem"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

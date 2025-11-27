@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="__c_r_c___c_h_e_c_k_s_u_m_8h_source" xml:lang="en-US">
+<title>CRC_CHECKSUM.h</title>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered">1 <emphasis role="comment">//</emphasis>
+2 <emphasis role="comment">//&#32;Created&#32;by&#32;Rendszergazda&#32;on&#32;11/24/2025.</emphasis>
+3 <emphasis role="comment">//</emphasis>
+4 
+5 <emphasis role="preprocessor">#ifndef&#32;DEFLATE_CRC_CHECKSUM_H</emphasis>
+6 <emphasis role="preprocessor">#define&#32;DEFLATE_CRC_CHECKSUM_H</emphasis>
+7 
+8 <emphasis role="comment">//&#32;The&#32;standard&#32;polynomial&#32;used&#32;for&#32;Gzip/Zlib&#32;(IEEE&#32;802.3)</emphasis>
+9 <emphasis role="preprocessor">#define&#32;CRC32_POLYNOMIAL&#32;0xEDB88320UL</emphasis>
+10 
+11 <emphasis role="comment">//&#32;The&#32;initial&#32;value&#32;for&#32;the&#32;CRC32&#32;calculation&#32;in&#32;Gzip/Zlib&#32;is&#32;0xFFFFFFFF</emphasis>
+12 <emphasis role="preprocessor">#define&#32;CRC32_INITIAL_VALUE&#32;0xFFFFFFFFUL</emphasis>
+13 <emphasis role="preprocessor">#include&#32;&lt;stdint.h&gt;</emphasis>
+14 
+24 <emphasis role="keyword">extern</emphasis>&#32;uint32_t&#32;<link linkend="__c_r_c___c_h_e_c_k_s_u_m_8h_1a949564d32e176c6849b5ccc68c4947f3">calculate_crc32</link>(uint32_t&#32;current_crc,&#32;<emphasis role="keyword">const</emphasis>&#32;uint8_t*&#32;data,&#32;<emphasis role="keywordtype">size_t</emphasis>&#32;length);
+25 
+26 <emphasis role="preprocessor">#endif&#32;</emphasis><emphasis role="comment">//DEFLATE_CRC_CHECKSUM_H</emphasis>
+</programlisting></section>

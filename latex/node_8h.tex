@@ -1,0 +1,140 @@
+\doxysection{node.\+h File Reference}
+\label{node_8h}\index{node.h@{node.h}}
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+Include dependency graph for node.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \textbf{ Node}
+\item 
+struct \textbf{ Min\+Heap}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct Node \textbf{ Node}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \textbf{ compress\+Code\+Lengths} (const uint8\+\_\+t $\ast$all\+\_\+lengths, size\+\_\+t count, uint8\+\_\+t $\ast$compressed\+\_\+lengths, uint16\+\_\+t $\ast$cl\+\_\+frequencies, uint8\+\_\+t $\ast$extra\+\_\+bits\+\_\+values, size\+\_\+t $\ast$compressed\+\_\+count)
+\item 
+void \textbf{ find\+Code\+Lengths\+In\+Tree} (\textbf{ Node} $\ast$node, uint8\+\_\+t $\ast$lengths, uint8\+\_\+t depth)
+\item 
+\textbf{ Min\+Heap} $\ast$ \textbf{ create\+Min\+Heap} (int capacity)
+\item 
+void \textbf{ add\+To\+Min\+Heap} (\textbf{ Min\+Heap} $\ast$min\+Heap, \textbf{ Node} $\ast$node)
+\item 
+void \textbf{ print\+Heap} (\textbf{ Min\+Heap} $\ast$min\+Heap)
+\item 
+\textbf{ Node} $\ast$ \textbf{ extract\+Min} (\textbf{ Min\+Heap} $\ast$min\+Heap)
+\item 
+\textbf{ Node} $\ast$ \textbf{ build\+Huffman\+Tree} (\textbf{ Min\+Heap} $\ast$min\+Heap)
+\begin{DoxyCompactList}\small\item\em Creates the Huffman tree from the populated Min-\/\+Heap. \end{DoxyCompactList}\item 
+void \textbf{ build\+Min\+Heap} (\textbf{ Min\+Heap} $\ast$min\+Heap)
+\item 
+void \textbf{ free\+Min\+Heap} (\textbf{ Min\+Heap} $\ast$min\+Heap)
+\item 
+\textbf{ Node} $\ast$ \textbf{ create\+Node} (unsigned short us\+Symbol, int freq)
+\item 
+void \textbf{ free\+Tree} (\textbf{ Node} $\ast$top)
+\end{DoxyCompactItemize}
+
+
+\label{doc-typedef-members}
+\doxysubsection{Typedef Documentation}
+\index{node.h@{node.h}!Node@{Node}}
+\index{Node@{Node}!node.h@{node.h}}
+\doxysubsubsection{Node}
+{\footnotesize\ttfamily \label{node_8h_a3b09f37e675bcd48a01bf22155996872} 
+typedef struct Node Node}
+
+
+
+\label{doc-func-members}
+\doxysubsection{Function Documentation}
+\index{node.h@{node.h}!addToMinHeap@{addToMinHeap}}
+\index{addToMinHeap@{addToMinHeap}!node.h@{node.h}}
+\doxysubsubsection{addToMinHeap()}
+{\footnotesize\ttfamily \label{node_8h_ac9a5be012917c9c86e4cc688eb700e0c} 
+void add\+To\+Min\+Heap (\begin{DoxyParamCaption}\item[{\textbf{ Min\+Heap} $\ast$}]{min\+Heap}{, }\item[{\textbf{ Node} $\ast$}]{node}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+
+\index{node.h@{node.h}!buildHuffmanTree@{buildHuffmanTree}}
+\index{buildHuffmanTree@{buildHuffmanTree}!node.h@{node.h}}
+\doxysubsubsection{buildHuffmanTree()}
+{\footnotesize\ttfamily \label{node_8h_a7dddf9d8d87a548cf9d63568af9f56fa} 
+\textbf{ Node} $\ast$ build\+Huffman\+Tree (\begin{DoxyParamCaption}\item[{\textbf{ Min\+Heap} $\ast$}]{min\+Heap}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Creates the Huffman tree from the populated Min-\/\+Heap. 
+
+
+\begin{DoxyItemize}
+\item This is the greedy algorithm core\+: repeatedly combine the two smallest nodes.
+\item 
+\begin{DoxyParams}{Parameters}
+{\em min\+Heap} & The initialized Min-\/\+Heap containing all leaf nodes. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Node$\ast$ The root of the completed Huffman tree. 
+\end{DoxyReturn}
+
+\end{DoxyItemize}\index{node.h@{node.h}!buildMinHeap@{buildMinHeap}}
+\index{buildMinHeap@{buildMinHeap}!node.h@{node.h}}
+\doxysubsubsection{buildMinHeap()}
+{\footnotesize\ttfamily \label{node_8h_ae6e53a77c8389ec5fa741eeab2e95cd9} 
+void build\+Min\+Heap (\begin{DoxyParamCaption}\item[{\textbf{ Min\+Heap} $\ast$}]{min\+Heap}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+
+\index{node.h@{node.h}!compressCodeLengths@{compressCodeLengths}}
+\index{compressCodeLengths@{compressCodeLengths}!node.h@{node.h}}
+\doxysubsubsection{compressCodeLengths()}
+{\footnotesize\ttfamily \label{node_8h_aa1c5f84fe9f09a17b82d2ed396c1e1ad} 
+void compress\+Code\+Lengths (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t $\ast$}]{all\+\_\+lengths}{, }\item[{size\+\_\+t}]{count}{, }\item[{uint8\+\_\+t $\ast$}]{compressed\+\_\+lengths}{, }\item[{uint16\+\_\+t $\ast$}]{cl\+\_\+frequencies}{, }\item[{uint8\+\_\+t $\ast$}]{extra\+\_\+bits\+\_\+values}{, }\item[{size\+\_\+t $\ast$}]{compressed\+\_\+count}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+
+\index{node.h@{node.h}!createMinHeap@{createMinHeap}}
+\index{createMinHeap@{createMinHeap}!node.h@{node.h}}
+\doxysubsubsection{createMinHeap()}
+{\footnotesize\ttfamily \label{node_8h_a86c7eb4d5e202d4087bde685ae659e52} 
+\textbf{ Min\+Heap} $\ast$ create\+Min\+Heap (\begin{DoxyParamCaption}\item[{int}]{capacity}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+
+\index{node.h@{node.h}!createNode@{createNode}}
+\index{createNode@{createNode}!node.h@{node.h}}
+\doxysubsubsection{createNode()}
+{\footnotesize\ttfamily \label{node_8h_a476e2695789ae31745b5cd5cc5877792} 
+\textbf{ Node} $\ast$ create\+Node (\begin{DoxyParamCaption}\item[{unsigned short}]{us\+Symbol}{, }\item[{int}]{freq}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+
+\index{node.h@{node.h}!extractMin@{extractMin}}
+\index{extractMin@{extractMin}!node.h@{node.h}}
+\doxysubsubsection{extractMin()}
+{\footnotesize\ttfamily \label{node_8h_aecbec578e3e80350306dd708f0e24b99} 
+\textbf{ Node} $\ast$ extract\+Min (\begin{DoxyParamCaption}\item[{\textbf{ Min\+Heap} $\ast$}]{min\+Heap}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+
+\index{node.h@{node.h}!findCodeLengthsInTree@{findCodeLengthsInTree}}
+\index{findCodeLengthsInTree@{findCodeLengthsInTree}!node.h@{node.h}}
+\doxysubsubsection{findCodeLengthsInTree()}
+{\footnotesize\ttfamily \label{node_8h_a25107a4508c2ffd75825c42e1239fa90} 
+void find\+Code\+Lengths\+In\+Tree (\begin{DoxyParamCaption}\item[{\textbf{ Node} $\ast$}]{node}{, }\item[{uint8\+\_\+t $\ast$}]{lengths}{, }\item[{uint8\+\_\+t}]{depth}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+
+\index{node.h@{node.h}!freeMinHeap@{freeMinHeap}}
+\index{freeMinHeap@{freeMinHeap}!node.h@{node.h}}
+\doxysubsubsection{freeMinHeap()}
+{\footnotesize\ttfamily \label{node_8h_afbdba32d1543027eda02773bce2ab102} 
+void free\+Min\+Heap (\begin{DoxyParamCaption}\item[{\textbf{ Min\+Heap} $\ast$}]{min\+Heap}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+
+\index{node.h@{node.h}!freeTree@{freeTree}}
+\index{freeTree@{freeTree}!node.h@{node.h}}
+\doxysubsubsection{freeTree()}
+{\footnotesize\ttfamily \label{node_8h_afdf92c04775f1fdb56a48a6063f30b51} 
+void free\+Tree (\begin{DoxyParamCaption}\item[{\textbf{ Node} $\ast$}]{top}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+
+\index{node.h@{node.h}!printHeap@{printHeap}}
+\index{printHeap@{printHeap}!node.h@{node.h}}
+\doxysubsubsection{printHeap()}
+{\footnotesize\ttfamily \label{node_8h_a8196a5fffc96ca854a325d1fe349e8da} 
+void print\+Heap (\begin{DoxyParamCaption}\item[{\textbf{ Min\+Heap} $\ast$}]{min\+Heap}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+

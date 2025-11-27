@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_compress_8h_source" xml:lang="en-US">
+<title>compress.h</title>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered">1 <emphasis role="comment">//</emphasis>
+2 <emphasis role="comment">//&#32;Created&#32;by&#32;Rendszergazda&#32;on&#32;11/19/2025.</emphasis>
+3 <emphasis role="comment">//</emphasis>
+4 
+5 <emphasis role="preprocessor">#ifndef&#32;DEFLATE_COMPRESS_H</emphasis>
+6 <emphasis role="preprocessor">#define&#32;DEFLATE_COMPRESS_H</emphasis>
+7 
+8 <emphasis role="preprocessor">#include&#32;&lt;stddef.h&gt;</emphasis>
+9 
+10 <emphasis role="preprocessor">#include&#32;&quot;<link linkend="_bitwriter_8h">bitwriter.h</link>&quot;</emphasis>
+11 <emphasis role="preprocessor">#include&#32;&quot;<link linkend="_status_8h">status.h</link>&quot;</emphasis>
+12 
+13 <emphasis role="keyword">extern</emphasis>&#32;<link linkend="_struct_status">Status</link>&#32;<link linkend="_compress_8h_1a2d72f4404a1d2679275850f8a4fb836f">compress</link>(<emphasis role="keywordtype">char</emphasis>*&#32;fileName);
+14 <emphasis role="keyword">extern</emphasis>&#32;FILE*&#32;<link linkend="_compress_8h_1af23a493c40a7e0aff72b6ecf7f54c06b">ffOpenFile</link>(<emphasis role="keyword">const</emphasis>&#32;<emphasis role="keywordtype">char</emphasis>*&#32;filename);
+15 <emphasis role="keyword">extern</emphasis>&#32;<emphasis role="keywordtype">size_t</emphasis>&#32;<link linkend="_compress_8h_1a0c9a8a4752fd0144d7c5556083545ca1">flushBitWriterBuffer</link>(<link linkend="_struct_bit_writer">BitWriter</link>*&#32;bw);
+16 
+17 <emphasis role="preprocessor">#endif&#32;</emphasis><emphasis role="comment">//DEFLATE_COMPRESS_H</emphasis>
+</programlisting></section>

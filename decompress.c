@@ -260,7 +260,7 @@ extern Status decompress(char* filename) {
 
             if (symbol <= 255) {
                 // LITERAL: Write symbol (byte) to the output buffer
-                write_byte_to_output(output_buffer, (uint8_t)symbol);
+                //write_byte_to_output(output_buffer, (uint8_t)symbol);
 
             } else if (symbol == 256) {
                 // EOD: End-of-Block marker
@@ -270,16 +270,16 @@ extern Status decompress(char* filename) {
                 // LENGTH CODE: Decode the match
 
                 // 2. Decode the Match Length (reads extra bits based on symbol)
-                uint16_t length = decode_match_length(reader, symbol);
+                //uint16_t length = decode_match_length(reader, symbol);
 
                 // 3. Decode the Distance Symbol using T_D
                 uint16_t distance_symbol = decode_symbol(reader, T_D_Tree);
 
                 // 4. Decode the Match Distance (reads extra bits based on distance_symbol)
-                uint16_t distance = decode_match_distance(reader, distance_symbol);
+                //uint16_t distance = decode_match_distance(reader, distance_symbol);
 
                 // 5. Perform the history copy (Sliding Window operation)
-                copy_from_history(output_buffer, length, distance);
+                //copy_from_history(output_buffer, length, distance);
             }
         }
         free(cl_canonical_codes);

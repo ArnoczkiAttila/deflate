@@ -1,0 +1,170 @@
+.TH "compress.c" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+compress.c
+.SH SYNOPSIS
+.br
+.PP
+\fR#include 'compress\&.h'\fP
+.br
+\fR#include 'debugmalloc\&.h'\fP
+.br
+\fR#include <stdio\&.h>\fP
+.br
+\fR#include <string\&.h>\fP
+.br
+\fR#include 'bitwriter\&.h'\fP
+.br
+\fR#include 'CRC_CHECKSUM\&.h'\fP
+.br
+\fR#include 'distance\&.h'\fP
+.br
+\fR#include 'HUFFMAN_TABLE\&.h'\fP
+.br
+\fR#include 'length\&.h'\fP
+.br
+\fR#include 'LZ77\&.h'\fP
+.br
+\fR#include 'node\&.h'\fP
+.br
+\fR#include 'status\&.h'\fP
+.br
+
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBHASH_BITS\fP   15"
+.br
+.ti -1c
+.RI "#define \fBHASH_SHIFT\fP   5"
+.br
+.ti -1c
+.RI "#define \fBHASH_MASK\fP   0x7FFF"
+.br
+.ti -1c
+.RI "#define \fBHASH_SIZE\fP   (1 << \fBHASH_BITS\fP)"
+.br
+.ti -1c
+.RI "#define \fBWINDOW_SIZE\fP   32768"
+.br
+.ti -1c
+.RI "#define \fBBUFFER_SIZE\fP   (\fBWINDOW_SIZE\fP * 2)"
+.br
+.ti -1c
+.RI "#define \fBEMPTY_INDEX\fP   0xFFFF"
+.br
+.ti -1c
+.RI "#define \fBLITERAL_LENGTH_SIZE\fP   286"
+.br
+.ti -1c
+.RI "#define \fBEND_OF_BLOCK\fP   256"
+.br
+.ti -1c
+.RI "#define \fBDISTANCE_CODE_SIZE\fP   30"
+.br
+.ti -1c
+.RI "#define \fBCODE_LENGTH_FREQUENCIES\fP   19"
+.br
+.ti -1c
+.RI "#define \fBBYTE\fP   uint8_t"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "FILE * \fBffOpenFile\fP (const char *filename)"
+.br
+.RI "Opens a file in rb (read binary) mode\&. "
+.ti -1c
+.RI "void \fBcompressData\fP (const unsigned char *ucpBuffer, const size_t bytesRead, uint16_t *hash_table, \fBLZ77_buffer\fP *output_ucpBuffer)"
+.br
+.RI "Compress Data\&. "
+.ti -1c
+.RI "void \fBwriteGzipTrailer\fP (\fBBitWriter\fP *bw, uint32_t crc32_checksum, uint32_t total_uncompressed_size)"
+.br
+.ti -1c
+.RI "void \fBprocessBlock\fP (\fBBitWriter\fP *bw, uint16_t *LLFrequency, uint16_t *distanceCodeFrequency, const \fBLZ77_buffer\fP *output_ucpBuffer, const bool lastBlock)"
+.br
+.ti -1c
+.RI "\fBStatus\fP \fBcompress\fP (char *filename)"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define BUFFER_SIZE   (\fBWINDOW_SIZE\fP * 2)"
+
+.SS "#define BYTE   uint8_t"
+
+.SS "#define CODE_LENGTH_FREQUENCIES   19"
+
+.SS "#define DISTANCE_CODE_SIZE   30"
+
+.SS "#define EMPTY_INDEX   0xFFFF"
+
+.SS "#define END_OF_BLOCK   256"
+
+.SS "#define HASH_BITS   15"
+
+.SS "#define HASH_MASK   0x7FFF"
+
+.SS "#define HASH_SHIFT   5"
+
+.SS "#define HASH_SIZE   (1 << \fBHASH_BITS\fP)"
+
+.SS "#define LITERAL_LENGTH_SIZE   286"
+
+.SS "#define WINDOW_SIZE   32768"
+
+.SH "Function Documentation"
+.PP 
+.SS "\fBStatus\fP compress (char * filename)\fR [extern]\fP"
+
+.SS "void compressData (const unsigned char * ucpBuffer, const size_t bytesRead, uint16_t * hash_table, \fBLZ77_buffer\fP * output_ucpBuffer)\fR [extern]\fP"
+
+.PP
+Compress Data\&. This function takes in a BUFFER SIZED buffer containing BYTES from a file, and fills up an \fBLZ77_buffer\fP containing match/literal distance/length codes which will be used later in the processBlock function\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIucpBuffer\fP The start of the buffer (pointer)\&. 
+.br
+\fIbytesRead\fP The bytes processed in this function\&. 
+.br
+\fIhash_table\fP The hash lookup table for matches\&. 
+.br
+\fIoutput_ucpBuffer\fP The \fBLZ77_buffer\fP containing the matches/literals\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+void 
+.RE
+.PP
+
+.SS "FILE * ffOpenFile (const char * filename)\fR [extern]\fP"
+
+.PP
+Opens a file in rb (read binary) mode\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIfilename\fP The name of the file\&. (probably with absolute path)
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+FILE* or NULL 
+.RE
+.PP
+
+.SS "void processBlock (\fBBitWriter\fP * bw, uint16_t * LLFrequency, uint16_t * distanceCodeFrequency, const \fBLZ77_buffer\fP * output_ucpBuffer, const bool lastBlock)\fR [extern]\fP"
+
+.SS "void writeGzipTrailer (\fBBitWriter\fP * bw, uint32_t crc32_checksum, uint32_t total_uncompressed_size)\fR [extern]\fP"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

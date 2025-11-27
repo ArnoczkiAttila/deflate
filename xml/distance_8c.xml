@@ -1,0 +1,206 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="distance_8c" kind="file" language="C++">
+    <compoundname>distance.c</compoundname>
+    <includes refid="distance_8h" local="yes">distance.h</includes>
+    <includes local="no">stdio.h</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>distance.c</label>
+        <link refid="distance_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>distance.h</label>
+        <link refid="distance_8h"/>
+      </node>
+      <node id="3">
+        <label>stdio.h</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="define">
+      <memberdef kind="define" id="distance_8c_1a2e4ccf703f4646df03637a6b3a928b80" prot="public" static="no">
+        <name>NUM_DIST_CODES</name>
+        <initializer>30</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="distance.c" line="39" column="9" bodyfile="distance.c" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="distance_8c_1affc051004401a9fbf1482551514106f3" prot="public" static="no">
+        <name>MAX_ALLOWED_DISTANCE</name>
+        <initializer>32768</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="distance.c" line="40" column="9" bodyfile="distance.c" bodystart="40" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="distance_8c_1aa411b46cd74e257a8807fdfed2243810" prot="public" static="yes" mutable="no">
+        <type>const int</type>
+        <definition>const int DISTANCE_BASE[]</definition>
+        <argsstring>[]</argsstring>
+        <name>DISTANCE_BASE</name>
+        <initializer>= {
+    1, 2, 3, 4, 5, 7, 9, 13, 17, 25, 33, 49, 65, 97, 129, 193, 257, 385, 513, 769, 1025,
+    1537, 2049, 3073, 4097, 6145, 8193, 12289, 16385, 24577
+}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>             Extra           Extra               Extra
+       Code Bits Dist  Code Bits   Dist     Code Bits Distance
+       ---- ---- ----  ---- ----  ------    ---- ---- --------
+         0   0    1     10   4     33-48    20    9   1025-1536
+         1   0    2     11   4     49-64    21    9   1537-2048
+         2   0    3     12   5     65-96    22   10   2049-3072
+         3   0    4     13   5     97-128   23   10   3073-4096
+         4   1   5,6    14   6    129-192   24   11   4097-6144
+         5   1   7,8    15   6    193-256   25   11   6145-8192
+         6   2   9-12   16   7    257-384   26   12  8193-12288
+         7   2  13-16   17   7    385-512   27   12 12289-16384
+         8   3  17-24   18   8    513-768   28   13 16385-24576
+         9   3  25-32   19   8   769-1024   29   13 24577-32768
+</verbatim></para>
+<para>For more information check out (<ulink url="https://datatracker.ietf.org/doc/html/rfc1951#page-11">https://datatracker.ietf.org/doc/html/rfc1951#page-11</ulink>) the rfc1951 standard.ű</para>
+<para>The table above represents the code for each distance. Some distance (almost all of them after 4) require extra bits to be represented. Since its more likely to have smaller match distances in huge files, it is better to have less corresponding bits for smaller distances and thus make the file even smaller. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="distance.c" line="31" column="18" bodyfile="distance.c" bodystart="31" bodyend="34"/>
+      </memberdef>
+      <memberdef kind="variable" id="distance_8c_1a0f4411b33c256f1a02b0f369c7b5fd44" prot="public" static="yes" mutable="no">
+        <type>const int</type>
+        <definition>const int DISTANCE_EXTRA_BITS[]</definition>
+        <argsstring>[]</argsstring>
+        <name>DISTANCE_EXTRA_BITS</name>
+        <initializer>= {
+    0, 0, 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 11, 11, 12, 12, 13, 13
+}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="distance.c" line="35" column="18" bodyfile="distance.c" bodystart="35" bodyend="37"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="distance_8c_1a3129c724dbfe713ed85671d9eb6c41a5" prot="public" static="no" extern="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="struct_d_i_s_t_a_n_c_e___c_o_d_e" kindref="compound">DISTANCE_CODE</ref></type>
+        <definition>DISTANCE_CODE getDistanceCode</definition>
+        <argsstring>(int distance)</argsstring>
+        <name>getDistanceCode</name>
+        <param>
+          <type>int</type>
+          <declname>distance</declname>
+        </param>
+        <briefdescription>
+<para>Maps a raw LZ77 distance to its Deflate Symbol ID and extra bit information. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><itemizedlist>
+<listitem><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>distance</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The raw look-back distance (1 to 32768). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="struct_d_i_s_t_a_n_c_e___c_o_d_e" kindref="compound">DISTANCE_CODE</ref> The structure containing the Symbol ID, extra bits count, and value. </para>
+</simplesect>
+</para>
+</listitem></itemizedlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="distance.c" line="42" column="22" bodyfile="distance.c" bodystart="42" bodyend="86" declfile="distance.c" declline="42" declcolumn="22"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Created<sp/>by<sp/>Rendszergazda<sp/>on<sp/>11/19/2025.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="distance_8h" kindref="compound">distance.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>DISTANCE_BASE[]<sp/>=<sp/>{</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/>1,<sp/>2,<sp/>3,<sp/>4,<sp/>5,<sp/>7,<sp/>9,<sp/>13,<sp/>17,<sp/>25,<sp/>33,<sp/>49,<sp/>65,<sp/>97,<sp/>129,<sp/>193,<sp/>257,<sp/>385,<sp/>513,<sp/>769,<sp/>1025,</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/>1537,<sp/>2049,<sp/>3073,<sp/>4097,<sp/>6145,<sp/>8193,<sp/>12289,<sp/>16385,<sp/>24577</highlight></codeline>
+<codeline lineno="34"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>DISTANCE_EXTRA_BITS[]<sp/>=<sp/>{</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>0,<sp/>0,<sp/>0,<sp/>0,<sp/>1,<sp/>1,<sp/>2,<sp/>2,<sp/>3,<sp/>3,<sp/>4,<sp/>4,<sp/>5,<sp/>5,<sp/>6,<sp/>6,<sp/>7,<sp/>7,<sp/>8,<sp/>8,<sp/>9,<sp/>9,<sp/>10,<sp/>10,<sp/>11,<sp/>11,<sp/>12,<sp/>12,<sp/>13,<sp/>13</highlight></codeline>
+<codeline lineno="37"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NUM_DIST_CODES<sp/>30</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MAX_ALLOWED_DISTANCE<sp/>32768</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/><ref refid="struct_d_i_s_t_a_n_c_e___c_o_d_e" kindref="compound">DISTANCE_CODE</ref><sp/><ref refid="distance_8c_1a3129c724dbfe713ed85671d9eb6c41a5" kindref="member">getDistanceCode</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>distance)<sp/>{</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_d_i_s_t_a_n_c_e___c_o_d_e" kindref="compound">DISTANCE_CODE</ref><sp/>result<sp/>=<sp/>{0,<sp/>0,<sp/>0};</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(distance<sp/>&lt;<sp/>1)<sp/>{</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fprintf(stderr,<sp/></highlight><highlight class="stringliteral">&quot;Error:<sp/>Distance<sp/>must<sp/>be<sp/>at<sp/>least<sp/>1.\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>result;</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(distance<sp/>&gt;<sp/><ref refid="distance_8c_1affc051004401a9fbf1482551514106f3" kindref="member">MAX_ALLOWED_DISTANCE</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fprintf(stderr,<sp/></highlight><highlight class="stringliteral">&quot;Warning:<sp/>Distance<sp/>%d<sp/>truncated<sp/>to<sp/>max<sp/>allowed<sp/>(%d).\n&quot;</highlight><highlight class="normal">,<sp/>distance,<sp/><ref refid="distance_8c_1affc051004401a9fbf1482551514106f3" kindref="member">MAX_ALLOWED_DISTANCE</ref>);</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>distance<sp/>=<sp/><ref refid="distance_8c_1affc051004401a9fbf1482551514106f3" kindref="member">MAX_ALLOWED_DISTANCE</ref>;</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(distance<sp/>&gt;=<sp/>1<sp/>&amp;&amp;<sp/>distance<sp/>&lt;=<sp/>4)<sp/>{</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>result.<ref refid="struct_d_i_s_t_a_n_c_e___c_o_d_e_1a35a802f2592065224b239abeff51e12b" kindref="member">usSymbolID</ref><sp/>=<sp/>distance<sp/>-<sp/>1;<sp/></highlight><highlight class="comment">//<sp/>1<sp/>-&gt;<sp/>ID<sp/>0,<sp/>4<sp/>-&gt;<sp/>ID<sp/>3</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>result;</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>4;<sp/>i<sp/>&lt;<sp/><ref refid="distance_8c_1a2e4ccf703f4646df03637a6b3a928b80" kindref="member">NUM_DIST_CODES</ref>;<sp/>i++)<sp/>{</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>base<sp/>=<sp/>DISTANCE_BASE[i];</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>extra_bits<sp/>=<sp/>DISTANCE_EXTRA_BITS[i];</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Calculate<sp/>the<sp/>maximum<sp/>distance<sp/>covered<sp/>by<sp/>this<sp/>code</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>(1<sp/>&lt;&lt;<sp/>extra_bits)<sp/>is<sp/>equivalent<sp/>to<sp/>2^extra_bits</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>max_dist<sp/>=<sp/>base<sp/>+<sp/>(<sp/>(1<sp/>&lt;&lt;<sp/>extra_bits)<sp/>-<sp/>1<sp/>);</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(distance<sp/>&gt;=<sp/>base<sp/>&amp;&amp;<sp/>distance<sp/>&lt;=<sp/>max_dist)<sp/>{</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>result.<ref refid="struct_d_i_s_t_a_n_c_e___c_o_d_e_1a35a802f2592065224b239abeff51e12b" kindref="member">usSymbolID</ref><sp/>=<sp/>i;</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>result.<ref refid="struct_d_i_s_t_a_n_c_e___c_o_d_e_1ad0421cae1a69a1e660a2ee6e36927944" kindref="member">iExtraBits</ref><sp/>=<sp/>extra_bits;</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>extra<sp/>value<sp/>is<sp/>the<sp/>offset<sp/>from<sp/>the<sp/>base<sp/>distance</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>result.<ref refid="struct_d_i_s_t_a_n_c_e___c_o_d_e_1ab7a5eb6abde049fad9d90625143477ee" kindref="member">iExtraValue</ref><sp/>=<sp/>distance<sp/>-<sp/>base;</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>result;</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(distance<sp/>==<sp/><ref refid="distance_8c_1affc051004401a9fbf1482551514106f3" kindref="member">MAX_ALLOWED_DISTANCE</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>result.<ref refid="struct_d_i_s_t_a_n_c_e___c_o_d_e_1a35a802f2592065224b239abeff51e12b" kindref="member">usSymbolID</ref><sp/>=<sp/>29;</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>result.<ref refid="struct_d_i_s_t_a_n_c_e___c_o_d_e_1ad0421cae1a69a1e660a2ee6e36927944" kindref="member">iExtraBits</ref><sp/>=<sp/>13;</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>result.<ref refid="struct_d_i_s_t_a_n_c_e___c_o_d_e_1ab7a5eb6abde049fad9d90625143477ee" kindref="member">iExtraValue</ref><sp/>=<sp/>distance<sp/>-<sp/>DISTANCE_BASE[29];<sp/></highlight><highlight class="comment">//<sp/>32768<sp/>-<sp/>24577<sp/>=<sp/>8191</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>result;</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/>fprintf(stderr,<sp/></highlight><highlight class="stringliteral">&quot;Error:<sp/>Unexpected<sp/>distance<sp/>%d<sp/>failed<sp/>mapping.\n&quot;</highlight><highlight class="normal">,<sp/>distance);</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>result;</highlight></codeline>
+<codeline lineno="86"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="distance.c"/>
+  </compounddef>
+</doxygen>

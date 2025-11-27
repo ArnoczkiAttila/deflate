@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_distance_8h_source" xml:lang="en-US">
+<title>distance.h</title>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered">1 <emphasis role="comment">//</emphasis>
+2 <emphasis role="comment">//&#32;Created&#32;by&#32;Rendszergazda&#32;on&#32;11/19/2025.</emphasis>
+3 <emphasis role="comment">//</emphasis>
+4 
+5 <emphasis role="preprocessor">#ifndef&#32;DEFLATE_DISTANCE_H</emphasis>
+6 <emphasis role="preprocessor">#define&#32;DEFLATE_DISTANCE_H</emphasis>
+7 
+8 <emphasis role="keyword">typedef</emphasis>&#32;<emphasis role="keyword">struct&#32;</emphasis>{
+9 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">unsigned</emphasis>&#32;<emphasis role="keywordtype">short</emphasis>&#32;<link linkend="_struct_d_i_s_t_a_n_c_e___c_o_d_e_1a35a802f2592065224b239abeff51e12b">usSymbolID</link>;
+10 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">int</emphasis>&#32;<link linkend="_struct_d_i_s_t_a_n_c_e___c_o_d_e_1ad0421cae1a69a1e660a2ee6e36927944">iExtraBits</link>;
+11 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">int</emphasis>&#32;<link linkend="_struct_d_i_s_t_a_n_c_e___c_o_d_e_1ab7a5eb6abde049fad9d90625143477ee">iExtraValue</link>;
+12 }&#32;<link linkend="_struct_d_i_s_t_a_n_c_e___c_o_d_e">DISTANCE_CODE</link>;
+13 
+19 <emphasis role="keyword">extern</emphasis>&#32;<link linkend="_struct_d_i_s_t_a_n_c_e___c_o_d_e">DISTANCE_CODE</link>&#32;<link linkend="_distance_8h_1a3129c724dbfe713ed85671d9eb6c41a5">getDistanceCode</link>(<emphasis role="keywordtype">int</emphasis>&#32;distance);
+20 
+21 <emphasis role="preprocessor">#endif&#32;</emphasis><emphasis role="comment">//DEFLATE_DISTANCE_H</emphasis>
+</programlisting></section>

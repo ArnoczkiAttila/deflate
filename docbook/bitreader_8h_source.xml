@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_bitreader_8h_source" xml:lang="en-US">
+<title>bitreader.h</title>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered">1 <emphasis role="comment">//</emphasis>
+2 <emphasis role="comment">//&#32;Created&#32;by&#32;Attila&#32;on&#32;11/24/2025.</emphasis>
+3 <emphasis role="comment">//</emphasis>
+4 
+5 <emphasis role="preprocessor">#ifndef&#32;DEFLATE_BITREADER_H</emphasis>
+6 <emphasis role="preprocessor">#define&#32;DEFLATE_BITREADER_H</emphasis>
+7 <emphasis role="preprocessor">#include&#32;&lt;stdbool.h&gt;</emphasis>
+8 <emphasis role="preprocessor">#include&#32;&lt;stdint.h&gt;</emphasis>
+9 <emphasis role="preprocessor">#include&#32;&lt;stdio.h&gt;</emphasis>
+10 
+11 <emphasis role="keyword">typedef</emphasis>&#32;<emphasis role="keyword">struct&#32;</emphasis>{
+12 &#32;&#32;&#32;&#32;FILE&#32;*<link linkend="_struct_b_i_t___r_e_a_d_e_r_1a702945180aa732857b380a007a7e2a21">file</link>;
+13 &#32;&#32;&#32;&#32;uint8_t*&#32;<link linkend="_struct_b_i_t___r_e_a_d_e_r_1a56ed84df35de10bdb65e72b184309497">buffer</link>;
+14 &#32;&#32;&#32;&#32;uint8_t&#32;<link linkend="_struct_b_i_t___r_e_a_d_e_r_1a96f44d20f1dbf1c8785a7bc99a46164c">byte</link>;
+15 &#32;&#32;&#32;&#32;uint8_t&#32;<link linkend="_struct_b_i_t___r_e_a_d_e_r_1a03c096e79d44983a055f7ca6839144bc">currentPosition</link>;
+16 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">size_t</emphasis>&#32;<link linkend="_struct_b_i_t___r_e_a_d_e_r_1a7be887a2ca0a258cf6b368d32fd87487">bufferSize</link>;
+17 &#32;&#32;&#32;&#32;uint16_t&#32;<link linkend="_struct_b_i_t___r_e_a_d_e_r_1a852b86a2eaee9852ada7a43e61e311a2">index</link>;
+18 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">char</emphasis>*&#32;<link linkend="_struct_b_i_t___r_e_a_d_e_r_1a25c8761bc1f523fe6a53db546ae83add">fileName</link>;
+19 }&#32;<link linkend="_struct_b_i_t___r_e_a_d_e_r">BIT_READER</link>;
+20 
+27 <link linkend="_struct_b_i_t___r_e_a_d_e_r">BIT_READER</link>*&#32;<link linkend="_bitreader_8h_1af813be79ba8b6b387a8dacff1ef72c04">init_bit_reader</link>(<emphasis role="keyword">const</emphasis>&#32;<emphasis role="keywordtype">char</emphasis>&#32;*filePath);
+28 
+35 <emphasis role="keywordtype">int</emphasis>&#32;<link linkend="_bitreader_8h_1a21ed250683802f09cc0375f8dbb5a125">read_bit</link>(<link linkend="_struct_b_i_t___r_e_a_d_e_r">BIT_READER</link>&#32;*reader);
+36 
+43 uint32_t&#32;<link linkend="_bitreader_8h_1a06bc428e5e0fdf358c4d7aaf14498ce0">read_bits</link>(<link linkend="_struct_b_i_t___r_e_a_d_e_r">BIT_READER</link>&#32;*reader,&#32;<emphasis role="keywordtype">int</emphasis>&#32;numBits);
+44 
+49 <emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_bitreader_8h_1aa8b5fc0a2d13215757372d983e37b336">close_bit_reader</link>(<link linkend="_struct_b_i_t___r_e_a_d_e_r">BIT_READER</link>&#32;*reader);
+50 
+51 <emphasis role="comment">//void&#32;createFile(BIT_READER*&#32;bw,&#32;char*&#32;fileName,&#32;char*&#32;extension);</emphasis>
+52 
+53 <emphasis role="keywordtype">bool</emphasis>&#32;<link linkend="_bitreader_8h_1acac2cf5ecbb43c96b44ff0b63b432c46">process_gzip_header</link>(<link linkend="_struct_b_i_t___r_e_a_d_e_r">BIT_READER</link>&#32;*reader);
+54 
+55 <emphasis role="keyword">extern</emphasis>&#32;uint16_t&#32;<link linkend="_bitreader_8h_1ae4fcc275a9937dc610bc057cb9bcc919">peek_bits</link>(<link linkend="_struct_b_i_t___r_e_a_d_e_r">BIT_READER</link>*&#32;reader,&#32;uint8_t&#32;n);
+56 <emphasis role="preprocessor">#endif&#32;</emphasis><emphasis role="comment">//DEFLATE_BITREADER_H</emphasis>
+</programlisting></section>

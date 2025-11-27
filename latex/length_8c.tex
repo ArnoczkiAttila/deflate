@@ -1,0 +1,74 @@
+\doxysection{length.\+c File Reference}
+\label{length_8c}\index{length.c@{length.c}}
+{\ttfamily \#include "{}length.\+h"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+Include dependency graph for length.\+c\+:
+% FIG 0
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \textbf{ MIN\+\_\+\+MATCH\+\_\+\+LENGTH}~3
+\item 
+\#define \textbf{ MAX\+\_\+\+MATCH\+\_\+\+LENGTH}~258
+\item 
+\#define \textbf{ LITERAL\+\_\+\+LENGTH\+\_\+\+CODE\+\_\+\+START}~257
+\item 
+\#define \textbf{ NUM\+\_\+\+LENGTH\+\_\+\+CODES}~29
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ LENGTH\+\_\+\+CODE} \textbf{ get\+Length\+Code} (int length)
+\begin{DoxyCompactList}\small\item\em Length\+Code. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\index{length.c@{length.c}!LITERAL\_LENGTH\_CODE\_START@{LITERAL\_LENGTH\_CODE\_START}}
+\index{LITERAL\_LENGTH\_CODE\_START@{LITERAL\_LENGTH\_CODE\_START}!length.c@{length.c}}
+\doxysubsubsection{LITERAL\_LENGTH\_CODE\_START}
+{\footnotesize\ttfamily \label{length_8c_a33a80a995347c0556981f23d363e89eb} 
+\#define LITERAL\+\_\+\+LENGTH\+\_\+\+CODE\+\_\+\+START~257}
+
+\index{length.c@{length.c}!MAX\_MATCH\_LENGTH@{MAX\_MATCH\_LENGTH}}
+\index{MAX\_MATCH\_LENGTH@{MAX\_MATCH\_LENGTH}!length.c@{length.c}}
+\doxysubsubsection{MAX\_MATCH\_LENGTH}
+{\footnotesize\ttfamily \label{length_8c_a4428f8b07f1c8e3ca317792334258f3d} 
+\#define MAX\+\_\+\+MATCH\+\_\+\+LENGTH~258}
+
+\index{length.c@{length.c}!MIN\_MATCH\_LENGTH@{MIN\_MATCH\_LENGTH}}
+\index{MIN\_MATCH\_LENGTH@{MIN\_MATCH\_LENGTH}!length.c@{length.c}}
+\doxysubsubsection{MIN\_MATCH\_LENGTH}
+{\footnotesize\ttfamily \label{length_8c_afe7f7fbaef84c75fa729fdcd890973a7} 
+\#define MIN\+\_\+\+MATCH\+\_\+\+LENGTH~3}
+
+\index{length.c@{length.c}!NUM\_LENGTH\_CODES@{NUM\_LENGTH\_CODES}}
+\index{NUM\_LENGTH\_CODES@{NUM\_LENGTH\_CODES}!length.c@{length.c}}
+\doxysubsubsection{NUM\_LENGTH\_CODES}
+{\footnotesize\ttfamily \label{length_8c_aa803921583cd0d074e424bd5a596e456} 
+\#define NUM\+\_\+\+LENGTH\+\_\+\+CODES~29}
+
+
+
+\label{doc-func-members}
+\doxysubsection{Function Documentation}
+\index{length.c@{length.c}!getLengthCode@{getLengthCode}}
+\index{getLengthCode@{getLengthCode}!length.c@{length.c}}
+\doxysubsubsection{getLengthCode()}
+{\footnotesize\ttfamily \label{length_8c_ac1708113f9ba2b598b57c0290f24ddd2} 
+\textbf{ LENGTH\+\_\+\+CODE} get\+Length\+Code (\begin{DoxyParamCaption}\item[{int}]{length}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Length\+Code. 
+
+The get\+Length\+Code function calculates the Length Code for each match length, and returns a struct with the necessary data in it. For more information on Length Code\textquotesingle{}s check out the official rfc1951 standard documentation. ({\texttt{https\+://datatracker.\+ietf.\+org/doc/html/rfc1951\#page-\/11}})
+
+
+\begin{DoxyParams}{Parameters}
+{\em length} & The actual length between (3 and 258) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Length\+Code struct which stores the length code, the required extra bits, and then the extra value in those extra bits, 
+\end{DoxyReturn}

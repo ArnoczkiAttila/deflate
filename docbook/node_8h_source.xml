@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_node_8h_source" xml:lang="en-US">
+<title>node.h</title>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered">1 <emphasis role="comment">//</emphasis>
+2 <emphasis role="comment">//&#32;Created&#32;by&#32;Attila&#32;Arnóczki&#32;on&#32;10/18/2025.</emphasis>
+3 <emphasis role="comment">//&#32;Node&#32;version&#32;0.0.1</emphasis>
+4 <emphasis role="comment">//</emphasis>
+5 
+6 <emphasis role="preprocessor">#ifndef&#32;HUFFMAN_NODE_H</emphasis>
+7 <emphasis role="preprocessor">#define&#32;HUFFMAN_NODE_H</emphasis>
+8 
+9 <emphasis role="preprocessor">#include&#32;&lt;stdint.h&gt;</emphasis>
+10 
+11 <emphasis role="keyword">typedef</emphasis>&#32;<emphasis role="keyword">struct&#32;</emphasis><link linkend="_struct_node">Node</link>&#32;{
+12 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">int</emphasis>&#32;<link linkend="_struct_node_1a598b58eb0ea6750cee33aa0ea62f6ccc">iFrequency</link>;
+13 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">unsigned</emphasis>&#32;<emphasis role="keywordtype">short</emphasis>&#32;<link linkend="_struct_node_1aef34b594003aef090557c68fa0976aef">usSymbol</link>;
+14 &#32;&#32;&#32;&#32;<emphasis role="keyword">struct&#32;</emphasis><link linkend="_struct_node">Node</link>*&#32;<link linkend="_struct_node_1a3fbc6e3132038d871c08e9b71391893f">pnLeft</link>;
+15 &#32;&#32;&#32;&#32;<emphasis role="keyword">struct&#32;</emphasis><link linkend="_struct_node">Node</link>*&#32;<link linkend="_struct_node_1a72a7b991ec60f48cd33a359fb0c00942">pnRight</link>;
+16 }&#32;<link linkend="_struct_node">Node</link>;
+17 
+18 <emphasis role="keyword">typedef</emphasis>&#32;<emphasis role="keyword">struct&#32;</emphasis>{
+19 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">int</emphasis>&#32;<link linkend="_struct_min_heap_1afccb13ff89743172794c40bd66b9b85b">iSize</link>;
+20 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">int</emphasis>&#32;<link linkend="_struct_min_heap_1aafdd50fc8bfa4a3f01987e9bc816fc1e">iCapacity</link>;
+21 &#32;&#32;&#32;&#32;<link linkend="_struct_node">Node</link>**&#32;<link linkend="_struct_min_heap_1a734ed6d54bc63dbb1c7079dbdf0bebc7">ppnArray</link>;
+22 }&#32;<link linkend="_struct_min_heap">MinHeap</link>;
+23 
+24 <emphasis role="keyword">extern</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_node_8h_1aa1c5f84fe9f09a17b82d2ed396c1e1ad">compressCodeLengths</link>(
+25 &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;uint8_t*&#32;all_lengths,
+26 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">size_t</emphasis>&#32;count,
+27 &#32;&#32;&#32;&#32;uint8_t*&#32;compressed_lengths,&#32;<emphasis role="comment">//&#32;Output&#32;buffer&#32;for&#32;RLE&#32;symbols&#32;(0-18)</emphasis>
+28 &#32;&#32;&#32;&#32;uint16_t*&#32;cl_frequencies,&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Output&#32;array&#32;of&#32;size&#32;19</emphasis>
+29 &#32;&#32;&#32;&#32;uint8_t*&#32;extra_bits_values,&#32;&#32;<emphasis role="comment">//&#32;Output&#32;buffer&#32;for&#32;RLE&#32;extra&#32;bit&#32;values</emphasis>
+30 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">size_t</emphasis>*&#32;compressed_count&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Final&#32;count&#32;of&#32;symbols&#32;generated</emphasis>
+31 );
+32 
+33 <emphasis role="keyword">extern</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_node_8h_1a25107a4508c2ffd75825c42e1239fa90">findCodeLengthsInTree</link>(<link linkend="_struct_node">Node</link>*&#32;node,&#32;uint8_t*&#32;lengths,&#32;uint8_t&#32;depth);
+34 
+35 <emphasis role="keyword">extern</emphasis>&#32;<link linkend="_struct_min_heap">MinHeap</link>*&#32;<link linkend="_node_8h_1a86c7eb4d5e202d4087bde685ae659e52">createMinHeap</link>(<emphasis role="keywordtype">int</emphasis>&#32;capacity);
+36 
+37 <emphasis role="keyword">extern</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_node_8h_1ac9a5be012917c9c86e4cc688eb700e0c">addToMinHeap</link>(<link linkend="_struct_min_heap">MinHeap</link>*&#32;minHeap,&#32;<link linkend="_struct_node">Node</link>*&#32;node);
+38 
+39 <emphasis role="keyword">extern</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_node_8h_1a8196a5fffc96ca854a325d1fe349e8da">printHeap</link>(<link linkend="_struct_min_heap">MinHeap</link>*&#32;minHeap);
+40 
+41 <emphasis role="keyword">extern</emphasis>&#32;<link linkend="_struct_node">Node</link>*&#32;<link linkend="_node_8h_1aecbec578e3e80350306dd708f0e24b99">extractMin</link>(<link linkend="_struct_min_heap">MinHeap</link>*&#32;minHeap);
+42 
+43 <emphasis role="keyword">extern</emphasis>&#32;<link linkend="_struct_node">Node</link>*&#32;<link linkend="_node_8h_1a7dddf9d8d87a548cf9d63568af9f56fa">buildHuffmanTree</link>(<link linkend="_struct_min_heap">MinHeap</link>*&#32;minHeap);
+44 
+45 <emphasis role="keyword">extern</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_node_8h_1ae6e53a77c8389ec5fa741eeab2e95cd9">buildMinHeap</link>(<link linkend="_struct_min_heap">MinHeap</link>*&#32;minHeap);
+46 
+47 <emphasis role="keyword">extern</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_node_8h_1afbdba32d1543027eda02773bce2ab102">freeMinHeap</link>(<link linkend="_struct_min_heap">MinHeap</link>*&#32;minHeap);
+48 
+49 <emphasis role="keyword">extern</emphasis>&#32;<link linkend="_struct_node">Node</link>*&#32;<link linkend="_node_8h_1a476e2695789ae31745b5cd5cc5877792">createNode</link>(<emphasis role="keywordtype">unsigned</emphasis>&#32;<emphasis role="keywordtype">short</emphasis>&#32;usSymbol,&#32;<emphasis role="keywordtype">int</emphasis>&#32;freq);
+50 
+51 <emphasis role="keyword">extern</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_node_8h_1afdf92c04775f1fdb56a48a6063f30b51">freeTree</link>(<link linkend="_struct_node">Node</link>*&#32;top);
+52 
+53 <emphasis role="preprocessor">#endif&#32;</emphasis><emphasis role="comment">//HUFFMAN_NODE_H</emphasis>
+</programlisting></section>

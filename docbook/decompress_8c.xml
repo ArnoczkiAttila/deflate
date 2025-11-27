@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_decompress_8c" xml:lang="en-US">
+<title>decompress.c File Reference</title>
+<indexterm><primary>decompress.c</primary></indexterm>
+<programlisting linenumbering="unnumbered">#include &quot;status.h&quot;<?linebreak?>#include &lt;stdint.h&gt;<?linebreak?>#include &quot;bitreader.h&quot;<?linebreak?>#include &quot;compress.h&quot;<?linebreak?>#include &quot;decompress.h&quot;<?linebreak?>#include &lt;stdlib.h&gt;<?linebreak?>#include &lt;string.h&gt;<?linebreak?>#include &quot;HUFFMAN_TABLE.h&quot;<?linebreak?></programlisting>Include dependency graph for decompress.c:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="decompress_8c__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Macros    </title>
+        <itemizedlist>
+            <listitem><para>#define <link linkend="_decompress_8c_1a77ceac8d6af195fe72f95f6afd87c45e">ID</link>&#160;&#160;&#160;0x1F8B</para>
+</listitem>
+            <listitem><para>#define <link linkend="_decompress_8c_1a86496c19c29b6c83337b300bfeef9c95">CM</link>&#160;&#160;&#160;0x08</para>
+</listitem>
+            <listitem><para>#define <link linkend="_decompress_8c_1af8bfae90c5d6853fcfb487e05b9f50c8">FLAG</link>&#160;&#160;&#160;0x00</para>
+</listitem>
+            <listitem><para>#define <link linkend="_decompress_8c_1a51c241e7ad52441b8d4c1fd5f498b3b9">MAX_BITS</link>&#160;&#160;&#160;15</para>
+</listitem>
+            <listitem><para>#define <link linkend="_decompress_8c_1a4582373cc4af1d21e27cbd5322828a15">CL_SYMBOLS</link>&#160;&#160;&#160;19</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_struct_status">Status</link> <link linkend="_decompress_8c_1ab1cc8aa166be00ccc453d7d2419219ed">decompress</link> (char *filename)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Macro Definition Documentation</title>
+<anchor xml:id="_decompress_8c_1a4582373cc4af1d21e27cbd5322828a15"/><section>
+    <title>CL_SYMBOLS</title>
+<indexterm><primary>CL_SYMBOLS</primary><secondary>decompress.c</secondary></indexterm>
+<indexterm><primary>decompress.c</primary><secondary>CL_SYMBOLS</secondary></indexterm>
+<para><computeroutput>#define CL_SYMBOLS&#160;&#160;&#160;19</computeroutput></para></section>
+<anchor xml:id="_decompress_8c_1a86496c19c29b6c83337b300bfeef9c95"/><section>
+    <title>CM</title>
+<indexterm><primary>CM</primary><secondary>decompress.c</secondary></indexterm>
+<indexterm><primary>decompress.c</primary><secondary>CM</secondary></indexterm>
+<para><computeroutput>#define CM&#160;&#160;&#160;0x08</computeroutput></para></section>
+<anchor xml:id="_decompress_8c_1af8bfae90c5d6853fcfb487e05b9f50c8"/><section>
+    <title>FLAG</title>
+<indexterm><primary>FLAG</primary><secondary>decompress.c</secondary></indexterm>
+<indexterm><primary>decompress.c</primary><secondary>FLAG</secondary></indexterm>
+<para><computeroutput>#define FLAG&#160;&#160;&#160;0x00</computeroutput></para></section>
+<anchor xml:id="_decompress_8c_1a77ceac8d6af195fe72f95f6afd87c45e"/><section>
+    <title>ID</title>
+<indexterm><primary>ID</primary><secondary>decompress.c</secondary></indexterm>
+<indexterm><primary>decompress.c</primary><secondary>ID</secondary></indexterm>
+<para><computeroutput>#define ID&#160;&#160;&#160;0x1F8B</computeroutput></para></section>
+<anchor xml:id="_decompress_8c_1a51c241e7ad52441b8d4c1fd5f498b3b9"/><section>
+    <title>MAX_BITS</title>
+<indexterm><primary>MAX_BITS</primary><secondary>decompress.c</secondary></indexterm>
+<indexterm><primary>decompress.c</primary><secondary>MAX_BITS</secondary></indexterm>
+<para><computeroutput>#define MAX_BITS&#160;&#160;&#160;15</computeroutput></para></section>
+</section>
+<section>
+<title>Function Documentation</title>
+<anchor xml:id="_decompress_8c_1ab1cc8aa166be00ccc453d7d2419219ed"/><section>
+    <title>decompress()</title>
+<indexterm><primary>decompress</primary><secondary>decompress.c</secondary></indexterm>
+<indexterm><primary>decompress.c</primary><secondary>decompress</secondary></indexterm>
+<para><computeroutput><link linkend="_struct_status">Status</link> decompress (char * filename)<computeroutput>[extern]</computeroutput></computeroutput></para></section>
+</section>
+</section>

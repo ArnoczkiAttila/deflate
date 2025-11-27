@@ -1,0 +1,255 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="_h_u_f_f_m_a_n___t_a_b_l_e_8h" kind="file" language="C++">
+    <compoundname>HUFFMAN_TABLE.h</compoundname>
+    <includes local="no">stdint.h</includes>
+    <includes refid="bitreader_8h" local="yes">bitreader.h</includes>
+    <includes refid="node_8h" local="yes">node.h</includes>
+    <includedby refid="_h_u_f_f_m_a_n___t_a_b_l_e_8c" local="yes">HUFFMAN_TABLE.c</includedby>
+    <includedby refid="compress_8c" local="yes">compress.c</includedby>
+    <includedby refid="decompress_8c" local="yes">decompress.c</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>HUFFMAN_TABLE.h</label>
+        <link refid="_h_u_f_f_m_a_n___t_a_b_l_e_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>bitreader.h</label>
+        <link refid="bitreader_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>node.h</label>
+        <link refid="node_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>stdbool.h</label>
+      </node>
+      <node id="2">
+        <label>stdint.h</label>
+      </node>
+      <node id="5">
+        <label>stdio.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2">
+        <label>HUFFMAN_TABLE.c</label>
+        <link refid="_h_u_f_f_m_a_n___t_a_b_l_e_8c"/>
+      </node>
+      <node id="1">
+        <label>HUFFMAN_TABLE.h</label>
+        <link refid="_h_u_f_f_m_a_n___t_a_b_l_e_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>compress.c</label>
+        <link refid="compress_8c"/>
+      </node>
+      <node id="4">
+        <label>decompress.c</label>
+        <link refid="decompress_8c"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="struct_h_u_f_f_m_a_n___c_o_d_e" prot="public">HUFFMAN_CODE</innerclass>
+    <innerclass refid="struct_huffman_entry" prot="public">HuffmanEntry</innerclass>
+    <innerclass refid="struct_canonical_code" prot="public">CanonicalCode</innerclass>
+    <innerclass refid="struct_huffman_tree" prot="public">HuffmanTree</innerclass>
+    <sectiondef kind="define">
+      <memberdef kind="define" id="_h_u_f_f_m_a_n___t_a_b_l_e_8h_1add78822c51f4692289f2ce174bdf82b0" prot="public" static="no">
+        <name>FAST_BITS</name>
+        <initializer>9</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HUFFMAN_TABLE.h" line="18" column="9" bodyfile="HUFFMAN_TABLE.h" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_h_u_f_f_m_a_n___t_a_b_l_e_8h_1aa9e6595da72a8ad3543d033dbf737db2" prot="public" static="no">
+        <name>FAST_SIZE</name>
+        <initializer>(1 &lt;&lt; <ref refid="_h_u_f_f_m_a_n___t_a_b_l_e_8h_1add78822c51f4692289f2ce174bdf82b0" kindref="member">FAST_BITS</ref>)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HUFFMAN_TABLE.h" line="19" column="9" bodyfile="HUFFMAN_TABLE.h" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_h_u_f_f_m_a_n___t_a_b_l_e_8h_1a8e78a9fcd1b3afab6bff573299f76ed1" prot="public" static="no">
+        <name>MAX_CODE_SYMBOLS</name>
+        <initializer>286</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HUFFMAN_TABLE.h" line="20" column="9" bodyfile="HUFFMAN_TABLE.h" bodystart="20" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="_h_u_f_f_m_a_n___t_a_b_l_e_8h_1a32e731d206254fe2aa33026e72d81cf0" prot="public" static="no" extern="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void buildCodeLookupTable</definition>
+        <argsstring>(Node *node, HUFFMAN_CODE *table, uint16_t current_code, int depth)</argsstring>
+        <name>buildCodeLookupTable</name>
+        <param>
+          <type><ref refid="struct_node" kindref="compound">Node</ref> *</type>
+          <declname>node</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_h_u_f_f_m_a_n___c_o_d_e" kindref="compound">HUFFMAN_CODE</ref> *</type>
+          <declname>table</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>current_code</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>depth</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HUFFMAN_TABLE.h" line="51" column="13" bodyfile="HUFFMAN_TABLE.c" bodystart="130" bodyend="150" declfile="HUFFMAN_TABLE.h" declline="51" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="_h_u_f_f_m_a_n___t_a_b_l_e_8h_1a2499274512be997926ea1464b3d09628" prot="public" static="no" extern="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void buildFastLookupTable</definition>
+        <argsstring>(const HUFFMAN_CODE *canonical_codes, int total_symbols, HuffmanEntry *lookup_table)</argsstring>
+        <name>buildFastLookupTable</name>
+        <param>
+          <type>const <ref refid="struct_h_u_f_f_m_a_n___c_o_d_e" kindref="compound">HUFFMAN_CODE</ref> *</type>
+          <declname>canonical_codes</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>total_symbols</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_huffman_entry" kindref="compound">HuffmanEntry</ref> *</type>
+          <declname>lookup_table</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HUFFMAN_TABLE.h" line="53" column="13" bodyfile="HUFFMAN_TABLE.c" bodystart="74" bodyend="128" declfile="HUFFMAN_TABLE.h" declline="53" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="_h_u_f_f_m_a_n___t_a_b_l_e_8h_1ac5c5c75eec8b54cf307c41e22253540f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uint16_t</type>
+        <definition>uint16_t decode_symbol</definition>
+        <argsstring>(BIT_READER *reader, const HuffmanTree *tree)</argsstring>
+        <name>decode_symbol</name>
+        <param>
+          <type><ref refid="struct_b_i_t___r_e_a_d_e_r" kindref="compound">BIT_READER</ref> *</type>
+          <declname>reader</declname>
+        </param>
+        <param>
+          <type>const <ref refid="struct_huffman_tree" kindref="compound">HuffmanTree</ref> *</type>
+          <declname>tree</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HUFFMAN_TABLE.h" line="58" column="10" bodyfile="HUFFMAN_TABLE.c" bodystart="15" bodyend="72" declfile="HUFFMAN_TABLE.h" declline="58" declcolumn="10"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Created<sp/>by<sp/>Rendszergazda<sp/>on<sp/>11/23/2025.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>DEFLATE_HUFFMAN_TABLE_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DEFLATE_HUFFMAN_TABLE_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdint.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="bitreader_8h" kindref="compound">bitreader.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="node_8h" kindref="compound">node.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13" refid="struct_h_u_f_f_m_a_n___c_o_d_e" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="14" refid="struct_h_u_f_f_m_a_n___c_o_d_e_1a70008c0b7822b172472813e6730ea565" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint16_t<sp/><ref refid="struct_h_u_f_f_m_a_n___c_o_d_e_1a70008c0b7822b172472813e6730ea565" kindref="member">code</ref>;<sp/></highlight><highlight class="comment">//for<sp/>example<sp/>101<sp/>in<sp/>binary<sp/>which<sp/>means<sp/>right,<sp/>left,<sp/>right<sp/>in<sp/>the<sp/>tree</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15" refid="struct_h_u_f_f_m_a_n___c_o_d_e_1ab2b3adeb2a67e656ff030b56727fd0ac" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/><ref refid="struct_h_u_f_f_m_a_n___c_o_d_e_1ab2b3adeb2a67e656ff030b56727fd0ac" kindref="member">length</ref>;<sp/></highlight><highlight class="comment">//in<sp/>this<sp/>example<sp/>3<sp/>which<sp/>says<sp/>how<sp/>many<sp/>bits<sp/>are<sp/>there</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal">}<sp/><ref refid="struct_h_u_f_f_m_a_n___c_o_d_e" kindref="compound">HUFFMAN_CODE</ref>;</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18" refid="_h_u_f_f_m_a_n___t_a_b_l_e_8h_1add78822c51f4692289f2ce174bdf82b0" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>FAST_BITS<sp/>9</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19" refid="_h_u_f_f_m_a_n___t_a_b_l_e_8h_1aa9e6595da72a8ad3543d033dbf737db2" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>FAST_SIZE<sp/>(1<sp/>&lt;&lt;<sp/>FAST_BITS)<sp/></highlight><highlight class="comment">//<sp/>512<sp/>entries</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20" refid="_h_u_f_f_m_a_n___t_a_b_l_e_8h_1a8e78a9fcd1b3afab6bff573299f76ed1" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MAX_CODE_SYMBOLS<sp/>286<sp/></highlight><highlight class="comment">//<sp/>Max<sp/>symbols<sp/>for<sp/>T_LL<sp/>(the<sp/>largest<sp/>tree)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22" refid="struct_huffman_entry" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="23" refid="struct_huffman_entry_1aec17ee1083424a4709c461d47ff05a45" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint16_t<sp/><ref refid="struct_huffman_entry_1aec17ee1083424a4709c461d47ff05a45" kindref="member">symbol</ref>;<sp/></highlight><highlight class="comment">//<sp/>The<sp/>decoded<sp/>symbol</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24" refid="struct_huffman_entry_1a46a6da6b1936191571fd30b2a749f38c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/><ref refid="struct_huffman_entry_1a46a6da6b1936191571fd30b2a749f38c" kindref="member">bits</ref>;<sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Number<sp/>of<sp/>bits<sp/>consumed<sp/>(Length)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal">}<sp/><ref refid="struct_huffman_entry" kindref="compound">HuffmanEntry</ref>;</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="comment">//<sp/>---<sp/>2.<sp/>Full<sp/>Code/Length<sp/>Storage<sp/>(for<sp/>the<sp/>Slow<sp/>Path)<sp/>---</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="comment">//<sp/>This<sp/>stores<sp/>the<sp/>mathematically<sp/>generated<sp/>canonical<sp/>codes<sp/>for<sp/>*all*<sp/>symbols.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29" refid="struct_canonical_code" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="30" refid="struct_canonical_code_1a70008c0b7822b172472813e6730ea565" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint16_t<sp/><ref refid="struct_canonical_code_1a70008c0b7822b172472813e6730ea565" kindref="member">code</ref>;<sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>Canonical<sp/>Code<sp/>value<sp/>(must<sp/>be<sp/>bit-reversed<sp/>if<sp/>using<sp/>LSB-first<sp/>reading)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31" refid="struct_canonical_code_1ab2b3adeb2a67e656ff030b56727fd0ac" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/><ref refid="struct_canonical_code_1ab2b3adeb2a67e656ff030b56727fd0ac" kindref="member">length</ref>;<sp/></highlight><highlight class="comment">//<sp/>The<sp/>length<sp/>of<sp/>the<sp/>code<sp/>(up<sp/>to<sp/>15)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal">}<sp/><ref refid="struct_canonical_code" kindref="compound">CanonicalCode</ref>;</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="comment">//<sp/>---<sp/>3.<sp/>The<sp/>Unified<sp/>Tree<sp/>Structure<sp/>---</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35" refid="struct_huffman_tree" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>I.<sp/>Fast<sp/>Lookup<sp/>Table:<sp/>Resolves<sp/>all<sp/>codes<sp/>&lt;=<sp/>FAST_BITS</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37" refid="struct_huffman_tree_1a972c94cb32177e802b2d8f97714e2968" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_huffman_entry" kindref="compound">HuffmanEntry</ref><sp/><ref refid="struct_huffman_tree_1a972c94cb32177e802b2d8f97714e2968" kindref="member">lookup_table</ref>[1<sp/>&lt;&lt;<sp/><ref refid="_h_u_f_f_m_a_n___t_a_b_l_e_8h_1add78822c51f4692289f2ce174bdf82b0" kindref="member">FAST_BITS</ref>];</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>II.<sp/>Storage<sp/>for<sp/>Long<sp/>Codes<sp/>(The<sp/>Slow<sp/>Path<sp/>Data):</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Used<sp/>to<sp/>resolve<sp/>codes<sp/>longer<sp/>than<sp/>FAST_BITS.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>This<sp/>allows<sp/>the<sp/>slow<sp/>path<sp/>in<sp/>decode_symbol<sp/>to<sp/>check<sp/>all<sp/>possible<sp/>codes.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42" refid="struct_huffman_tree_1ab6510f0d6074676a0c7a2cf6d2216def" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_canonical_code" kindref="compound">CanonicalCode</ref><sp/><ref refid="struct_huffman_tree_1ab6510f0d6074676a0c7a2cf6d2216def" kindref="member">codes_list</ref>[<ref refid="_h_u_f_f_m_a_n___t_a_b_l_e_8h_1a8e78a9fcd1b3afab6bff573299f76ed1" kindref="member">MAX_CODE_SYMBOLS</ref>];</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>III.<sp/>Metadata</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45" refid="struct_huffman_tree_1a9fdb3f3c936b832f2b67b6b97555b2c5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint16_t<sp/><ref refid="struct_huffman_tree_1a9fdb3f3c936b832f2b67b6b97555b2c5" kindref="member">total_symbols</ref>;<sp/></highlight><highlight class="comment">//<sp/>e.g.,<sp/>19,<sp/>HLIT,<sp/>or<sp/>HDIST+1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46" refid="struct_huffman_tree_1afdcd30ccd185619f804c9cc7a5b1870e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/><ref refid="struct_huffman_tree_1afdcd30ccd185619f804c9cc7a5b1870e" kindref="member">max_length</ref>;<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Max<sp/>code<sp/>length<sp/>observed<sp/>in<sp/>this<sp/>tree<sp/>(up<sp/>to<sp/>15)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal">}<sp/><ref refid="struct_huffman_tree" kindref="compound">HuffmanTree</ref>;</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="_h_u_f_f_m_a_n___t_a_b_l_e_8h_1a32e731d206254fe2aa33026e72d81cf0" kindref="member">buildCodeLookupTable</ref>(<ref refid="struct_node" kindref="compound">Node</ref>*<sp/>node,<sp/><ref refid="struct_h_u_f_f_m_a_n___c_o_d_e" kindref="compound">HUFFMAN_CODE</ref>*<sp/>table,<sp/>uint16_t<sp/>current_code,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>depth);</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="_h_u_f_f_m_a_n___t_a_b_l_e_8h_1a2499274512be997926ea1464b3d09628" kindref="member">buildFastLookupTable</ref>(</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="struct_h_u_f_f_m_a_n___c_o_d_e" kindref="compound">HUFFMAN_CODE</ref>*<sp/>canonical_codes,</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>total_symbols,</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_huffman_entry" kindref="compound">HuffmanEntry</ref>*<sp/>lookup_table</highlight></codeline>
+<codeline lineno="57"><highlight class="normal">);</highlight></codeline>
+<codeline lineno="58"><highlight class="normal">uint16_t<sp/><ref refid="_h_u_f_f_m_a_n___t_a_b_l_e_8h_1ac5c5c75eec8b54cf307c41e22253540f" kindref="member">decode_symbol</ref>(<ref refid="struct_b_i_t___r_e_a_d_e_r" kindref="compound">BIT_READER</ref>*<sp/>reader,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="struct_huffman_tree" kindref="compound">HuffmanTree</ref>*<sp/>tree);</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//DEFLATE_HUFFMAN_TABLE_H</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="HUFFMAN_TABLE.h"/>
+  </compounddef>
+</doxygen>

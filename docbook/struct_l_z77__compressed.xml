@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_struct_l_z77__compressed" xml:lang="en-US">
+<title>LZ77_compressed Struct Reference</title>
+<indexterm><primary>LZ77_compressed</primary></indexterm>
+<para>
+
+<para>The fundamental LZ77 token structure. </para>
+ 
+</para>
+<para>
+<computeroutput>#include &lt;LZ77.h&gt;</computeroutput>
+</para>
+<simplesect>
+    <title>Data Fields    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="__l_z77_8h_1aa2dfc75cd7ffec5a645d9d50841b6403">LZ77_encoded_type</link> <link linkend="_struct_l_z77__compressed_1a35706548b8a67e870f95e47317246787">type</link></para>
+</listitem>
+            <listitem><para>union {</para>
+        <itemizedlist>
+            <listitem><para>&#160;&#160;&#160;uint8_t <link linkend="_struct_l_z77__compressed_1a66a4fabf3d4457878d3a90d39cdd524f">literal</link></para>
+</listitem>
+            <listitem><para>&#160;&#160;&#160;struct {</para>
+        <itemizedlist>
+            <listitem><para>&#160;&#160;&#160;&#160;&#160;&#160;uint16_t <link linkend="_struct_l_z77__compressed_1a7ae9d3ad463ec7a0eb38ee23a15c51e7">distance</link></para>
+</listitem>
+            <listitem><para>&#160;&#160;&#160;&#160;&#160;&#160;uint16_t <link linkend="_struct_l_z77__compressed_1a1892eba2086d12ac2b09005aeb09ea3b">length</link></para>
+</listitem>
+        </itemizedlist>
+</listitem>
+            <listitem><para>&#160;&#160;&#160;} <link linkend="_struct_l_z77__compressed_1a54e81a285c801cbd44309f0d3f1658bd">match</link></para>
+</listitem>
+        </itemizedlist>
+</listitem>
+            <listitem><para>} <link linkend="_struct_l_z77__compressed_1a7871b753ccbbfe74395eb47be0a9f46e">data</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+
+<para>The fundamental LZ77 token structure. </para>
+
+
+
+<para><itemizedlist>
+<listitem>
+<para>Uses a struct for the match data to correctly store both distance and length. Uses a union to ensure the token only takes the size of the largest data type (the match struct). </para>
+</listitem></itemizedlist>
+</para>
+</section>
+<section>
+<title>Field Documentation</title>
+<anchor xml:id="_struct_l_z77__compressed_1a7871b753ccbbfe74395eb47be0a9f46e"/><section>
+    <title>[union]</title>
+<indexterm><primary>data</primary><secondary>LZ77_compressed</secondary></indexterm>
+<indexterm><primary>LZ77_compressed</primary><secondary>data</secondary></indexterm>
+<para><computeroutput>union  { ... }  data</computeroutput></para></section>
+<anchor xml:id="_struct_l_z77__compressed_1a7ae9d3ad463ec7a0eb38ee23a15c51e7"/><section>
+    <title>distance</title>
+<indexterm><primary>distance</primary><secondary>LZ77_compressed</secondary></indexterm>
+<indexterm><primary>LZ77_compressed</primary><secondary>distance</secondary></indexterm>
+<para><computeroutput>uint16_t distance</computeroutput></para></section>
+<anchor xml:id="_struct_l_z77__compressed_1a1892eba2086d12ac2b09005aeb09ea3b"/><section>
+    <title>length</title>
+<indexterm><primary>length</primary><secondary>LZ77_compressed</secondary></indexterm>
+<indexterm><primary>LZ77_compressed</primary><secondary>length</secondary></indexterm>
+<para><computeroutput>uint16_t length</computeroutput></para></section>
+<anchor xml:id="_struct_l_z77__compressed_1a66a4fabf3d4457878d3a90d39cdd524f"/><section>
+    <title>literal</title>
+<indexterm><primary>literal</primary><secondary>LZ77_compressed</secondary></indexterm>
+<indexterm><primary>LZ77_compressed</primary><secondary>literal</secondary></indexterm>
+<para><computeroutput>uint8_t literal</computeroutput></para></section>
+<anchor xml:id="_struct_l_z77__compressed_1a54e81a285c801cbd44309f0d3f1658bd"/><section>
+    <title>[struct]</title>
+<indexterm><primary>match</primary><secondary>LZ77_compressed</secondary></indexterm>
+<indexterm><primary>LZ77_compressed</primary><secondary>match</secondary></indexterm>
+<para><computeroutput>struct  { ... }  match</computeroutput></para></section>
+<anchor xml:id="_struct_l_z77__compressed_1a35706548b8a67e870f95e47317246787"/><section>
+    <title>type</title>
+<indexterm><primary>type</primary><secondary>LZ77_compressed</secondary></indexterm>
+<indexterm><primary>LZ77_compressed</primary><secondary>type</secondary></indexterm>
+<para><computeroutput><link linkend="__l_z77_8h_1aa2dfc75cd7ffec5a645d9d50841b6403">LZ77_encoded_type</link> type</computeroutput></para></section>
+<para>
+The documentation for this struct was generated from the following file:</para>
+<link linkend="__l_z77_8h">LZ77.h</link></section>
+</section>

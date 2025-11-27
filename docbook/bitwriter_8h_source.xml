@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_bitwriter_8h_source" xml:lang="en-US">
+<title>bitwriter.h</title>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered">1 <emphasis role="comment">//</emphasis>
+2 <emphasis role="comment">//&#32;Created&#32;by&#32;Attila&#32;on&#32;11/19/2025.</emphasis>
+3 <emphasis role="comment">//</emphasis>
+4 
+5 <emphasis role="preprocessor">#ifndef&#32;DEFLATE_BITWRITER_H</emphasis>
+6 <emphasis role="preprocessor">#define&#32;DEFLATE_BITWRITER_H</emphasis>
+7 
+8 <emphasis role="preprocessor">#include&#32;&lt;stdint.h&gt;</emphasis>
+9 <emphasis role="preprocessor">#include&#32;&lt;stdio.h&gt;</emphasis>
+10 
+11 <emphasis role="keyword">typedef</emphasis>&#32;<emphasis role="keyword">struct&#32;</emphasis>{
+12 &#32;&#32;&#32;&#32;FILE&#32;*<link linkend="_struct_bit_writer_1a702945180aa732857b380a007a7e2a21">file</link>;
+13 &#32;&#32;&#32;&#32;uint8_t*&#32;<link linkend="_struct_bit_writer_1a56ed84df35de10bdb65e72b184309497">buffer</link>;
+14 &#32;&#32;&#32;&#32;uint8_t&#32;<link linkend="_struct_bit_writer_1a96f44d20f1dbf1c8785a7bc99a46164c">byte</link>;
+15 &#32;&#32;&#32;&#32;uint8_t&#32;<link linkend="_struct_bit_writer_1a03c096e79d44983a055f7ca6839144bc">currentPosition</link>;
+16 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">size_t</emphasis>&#32;<link linkend="_struct_bit_writer_1a7be887a2ca0a258cf6b368d32fd87487">bufferSize</link>;
+17 &#32;&#32;&#32;&#32;uint16_t&#32;<link linkend="_struct_bit_writer_1a852b86a2eaee9852ada7a43e61e311a2">index</link>;
+18 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">char</emphasis>*&#32;<link linkend="_struct_bit_writer_1a25c8761bc1f523fe6a53db546ae83add">fileName</link>;
+19 }&#32;<link linkend="_struct_bit_writer">BitWriter</link>;
+20 
+21 <link linkend="_struct_bit_writer">BitWriter</link>*&#32;<link linkend="_bitwriter_8h_1a98decd406fc97f3a5e87a1c5e43450f6">initBitWriter</link>(<emphasis role="keywordtype">void</emphasis>);
+22 
+23 <emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_bitwriter_8h_1a15a48f26be9076026f0174a67935fce4">addData</link>(<link linkend="_struct_bit_writer">BitWriter</link>*&#32;bw,&#32;uint32_t&#32;value,&#32;uint8_t&#32;bitLength);
+24 
+25 <emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_bitwriter_8h_1a3725b55a47460bd10421c92495b2be3f">createFile</link>(<link linkend="_struct_bit_writer">BitWriter</link>*&#32;bw,&#32;<emphasis role="keywordtype">char</emphasis>*&#32;fileName,&#32;<emphasis role="keywordtype">char</emphasis>*&#32;extension);
+26 
+27 <emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_bitwriter_8h_1a0bc036019ea04608e40ea43ac2a4efe1">freeBitWriter</link>(<link linkend="_struct_bit_writer">BitWriter</link>*&#32;bw);
+28 
+29 <emphasis role="keyword">extern</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_bitwriter_8h_1ae0a3c065d2db177bf4312adaab2a96a8">addBytesFromMSB</link>(<link linkend="_struct_bit_writer">BitWriter</link>*&#32;bw,&#32;uint32_t&#32;value,&#32;uint8_t&#32;bytes);
+30 
+31 <emphasis role="keyword">extern</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_bitwriter_8h_1a5360490c127924566b62142aae839af5">addBytesFromMSB2</link>(<link linkend="_struct_bit_writer">BitWriter</link>*&#32;bw,&#32;uint32_t&#32;value,&#32;uint8_t&#32;bytes);
+32 
+33 <emphasis role="keyword">extern</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_bitwriter_8h_1a2706da9af748aa740b5b27c3cab1921f">flush_bitstream_writer</link>(<link linkend="_struct_bit_writer">BitWriter</link>*&#32;bw);
+34 
+35 <emphasis role="preprocessor">#endif&#32;</emphasis><emphasis role="comment">//DEFLATE_BITWRITER_H</emphasis>
+</programlisting></section>

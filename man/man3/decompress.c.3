@@ -1,0 +1,70 @@
+.TH "decompress.c" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+decompress.c
+.SH SYNOPSIS
+.br
+.PP
+\fR#include 'status\&.h'\fP
+.br
+\fR#include <stdint\&.h>\fP
+.br
+\fR#include 'bitreader\&.h'\fP
+.br
+\fR#include 'compress\&.h'\fP
+.br
+\fR#include 'decompress\&.h'\fP
+.br
+\fR#include <stdlib\&.h>\fP
+.br
+\fR#include <string\&.h>\fP
+.br
+\fR#include 'HUFFMAN_TABLE\&.h'\fP
+.br
+
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBID\fP   0x1F8B"
+.br
+.ti -1c
+.RI "#define \fBCM\fP   0x08"
+.br
+.ti -1c
+.RI "#define \fBFLAG\fP   0x00"
+.br
+.ti -1c
+.RI "#define \fBMAX_BITS\fP   15"
+.br
+.ti -1c
+.RI "#define \fBCL_SYMBOLS\fP   19"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBStatus\fP \fBdecompress\fP (char *filename)"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define CL_SYMBOLS   19"
+
+.SS "#define CM   0x08"
+
+.SS "#define FLAG   0x00"
+
+.SS "#define ID   0x1F8B"
+
+.SS "#define MAX_BITS   15"
+
+.SH "Function Documentation"
+.PP 
+.SS "\fBStatus\fP decompress (char * filename)\fR [extern]\fP"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

@@ -1,0 +1,71 @@
+\doxysection{LZ77\+\_\+buffer Struct Reference}
+\label{struct_l_z77__buffer}\index{LZ77\_buffer@{LZ77\_buffer}}
+
+
+Structure to manage a dynamic array (growing buffer) of LZ77 tokens.  
+
+
+
+
+{\ttfamily \#include $<$LZ77.\+h$>$}
+
+
+
+Collaboration diagram for LZ77\+\_\+buffer\+:
+% FIG 0
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ LZ77\+\_\+compressed} $\ast$ \textbf{ tokens}
+\begin{DoxyCompactList}\small\item\em Pointer to the start of the dynamic array of tokens. \end{DoxyCompactList}\item 
+size\+\_\+t \textbf{ size}
+\begin{DoxyCompactList}\small\item\em The current number of tokens stored (using size\+\_\+t for large files). \end{DoxyCompactList}\item 
+size\+\_\+t \textbf{ capacity}
+\begin{DoxyCompactList}\small\item\em The total number of tokens the buffer can hold. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Structure to manage a dynamic array (growing buffer) of LZ77 tokens. 
+
+
+\begin{DoxyItemize}
+\item Stores the tokens directly in a contiguous array (LZ77\+\_\+compressed$\ast$), avoiding per-\/token allocations for better performance and cache utilization. 
+\end{DoxyItemize}
+
+\label{doc-variable-members}
+\doxysubsection{Field Documentation}
+\index{LZ77\_buffer@{LZ77\_buffer}!capacity@{capacity}}
+\index{capacity@{capacity}!LZ77\_buffer@{LZ77\_buffer}}
+\doxysubsubsection{capacity}
+{\footnotesize\ttfamily \label{struct_l_z77__buffer_ad721fc6ca6a3d6ba3bc506576622aab0} 
+size\+\_\+t capacity}
+
+
+
+The total number of tokens the buffer can hold. 
+
+\index{LZ77\_buffer@{LZ77\_buffer}!size@{size}}
+\index{size@{size}!LZ77\_buffer@{LZ77\_buffer}}
+\doxysubsubsection{size}
+{\footnotesize\ttfamily \label{struct_l_z77__buffer_a854352f53b148adc24983a58a1866d66} 
+size\+\_\+t size}
+
+
+
+The current number of tokens stored (using size\+\_\+t for large files). 
+
+\index{LZ77\_buffer@{LZ77\_buffer}!tokens@{tokens}}
+\index{tokens@{tokens}!LZ77\_buffer@{LZ77\_buffer}}
+\doxysubsubsection{tokens}
+{\footnotesize\ttfamily \label{struct_l_z77__buffer_a28dd3a7c2db4aa8526cb4b1dedb376a8} 
+\textbf{ LZ77\+\_\+compressed}$\ast$ tokens}
+
+
+
+Pointer to the start of the dynamic array of tokens. 
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\textbf{ LZ77.\+h}\end{DoxyCompactItemize}

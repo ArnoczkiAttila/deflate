@@ -1,0 +1,43 @@
+\doxysection{CRC\+\_\+\+CHECKSUM.\+c File Reference}
+\label{_c_r_c___c_h_e_c_k_s_u_m_8c}\index{CRC\_CHECKSUM.c@{CRC\_CHECKSUM.c}}
+{\ttfamily \#include "{}CRC\+\_\+\+CHECKSUM.\+h"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+Include dependency graph for CRC\+\_\+\+CHECKSUM.\+c\+:
+% FIG 0
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint32\+\_\+t \textbf{ calculate\+\_\+crc32} (uint32\+\_\+t current\+\_\+crc, const uint8\+\_\+t $\ast$data, size\+\_\+t length)
+\begin{DoxyCompactList}\small\item\em Updates a running CRC32 checksum based on a block of data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\doxysubsection{Function Documentation}
+\index{CRC\_CHECKSUM.c@{CRC\_CHECKSUM.c}!calculate\_crc32@{calculate\_crc32}}
+\index{calculate\_crc32@{calculate\_crc32}!CRC\_CHECKSUM.c@{CRC\_CHECKSUM.c}}
+\doxysubsubsection{calculate\_crc32()}
+{\footnotesize\ttfamily \label{_c_r_c___c_h_e_c_k_s_u_m_8c_a949564d32e176c6849b5ccc68c4947f3} 
+uint32\+\_\+t calculate\+\_\+crc32 (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{current\+\_\+crc}{, }\item[{const uint8\+\_\+t $\ast$}]{data}{, }\item[{size\+\_\+t}]{length}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Updates a running CRC32 checksum based on a block of data. 
+
+Updates a running CRC32 checksum based on a block of data. The CRC32 algorithm used is the standard IEEE 802.\+3 (used in Gzip and Zlib).
+
+
+\begin{DoxyItemize}
+\item 
+\begin{DoxyParams}{Parameters}
+{\em current\+\_\+crc} & The current running CRC value (initial value 0x\+FFFFFFFF). \\
+\hline
+{\em data} & Pointer to the buffer containing the data chunk. \\
+\hline
+{\em length} & The number of bytes in the data chunk. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+uint32\+\_\+t The updated CRC value. 
+\end{DoxyReturn}
+
+\end{DoxyItemize}

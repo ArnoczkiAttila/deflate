@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="struct_min_heap" kind="struct" language="C++" prot="public">
+    <compoundname>MinHeap</compoundname>
+    <includes refid="node_8h" local="no">node.h</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="struct_min_heap_1afccb13ff89743172794c40bd66b9b85b" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int iSize</definition>
+        <argsstring></argsstring>
+        <name>iSize</name>
+        <qualifiedname>MinHeap::iSize</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="node.h" line="19" column="9" bodyfile="node.h" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_min_heap_1aafdd50fc8bfa4a3f01987e9bc816fc1e" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int iCapacity</definition>
+        <argsstring></argsstring>
+        <name>iCapacity</name>
+        <qualifiedname>MinHeap::iCapacity</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="node.h" line="20" column="9" bodyfile="node.h" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_min_heap_1a734ed6d54bc63dbb1c7079dbdf0bebc7" prot="public" static="no" mutable="no">
+        <type><ref refid="struct_node" kindref="compound">Node</ref> **</type>
+        <definition>Node** ppnArray</definition>
+        <argsstring></argsstring>
+        <name>ppnArray</name>
+        <qualifiedname>MinHeap::ppnArray</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="node.h" line="21" column="10" bodyfile="node.h" bodystart="21" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>MinHeap</label>
+        <link refid="struct_min_heap"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>ppnArray</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Node</label>
+        <link refid="struct_node"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>pnLeft</edgelabel>
+          <edgelabel>pnRight</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="node.h" line="18" column="1" bodyfile="node.h" bodystart="18" bodyend="22"/>
+    <listofallmembers>
+      <member refid="struct_min_heap_1aafdd50fc8bfa4a3f01987e9bc816fc1e" prot="public" virt="non-virtual"><scope>MinHeap</scope><name>iCapacity</name></member>
+      <member refid="struct_min_heap_1afccb13ff89743172794c40bd66b9b85b" prot="public" virt="non-virtual"><scope>MinHeap</scope><name>iSize</name></member>
+      <member refid="struct_min_heap_1a734ed6d54bc63dbb1c7079dbdf0bebc7" prot="public" virt="non-virtual"><scope>MinHeap</scope><name>ppnArray</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

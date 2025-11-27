@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_struct_min_heap" xml:lang="en-US">
+<title>MinHeap Struct Reference</title>
+<indexterm><primary>MinHeap</primary></indexterm>
+<para>
+<computeroutput>#include &lt;node.h&gt;</computeroutput>
+</para>
+Collaboration diagram for MinHeap:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="struct_min_heap__coll__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Data Fields    </title>
+        <itemizedlist>
+            <listitem><para>int <link linkend="_struct_min_heap_1afccb13ff89743172794c40bd66b9b85b">iSize</link></para>
+</listitem>
+            <listitem><para>int <link linkend="_struct_min_heap_1aafdd50fc8bfa4a3f01987e9bc816fc1e">iCapacity</link></para>
+</listitem>
+            <listitem><para><link linkend="_struct_node">Node</link> ** <link linkend="_struct_min_heap_1a734ed6d54bc63dbb1c7079dbdf0bebc7">ppnArray</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Field Documentation</title>
+<anchor xml:id="_struct_min_heap_1aafdd50fc8bfa4a3f01987e9bc816fc1e"/><section>
+    <title>iCapacity</title>
+<indexterm><primary>iCapacity</primary><secondary>MinHeap</secondary></indexterm>
+<indexterm><primary>MinHeap</primary><secondary>iCapacity</secondary></indexterm>
+<para><computeroutput>int iCapacity</computeroutput></para></section>
+<anchor xml:id="_struct_min_heap_1afccb13ff89743172794c40bd66b9b85b"/><section>
+    <title>iSize</title>
+<indexterm><primary>iSize</primary><secondary>MinHeap</secondary></indexterm>
+<indexterm><primary>MinHeap</primary><secondary>iSize</secondary></indexterm>
+<para><computeroutput>int iSize</computeroutput></para></section>
+<anchor xml:id="_struct_min_heap_1a734ed6d54bc63dbb1c7079dbdf0bebc7"/><section>
+    <title>ppnArray</title>
+<indexterm><primary>ppnArray</primary><secondary>MinHeap</secondary></indexterm>
+<indexterm><primary>MinHeap</primary><secondary>ppnArray</secondary></indexterm>
+<para><computeroutput><link linkend="_struct_node">Node</link>** ppnArray</computeroutput></para></section>
+<para>
+The documentation for this struct was generated from the following file:</para>
+<link linkend="_node_8h">node.h</link></section>
+</section>

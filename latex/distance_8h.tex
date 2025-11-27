@@ -1,0 +1,40 @@
+\doxysection{distance.\+h File Reference}
+\label{distance_8h}\index{distance.h@{distance.h}}
+This graph shows which files directly or indirectly include this file\+:
+% FIG 0
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \textbf{ DISTANCE\+\_\+\+CODE}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ DISTANCE\+\_\+\+CODE} \textbf{ get\+Distance\+Code} (int distance)
+\begin{DoxyCompactList}\small\item\em Maps a raw LZ77 distance to its Deflate Symbol ID and extra bit information. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\doxysubsection{Function Documentation}
+\index{distance.h@{distance.h}!getDistanceCode@{getDistanceCode}}
+\index{getDistanceCode@{getDistanceCode}!distance.h@{distance.h}}
+\doxysubsubsection{getDistanceCode()}
+{\footnotesize\ttfamily \label{distance_8h_a3129c724dbfe713ed85671d9eb6c41a5} 
+\textbf{ DISTANCE\+\_\+\+CODE} get\+Distance\+Code (\begin{DoxyParamCaption}\item[{int}]{distance}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Maps a raw LZ77 distance to its Deflate Symbol ID and extra bit information. 
+
+
+\begin{DoxyItemize}
+\item 
+\begin{DoxyParams}{Parameters}
+{\em distance} & The raw look-\/back distance (1 to 32768). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxyref{DISTANCE\+\_\+\+CODE}{p.}{struct_d_i_s_t_a_n_c_e___c_o_d_e} The structure containing the Symbol ID, extra bits count, and value. 
+\end{DoxyReturn}
+
+\end{DoxyItemize}

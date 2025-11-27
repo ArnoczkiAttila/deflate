@@ -1,0 +1,50 @@
+.TH "CRC_CHECKSUM.c" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+CRC_CHECKSUM.c
+.SH SYNOPSIS
+.br
+.PP
+\fR#include 'CRC_CHECKSUM\&.h'\fP
+.br
+\fR#include <stdio\&.h>\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "uint32_t \fBcalculate_crc32\fP (uint32_t current_crc, const uint8_t *data, size_t length)"
+.br
+.RI "Updates a running CRC32 checksum based on a block of data\&. "
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS "uint32_t calculate_crc32 (uint32_t current_crc, const uint8_t * data, size_t length)\fR [extern]\fP"
+
+.PP
+Updates a running CRC32 checksum based on a block of data\&. Updates a running CRC32 checksum based on a block of data\&. The CRC32 algorithm used is the standard IEEE 802\&.3 (used in Gzip and Zlib)\&.
+
+.PP
+.IP "\(bu" 2
+\fBParameters\fP
+.RS 4
+\fIcurrent_crc\fP The current running CRC value (initial value 0xFFFFFFFF)\&. 
+.br
+\fIdata\fP Pointer to the buffer containing the data chunk\&. 
+.br
+\fIlength\fP The number of bytes in the data chunk\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+uint32_t The updated CRC value\&. 
+.RE
+.PP
+
+.PP
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

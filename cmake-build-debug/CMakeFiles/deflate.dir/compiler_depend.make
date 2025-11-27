@@ -21,18 +21,25 @@ CMakeFiles/deflate.dir/CRC_CHECKSUM.c.obj: C:/Users/Attila/Documents/GitHub/defl
   C:/Users/Attila/Documents/GitHub/deflate/CRC_CHECKSUM.h
 
 CMakeFiles/deflate.dir/HUFFMAN_TABLE.c.obj: C:/Users/Attila/Documents/GitHub/deflate/HUFFMAN_TABLE.c \
+  C:/Program\ Files/JetBrains/CLion\ 2025.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/stdbool.h \
   C:/Program\ Files/JetBrains/CLion\ 2025.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/stddef.h \
   C:/Program\ Files/JetBrains/CLion\ 2025.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/stdint.h \
   C:/Program\ Files/JetBrains/CLion\ 2025.2.2/bin/mingw/x86_64-w64-mingw32/include/_mingw.h \
   C:/Program\ Files/JetBrains/CLion\ 2025.2.2/bin/mingw/x86_64-w64-mingw32/include/_mingw_mac.h \
+  C:/Program\ Files/JetBrains/CLion\ 2025.2.2/bin/mingw/x86_64-w64-mingw32/include/_mingw_off_t.h \
   C:/Program\ Files/JetBrains/CLion\ 2025.2.2/bin/mingw/x86_64-w64-mingw32/include/_mingw_secapi.h \
   C:/Program\ Files/JetBrains/CLion\ 2025.2.2/bin/mingw/x86_64-w64-mingw32/include/corecrt.h \
+  C:/Program\ Files/JetBrains/CLion\ 2025.2.2/bin/mingw/x86_64-w64-mingw32/include/corecrt_stdio_config.h \
   C:/Program\ Files/JetBrains/CLion\ 2025.2.2/bin/mingw/x86_64-w64-mingw32/include/crtdefs.h \
   C:/Program\ Files/JetBrains/CLion\ 2025.2.2/bin/mingw/x86_64-w64-mingw32/include/sdks/_mingw_ddk.h \
+  C:/Program\ Files/JetBrains/CLion\ 2025.2.2/bin/mingw/x86_64-w64-mingw32/include/sec_api/stdio_s.h \
   C:/Program\ Files/JetBrains/CLion\ 2025.2.2/bin/mingw/x86_64-w64-mingw32/include/stddef.h \
   C:/Program\ Files/JetBrains/CLion\ 2025.2.2/bin/mingw/x86_64-w64-mingw32/include/stdint.h \
+  C:/Program\ Files/JetBrains/CLion\ 2025.2.2/bin/mingw/x86_64-w64-mingw32/include/stdio.h \
+  C:/Program\ Files/JetBrains/CLion\ 2025.2.2/bin/mingw/x86_64-w64-mingw32/include/swprintf.inl \
   C:/Program\ Files/JetBrains/CLion\ 2025.2.2/bin/mingw/x86_64-w64-mingw32/include/vadefs.h \
   C:/Users/Attila/Documents/GitHub/deflate/HUFFMAN_TABLE.h \
+  C:/Users/Attila/Documents/GitHub/deflate/bitreader.h \
   C:/Users/Attila/Documents/GitHub/deflate/node.h
 
 CMakeFiles/deflate.dir/LZ77.c.obj: C:/Users/Attila/Documents/GitHub/deflate/LZ77.c \
@@ -171,6 +178,7 @@ CMakeFiles/deflate.dir/compress.c.obj: C:/Users/Attila/Documents/GitHub/deflate/
   C:/Users/Attila/Documents/GitHub/deflate/CRC_CHECKSUM.h \
   C:/Users/Attila/Documents/GitHub/deflate/HUFFMAN_TABLE.h \
   C:/Users/Attila/Documents/GitHub/deflate/LZ77.h \
+  C:/Users/Attila/Documents/GitHub/deflate/bitreader.h \
   C:/Users/Attila/Documents/GitHub/deflate/bitwriter.h \
   C:/Users/Attila/Documents/GitHub/deflate/compress.h \
   C:/Users/Attila/Documents/GitHub/deflate/debugmalloc.h \
@@ -200,16 +208,20 @@ CMakeFiles/deflate.dir/decompress.c.obj: C:/Users/Attila/Documents/GitHub/deflat
   C:/Program\ Files/JetBrains/CLion\ 2025.2.2/bin/mingw/x86_64-w64-mingw32/include/sdks/_mingw_ddk.h \
   C:/Program\ Files/JetBrains/CLion\ 2025.2.2/bin/mingw/x86_64-w64-mingw32/include/sec_api/stdio_s.h \
   C:/Program\ Files/JetBrains/CLion\ 2025.2.2/bin/mingw/x86_64-w64-mingw32/include/sec_api/stdlib_s.h \
+  C:/Program\ Files/JetBrains/CLion\ 2025.2.2/bin/mingw/x86_64-w64-mingw32/include/sec_api/string_s.h \
   C:/Program\ Files/JetBrains/CLion\ 2025.2.2/bin/mingw/x86_64-w64-mingw32/include/stddef.h \
   C:/Program\ Files/JetBrains/CLion\ 2025.2.2/bin/mingw/x86_64-w64-mingw32/include/stdint.h \
   C:/Program\ Files/JetBrains/CLion\ 2025.2.2/bin/mingw/x86_64-w64-mingw32/include/stdio.h \
   C:/Program\ Files/JetBrains/CLion\ 2025.2.2/bin/mingw/x86_64-w64-mingw32/include/stdlib.h \
+  C:/Program\ Files/JetBrains/CLion\ 2025.2.2/bin/mingw/x86_64-w64-mingw32/include/string.h \
   C:/Program\ Files/JetBrains/CLion\ 2025.2.2/bin/mingw/x86_64-w64-mingw32/include/swprintf.inl \
   C:/Program\ Files/JetBrains/CLion\ 2025.2.2/bin/mingw/x86_64-w64-mingw32/include/vadefs.h \
+  C:/Users/Attila/Documents/GitHub/deflate/HUFFMAN_TABLE.h \
   C:/Users/Attila/Documents/GitHub/deflate/bitreader.h \
   C:/Users/Attila/Documents/GitHub/deflate/bitwriter.h \
   C:/Users/Attila/Documents/GitHub/deflate/compress.h \
   C:/Users/Attila/Documents/GitHub/deflate/decompress.h \
+  C:/Users/Attila/Documents/GitHub/deflate/node.h \
   C:/Users/Attila/Documents/GitHub/deflate/status.h
 
 CMakeFiles/deflate.dir/distance.c.obj: C:/Users/Attila/Documents/GitHub/deflate/distance.c \
@@ -241,40 +253,27 @@ CMakeFiles/deflate.dir/length.c.obj: C:/Users/Attila/Documents/GitHub/deflate/le
   C:/Users/Attila/Documents/GitHub/deflate/length.h
 
 CMakeFiles/deflate.dir/main.c.obj: C:/Users/Attila/Documents/GitHub/deflate/main.c \
-  C:/Program\ Files/JetBrains/CLion\ 2025.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/limits.h \
-  C:/Program\ Files/JetBrains/CLion\ 2025.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/mm_malloc.h \
-  C:/Program\ Files/JetBrains/CLion\ 2025.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/stdbool.h \
   C:/Program\ Files/JetBrains/CLion\ 2025.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/stddef.h \
   C:/Program\ Files/JetBrains/CLion\ 2025.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/stdint.h \
-  C:/Program\ Files/JetBrains/CLion\ 2025.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/syslimits.h \
   C:/Program\ Files/JetBrains/CLion\ 2025.2.2/bin/mingw/x86_64-w64-mingw32/include/_mingw.h \
   C:/Program\ Files/JetBrains/CLion\ 2025.2.2/bin/mingw/x86_64-w64-mingw32/include/_mingw_mac.h \
   C:/Program\ Files/JetBrains/CLion\ 2025.2.2/bin/mingw/x86_64-w64-mingw32/include/_mingw_off_t.h \
   C:/Program\ Files/JetBrains/CLion\ 2025.2.2/bin/mingw/x86_64-w64-mingw32/include/_mingw_secapi.h \
   C:/Program\ Files/JetBrains/CLion\ 2025.2.2/bin/mingw/x86_64-w64-mingw32/include/corecrt.h \
   C:/Program\ Files/JetBrains/CLion\ 2025.2.2/bin/mingw/x86_64-w64-mingw32/include/corecrt_stdio_config.h \
-  C:/Program\ Files/JetBrains/CLion\ 2025.2.2/bin/mingw/x86_64-w64-mingw32/include/corecrt_wstdlib.h \
   C:/Program\ Files/JetBrains/CLion\ 2025.2.2/bin/mingw/x86_64-w64-mingw32/include/crtdefs.h \
-  C:/Program\ Files/JetBrains/CLion\ 2025.2.2/bin/mingw/x86_64-w64-mingw32/include/errno.h \
-  C:/Program\ Files/JetBrains/CLion\ 2025.2.2/bin/mingw/x86_64-w64-mingw32/include/limits.h \
-  C:/Program\ Files/JetBrains/CLion\ 2025.2.2/bin/mingw/x86_64-w64-mingw32/include/malloc.h \
   C:/Program\ Files/JetBrains/CLion\ 2025.2.2/bin/mingw/x86_64-w64-mingw32/include/sdks/_mingw_ddk.h \
   C:/Program\ Files/JetBrains/CLion\ 2025.2.2/bin/mingw/x86_64-w64-mingw32/include/sec_api/stdio_s.h \
-  C:/Program\ Files/JetBrains/CLion\ 2025.2.2/bin/mingw/x86_64-w64-mingw32/include/sec_api/stdlib_s.h \
   C:/Program\ Files/JetBrains/CLion\ 2025.2.2/bin/mingw/x86_64-w64-mingw32/include/sec_api/string_s.h \
   C:/Program\ Files/JetBrains/CLion\ 2025.2.2/bin/mingw/x86_64-w64-mingw32/include/stddef.h \
   C:/Program\ Files/JetBrains/CLion\ 2025.2.2/bin/mingw/x86_64-w64-mingw32/include/stdint.h \
   C:/Program\ Files/JetBrains/CLion\ 2025.2.2/bin/mingw/x86_64-w64-mingw32/include/stdio.h \
-  C:/Program\ Files/JetBrains/CLion\ 2025.2.2/bin/mingw/x86_64-w64-mingw32/include/stdlib.h \
   C:/Program\ Files/JetBrains/CLion\ 2025.2.2/bin/mingw/x86_64-w64-mingw32/include/string.h \
   C:/Program\ Files/JetBrains/CLion\ 2025.2.2/bin/mingw/x86_64-w64-mingw32/include/swprintf.inl \
   C:/Program\ Files/JetBrains/CLion\ 2025.2.2/bin/mingw/x86_64-w64-mingw32/include/vadefs.h \
-  C:/Users/Attila/Documents/GitHub/deflate/LZ77.h \
   C:/Users/Attila/Documents/GitHub/deflate/bitwriter.h \
   C:/Users/Attila/Documents/GitHub/deflate/compress.h \
   C:/Users/Attila/Documents/GitHub/deflate/decompress.h \
-  C:/Users/Attila/Documents/GitHub/deflate/distance.h \
-  C:/Users/Attila/Documents/GitHub/deflate/length.h \
   C:/Users/Attila/Documents/GitHub/deflate/status.h
 
 CMakeFiles/deflate.dir/node.c.obj: C:/Users/Attila/Documents/GitHub/deflate/node.c \
@@ -375,9 +374,13 @@ C:/Users/Attila/Documents/GitHub/deflate/node.c:
 
 C:/Users/Attila/Documents/GitHub/deflate/HUFFMAN_TABLE.c:
 
+C:/Program\ Files/JetBrains/CLion\ 2025.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/stdbool.h:
+
 C:/Users/Attila/Documents/GitHub/deflate/node.h:
 
 C:/Users/Attila/Documents/GitHub/deflate/HUFFMAN_TABLE.h:
+
+C:/Users/Attila/Documents/GitHub/deflate/bitreader.h:
 
 C:/Users/Attila/Documents/GitHub/deflate/LZ77.c:
 
@@ -401,8 +404,6 @@ C:/Program\ Files/JetBrains/CLion\ 2025.2.2/bin/mingw/x86_64-w64-mingw32/include
 
 C:/Program\ Files/JetBrains/CLion\ 2025.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/stdarg.h:
 
-C:/Program\ Files/JetBrains/CLion\ 2025.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/stdbool.h:
-
 C:/Program\ Files/JetBrains/CLion\ 2025.2.2/bin/mingw/x86_64-w64-mingw32/include/_mingw_stdarg.h:
 
 C:/Program\ Files/JetBrains/CLion\ 2025.2.2/bin/mingw/x86_64-w64-mingw32/include/ctype.h:
@@ -418,8 +419,6 @@ C:/Program\ Files/JetBrains/CLion\ 2025.2.2/bin/mingw/x86_64-w64-mingw32/include
 C:/Program\ Files/JetBrains/CLion\ 2025.2.2/bin/mingw/x86_64-w64-mingw32/include/time.h:
 
 C:/Program\ Files/JetBrains/CLion\ 2025.2.2/bin/mingw/x86_64-w64-mingw32/include/sys/types.h:
-
-C:/Users/Attila/Documents/GitHub/deflate/bitreader.h:
 
 C:/Users/Attila/Documents/GitHub/deflate/debugmalloc.h:
 

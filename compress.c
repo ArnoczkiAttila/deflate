@@ -1,5 +1,5 @@
 //
-// Created by Rendszergazda on 11/19/2025.
+// Created by Arnóczki Attila on 11/19/2025.
 //
 
 #include "compress.h"
@@ -29,6 +29,8 @@
 #define DISTANCE_CODE_SIZE 30
 #define CODE_LENGTH_FREQUENCIES 19
 
+#define BYTE uint8_t
+
 /**
  * @brief Subtract Window Size From Hash Table
  *
@@ -37,6 +39,7 @@
  * copied data can have a history from the previously processed data.
  *
  * @param uiarrHashTable The hashTable which stores the last occurrence of a 3 byte hash.
+ *
  * @returns void
  */
 static void vfSubtractWindowSizeFromHashTable(uint16_t* uiarrHashTable) {
@@ -56,6 +59,7 @@ static void vfSubtractWindowSizeFromHashTable(uint16_t* uiarrHashTable) {
  * and can index a 32kb hashTable.
  *
  * @param p The pointer for the buffer.
+ *
  * @returns uint16_t Hash key.
  */
 static uint16_t uifGenerateHashKey(const unsigned char* p) {
@@ -65,6 +69,7 @@ static uint16_t uifGenerateHashKey(const unsigned char* p) {
 /**
  * @brief Init Buffer only allocates BUFFER_SIZE byte unsigned char and returns with its pointer.
  * If the memory allocation fails then it returns with a NULL pointer.
+ *
  * @returns unsigned char* The freshly allocated BUFFER_SIZE sized buffer.
  */
 static unsigned char* cpInitBuffer(void) {
@@ -85,6 +90,7 @@ static unsigned char* cpInitBuffer(void) {
  * @param ucpCurrent Current pointer
  * @param ucpOld Old pointer
  * @param ucpInputEndPointer This is the maximum Current pointer can be (the boundary of the buffer)
+ *
  * @return int The length of the match in bytes
  */
 static int iFindMatchLength(const unsigned char* ucpCurrent, const unsigned char *ucpOld, const unsigned char *ucpInputEndPointer) {
@@ -120,6 +126,7 @@ static int iFindMatchLength(const unsigned char* ucpCurrent, const unsigned char
  * The default value defined in EMPTY_INDEX is 0xFFFF.
  *
  * @param uiarrHashTable The pointer to the hashTable.
+ *
  * @returns void
  */
 static void* fvpResetHashTable(uint16_t *uiarrHashTable) {
@@ -130,6 +137,7 @@ static void* fvpResetHashTable(uint16_t *uiarrHashTable) {
 /**
  * @brief initHashTable returns with an allocated hashTable. Required space in memory is 2*HASH_SIZE.
  * Must be freed afterward.
+ *
  * @returns uint16_t* The pointer to the hashTable.
  */
 static uint16_t* initHashTable(void) {
@@ -146,7 +154,9 @@ static uint16_t* initHashTable(void) {
 
 /**
  * @brief Opens a file in rb (read binary) mode.
+ *
  * @param filename The name of the file. (probably with absolute path)
+ *
  * @return FILE* or NULL
  */
 extern FILE* ffOpenFile(const char* filename) {
@@ -154,18 +164,30 @@ extern FILE* ffOpenFile(const char* filename) {
     return fpFile;
 }
 
-
-void compress_data(const unsigned char *ucpBuffer, size_t bytes_read, uint16_t* hash_table, LZ77_buffer* output_ucpBuffer) {
+/**
+ * @brief Compress Data
+ * 
+ * This function takes in a BUFFER SIZED buffer containing BYTES from a file, and fills up an LZ77_buffer containing
+ * match/literal distance/length codes which will be used later in the processBlock function.
+ * 
+ * @param ucpBuffer The start of the buffer (pointer).
+ * @param bytesRead The bytes processed in this function.
+ * @param hash_table The hash lookup table for matches.
+ * @param output_ucpBuffer The LZ77_buffer containing the matches/literals.
+ *
+ * @returns void
+ */
+extern void compressData(const unsigned char *ucpBuffer, const size_t bytesRead, uint16_t* hash_table, LZ77_buffer* output_ucpBuffer) {
 
     // --- Set the End Pointer ---
-    const unsigned char *ucpInputEndPointer = ucpBuffer + bytes_read;
+    const unsigned char *ucpInputEndPointer = ucpBuffer + bytesRead;
 
     // --- Loop Control ---
-    // Loop only up to (bytes_read - 2) because we need at least 3 bytes to hash/match.
+    // Loop only up to (bytesRead - 2) because we need at least 3 bytes to hash/match.
     int i;
-    for (i = 0; i < (int)bytes_read - 2; ) {
-        uint16_t hashKey = uifGenerateHashKey(ucpBuffer + i);
-        uint16_t hashIndex = hash_table[hashKey];
+    for (i = 0; i < (int)bytesRead - 2; ) {
+        const uint16_t hashKey = uifGenerateHashKey(ucpBuffer + i);
+        const uint16_t hashIndex = hash_table[hashKey];
 
         int bestLength = 0;
         int bestDistance = 0;
@@ -207,18 +229,40 @@ void compress_data(const unsigned char *ucpBuffer, size_t bytes_read, uint16_t* 
     }
 
     // --- 4. HANDLE REMAINING BYTES ---
-    // The loop ended at bytes_read - 2. Handle the last 1 or 2 bytes as literals.
-    for (; i < (int)bytes_read; i++) {
+    // The loop ended at bytesRead - 2. Handle the last 1 or 2 bytes as literals.
+    for (; i < (int)bytesRead; i++) {
         //printf("Literal: %c\n", ucpBuffer[i]);
         appendToken(output_ucpBuffer, createLiteralLZ77(ucpBuffer[i]));
     }
 }
 
+/**
+ * @brief Reset uint16_t array
+ *
+ * This function takes in a pointer to an array, and its size, and sets 0 for each value.
+ *
+ * @param array The pointer to the uint16_t array.
+ * @param size The size of the array.
+ *
+ * @returns void
+ */
 static void resetUint16_tArray(uint16_t* array, const size_t size) {
     for (int i = 0; i<size; i++) array[i] = 0;
 }
 
-static uint8_t calculateHLIT(const uint16_t* LLFrequiency) {
+/**
+ * @brief Calculate HLIT
+ *
+ * This function calculates the highest literal in use. Which is crucial determining how many literal/length code is in use
+ * for the whole block. It takes in an uint16_t array which holds the frequencies of the literal/length codes and returns
+ * the first index from the back which is not 0. To store this effectively on return it subtracts 257 from the index. Since
+ * the END OF BLOCK, which is 256 that will be the highest index in the worst case.
+ *
+ * @param LLFrequiency The frequency table.
+ *
+ * @returns BYTE
+ */
+static BYTE calculateHLIT(const uint16_t* LLFrequiency) {
     int highestUsedIndex = 256;
     for (int i = LITERAL_LENGTH_SIZE-1; i>255;i--) {
         if (LLFrequiency[i] > 0) {
@@ -226,10 +270,20 @@ static uint8_t calculateHLIT(const uint16_t* LLFrequiency) {
             break;
         }
     }
-    return (uint8_t)(highestUsedIndex - 257);
+    return (BYTE)(highestUsedIndex - 257);
 }
 
-static uint8_t calculateHDIST(const uint16_t* distanceCodeFrequency) {
+/**
+ * @brief Calculate HDIST
+ *
+ * This function calculates the highest distance code in use. Since there are cases where not all distance codes are in use
+ * we save bytes from the output with not writing out unnecessary distance codes to the file. Works just like the HLIT function.
+ *
+ * @param distanceCodeFrequency The distanceCode table.
+ *
+ * @return BYTE
+ */
+static BYTE calculateHDIST(const uint16_t* distanceCodeFrequency) {
     int highestUsedIndex = 0;
     for (int i = DISTANCE_CODE_SIZE-1; i>=0;i--) {
         if (distanceCodeFrequency[i] > 0) {
@@ -237,10 +291,23 @@ static uint8_t calculateHDIST(const uint16_t* distanceCodeFrequency) {
             break;
         }
     }
-    return (uint8_t) highestUsedIndex;
+    return (BYTE) highestUsedIndex;
 }
 
-static uint8_t calculateHCLEN(const uint16_t* codeLengthFrequency) {
+
+/**
+ * @brief Calculate HCLEN
+ *
+ * This function calculates the highest code length in use. This number could be from 1 to 15.
+ * Each code read from a huffman tree has a code length which is essentially a number from the
+ * top node to the leaf. In the codeLengthFrequency array we store the frequency of each code length. And here
+ * we determine which is the 'biggest' one in use.
+ *
+ * @param codeLengthFrequency The code lengths table.
+ *
+ * @returns BYTE
+ */
+static BYTE calculateHCLEN(const uint16_t* codeLengthFrequency) {
     int highestUsedIndex = 0;
     for (int i = CODE_LENGTH_FREQUENCIES-1; i>=0;i--) {
         if (codeLengthFrequency[i] > 0) {
@@ -248,9 +315,21 @@ static uint8_t calculateHCLEN(const uint16_t* codeLengthFrequency) {
             break;
         }
     }
-    return (uint8_t) highestUsedIndex - 4;
+    return (BYTE) highestUsedIndex - 4;
 }
 
+/**
+ * @brief Count Frequencies
+ *
+ * This function is accountable for counting the LZ77_buffer's match/literals' frequency. For the distance codes, it uses
+ * the distanceCodeFrequency table as an output, and for the literal/length codes the LLFrequency.
+ *
+ * @param output_ucpBuffer LZ77_buffer table which stores the match/literals of a block.
+ * @param LLFrequency The output table for literal/length codes.
+ * @param distanceCodeFrequency The output table for distance codes.
+ *
+ * @returns void
+ */
 static void countFrequencies(const LZ77_buffer* output_ucpBuffer, uint16_t* LLFrequency, uint16_t* distanceCodeFrequency) {
     for (int i = 0; i < output_ucpBuffer->size; i++) {
         LZ77_compressed token = output_ucpBuffer->tokens[i];
@@ -263,6 +342,17 @@ static void countFrequencies(const LZ77_buffer* output_ucpBuffer, uint16_t* LLFr
     }
     LLFrequency[END_OF_BLOCK]++;
 }
+
+/**
+ * @brief Create Literal Tree
+ *
+ * This function initializes, fills and then builds up a MinHeap which helps in the process of generating a huffman tree, by
+ * having the lowest frequency element at the top of the tree every time.
+ *
+ * @param LLFrequency The frequency table for literal/length codes.
+ *
+ * @returns MinHeap* Must be freed afterward.
+ */
 static MinHeap* createLiteralTree(const uint16_t* LLFrequency) {
     MinHeap* literalTree = createMinHeap(LITERAL_LENGTH_SIZE);
     for (int i = 0; i < LITERAL_LENGTH_SIZE; i++) {
@@ -273,6 +363,16 @@ static MinHeap* createLiteralTree(const uint16_t* LLFrequency) {
     return literalTree;
 }
 
+/**
+ * @brief Create Distance Tree
+ *
+ * This function initializes, fills and then builds up a MinHeap which helps in the process of generating a huffman tree, by
+ * having the lowest frequency element at the top of the tree every time.
+ *
+ * @param distanceCodeFrequency The distance code frequency table.
+ *
+ * @returns MinHeap* Must be freed afterward.
+ */
 static MinHeap* createDistanceTree(const uint16_t* distanceCodeFrequency) {
     MinHeap* distanceTree = createMinHeap(DISTANCE_CODE_SIZE);
     for (int i = 0; i < DISTANCE_CODE_SIZE; i++) {
@@ -283,6 +383,15 @@ static MinHeap* createDistanceTree(const uint16_t* distanceCodeFrequency) {
     return distanceTree;
 }
 
+/**
+ * @brief Create Code Length Tree
+ *
+ * This function initializes, fills and then builds up a MinHeap which helps in the process of generating a huffman tree, by
+ * having the lowest frequency element at the top of the tree every time.
+ * @param codeLengthFrequencies The code length frequency table.
+ *
+ * @returns MinHeap* Must be freed afterward.
+ */
 static MinHeap* createCodeLengthTree(const uint16_t* codeLengthFrequencies) {
     MinHeap* codeLengthTree = createMinHeap(DISTANCE_CODE_SIZE);
     for (int i = 0; i < CODE_LENGTH_FREQUENCIES; i++) {
@@ -293,26 +402,27 @@ static MinHeap* createCodeLengthTree(const uint16_t* codeLengthFrequencies) {
     return codeLengthTree;
 }
 
-extern void writeGzipTrailer(BitWriter* bw, uint32_t crc32_checksum, uint32_t total_uncompressed_size) {
-
-    // 1. Finalize CRC32: In standard implementation, the result needs to be XORed with 0xFFFFFFFF
-    uint32_t final_crc32 = crc32_checksum ^ 0xFFFFFFFF;
-
-    // 2. Flush DEFLATE bits to the next byte boundary
-    // This function pads the last compressed byte with zeros to align the stream.
-    flush_bitstream_writer(bw);
-
-    // 3. Write CRC32 (4 bytes, LSB first)
-    // The write_uint32_lsb function ensures the correct Little-Endian byte order.
-    addBytesFromMSB(bw, final_crc32,4);
-
-    // 4. Write ISIZE (4 bytes, LSB first)
-    addBytesFromMSB(bw, total_uncompressed_size,4);
-
-    // The stream is now complete, ready for closeBitWriter() which handles the final buffer flush to disk.
-}
+//Flag for debug pourposes only.
 static bool flag = true;
 
+/**
+ * @brief Process Block
+ *
+ * This function takes the frequencies of both the literal/length code and the distance code frequencies, with also their
+ * exact position in the buffer.
+ *  - First, it constructs 2 huffman trees. One for the literal/length code frequencies and one for the distance codes.
+ *  - After that it constructs a third tree which encodes the first 2 huffman trees' code length frequencies (how deep each leaf is from the top),
+ *  and then writes itself into the file.
+ *  - And finally, assign an encoded code for each byte and then write it to a file bit by bit for the entirety of the block.
+ *
+ * @param bw BitWriter for writing bits to a file.
+ * @param LLFrequency Literal/length code frequency table.
+ * @param distanceCodeFrequency Distance code frequency table.
+ * @param output_ucpBuffer The LZ77_buffer containing the match/literal objects.
+ * @param lastBlock The flag for the last block.
+ *
+ * @returns void
+ */
 extern void processBlock(BitWriter* bw, uint16_t* LLFrequency, uint16_t* distanceCodeFrequency, const LZ77_buffer* output_ucpBuffer, const bool lastBlock) {
     resetUint16_tArray(LLFrequency,LITERAL_LENGTH_SIZE);
     resetUint16_tArray(distanceCodeFrequency,DISTANCE_CODE_SIZE);
@@ -329,16 +439,16 @@ extern void processBlock(BitWriter* bw, uint16_t* LLFrequency, uint16_t* distanc
     Node* literalTop = buildHuffmanTree(literalTree);
     Node* distanceTop = buildHuffmanTree(distanceTree);
 
-    const uint8_t highestLiteralInUse = calculateHLIT(LLFrequency);
-    const uint8_t highestDistanceCodeInUse = calculateHDIST(distanceCodeFrequency);
+    const BYTE highestLiteralInUse = calculateHLIT(LLFrequency);
+    const BYTE highestDistanceCodeInUse = calculateHDIST(distanceCodeFrequency);
 
     //Find how deap a leaf is in a tree
-    //for this we use an uint8_t array
-    uint8_t ll_lengths[LITERAL_LENGTH_SIZE] = {0};
-    uint8_t distance_lengths[DISTANCE_CODE_SIZE] = {0};
+    //for this we use an BYTE array
+    BYTE ll_lengths[LITERAL_LENGTH_SIZE] = {0};
+    BYTE distance_lengths[DISTANCE_CODE_SIZE] = {0};
     size_t total_lengths = (highestLiteralInUse + 257) + (highestDistanceCodeInUse + 1);
 
-    uint8_t combinedLL_Distance_lengths[total_lengths];
+    BYTE combinedLL_Distance_lengths[total_lengths];
 
     //now we go through the tree using the function in node.h
     //and find the deepness of each leaf
@@ -350,15 +460,15 @@ extern void processBlock(BitWriter* bw, uint16_t* LLFrequency, uint16_t* distanc
     memcpy(combinedLL_Distance_lengths+highestLiteralInUse+257,distance_lengths,highestDistanceCodeInUse+1);
 
     //now call the compress code lenghts function on this combined distance and literal/lenghts pair
-    uint8_t compressed_ll_dist_lengths[total_lengths+20];
-    uint8_t extra_bits_values[total_lengths+20];
+    BYTE compressed_ll_dist_lengths[total_lengths+20];
+    BYTE extra_bits_values[total_lengths+20];
     uint16_t code_length_frequencies[CODE_LENGTH_FREQUENCIES] = {0};
     size_t compressed_symbol_count = 0;
     compressCodeLengths(combinedLL_Distance_lengths,total_lengths,compressed_ll_dist_lengths,code_length_frequencies,extra_bits_values,&compressed_symbol_count);
 
     MinHeap* codeLengthMinHeap = createCodeLengthTree(code_length_frequencies);
     Node* clTop = buildHuffmanTree(codeLengthMinHeap);
-    uint8_t highestCodeLengthInUse = calculateHCLEN(code_length_frequencies);
+    BYTE highestCodeLengthInUse = calculateHCLEN(code_length_frequencies);
 
     for (int i = 0; i < LITERAL_LENGTH_SIZE; i++) {
         //printf("Length for symbol %c, is %d \n",(char)i,ll_lengths[i]);
@@ -386,16 +496,16 @@ extern void processBlock(BitWriter* bw, uint16_t* LLFrequency, uint16_t* distanc
     addData(bw, highestCodeLengthInUse,4);
     //printf("highest code length in use: %d\n",highestCodeLengthInUse);
 
-    uint8_t cl_lengths[CODE_LENGTH_FREQUENCIES] = {0};
+    BYTE cl_lengths[CODE_LENGTH_FREQUENCIES] = {0};
     findCodeLengthsInTree(clTop, cl_lengths, 0);
 
     // 2. Write the Code Lengths of the Code Lengths (Meta-Tree Definition)
-    const uint8_t cl_order[19] = { 16, 17, 18, 0, 8, 7, 9, 6, 10, 5, 11, 4, 12, 3, 13, 2, 14, 1, 15 };
-    uint8_t hclen_value = highestCodeLengthInUse + 4; // This is the total count of symbols (4-19)
+    const BYTE cl_order[19] = { 16, 17, 18, 0, 8, 7, 9, 6, 10, 5, 11, 4, 12, 3, 13, 2, 14, 1, 15 };
+    BYTE hclen_value = highestCodeLengthInUse + 4; // This is the total count of symbols (4-19)
 
     for (int i = 0; i < hclen_value; ++i) {
         // Each length is 3 bits
-        uint8_t symbol = cl_order[i];
+        BYTE symbol = cl_order[i];
         addData(bw, cl_lengths[symbol], 3);
         if (flag) {printf("%d %d\n",symbol,cl_lengths[symbol]);}
 
@@ -414,7 +524,7 @@ extern void processBlock(BitWriter* bw, uint16_t* LLFrequency, uint16_t* distanc
 
     //printf("compressed_symbol_count: %llu, - - %llu\n",compressed_symbol_count, total_lengths);
     for (int i = 0; i < compressed_symbol_count; i++) {
-        uint8_t symbol = compressed_ll_dist_lengths[i];
+        BYTE symbol = compressed_ll_dist_lengths[i];
         HUFFMAN_CODE hCode = cl_table[symbol];
 
         // 1. Write the Huffman Code for the RLE symbol
@@ -475,6 +585,16 @@ extern void processBlock(BitWriter* bw, uint16_t* LLFrequency, uint16_t* distanc
     freeMinHeap(codeLengthMinHeap);
 }
 
+
+/**
+ * @brief Compress
+ *
+ * This is the entry for the whole compression. In this function we initialize the core utilities and start reading the file
+ * buffer to buffer.
+ *
+ * @param filename The file which we want to compress.
+ * @returns Status object
+ */
 extern Status compress(char* filename) {
     Status status = {.code = COMPRESSION_SUCCESS,.message = "File compression succeeded!"};
 
@@ -502,113 +622,85 @@ extern Status compress(char* filename) {
         return status;
     }
 
-    // --- 1. Initialization and Setup ---
 
-    // LZ77/Huffman structures
     LZ77_buffer* outputBuffer = initLZ77Buffer();
 
-    // Huffman Frequency arrays
     uint16_t LLFrequency[LITERAL_LENGTH_SIZE] = {0};
     uint16_t distanceCodeFrequency[DISTANCE_CODE_SIZE] = {0};
 
-    // Bitstream writer
     BitWriter* bitWriter = initBitWriter();
     createFile(bitWriter, filename, "gz"); // Use "gz" extension
 
-    uint32_t crc32_checksum = 0xFFFFFFFF; // CRC32 is initialized to all ones
-    uint32_t total_uncompressed_size = 0;
+    uint32_t crc32Checksum = 0xFFFFFFFF; // CRC32 is initialized to all ones
+    uint32_t totalUncompressedSize = 0;
 
-    // Counters and state
-    size_t total_bytes_read = 0;
-    size_t chunk_bytes_read = 0;
+    size_t chunkBytesRead = 0;
     size_t current_buffer_pos = 0; // Tracks the start of the current compression window
-    bool is_final_block = false;
+    bool isFinalBlock = false;
 
-    // --- 2. Main Compression Loop ---
 
-    // Load the first complete window or the entire file if small.
-    // Read directly into the first part of the buffer.
-    chunk_bytes_read = fread(ucpBuffer, 1, WINDOW_SIZE, file);
-    total_bytes_read += chunk_bytes_read;
+    chunkBytesRead = fread(ucpBuffer, 1, WINDOW_SIZE, file);
 
     // Loop continues as long as we read any data.
     do {
         // Prepare the next LZ77 compression step
-        size_t bytes_to_compress = chunk_bytes_read;
+        size_t bytesToCompress = chunkBytesRead;
 
-        if (bytes_to_compress > 0) {
-            // Update CRC32 with the data we just read
-            // CRC32 calculation must be done over the UNCOMPRESSED data (ucpBuffer)
-            crc32_checksum = calculate_crc32(
-                crc32_checksum,
+        if (bytesToCompress > 0) {
+
+            crc32Checksum = calculate_crc32(
+                crc32Checksum,
                 ucpBuffer + current_buffer_pos,
-                bytes_to_compress
+                bytesToCompress
             );
-            // Update the total size
-            total_uncompressed_size += (uint32_t)bytes_to_compress;
+            totalUncompressedSize += (uint32_t)bytesToCompress;
         }
 
-        // --- A. Perform Compression ---
-        // compress_data uses the history (window) up to current_buffer_pos
-        compress_data(
+
+        compressData(
             ucpBuffer + current_buffer_pos,
-            bytes_to_compress,
+            bytesToCompress,
             hashTable,
             outputBuffer
         );
 
-        // --- B. Determine Final Block Status ---
-        // If the last read was less than WINDOW_SIZE, this is the last chunk of data.
-        // If the last read was 0, it means the previous block was the last one.
-        is_final_block = (chunk_bytes_read < WINDOW_SIZE) || feof(file);
 
+        isFinalBlock = (chunkBytesRead < WINDOW_SIZE) || feof(file);
 
-        // --- C. Process and Write Block ---
-        // This is where the Huffman trees are built and the block is written.
         processBlock(
             bitWriter,
             LLFrequency,
             distanceCodeFrequency,
             outputBuffer,
-            is_final_block
+            isFinalBlock
         );
-
-        // --- D. Prepare for Next Iteration ---
-
-        // 1. Reset Buffer for next chunk (LZ77 compression resets the output buffer)
+        
         freeLZ77Buffer(outputBuffer);
         outputBuffer = initLZ77Buffer();
 
-        // 2. Shift the window: The new window starts where the compressed data ended.
+        // Shift the window: The new window starts where the compressed data ended.
         // We only need to keep the history (the previous WINDOW_SIZE) in ucpBuffer.
         // In this setup, we compress the entire current window and then slide it.
 
-        // Shift the data buffer for the next read
-        if (!is_final_block) {
-            // Keep the last WINDOW_SIZE of data for history
+        if (!isFinalBlock) {
             memmove(ucpBuffer, ucpBuffer + WINDOW_SIZE, WINDOW_SIZE);
             vfSubtractWindowSizeFromHashTable(hashTable);
 
-            // Read the next WINDOW_SIZE chunk into the second half of the buffer
-            chunk_bytes_read = fread(ucpBuffer + WINDOW_SIZE, 1, WINDOW_SIZE, file);
-            total_bytes_read += chunk_bytes_read;
+            chunkBytesRead = fread(ucpBuffer + WINDOW_SIZE, 1, WINDOW_SIZE, file);
 
-            // The effective data to compress is now at ucpBuffer + WINDOW_SIZE
             current_buffer_pos = WINDOW_SIZE;
         } else {
-            // If it's the final block, stop the loop.
-            chunk_bytes_read = 0;
+            chunkBytesRead = 0;
         }
 
 
-    } while (chunk_bytes_read > 0);
+    } while (chunkBytesRead > 0);
 
-    crc32_checksum = crc32_checksum ^ 0xFFFFFFFF;
+    crc32Checksum = crc32Checksum ^ 0xFFFFFFFF;
 
-    addBytesFromMSB(bitWriter,crc32_checksum,4);
-    addBytesFromMSB(bitWriter,total_uncompressed_size,4);
+    addBytesFromMSB(bitWriter,crc32Checksum,4);
+    addBytesFromMSB(bitWriter,totalUncompressedSize,4);
 
-    // 5. Close the file
     fclose(file);
 
     free(hashTable);

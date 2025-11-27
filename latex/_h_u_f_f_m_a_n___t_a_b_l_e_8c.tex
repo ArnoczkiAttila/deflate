@@ -1,0 +1,61 @@
+\doxysection{HUFFMAN\+\_\+\+TABLE.\+c File Reference}
+\label{_h_u_f_f_m_a_n___t_a_b_l_e_8c}\index{HUFFMAN\_TABLE.c@{HUFFMAN\_TABLE.c}}
+{\ttfamily \#include "{}HUFFMAN\+\_\+\+TABLE.\+h"{}}\newline
+{\ttfamily \#include "{}bitreader.\+h"{}}\newline
+{\ttfamily \#include "{}node.\+h"{}}\newline
+Include dependency graph for HUFFMAN\+\_\+\+TABLE.\+c\+:
+% FIG 0
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \textbf{ INVALID\+\_\+\+NODE\+\_\+\+SYMBOL}~286
+\item 
+\#define \textbf{ MAX\+\_\+\+BITS}~15
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint16\+\_\+t \textbf{ decode\+\_\+symbol} (\textbf{ BIT\+\_\+\+READER} $\ast$reader, const \textbf{ Huffman\+Tree} $\ast$tree)
+\item 
+void \textbf{ build\+Fast\+Lookup\+Table} (const \textbf{ HUFFMAN\+\_\+\+CODE} $\ast$canonical\+\_\+codes, int total\+\_\+symbols, \textbf{ Huffman\+Entry} $\ast$lookup\+\_\+table)
+\item 
+void \textbf{ build\+Code\+Lookup\+Table} (\textbf{ Node} $\ast$node, \textbf{ HUFFMAN\+\_\+\+CODE} $\ast$table, uint16\+\_\+t current\+\_\+code, int depth)
+\end{DoxyCompactItemize}
+
+
+\label{doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\index{HUFFMAN\_TABLE.c@{HUFFMAN\_TABLE.c}!INVALID\_NODE\_SYMBOL@{INVALID\_NODE\_SYMBOL}}
+\index{INVALID\_NODE\_SYMBOL@{INVALID\_NODE\_SYMBOL}!HUFFMAN\_TABLE.c@{HUFFMAN\_TABLE.c}}
+\doxysubsubsection{INVALID\_NODE\_SYMBOL}
+{\footnotesize\ttfamily \label{_h_u_f_f_m_a_n___t_a_b_l_e_8c_a90344de9a45f0d60f23aff3fea165e05} 
+\#define INVALID\+\_\+\+NODE\+\_\+\+SYMBOL~286}
+
+\index{HUFFMAN\_TABLE.c@{HUFFMAN\_TABLE.c}!MAX\_BITS@{MAX\_BITS}}
+\index{MAX\_BITS@{MAX\_BITS}!HUFFMAN\_TABLE.c@{HUFFMAN\_TABLE.c}}
+\doxysubsubsection{MAX\_BITS}
+{\footnotesize\ttfamily \label{_h_u_f_f_m_a_n___t_a_b_l_e_8c_a51c241e7ad52441b8d4c1fd5f498b3b9} 
+\#define MAX\+\_\+\+BITS~15}
+
+
+
+\label{doc-func-members}
+\doxysubsection{Function Documentation}
+\index{HUFFMAN\_TABLE.c@{HUFFMAN\_TABLE.c}!buildCodeLookupTable@{buildCodeLookupTable}}
+\index{buildCodeLookupTable@{buildCodeLookupTable}!HUFFMAN\_TABLE.c@{HUFFMAN\_TABLE.c}}
+\doxysubsubsection{buildCodeLookupTable()}
+{\footnotesize\ttfamily \label{_h_u_f_f_m_a_n___t_a_b_l_e_8c_a32e731d206254fe2aa33026e72d81cf0} 
+void build\+Code\+Lookup\+Table (\begin{DoxyParamCaption}\item[{\textbf{ Node} $\ast$}]{node}{, }\item[{\textbf{ HUFFMAN\+\_\+\+CODE} $\ast$}]{table}{, }\item[{uint16\+\_\+t}]{current\+\_\+code}{, }\item[{int}]{depth}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+
+\index{HUFFMAN\_TABLE.c@{HUFFMAN\_TABLE.c}!buildFastLookupTable@{buildFastLookupTable}}
+\index{buildFastLookupTable@{buildFastLookupTable}!HUFFMAN\_TABLE.c@{HUFFMAN\_TABLE.c}}
+\doxysubsubsection{buildFastLookupTable()}
+{\footnotesize\ttfamily \label{_h_u_f_f_m_a_n___t_a_b_l_e_8c_a2499274512be997926ea1464b3d09628} 
+void build\+Fast\+Lookup\+Table (\begin{DoxyParamCaption}\item[{const \textbf{ HUFFMAN\+\_\+\+CODE} $\ast$}]{canonical\+\_\+codes}{, }\item[{int}]{total\+\_\+symbols}{, }\item[{\textbf{ Huffman\+Entry} $\ast$}]{lookup\+\_\+table}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+
+\index{HUFFMAN\_TABLE.c@{HUFFMAN\_TABLE.c}!decode\_symbol@{decode\_symbol}}
+\index{decode\_symbol@{decode\_symbol}!HUFFMAN\_TABLE.c@{HUFFMAN\_TABLE.c}}
+\doxysubsubsection{decode\_symbol()}
+{\footnotesize\ttfamily \label{_h_u_f_f_m_a_n___t_a_b_l_e_8c_ac5c5c75eec8b54cf307c41e22253540f} 
+uint16\+\_\+t decode\+\_\+symbol (\begin{DoxyParamCaption}\item[{\textbf{ BIT\+\_\+\+READER} $\ast$}]{reader}{, }\item[{const \textbf{ Huffman\+Tree} $\ast$}]{tree}{}\end{DoxyParamCaption})}
+

@@ -1,0 +1,115 @@
+.TH "node.h" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+node.h
+.SH SYNOPSIS
+.br
+.PP
+\fR#include <stdint\&.h>\fP
+.br
+
+.SS "Data Structures"
+
+.in +1c
+.ti -1c
+.RI "struct \fBNode\fP"
+.br
+.ti -1c
+.RI "struct \fBMinHeap\fP"
+.br
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "typedef struct Node \fBNode\fP"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBcompressCodeLengths\fP (const uint8_t *all_lengths, size_t count, uint8_t *compressed_lengths, uint16_t *cl_frequencies, uint8_t *extra_bits_values, size_t *compressed_count)"
+.br
+.ti -1c
+.RI "void \fBfindCodeLengthsInTree\fP (\fBNode\fP *node, uint8_t *lengths, uint8_t depth)"
+.br
+.ti -1c
+.RI "\fBMinHeap\fP * \fBcreateMinHeap\fP (int capacity)"
+.br
+.ti -1c
+.RI "void \fBaddToMinHeap\fP (\fBMinHeap\fP *minHeap, \fBNode\fP *node)"
+.br
+.ti -1c
+.RI "void \fBprintHeap\fP (\fBMinHeap\fP *minHeap)"
+.br
+.ti -1c
+.RI "\fBNode\fP * \fBextractMin\fP (\fBMinHeap\fP *minHeap)"
+.br
+.ti -1c
+.RI "\fBNode\fP * \fBbuildHuffmanTree\fP (\fBMinHeap\fP *minHeap)"
+.br
+.RI "Creates the Huffman tree from the populated Min-Heap\&. "
+.ti -1c
+.RI "void \fBbuildMinHeap\fP (\fBMinHeap\fP *minHeap)"
+.br
+.ti -1c
+.RI "void \fBfreeMinHeap\fP (\fBMinHeap\fP *minHeap)"
+.br
+.ti -1c
+.RI "\fBNode\fP * \fBcreateNode\fP (unsigned short usSymbol, int freq)"
+.br
+.ti -1c
+.RI "void \fBfreeTree\fP (\fBNode\fP *top)"
+.br
+.in -1c
+.SH "Typedef Documentation"
+.PP 
+.SS "typedef struct Node Node"
+
+.SH "Function Documentation"
+.PP 
+.SS "void addToMinHeap (\fBMinHeap\fP * minHeap, \fBNode\fP * node)\fR [extern]\fP"
+
+.SS "\fBNode\fP * buildHuffmanTree (\fBMinHeap\fP * minHeap)\fR [extern]\fP"
+
+.PP
+Creates the Huffman tree from the populated Min-Heap\&. 
+.IP "\(bu" 2
+This is the greedy algorithm core: repeatedly combine the two smallest nodes\&.
+.IP "\(bu" 2
+\fBParameters\fP
+.RS 4
+\fIminHeap\fP The initialized Min-Heap containing all leaf nodes\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+Node* The root of the completed Huffman tree\&. 
+.RE
+.PP
+
+.PP
+
+.SS "void buildMinHeap (\fBMinHeap\fP * minHeap)\fR [extern]\fP"
+
+.SS "void compressCodeLengths (const uint8_t * all_lengths, size_t count, uint8_t * compressed_lengths, uint16_t * cl_frequencies, uint8_t * extra_bits_values, size_t * compressed_count)\fR [extern]\fP"
+
+.SS "\fBMinHeap\fP * createMinHeap (int capacity)\fR [extern]\fP"
+
+.SS "\fBNode\fP * createNode (unsigned short usSymbol, int freq)\fR [extern]\fP"
+
+.SS "\fBNode\fP * extractMin (\fBMinHeap\fP * minHeap)\fR [extern]\fP"
+
+.SS "void findCodeLengthsInTree (\fBNode\fP * node, uint8_t * lengths, uint8_t depth)\fR [extern]\fP"
+
+.SS "void freeMinHeap (\fBMinHeap\fP * minHeap)\fR [extern]\fP"
+
+.SS "void freeTree (\fBNode\fP * top)\fR [extern]\fP"
+
+.SS "void printHeap (\fBMinHeap\fP * minHeap)\fR [extern]\fP"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

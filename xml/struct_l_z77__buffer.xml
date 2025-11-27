@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="struct_l_z77__buffer" kind="struct" language="C++" prot="public">
+    <compoundname>LZ77_buffer</compoundname>
+    <includes refid="_l_z77_8h" local="no">LZ77.h</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="struct_l_z77__buffer_1a28dd3a7c2db4aa8526cb4b1dedb376a8" prot="public" static="no" mutable="no">
+        <type><ref refid="struct_l_z77__compressed" kindref="compound">LZ77_compressed</ref> *</type>
+        <definition>LZ77_compressed* tokens</definition>
+        <argsstring></argsstring>
+        <name>tokens</name>
+        <qualifiedname>LZ77_buffer::tokens</qualifiedname>
+        <briefdescription>
+<para>Pointer to the start of the dynamic array of tokens. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="LZ77.h" line="46" column="21" bodyfile="LZ77.h" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_l_z77__buffer_1a854352f53b148adc24983a58a1866d66" prot="public" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t size</definition>
+        <argsstring></argsstring>
+        <name>size</name>
+        <qualifiedname>LZ77_buffer::size</qualifiedname>
+        <briefdescription>
+<para>The current number of tokens stored (using size_t for large files). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="LZ77.h" line="47" column="12" bodyfile="LZ77.h" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_l_z77__buffer_1ad721fc6ca6a3d6ba3bc506576622aab0" prot="public" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t capacity</definition>
+        <argsstring></argsstring>
+        <name>capacity</name>
+        <qualifiedname>LZ77_buffer::capacity</qualifiedname>
+        <briefdescription>
+<para>The total number of tokens the buffer can hold. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="LZ77.h" line="48" column="12" bodyfile="LZ77.h" bodystart="48" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Structure to manage a dynamic array (growing buffer) of LZ77 tokens. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><itemizedlist>
+<listitem><para>Stores the tokens directly in a contiguous array (LZ77_compressed*), avoiding per-token allocations for better performance and cache utilization. </para>
+</listitem></itemizedlist>
+</para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>LZ77_buffer</label>
+        <link refid="struct_l_z77__buffer"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>tokens</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>LZ77_compressed</label>
+        <link refid="struct_l_z77__compressed"/>
+      </node>
+    </collaborationgraph>
+    <location file="LZ77.h" line="45" column="1" bodyfile="LZ77.h" bodystart="45" bodyend="49"/>
+    <listofallmembers>
+      <member refid="struct_l_z77__buffer_1ad721fc6ca6a3d6ba3bc506576622aab0" prot="public" virt="non-virtual"><scope>LZ77_buffer</scope><name>capacity</name></member>
+      <member refid="struct_l_z77__buffer_1a854352f53b148adc24983a58a1866d66" prot="public" virt="non-virtual"><scope>LZ77_buffer</scope><name>size</name></member>
+      <member refid="struct_l_z77__buffer_1a28dd3a7c2db4aa8526cb4b1dedb376a8" prot="public" virt="non-virtual"><scope>LZ77_buffer</scope><name>tokens</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>
