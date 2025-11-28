@@ -65,7 +65,8 @@ extern int main(const int argc, char** argv) {
         }
     }
 
-    if (strcmp(argv[1],"compress")==0 || strcmp(argv[1], "-c") == 0 || strcmp(argv[1],"decompress") == 0 || strcmp(argv[1],"-d") == 0) {
+    if (strcmp(argv[1], "compress") == 0 || strcmp(argv[1], "-c") == 0 || strcmp(argv[1], "decompress") == 0 ||
+        strcmp(argv[1], "-d") == 0) {
         if (argc == 2) {
             printf("Not enough arguments.\n Please read the provided help before using the program.\n\n");
             printHelp();

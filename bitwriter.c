@@ -49,85 +49,46 @@ extern void addData(BitWriter* bw, uint32_t value, uint8_t bitLength) {
     if (bitLength == 0 || bitLength > 32) {
         return;
     }
-    uint32_t current_value = value;
-    while (bitLength > 0) {
-        uint8_t bitsLeftInByte = 8 - bw->currentPosition;
 
-        // Calculate how many bits we can write into the current buffer.
-        // This is the minimum of the bits left in the input and the space left in the buffer.
-        uint8_t bits_to_transfer = (bitLength < bitsLeftInByte) ? bitLength : bitsLeftInByte;
+    // A hiba a 'value' és 'bitLength' frissítésében lehetett.
+    // Használjunk hurok (loop) indexet a LSB-first kiolvasáshoz.
 
-        // --- LSB-FIRST INSERTION LOGIC ---
+    // A 'value' legalacsonyabb 'bitLength' bitjeit írjuk ki.
+    for (int i = 0; i < bitLength; i++) {
 
-        // 1. Create a mask to isolate the 'bits_to_transfer' LSBs from the input 'value'.
-        //    Use a wider type for the mask calculation to ensure correct behavior if bits_to_transfer == 8.
-        uint32_t mask = (1 << bits_to_transfer) - 1;
+        // 1. Olvassuk ki a BIT-et a 'value'-ból (LSB-first)
+        // A (value >> i) & 1 mindig a value 'i.' bitjét adja
+        uint8_t bit = (value >> i) & 1;
 
-        // 2. Extract the relevant LSB chunk from the input value.
-        //    The snippet is now up to 8 bits, stored in a 32-bit container.
-        uint32_t snippet = current_value & mask;
+        // 2. Szúrjuk be a bitet a bw->byte regiszter megfelelő pozíciójára (LSB-first)
+        // A bit a bw->currentPosition pozíciójára kerül, ami LSB-től MSB felé halad.
+        bw->byte |= (bit << bw->currentPosition);
 
-        // 3. Shift the snippet to its correct position in the byte buffer
-        //    (left-shifted by currentPosition) and OR it in.
-        //    The cast to (uint8_t) on the right side is safe since snippet is <= 255.
-        bw->byte |= (uint8_t)(snippet << bw->currentPosition);
+        // 3. Haladjunk a következő bit pozícióra
+        bw->currentPosition++;
 
-        // --- UPDATE STATE ---
-
-        // 4. Advance the buffer position.
-        bw->currentPosition += bits_to_transfer;
-
-        // 5. Update the input value and length to discard the bits we just wrote.
-        current_value >>= bits_to_transfer; // Discard the LSBs that were just written.
-        bitLength -= bits_to_transfer;
-
-        // --- HANDLE FLUSH (Byte Boundary Crossing) ---
-
-        // If the byte is now full (currentPosition == 8), flush it.
+        // 4. Ha a bájt megtelt, írjuk ki a puffert
         if (bw->currentPosition == 8) {
             flushByte(bw);
-            // The position and byte are reset inside flushByte()
+            // bw->byte és bw->currentPosition resetelődnek a flushByte-ban
         }
     }
 }
 
 extern void flush_bitstream_writer(BitWriter* bw) {
-    // Check if the current byte is only partially full (currentPosition is 1 to 7)
     if (bw->currentPosition > 0) {
-        // Calculate the number of zero bits needed to fill the byte
         uint8_t bits_to_pad = 8 - bw->currentPosition;
-
-        // Since the current value is 0, we can use addData to write 'bits_to_pad' zeros.
-        // addData handles the correct bit shifting and calls flushByte when done.
+        // Zérókkal való kitöltés (addData(bw, 0, bits_to_pad);)
         addData(bw, 0, bits_to_pad);
     }
-
-    // After this, bw->currentPosition must be 0, and the last byte is flushed
-    // into the buffer (bw->buffer[bw->index] is the last padded byte).
-    // The final flush to disk (fwrite) is usually handled by closeBitWriter or a large buffer flush.
+    // ...
 }
 
 extern void addBytesFromMSB(BitWriter* bw, uint32_t value, uint8_t bytes) {
-    // 1. Ensure bitstream is aligned.
     flush_bitstream_writer(bw);
-
-    // 2. Write the 4 bytes in LSB-first order (Little-Endian)
     for (int i = 0; i < bytes; i++) {
-        // Extract byte i (0, 1, 2, 3). The LSB byte (i=0) is written first.
         bw->byte = (uint8_t)((value >> (i * 8)) & 0xFF);
-        flushByte(bw); // Writes the byte and resets position to 0
-    }
-}
-
-extern void addBytesFromMSB2(BitWriter* bw, uint32_t value, uint8_t bytes) {
-    // 1. Ensure bitstream is aligned.
-    flush_bitstream_writer(bw);
-
-    // 2. Write the 4 bytes in LSB-first order (Little-Endian)
-    for (int i = bytes; i >= 0; i--) {
-        // Extract byte i (0, 1, 2, 3). The LSB byte (i=0) is written first.
-        bw->byte = (uint8_t)((value >> (i * 8)) & 0xFF);
-        flushByte(bw); // Writes the byte and resets position to 0
+        flushByte(bw);
     }
 }
 
@@ -149,12 +110,19 @@ extern void createFile(BitWriter* bw, char* fileName, char* extension) {
     addBytesFromMSB(bw, XFL,1); //XFL
     addBytesFromMSB(bw, OS, 1);
 
+    printf("CurrentPosition: %d\n",bw->currentPosition);
+
 }
 
 
 
 extern void freeBitWriter(BitWriter* bw) {
-    flushBitWriterBuffer(bw);
+    const size_t flushedBytes = flushBitWriterBuffer(bw);
+    printf("Last 8 byte: ");
+    for (int i = 8; i > 0;i--) {
+        printf("%d\t",bw->buffer[bw->index-i]);
+    }
+    printf("\nFlushed bytes %llu\n",flushedBytes);
     free(bw->fileName);
     fclose(bw->file);
     free(bw->buffer);

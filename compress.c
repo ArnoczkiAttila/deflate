@@ -405,6 +405,50 @@ static MinHeap* createCodeLengthTree(const uint16_t* codeLengthFrequencies) {
 //Flag for debug pourposes only.
 static bool flag = true;
 
+uint32_t reverseBits(uint32_t value, uint8_t bitLength) {
+    uint32_t reversed = 0;
+    for (int i = 0; i < bitLength; i++) {
+        if ((value >> i) & 1) {
+            reversed |= (1 << (bitLength - 1 - i));
+        }
+    }
+    return reversed;
+}
+
+void generateCanonicalCodes(const uint8_t* lengths, int size, HUFFMAN_CODE* table) {
+    uint16_t bl_count[16] = {0}; // Count of codes for each length (max length is 15 in Deflate)
+    uint16_t next_code[16] = {0}; // The next code value for a given length
+
+    // 1. lépés: Számoljuk meg, hány kód van az egyes hosszokból
+    for (int i = 0; i < size; i++) {
+        if (lengths[i] > 0) {
+            bl_count[lengths[i]]++;
+        }
+    }
+
+    // 2. lépés: Számítsuk ki a kezdő kódértéket minden hosszhoz
+    uint16_t code = 0;
+    bl_count[0] = 0;
+    for (int bits = 1; bits <= 15; bits++) {
+        code = (code + bl_count[bits - 1]) << 1;
+        next_code[bits] = code;
+    }
+
+    // 3. lépés: Rendeljük hozzá a kódokat a szimbólumokhoz
+    for (int i = 0; i < size; i++) {
+        int len = lengths[i];
+        if (len > 0) {
+            table[i].code = next_code[len];
+            table[i].length = len;
+            // Növeljük a következő kódot ehhez a hosszhoz
+            next_code[len]++;
+        } else {
+            table[i].code = 0;
+            table[i].length = 0;
+        }
+    }
+}
+
 /**
  * @brief Process Block
  *
@@ -478,13 +522,9 @@ extern void processBlock(BitWriter* bw, uint16_t* LLFrequency, uint16_t* distanc
         //printf("Code Length frequency for index %d %d \n",i,code_length_frequencies[i]);
     }
 
-    //Write to file
-    if (lastBlock) {
-        addData(bw, 0b01,1);
-    } else {
-        addData(bw,0b0,1); //not the last block
-    }
-    addData(bw,0b10,2); //dynamic huffman
+    /// BTYPE = 10 (dinamikus Huffman) - LSB-től MSB felé: B_FINAL (1 bit) + BTYPE (2 bit)
+    uint8_t header = (0b10 << 1) | (lastBlock ? 0b1 : 0b0);
+    addData(bw, header, 3);
 
     //HLIT 5bit
     addData(bw, highestLiteralInUse,5);
@@ -507,32 +547,39 @@ extern void processBlock(BitWriter* bw, uint16_t* LLFrequency, uint16_t* distanc
         // Each length is 3 bits
         BYTE symbol = cl_order[i];
         addData(bw, cl_lengths[symbol], 3);
-        if (flag) {printf("%d %d\n",symbol,cl_lengths[symbol]);}
+        //if (flag) {printf("%d %d\n",symbol,cl_lengths[symbol]);}
 
     }
     flag = false;
-    printf("\n\n");
-
+    //printf("\n\n");
     HUFFMAN_CODE ll_table[LITERAL_LENGTH_SIZE] = {0};
     HUFFMAN_CODE distance_table[DISTANCE_CODE_SIZE] = {0};
     HUFFMAN_CODE cl_table[CODE_LENGTH_FREQUENCIES] = {0};
+    // ❌ RÉGI: buildCodeLookupTable(literalTop, ll_table,0,0);
+    // ✅ ÚJ: Kanonikus kódok generálása a HOSSZOK alapján
+    generateCanonicalCodes(ll_lengths, LITERAL_LENGTH_SIZE, ll_table);
 
-    buildCodeLookupTable(literalTop, ll_table,0,0);
-    buildCodeLookupTable(distanceTop, distance_table,0,0);
-    buildCodeLookupTable(clTop, cl_table,0,0);
+    // ❌ RÉGI: buildCodeLookupTable(distanceTop, distance_table,0,0);
+    // ✅ ÚJ:
+    generateCanonicalCodes(distance_lengths, DISTANCE_CODE_SIZE, distance_table);
 
+    // ❌ RÉGI: buildCodeLookupTable(clTop, cl_table,0,0);
+    // ✅ ÚJ: (A Code Length kódoknak is kanonikusnak kell lenniük!)
+    generateCanonicalCodes(cl_lengths, CODE_LENGTH_FREQUENCIES, cl_table);
+    printf("belépve\n");
 
     //printf("compressed_symbol_count: %llu, - - %llu\n",compressed_symbol_count, total_lengths);
     for (int i = 0; i < compressed_symbol_count; i++) {
         BYTE symbol = compressed_ll_dist_lengths[i];
         HUFFMAN_CODE hCode = cl_table[symbol];
 
-        // 1. Write the Huffman Code for the RLE symbol
-        addData(bw, hCode.code, hCode.length);
+        // --- JAVÍTÁS KEZDTE ---
+        // Ez egy Huffman-kód, tehát meg kell fordítani a biteket MSB-hez!
+        addData(bw, reverseBits(hCode.code, hCode.length), hCode.length);
+        // --- JAVÍTÁS VÉGE ---
 
-        // 2. Write the Extra Bits if the symbol requires them
+        // Az extra biteket NEM kell megfordítani (LSB helyes)
         if (symbol == 16) {
-            // Repeat previous length 3-6 times (2 extra bits)
             addData(bw, extra_bits_values[i], 2);
         } else if (symbol == 17) {
             // Repeat 0 length 3-10 times (3 extra bits)
@@ -548,32 +595,39 @@ extern void processBlock(BitWriter* bw, uint16_t* LLFrequency, uint16_t* distanc
         LZ77_compressed token = output_ucpBuffer->tokens[i];
         if (token.type == LITERAL) {
             HUFFMAN_CODE hc = ll_table[token.data.literal];
-            addData(bw,hc.code,hc.length);
+
+            // --- JAVÍTÁS: Huffman-kód megfordítása ---
+            addData(bw, reverseBits(hc.code, hc.length), hc.length);
+
         } else {
             LENGTH_CODE lc = getLengthCode(token.data.match.length);
-            // Use the symbol ID for lookup, NOT the raw length
             HUFFMAN_CODE lengthCode = ll_table[lc.usSymbolID];
 
-            // Write the code and extra bits
-            addData(bw,lengthCode.code,lengthCode.length);
-            if (lc.iExtraBits>0) {
+            // --- JAVÍTÁS: Huffman-kód megfordítása ---
+            addData(bw, reverseBits(lengthCode.code, lengthCode.length), lengthCode.length);
+
+            if (lc.iExtraBits > 0) {
+                // Extra bitek maradnak LSB-first (NINCS JAVÍTÁS)
                 addData(bw, lc.iExtraValue, lc.iExtraBits);
             }
 
-            // Look up the distance code data
             DISTANCE_CODE dc = getDistanceCode(token.data.match.distance);
-            // Use the symbol ID for lookup, NOT the raw distance
             HUFFMAN_CODE distanceCode = distance_table[dc.usSymbolID];
 
-            // Write the code and extra bits
-            addData(bw,distanceCode.code, distanceCode.length);
-            if (dc.iExtraBits> 0) {
-                addData(bw,dc.iExtraValue, dc.iExtraBits);
+            // --- JAVÍTÁS: Huffman-kód megfordítása ---
+            addData(bw, reverseBits(distanceCode.code, distanceCode.length), distanceCode.length);
+
+            if (dc.iExtraBits > 0) {
+                // Extra bitek maradnak LSB-first (NINCS JAVÍTÁS)
+                addData(bw, dc.iExtraValue, dc.iExtraBits);
             }
         }
     }
     const HUFFMAN_CODE EOB = ll_table[END_OF_BLOCK];
-    addData(bw, EOB.code, EOB.length);
+
+    // --- JAVÍTÁS: Huffman-kód megfordítása ---
+    addData(bw, reverseBits(EOB.code, EOB.length), EOB.length);
+    printf("End of block. EOB code: %d, EOB length: %d, bw possition: %d\n",EOB.code, EOB.length, bw->currentPosition);
 
     //Free up memory pointers
     freeTree(clTop);
@@ -697,15 +751,24 @@ extern Status compress(char* filename) {
     } while (chunkBytesRead > 0);
 
     crc32Checksum = crc32Checksum ^ 0xFFFFFFFF;
+    printf("%d\n",(int) (crc32Checksum >> 0) & 0x000000FF );
+    printf("%d\n",(int) (crc32Checksum >> 8) & 0x000000FF );
+    printf("%d\n",(int) (crc32Checksum >> 16) & 0x000000FF );
+    printf("%d\n",(int) (crc32Checksum >> 24) & 0x000000FF );
 
     addBytesFromMSB(bitWriter,crc32Checksum,4);
     addBytesFromMSB(bitWriter,totalUncompressedSize,4);
+    printf("%d\n",(int) (totalUncompressedSize >> 0) & 0x000000FF );
+    printf("%d\n",(int) (totalUncompressedSize >> 8) & 0x000000FF );
+    printf("%d\n",(int) (totalUncompressedSize >> 16) & 0x000000FF );
+    printf("%d\n",(int) (totalUncompressedSize >> 24) & 0x000000FF );
 
     fclose(file);
 
     free(hashTable);
     free(ucpBuffer);
     freeLZ77Buffer(outputBuffer);
+    printf("Done\n");
     freeBitWriter(bitWriter);
     return status;
 }
