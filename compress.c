@@ -15,7 +15,7 @@
 #include "length.h"
 #include "LZ77.h"
 #include "node.h"
-#include "status.h"
+#include "STATUS.h"
 
 #define HASH_BITS 15
 #define HASH_SHIFT 5
@@ -41,9 +41,12 @@
  * @param uiarrHashTable The hashTable which stores the last occurrence of a 3 byte hash.
  *
  * @returns void
+ * Maximum memory required:
+ *  - 32bit systems: 8 bytes
+ *  - 64bit systems: 16 bytes
  */
-static void vfSubtractWindowSizeFromHashTable(uint16_t* uiarrHashTable) {
-    for (int i = 0; i<HASH_SIZE; i++) {
+static void vfSubtractWindowSizeFromHashTable(uint16_t *uiarrHashTable) {
+    for (int i = 0; i < HASH_SIZE; i++) {
         if (uiarrHashTable[i] >= WINDOW_SIZE) {
             uiarrHashTable[i] -= WINDOW_SIZE;
         }
@@ -61,8 +64,12 @@ static void vfSubtractWindowSizeFromHashTable(uint16_t* uiarrHashTable) {
  * @param p The pointer for the buffer.
  *
  * @returns uint16_t Hash key.
+ *
+*  Maximum memory required:
+ *  - 32bit systems: 4 bytes
+ *  - 64bit systems: 8 bytes
  */
-static uint16_t uifGenerateHashKey(const unsigned char* p) {
+static uint16_t uifGenerateHashKey(const unsigned char *p) {
     return (uint16_t) ((p[0] << HASH_SHIFT) ^ p[1] ^ p[2]) & HASH_MASK;
 }
 
@@ -71,9 +78,13 @@ static uint16_t uifGenerateHashKey(const unsigned char* p) {
  * If the memory allocation fails then it returns with a NULL pointer.
  *
  * @returns unsigned char* The freshly allocated BUFFER_SIZE sized buffer.
+ *
+ *  Maximum memory required:
+ *  - 32bit systems: BUFFER_SIZE+WINDOW_SIZE + 4 bytes
+ *  - 64bit systems: BUFFER_SIZE+WINDOW_SIZE + 8 bytes
  */
-static unsigned char* cpInitBuffer(void) {
-    unsigned char* ucpBuffer = (unsigned char*) malloc(BUFFER_SIZE+WINDOW_SIZE);
+static unsigned char *cpInitBuffer(void) {
+    unsigned char *ucpBuffer = (unsigned char *) malloc(BUFFER_SIZE+WINDOW_SIZE);
     if (ucpBuffer == NULL) {
         return NULL;
     };
@@ -92,14 +103,18 @@ static unsigned char* cpInitBuffer(void) {
  * @param ucpInputEndPointer This is the maximum Current pointer can be (the boundary of the buffer)
  *
  * @return int The length of the match in bytes
+ *
+ * Maximum memory required:
+ *  - 32bit systems: 24 bytes
+ *  - 64bit systems: 48 bytes
  */
-static int iFindMatchLength(const unsigned char* ucpCurrent, const unsigned char *ucpOld, const unsigned char *ucpInputEndPointer) {
-
+static int iFindMatchLength(const unsigned char *ucpCurrent, const unsigned char *ucpOld,
+                            const unsigned char *ucpInputEndPointer) {
     ptrdiff_t pdiffAvailableBytes = ucpInputEndPointer - ucpCurrent;
 
     int iMaxCheckLength = 258;
     if (pdiffAvailableBytes < iMaxCheckLength) {
-        iMaxCheckLength = (int)pdiffAvailableBytes;
+        iMaxCheckLength = (int) pdiffAvailableBytes;
     }
 
     int iLength = 0;
@@ -127,9 +142,13 @@ static int iFindMatchLength(const unsigned char* ucpCurrent, const unsigned char
  *
  * @param uiarrHashTable The pointer to the hashTable.
  *
- * @returns void
+ * @returns void* or NULL
+ *
+ * Maximum memory required:
+ *  - 32bit systems: 4 bytes
+ *  - 64bit systems: 8 bytes
  */
-static void* fvpResetHashTable(uint16_t *uiarrHashTable) {
+static void *fvpResetHashTable(uint16_t *uiarrHashTable) {
     return memset(uiarrHashTable, EMPTY_INDEX, 2 * HASH_SIZE);
 }
 
@@ -138,9 +157,13 @@ static void* fvpResetHashTable(uint16_t *uiarrHashTable) {
  * @brief initHashTable returns with an allocated hashTable. Required space in memory is 2*HASH_SIZE.
  * Must be freed afterward.
  *
- * @returns uint16_t* The pointer to the hashTable.
+ * @returns uint16_t* The pointer to the hashTable or NULL
+ *
+ *  Maximum memory required:
+ *  - 32bit systems: 2 * HASH_SIZE + 4  bytes
+ *  - 64bit systems: 2 * HASH_SIZE + 8 bytes
  */
-static uint16_t* initHashTable(void) {
+static uint16_t *initHashTable(void) {
     uint16_t *uipHashTable = malloc(2 * HASH_SIZE);
     if (uipHashTable == NULL) {
         return NULL;
@@ -158,34 +181,42 @@ static uint16_t* initHashTable(void) {
  * @param filename The name of the file. (probably with absolute path)
  *
  * @return FILE* or NULL
+ *
+ *  Maximum memory required:
+ *  - 32bit systems: 8 bytes
+ *  - 64bit systems: 16 bytes
  */
-extern FILE* ffOpenFile(const char* filename) {
-    FILE* fpFile = fopen(filename, "rb");
+extern FILE *ffOpenFile(const char *filename) {
+    FILE *fpFile = fopen(filename, "rb");
     return fpFile;
 }
 
 /**
  * @brief Compress Data
- * 
+ *
  * This function takes in a BUFFER SIZED buffer containing BYTES from a file, and fills up an LZ77_buffer containing
  * match/literal distance/length codes which will be used later in the processBlock function.
- * 
+ *
  * @param ucpBuffer The start of the buffer (pointer).
  * @param bytesRead The bytes processed in this function.
  * @param hash_table The hash lookup table for matches.
  * @param output_ucpBuffer The LZ77_buffer containing the matches/literals.
  *
  * @returns void
+ *
+ * Maximum memory required:
+ *  - 32bit systems: 40 bytes
+ *  - 64bit systems: 80 bytes
  */
-extern void compressData(const unsigned char *ucpBuffer, const size_t bytesRead, uint16_t* hash_table, LZ77_buffer* output_ucpBuffer) {
-
+extern void compressData(const unsigned char *ucpBuffer, const size_t bytesRead, uint16_t *hash_table,
+                         LZ77_buffer *output_ucpBuffer) {
     // --- Set the End Pointer ---
     const unsigned char *ucpInputEndPointer = ucpBuffer + bytesRead;
 
     // --- Loop Control ---
     // Loop only up to (bytesRead - 2) because we need at least 3 bytes to hash/match.
     int i;
-    for (i = 0; i < (int)bytesRead - 2; ) {
+    for (i = 0; i < (int) bytesRead - 2;) {
         const uint16_t hashKey = uifGenerateHashKey(ucpBuffer + i);
         const uint16_t hashIndex = hash_table[hashKey];
 
@@ -193,12 +224,10 @@ extern void compressData(const unsigned char *ucpBuffer, const size_t bytesRead,
         int bestDistance = 0;
 
         if (hashIndex != EMPTY_INDEX) {
-
             int distance = i - hashIndex;
 
             // Is distance within the 32KB LZ77 window?
             if (distance > 0 && distance <= WINDOW_SIZE) {
-
                 bestLength = iFindMatchLength(ucpBuffer + i, ucpBuffer + hashIndex, ucpInputEndPointer);
                 bestDistance = distance;
 
@@ -208,14 +237,15 @@ extern void compressData(const unsigned char *ucpBuffer, const size_t bytesRead,
             }
         }
 
-        hash_table[hashKey] = (uint16_t)i;
+        hash_table[hashKey] = (uint16_t) i;
 
         if (bestLength >= 3) {
             // Output the match token
-
+            if (bestDistance>40000) {
+                printf("Valamiért van egy 40k-nál nagyobb distance!\n");
+            }
             appendToken(output_ucpBuffer, createMatchLZ77(bestDistance, bestLength));
             i += bestLength;
-
         } else {
             // NO MATCH (Length < 3) or Invalid distance
 
@@ -230,7 +260,7 @@ extern void compressData(const unsigned char *ucpBuffer, const size_t bytesRead,
 
     // --- 4. HANDLE REMAINING BYTES ---
     // The loop ended at bytesRead - 2. Handle the last 1 or 2 bytes as literals.
-    for (; i < (int)bytesRead; i++) {
+    for (; i < (int) bytesRead; i++) {
         //printf("Literal: %c\n", ucpBuffer[i]);
         appendToken(output_ucpBuffer, createLiteralLZ77(ucpBuffer[i]));
     }
@@ -245,9 +275,13 @@ extern void compressData(const unsigned char *ucpBuffer, const size_t bytesRead,
  * @param size The size of the array.
  *
  * @returns void
+ *
+ * Maximum memory required:
+ *  - 32bit systems: 12 bytes
+ *  - 64bit systems: 24 bytes
  */
-static void resetUint16_tArray(uint16_t* array, const size_t size) {
-    for (int i = 0; i<size; i++) array[i] = 0;
+static void resetUint16_tArray(uint16_t *array, const size_t size) {
+    for (int i = 0; i < size; i++) array[i] = 0;
 }
 
 /**
@@ -261,16 +295,25 @@ static void resetUint16_tArray(uint16_t* array, const size_t size) {
  * @param LLFrequiency The frequency table.
  *
  * @returns BYTE
+ *
+ * Maximum memory required:
+ *  - 32bit systems: 10 bytes
+ *  - 64bit systems: 18 bytes
  */
-static BYTE calculateHLIT(const uint16_t* LLFrequiency) {
-    int highestUsedIndex = 256;
-    for (int i = LITERAL_LENGTH_SIZE-1; i>255;i--) {
+static BYTE calculateHLIT(const uint16_t *LLFrequiency) {
+    int highestUsedIndex = 256; // Minimum valid is EOB (256)
+
+    // Scan down from 285 to 257.
+    for (int i = LITERAL_LENGTH_SIZE - 1; i > 256; i--) {
         if (LLFrequiency[i] > 0) {
             highestUsedIndex = i;
             break;
         }
     }
-    return (BYTE)(highestUsedIndex - 257);
+
+    // FIX: Formula is (Count - 257). Count is (Index + 1).
+    // So HLIT = (Index + 1) - 257 = Index - 256.
+    return (BYTE) (highestUsedIndex - 256);
 }
 
 /**
@@ -280,12 +323,15 @@ static BYTE calculateHLIT(const uint16_t* LLFrequiency) {
  * we save bytes from the output with not writing out unnecessary distance codes to the file. Works just like the HLIT function.
  *
  * @param distanceCodeFrequency The distanceCode table.
- *
  * @return BYTE
+ *
+ * Maximum memory required:
+ *  - 32bit systems: 10 bytes
+ *  - 64bit systems: 18 bytes
  */
-static BYTE calculateHDIST(const uint16_t* distanceCodeFrequency) {
+static BYTE calculateHDIST(const uint16_t *distanceCodeFrequency) {
     int highestUsedIndex = 0;
-    for (int i = DISTANCE_CODE_SIZE-1; i>=0;i--) {
+    for (int i = DISTANCE_CODE_SIZE - 1; i >= 0; i--) {
         if (distanceCodeFrequency[i] > 0) {
             highestUsedIndex = i;
             break;
@@ -306,16 +352,32 @@ static BYTE calculateHDIST(const uint16_t* distanceCodeFrequency) {
  * @param codeLengthFrequency The code lengths table.
  *
  * @returns BYTE
+ *
+ * Maximum memory required:
+ *  - 32bit systems: 10 bytes
+ *  - 64bit systems: 18 bytes
  */
-static BYTE calculateHCLEN(const uint16_t* codeLengthFrequency) {
-    int highestUsedIndex = 0;
-    for (int i = CODE_LENGTH_FREQUENCIES-1; i>=0;i--) {
-        if (codeLengthFrequency[i] > 0) {
-            highestUsedIndex = i;
+static BYTE calculateHCLEN(const uint16_t *codeLengthFrequency) {
+    // The permutation order defined by RFC 1951
+    const BYTE cl_order[19] = { 16, 17, 18, 0, 8, 7, 9, 6, 10, 5, 11, 4, 12, 3, 13, 2, 14, 1, 15 };
+
+    // Scan the order BACKWARDS. Find the last index that is actually used.
+    int highestPermutationIndex = 0;
+
+    for (int i = 18; i >= 0; i--) {
+        BYTE symbol = cl_order[i];
+        if (codeLengthFrequency[symbol] > 0) {
+            highestPermutationIndex = i;
             break;
         }
     }
-    return (BYTE) highestUsedIndex - 4;
+
+    // HCLEN = (Count - 4). Count is (Index + 1).
+    // HCLEN = (Index + 1) - 4 = Index - 3.
+    // Minimum count is 4 (HCLEN = 0), so we clamp the result.
+    if (highestPermutationIndex < 3) return 0;
+
+    return (BYTE)(highestPermutationIndex - 3);
 }
 
 /**
@@ -329,8 +391,13 @@ static BYTE calculateHCLEN(const uint16_t* codeLengthFrequency) {
  * @param distanceCodeFrequency The output table for distance codes.
  *
  * @returns void
+ *
+ * Maximum memory required:
+ *  - 32bit systems: 24 bytes
+ *  - 64bit systems: 44 bytes
  */
-static void countFrequencies(const LZ77_buffer* output_ucpBuffer, uint16_t* LLFrequency, uint16_t* distanceCodeFrequency) {
+static void countFrequencies(const LZ77_buffer *output_ucpBuffer, uint16_t *LLFrequency,
+                             uint16_t *distanceCodeFrequency) {
     for (int i = 0; i < output_ucpBuffer->size; i++) {
         LZ77_compressed token = output_ucpBuffer->tokens[i];
         if (token.type == LITERAL) {
@@ -352,12 +419,16 @@ static void countFrequencies(const LZ77_buffer* output_ucpBuffer, uint16_t* LLFr
  * @param LLFrequency The frequency table for literal/length codes.
  *
  * @returns MinHeap* Must be freed afterward.
+ *
+ * Maximum memory required:
+ *  - 32bit systems: 16 bytes
+ *  - 64bit systems: 32 bytes
  */
-static MinHeap* createLiteralTree(const uint16_t* LLFrequency) {
-    MinHeap* literalTree = createMinHeap(LITERAL_LENGTH_SIZE);
+static MinHeap *createLiteralTree(const uint16_t *LLFrequency) {
+    MinHeap *literalTree = createMinHeap(LITERAL_LENGTH_SIZE);
     for (int i = 0; i < LITERAL_LENGTH_SIZE; i++) {
         if (LLFrequency[i] == 0) continue;
-        addToMinHeap(literalTree, createNode(i,LLFrequency[i]));
+        addToMinHeap(literalTree, createNode(i, LLFrequency[i]));
     }
     buildMinHeap(literalTree);
     return literalTree;
@@ -372,12 +443,16 @@ static MinHeap* createLiteralTree(const uint16_t* LLFrequency) {
  * @param distanceCodeFrequency The distance code frequency table.
  *
  * @returns MinHeap* Must be freed afterward.
+ *
+ * Maximum memory required:
+ *  - 32bit systems: 24 bytes
+ *  - 64bit systems: 44 bytes
  */
-static MinHeap* createDistanceTree(const uint16_t* distanceCodeFrequency) {
-    MinHeap* distanceTree = createMinHeap(DISTANCE_CODE_SIZE);
+static MinHeap *createDistanceTree(const uint16_t *distanceCodeFrequency) {
+    MinHeap *distanceTree = createMinHeap(DISTANCE_CODE_SIZE);
     for (int i = 0; i < DISTANCE_CODE_SIZE; i++) {
         if (distanceCodeFrequency[i] == 0) continue;
-        addToMinHeap(distanceTree, createNode(i,distanceCodeFrequency[i]));
+        addToMinHeap(distanceTree, createNode(i, distanceCodeFrequency[i]));
     }
     buildMinHeap(distanceTree);
     return distanceTree;
@@ -391,12 +466,16 @@ static MinHeap* createDistanceTree(const uint16_t* distanceCodeFrequency) {
  * @param codeLengthFrequencies The code length frequency table.
  *
  * @returns MinHeap* Must be freed afterward.
+ *
+ * Maximum memory required:
+ *  - 32bit systems: 24 bytes
+ *  - 64bit systems: 44 bytes
  */
-static MinHeap* createCodeLengthTree(const uint16_t* codeLengthFrequencies) {
-    MinHeap* codeLengthTree = createMinHeap(DISTANCE_CODE_SIZE);
+static MinHeap *createCodeLengthTree(const uint16_t *codeLengthFrequencies) {
+    MinHeap *codeLengthTree = createMinHeap(DISTANCE_CODE_SIZE);
     for (int i = 0; i < CODE_LENGTH_FREQUENCIES; i++) {
         if (codeLengthFrequencies[i] == 0) continue;
-        addToMinHeap(codeLengthTree, createNode(i,codeLengthFrequencies[i]));
+        addToMinHeap(codeLengthTree, createNode(i, codeLengthFrequencies[i]));
     }
     buildMinHeap(codeLengthTree);
     return codeLengthTree;
@@ -405,28 +484,17 @@ static MinHeap* createCodeLengthTree(const uint16_t* codeLengthFrequencies) {
 //Flag for debug pourposes only.
 static bool flag = true;
 
-uint32_t reverseBits(uint32_t value, uint8_t bitLength) {
-    uint32_t reversed = 0;
-    for (int i = 0; i < bitLength; i++) {
-        if ((value >> i) & 1) {
-            reversed |= (1 << (bitLength - 1 - i));
-        }
-    }
-    return reversed;
-}
 
-void generateCanonicalCodes(const uint8_t* lengths, int size, HUFFMAN_CODE* table) {
-    uint16_t bl_count[16] = {0}; // Count of codes for each length (max length is 15 in Deflate)
-    uint16_t next_code[16] = {0}; // The next code value for a given length
+static void generateCanonicalCodes(const uint8_t *lengths, int size, HUFFMAN_CODE *table) {
+    uint16_t bl_count[16] = {0};
+    uint16_t next_code[16] = {0};
 
-    // 1. lépés: Számoljuk meg, hány kód van az egyes hosszokból
     for (int i = 0; i < size; i++) {
         if (lengths[i] > 0) {
             bl_count[lengths[i]]++;
         }
     }
 
-    // 2. lépés: Számítsuk ki a kezdő kódértéket minden hosszhoz
     uint16_t code = 0;
     bl_count[0] = 0;
     for (int bits = 1; bits <= 15; bits++) {
@@ -434,13 +502,11 @@ void generateCanonicalCodes(const uint8_t* lengths, int size, HUFFMAN_CODE* tabl
         next_code[bits] = code;
     }
 
-    // 3. lépés: Rendeljük hozzá a kódokat a szimbólumokhoz
     for (int i = 0; i < size; i++) {
         int len = lengths[i];
         if (len > 0) {
             table[i].code = next_code[len];
             table[i].length = len;
-            // Növeljük a következő kódot ehhez a hosszhoz
             next_code[len]++;
         } else {
             table[i].code = 0;
@@ -459,29 +525,34 @@ void generateCanonicalCodes(const uint8_t* lengths, int size, HUFFMAN_CODE* tabl
  *  and then writes itself into the file.
  *  - And finally, assign an encoded code for each byte and then write it to a file bit by bit for the entirety of the block.
  *
- * @param bw BitWriter for writing bits to a file.
+ * @param bw BIT_WRITER for writing bits to a file.
  * @param LLFrequency Literal/length code frequency table.
  * @param distanceCodeFrequency Distance code frequency table.
  * @param output_ucpBuffer The LZ77_buffer containing the match/literal objects.
  * @param lastBlock The flag for the last block.
  *
  * @returns void
+ *
+ * Maximum memory required:
+ *  - 32bit systems: 1000 bytes
+ *  - 64bit systems: 2000 bytes
  */
-extern void processBlock(BitWriter* bw, uint16_t* LLFrequency, uint16_t* distanceCodeFrequency, const LZ77_buffer* output_ucpBuffer, const bool lastBlock) {
+extern void processBlock(BIT_WRITER *bw, uint16_t *LLFrequency, uint16_t *distanceCodeFrequency,
+                         const LZ77_buffer *output_ucpBuffer, const bool lastBlock) {
     resetUint16_tArray(LLFrequency,LITERAL_LENGTH_SIZE);
     resetUint16_tArray(distanceCodeFrequency,DISTANCE_CODE_SIZE);
-    for (int i = 0; i< LITERAL_LENGTH_SIZE;i++) {
+    for (int i = 0; i < LITERAL_LENGTH_SIZE; i++) {
         //printf("LLFrequency at index %d is %d\n", i, LLFrequency[i]);
     }
-    countFrequencies(output_ucpBuffer,LLFrequency,distanceCodeFrequency);
+    countFrequencies(output_ucpBuffer, LLFrequency, distanceCodeFrequency);
     /*
      * Create 2 MinHeaps to make the huffman tree build possible
      */
-    MinHeap* literalTree = createLiteralTree(LLFrequency);
-    MinHeap* distanceTree = createDistanceTree(distanceCodeFrequency);
+    MinHeap *literalTree = createLiteralTree(LLFrequency);
+    MinHeap *distanceTree = createDistanceTree(distanceCodeFrequency);
 
-    Node* literalTop = buildHuffmanTree(literalTree);
-    Node* distanceTop = buildHuffmanTree(distanceTree);
+    Node *literalTop = buildHuffmanTree(literalTree);
+    Node *distanceTop = buildHuffmanTree(distanceTree);
 
     const BYTE highestLiteralInUse = calculateHLIT(LLFrequency);
     const BYTE highestDistanceCodeInUse = calculateHDIST(distanceCodeFrequency);
@@ -496,22 +567,29 @@ extern void processBlock(BitWriter* bw, uint16_t* LLFrequency, uint16_t* distanc
 
     //now we go through the tree using the function in node.h
     //and find the deepness of each leaf
-    findCodeLengthsInTree(literalTop,ll_lengths,0);
-    findCodeLengthsInTree(distanceTop,distance_lengths,0);
+    findCodeLengthsInTree(literalTop, ll_lengths, 0);
+    findCodeLengthsInTree(distanceTop, distance_lengths, 0);
+
+    flattenTree(ll_lengths, LITERAL_LENGTH_SIZE, 15);
+    flattenTree(distance_lengths, DISTANCE_CODE_SIZE, 15);
+
 
     //combine the two results into one array
-    memcpy(combinedLL_Distance_lengths,ll_lengths,highestLiteralInUse+257);
-    memcpy(combinedLL_Distance_lengths+highestLiteralInUse+257,distance_lengths,highestDistanceCodeInUse+1);
+    memcpy(combinedLL_Distance_lengths, ll_lengths, highestLiteralInUse + 257);
+    memcpy(combinedLL_Distance_lengths + highestLiteralInUse + 257, distance_lengths, highestDistanceCodeInUse + 1);
 
     //now call the compress code lenghts function on this combined distance and literal/lenghts pair
-    BYTE compressed_ll_dist_lengths[total_lengths+20];
-    BYTE extra_bits_values[total_lengths+20];
+    BYTE compressed_ll_dist_lengths[total_lengths + 20];
+    BYTE extra_bits_values[total_lengths + 20];
     uint16_t code_length_frequencies[CODE_LENGTH_FREQUENCIES] = {0};
     size_t compressed_symbol_count = 0;
-    compressCodeLengths(combinedLL_Distance_lengths,total_lengths,compressed_ll_dist_lengths,code_length_frequencies,extra_bits_values,&compressed_symbol_count);
 
-    MinHeap* codeLengthMinHeap = createCodeLengthTree(code_length_frequencies);
-    Node* clTop = buildHuffmanTree(codeLengthMinHeap);
+    compressCodeLengths(combinedLL_Distance_lengths, total_lengths, compressed_ll_dist_lengths, code_length_frequencies,
+                        extra_bits_values, &compressed_symbol_count);
+
+    MinHeap *codeLengthMinHeap = createCodeLengthTree(code_length_frequencies);
+    Node *clTop = buildHuffmanTree(codeLengthMinHeap);
+    //if (flag) print_tree_visual(clTop,0,"");
     BYTE highestCodeLengthInUse = calculateHCLEN(code_length_frequencies);
 
     for (int i = 0; i < LITERAL_LENGTH_SIZE; i++) {
@@ -524,111 +602,131 @@ extern void processBlock(BitWriter* bw, uint16_t* LLFrequency, uint16_t* distanc
 
     /// BTYPE = 10 (dinamikus Huffman) - LSB-től MSB felé: B_FINAL (1 bit) + BTYPE (2 bit)
     uint8_t header = (0b10 << 1) | (lastBlock ? 0b1 : 0b0);
-    addData(bw, header, 3);
+    addBits(bw, header, 3);
 
     //HLIT 5bit
-    addData(bw, highestLiteralInUse,5);
+    addBits(bw, highestLiteralInUse, 5);
     //printf("highest literal in use: %d\n",highestLiteralInUse);
     //HDIST 5bit
-    addData(bw, highestDistanceCodeInUse,5);
+    addBits(bw, highestDistanceCodeInUse, 5);
     //printf("highest distance code in use: %d\n",highestDistanceCodeInUse);
     //HCLEN 4bit
-    addData(bw, highestCodeLengthInUse,4);
+    addBits(bw, highestCodeLengthInUse, 4);
     //printf("highest code length in use: %d\n",highestCodeLengthInUse);
 
     BYTE cl_lengths[CODE_LENGTH_FREQUENCIES] = {0};
     findCodeLengthsInTree(clTop, cl_lengths, 0);
+    /*if (flag) {
+        for (int i = 0; i < CODE_LENGTH_FREQUENCIES; i++) {
+            printf("Index: %d, value: %d\n", i, cl_lengths[i]);
+        }
+    }*/
+
+    flattenTree(cl_lengths, 19, 7);
+
+    /*if (flag) {
+        for (int i = 0; i < CODE_LENGTH_FREQUENCIES; i++) {
+            printf("Index: %d, value: %d\n", i, cl_lengths[i]);
+        }
+    }*/
 
     // 2. Write the Code Lengths of the Code Lengths (Meta-Tree Definition)
-    const BYTE cl_order[19] = { 16, 17, 18, 0, 8, 7, 9, 6, 10, 5, 11, 4, 12, 3, 13, 2, 14, 1, 15 };
+    const BYTE cl_order[19] = {16, 17, 18, 0, 8, 7, 9, 6, 10, 5, 11, 4, 12, 3, 13, 2, 14, 1, 15};
     BYTE hclen_value = highestCodeLengthInUse + 4; // This is the total count of symbols (4-19)
-
+    if (flag) printf("HCLEN: %d\n", hclen_value);
     for (int i = 0; i < hclen_value; ++i) {
         // Each length is 3 bits
         BYTE symbol = cl_order[i];
-        addData(bw, cl_lengths[symbol], 3);
-        //if (flag) {printf("%d %d\n",symbol,cl_lengths[symbol]);}
-
+        /*if (flag) {
+            printf("Byte before: %d, with a start index of: %d, and a current position of: %d\n", bw->byte, bw->index,bw->currentPosition);
+        }*/
+        addBits(bw, cl_lengths[symbol], 3);
+        if (flag) { printf("%d %d\n", symbol, cl_lengths[symbol]); }
+        /*if (flag) {
+            printf(" Byte after: %d, with a start index of: %d, and a current position of: %d\n\n",bw->byte, bw->index, bw->currentPosition);
+        }*/
     }
-    flag = false;
-    //printf("\n\n");
+    if (flag) printf("\n\n");
     HUFFMAN_CODE ll_table[LITERAL_LENGTH_SIZE] = {0};
     HUFFMAN_CODE distance_table[DISTANCE_CODE_SIZE] = {0};
     HUFFMAN_CODE cl_table[CODE_LENGTH_FREQUENCIES] = {0};
-    // ❌ RÉGI: buildCodeLookupTable(literalTop, ll_table,0,0);
-    // ✅ ÚJ: Kanonikus kódok generálása a HOSSZOK alapján
+
     generateCanonicalCodes(ll_lengths, LITERAL_LENGTH_SIZE, ll_table);
 
-    // ❌ RÉGI: buildCodeLookupTable(distanceTop, distance_table,0,0);
-    // ✅ ÚJ:
     generateCanonicalCodes(distance_lengths, DISTANCE_CODE_SIZE, distance_table);
 
-    // ❌ RÉGI: buildCodeLookupTable(clTop, cl_table,0,0);
-    // ✅ ÚJ: (A Code Length kódoknak is kanonikusnak kell lenniük!)
+    /*if (flag) {
+        for (int i= 0; i< DISTANCE_CODE_SIZE; i++) {
+            printf("length: %d code:%x \n",distance_table[i].length,distance_table[i].code);
+        }
+    }*/
+    flag = true;
+
     generateCanonicalCodes(cl_lengths, CODE_LENGTH_FREQUENCIES, cl_table);
-    printf("belépve\n");
 
     //printf("compressed_symbol_count: %llu, - - %llu\n",compressed_symbol_count, total_lengths);
     for (int i = 0; i < compressed_symbol_count; i++) {
         BYTE symbol = compressed_ll_dist_lengths[i];
         HUFFMAN_CODE hCode = cl_table[symbol];
 
-        // --- JAVÍTÁS KEZDTE ---
-        // Ez egy Huffman-kód, tehát meg kell fordítani a biteket MSB-hez!
-        addData(bw, reverseBits(hCode.code, hCode.length), hCode.length);
-        // --- JAVÍTÁS VÉGE ---
+        // CHANGE: This is a Huffman Code -> use writeHuffmanCode
+        writeHuffmanCode(bw, hCode.code, hCode.length);
 
-        // Az extra biteket NEM kell megfordítani (LSB helyes)
+        // KEEP: These are "extra bits" (values), not codes -> keep addBits
         if (symbol == 16) {
-            addData(bw, extra_bits_values[i], 2);
+            addBits(bw, extra_bits_values[i], 2);
         } else if (symbol == 17) {
-            // Repeat 0 length 3-10 times (3 extra bits)
-            addData(bw, extra_bits_values[i], 3);
+            addBits(bw, extra_bits_values[i], 3);
         } else if (symbol == 18) {
-            // Repeat 0 length 11-138 times (7 extra bits)
-            addData(bw, extra_bits_values[i], 7);
+            addBits(bw, extra_bits_values[i], 7);
         }
     }
 
-    // @todo make the LENGTH_CODE table first and then the lookup should be much easier and faster
+    // 2. Writing the Compressed Data (Literals and Matches)
     for (int i = 0; i < output_ucpBuffer->size; i++) {
         LZ77_compressed token = output_ucpBuffer->tokens[i];
+
         if (token.type == LITERAL) {
             HUFFMAN_CODE hc = ll_table[token.data.literal];
 
-            // --- JAVÍTÁS: Huffman-kód megfordítása ---
-            addData(bw, reverseBits(hc.code, hc.length), hc.length);
-
+            // CHANGE: Huffman Code -> use writeHuffmanCode
+            writeHuffmanCode(bw, hc.code, hc.length);
         } else {
+            // --- Length ---
             LENGTH_CODE lc = getLengthCode(token.data.match.length);
             HUFFMAN_CODE lengthCode = ll_table[lc.usSymbolID];
 
-            // --- JAVÍTÁS: Huffman-kód megfordítása ---
-            addData(bw, reverseBits(lengthCode.code, lengthCode.length), lengthCode.length);
+            // CHANGE: Huffman Code for the length symbol (257-285)
+            writeHuffmanCode(bw, lengthCode.code, lengthCode.length);
 
+            // KEEP: Extra bits for length (e.g. +3 bits to say length is 15)
             if (lc.iExtraBits > 0) {
-                // Extra bitek maradnak LSB-first (NINCS JAVÍTÁS)
-                addData(bw, lc.iExtraValue, lc.iExtraBits);
+                addBits(bw, lc.iExtraValue, lc.iExtraBits);
             }
 
+            // --- Distance ---
             DISTANCE_CODE dc = getDistanceCode(token.data.match.distance);
             HUFFMAN_CODE distanceCode = distance_table[dc.usSymbolID];
 
-            // --- JAVÍTÁS: Huffman-kód megfordítása ---
-            addData(bw, reverseBits(distanceCode.code, distanceCode.length), distanceCode.length);
+            // CHANGE: Huffman Code for the distance symbol (0-29)
+            writeHuffmanCode(bw, distanceCode.code, distanceCode.length);
 
+            // KEEP: Extra bits for distance
             if (dc.iExtraBits > 0) {
-                // Extra bitek maradnak LSB-first (NINCS JAVÍTÁS)
-                addData(bw, dc.iExtraValue, dc.iExtraBits);
+                addBits(bw, dc.iExtraValue, dc.iExtraBits);
             }
         }
     }
-    const HUFFMAN_CODE EOB = ll_table[END_OF_BLOCK];
 
-    // --- JAVÍTÁS: Huffman-kód megfordítása ---
-    addData(bw, reverseBits(EOB.code, EOB.length), EOB.length);
-    printf("End of block. EOB code: %d, EOB length: %d, bw possition: %d\n",EOB.code, EOB.length, bw->currentPosition);
+    // 3. End of Block
+    const HUFFMAN_CODE EOB = ll_table[END_OF_BLOCK]; // Symbol 256
 
+    // CHANGE: EOB is a Huffman Code
+    writeHuffmanCode(bw, EOB.code, EOB.length);
+    if (lastBlock) {
+        flushBitstreamWriter(bw);
+    }
+    //printf("End of block. EOB code: %d, EOB length: %d, bw possition: %d\n",EOB.code, EOB.length, bw->currentPosition);
     //Free up memory pointers
     freeTree(clTop);
     freeTree(distanceTop);
@@ -647,43 +745,49 @@ extern void processBlock(BitWriter* bw, uint16_t* LLFrequency, uint16_t* distanc
  * buffer to buffer.
  *
  * @param filename The file which we want to compress.
- * @returns Status object
+ * @returns STATUS object
+ *
+ * Maximum memory required:
+ *  - 32bit systems: 24 bytes
+ *  - 64bit systems: 44 bytes
  */
-extern Status compress(char* filename) {
-    Status status = {.code = COMPRESSION_SUCCESS,.message = "File compression succeeded!"};
+extern STATUS *compress(char *filename) {
+    STATUS *status = initSTATUS();
+    status->code = COMPRESSION_SUCCESS;
+    createSTATUSMessage(status, "File compression succeeded!");
 
-    FILE* file = ffOpenFile(filename);
-    if (file==NULL) {
-        status.code = CANT_OPEN_FILE;
-        status.message = "Can\'t open input file!";
+    FILE *file = ffOpenFile(filename);
+    if (file == NULL) {
+        status->code = CANT_OPEN_FILE;
+        createSTATUSMessage(status, "Can\'t open input file!");
         return status;
     }
 
-    uint16_t* hashTable = initHashTable();
+    uint16_t *hashTable = initHashTable();
 
     if (hashTable == NULL) {
-        status.code = CANT_ALLOCATE_MEMORY;
-        status.message = "Can\'t allocate memory for a hash table!";
+        status->code = CANT_ALLOCATE_MEMORY;
+        createSTATUSMessage(status, "Can\'t allocate memory for a hash table!");
         return status;
     }
 
-    unsigned char* ucpBuffer = cpInitBuffer();
+    unsigned char *ucpBuffer = cpInitBuffer();
 
     if (ucpBuffer == NULL) {
-        status.code = CANT_ALLOCATE_MEMORY;
-        status.message = "Can\'t allocate memory for a ucpBuffer!";
+        status->code = CANT_ALLOCATE_MEMORY;
+        createSTATUSMessage(status, "Can\'t allocate memory for a ucpBuffer!");
         free(hashTable);
         return status;
     }
 
 
-    LZ77_buffer* outputBuffer = initLZ77Buffer();
+    LZ77_buffer *outputBuffer = initLZ77Buffer();
 
     uint16_t LLFrequency[LITERAL_LENGTH_SIZE] = {0};
     uint16_t distanceCodeFrequency[DISTANCE_CODE_SIZE] = {0};
 
-    BitWriter* bitWriter = initBitWriter();
-    createFile(bitWriter, filename, "gz"); // Use "gz" extension
+    BIT_WRITER *BIT_WRITER = initBIT_WRITER(4096);
+    createFile(BIT_WRITER, filename, "gz"); // Use "gz" extension
 
     uint32_t crc32Checksum = 0xFFFFFFFF; // CRC32 is initialized to all ones
     uint32_t totalUncompressedSize = 0;
@@ -701,13 +805,12 @@ extern Status compress(char* filename) {
         size_t bytesToCompress = chunkBytesRead;
 
         if (bytesToCompress > 0) {
-
             crc32Checksum = calculate_crc32(
                 crc32Checksum,
                 ucpBuffer + current_buffer_pos,
                 bytesToCompress
             );
-            totalUncompressedSize += (uint32_t)bytesToCompress;
+            totalUncompressedSize += (uint32_t) bytesToCompress;
         }
 
 
@@ -722,13 +825,13 @@ extern Status compress(char* filename) {
         isFinalBlock = (chunkBytesRead < WINDOW_SIZE) || feof(file);
 
         processBlock(
-            bitWriter,
+            BIT_WRITER,
             LLFrequency,
             distanceCodeFrequency,
             outputBuffer,
             isFinalBlock
         );
-        
+
         freeLZ77Buffer(outputBuffer);
         outputBuffer = initLZ77Buffer();
 
@@ -746,22 +849,20 @@ extern Status compress(char* filename) {
         } else {
             chunkBytesRead = 0;
         }
-
-
     } while (chunkBytesRead > 0);
 
     crc32Checksum = crc32Checksum ^ 0xFFFFFFFF;
-    printf("%d\n",(int) (crc32Checksum >> 0) & 0x000000FF );
-    printf("%d\n",(int) (crc32Checksum >> 8) & 0x000000FF );
-    printf("%d\n",(int) (crc32Checksum >> 16) & 0x000000FF );
-    printf("%d\n",(int) (crc32Checksum >> 24) & 0x000000FF );
+    printf("%d\n", (int) (crc32Checksum >> 0) & 0x000000FF);
+    printf("%d\n", (int) (crc32Checksum >> 8) & 0x000000FF);
+    printf("%d\n", (int) (crc32Checksum >> 16) & 0x000000FF);
+    printf("%d\n", (int) (crc32Checksum >> 24) & 0x000000FF);
 
-    addBytesFromMSB(bitWriter,crc32Checksum,4);
-    addBytesFromMSB(bitWriter,totalUncompressedSize,4);
-    printf("%d\n",(int) (totalUncompressedSize >> 0) & 0x000000FF );
-    printf("%d\n",(int) (totalUncompressedSize >> 8) & 0x000000FF );
-    printf("%d\n",(int) (totalUncompressedSize >> 16) & 0x000000FF );
-    printf("%d\n",(int) (totalUncompressedSize >> 24) & 0x000000FF );
+    addBytes(BIT_WRITER, crc32Checksum, 4);
+    addBytes(BIT_WRITER, totalUncompressedSize, 4);
+    printf("%d\n", (int) (totalUncompressedSize >> 0) & 0x000000FF);
+    printf("%d\n", (int) (totalUncompressedSize >> 8) & 0x000000FF);
+    printf("%d\n", (int) (totalUncompressedSize >> 16) & 0x000000FF);
+    printf("%d\n", (int) (totalUncompressedSize >> 24) & 0x000000FF);
 
     fclose(file);
 
@@ -769,6 +870,6 @@ extern Status compress(char* filename) {
     free(ucpBuffer);
     freeLZ77Buffer(outputBuffer);
     printf("Done\n");
-    freeBitWriter(bitWriter);
+    freeBIT_WRITER(BIT_WRITER);
     return status;
 }

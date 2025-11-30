@@ -10,8 +10,8 @@
 #include "bitwriter.h"
 #include "status.h"
 
-extern Status compress(char* fileName);
+extern STATUS* compress(char* fileName);
 extern FILE* ffOpenFile(const char* filename);
-extern size_t flushBitWriterBuffer(BitWriter* bw);
+extern size_t flushBitWriterBuffer(BIT_WRITER* bw);
 
 #endif //DEFLATE_COMPRESS_H

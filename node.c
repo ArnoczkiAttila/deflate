@@ -1,6 +1,5 @@
 //
-// Created by Attila Arnóczki on 10/18/2025.
-// Node version 0.0.1
+// Created by Attila on 10/18/2025.
 //
 
 #include "node.h"
@@ -12,7 +11,7 @@
 
 #define INVALID_NODE_SYMBOL 286
 
-Node* createNode(unsigned short usSymbol, int freq) {
+extern Node* createNode(const unsigned short usSymbol, const int freq) {
     Node* n = (Node*)malloc(sizeof(Node));
     if (n == NULL) { return NULL; }
     n->iFrequency = freq;
@@ -114,7 +113,7 @@ extern void compressCodeLengths(
             }
 
             // C. Write any remaining 1 or 2 instances as literals (0-15)
-            for (size_t j = 0; j < run_length; ++j) {
+            for (size_t j = 0; j < run_length; j++) {
                 compressed_lengths[output_idx] = current_len;
                 extra_bits_values[output_idx] = 0; // No extra bits
                 cl_frequencies[current_len]++;
@@ -323,4 +322,99 @@ extern void extract_code_lengths(Node* npCurrent, uint8_t uiCurrentDepth, uint8_
     extract_code_lengths(npCurrent->pnLeft, uiCurrentDepth + 1, uiLengthCodes);
 
     extract_code_lengths(npCurrent->pnRight, uiCurrentDepth + 1, uiLengthCodes);
+}
+
+extern void print_tree_visual(Node* node, int level, char* prefix) {
+    if (!node) return;
+
+    if (node->usSymbol != INVALID_NODE_SYMBOL) {
+        printf("%s|__ \033[1;32mLeaf: %d\033[0m\n", prefix, node->usSymbol);
+    } else {
+        printf("%s|__ (node)\n", prefix);
+    }
+
+    char new_prefix[256];
+
+    // Print Left Branch (0)
+    if (node->pnLeft) {
+        printf("%s    |__ 0", prefix);
+        snprintf(new_prefix, sizeof(new_prefix), "%s    ", prefix);
+        print_tree_visual(node->pnLeft, level + 1, new_prefix);
+    }
+
+    // Print Right Branch (1)
+    if (node->pnRight) {
+        printf("%s    |__ 1", prefix);
+        snprintf(new_prefix, sizeof(new_prefix), "%s    ", prefix);
+        print_tree_visual(node->pnRight, level + 1, new_prefix);
+    }
+}
+
+/**
+ * @brief Flattens a Huffman tree to ensure no code exceeds max_depth.
+ * * This function modifies the lengths array in-place.
+ * * @param lengths The array of code lengths (e.g., cl_lengths).
+ * @param num_symbols The size of the array (e.g., 19 for Code Lengths).
+ * @param max_depth The hard limit for bit length (7 for Code Lengths, 15 for others).
+ */
+extern void flattenTree(uint8_t* lengths, int num_symbols, int max_depth) {
+    // 1. Clamp all lengths to the maximum limit.
+    // This fixes the "illegal depth" error but likely breaks Kraft's inequality (tree becomes over-full).
+    for (int i = 0; i < num_symbols; i++) {
+        if (lengths[i] > max_depth) {
+            lengths[i] = max_depth;
+        }
+    }
+
+    // 2. Iteratively repair the tree until it satisfies Kraft's inequality.
+    // Kraft's Inequality using integer math:
+    // Total Cost must be <= (1 << max_depth).
+    // A symbol with length L contributes (1 << (max_depth - L)) to the cost.
+
+    const uint32_t max_capacity = 1 << max_depth;
+
+    while (true) {
+        uint32_t current_weight = 0;
+
+        // Calculate total weight of the tree
+        for (int i = 0; i < num_symbols; i++) {
+            if (lengths[i] > 0) {
+                current_weight += (1 << (max_depth - lengths[i]));
+            }
+        }
+
+        // If we are within budget, we are done!
+        if (current_weight <= max_capacity) {
+            break;
+        }
+
+        // 3. We are over budget. We need to "demote" a symbol (increase its length)
+        // to free up space. To minimize damage to the compression ratio, we pick
+        // a symbol that is closest to the limit (longest code) and nudge it down.
+
+        int best_index = -1;
+        int max_len_found = 0;
+
+        for (int i = 0; i < num_symbols; i++) {
+            // We can only increase lengths that are strictly less than the limit
+            if (lengths[i] > 0 && lengths[i] < max_depth) {
+                // Find the longest length available to increment
+                if (lengths[i] >= max_len_found) {
+                    max_len_found = lengths[i];
+                    best_index = i;
+                }
+            }
+        }
+
+        if (best_index != -1) {
+            // Increase the length (e.g., change a 6 to a 7).
+            // This reduces its weight from 2 units to 1 unit, helping us fit the budget.
+            lengths[best_index]++;
+        } else {
+            // This should technically never happen unless the input is completely degenerate
+            // (e.g., trying to fit 200 symbols into 3 bits).
+            fprintf(stderr, "Error: Cannot flatten tree. Too many symbols for the bit limit.\n");
+            break;
+        }
+    }
 }

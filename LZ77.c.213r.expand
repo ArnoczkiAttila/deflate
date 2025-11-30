@@ -1,0 +1,726 @@
+
+;; Function createLiteralLZ77 (createLiteralLZ77, funcdef_no=4, decl_uid=1849, cgraph_uid=4, symbol_order=4)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Merging block 4 into block 2...
+Merged blocks 2 and 4.
+Merged 2 and 4 without moving.
+Removing jump 14.
+Merging block 5 into block 2...
+Merged blocks 2 and 5.
+Merged 2 and 5 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 5 NOTE_INSN_DELETED)
+(note 5 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 5 3 2 (set (reg:SI 89)
+        (mem/c:SI (reg/f:SI 81 virtual-incoming-args) [0 byte+0 S4 A32])) LZ77.c:22 -1
+     (nil))
+(insn 3 2 4 2 (set (mem/c:QI (plus:SI (reg/f:SI 82 virtual-stack-vars)
+                (const_int -20 [0xffffffffffffffec])) [0 byte+0 S1 A32])
+        (subreg:QI (reg:SI 89) 0)) LZ77.c:22 -1
+     (nil))
+(note 4 3 7 2 NOTE_INSN_FUNCTION_BEG)
+(insn 7 4 8 2 (set (mem/c:DI (plus:SI (reg/f:SI 82 virtual-stack-vars)
+                (const_int -8 [0xfffffffffffffff8])) [1 LZ77_compressed+0 S8 A32])
+        (const_int 0 [0])) LZ77.c:23 -1
+     (nil))
+(insn 8 7 9 2 (set (reg:QI 90)
+        (mem/c:QI (plus:SI (reg/f:SI 82 virtual-stack-vars)
+                (const_int -20 [0xffffffffffffffec])) [0 byte+0 S1 A32])) LZ77.c:23 -1
+     (nil))
+(insn 9 8 10 2 (set (mem/c:QI (plus:SI (reg/f:SI 82 virtual-stack-vars)
+                (const_int -4 [0xfffffffffffffffc])) [0 LZ77_compressed.data.literal+0 S1 A32])
+        (reg:QI 90)) LZ77.c:23 -1
+     (nil))
+(insn 10 9 13 2 (set (reg:DI 87 [ D.1890 ])
+        (mem/c:DI (plus:SI (reg/f:SI 82 virtual-stack-vars)
+                (const_int -8 [0xfffffffffffffff8])) [1 LZ77_compressed+0 S8 A32])) LZ77.c:28 -1
+     (nil))
+(insn 13 10 17 2 (set (reg:DI 88 [ <retval> ])
+        (reg:DI 87 [ D.1890 ])) LZ77.c:28 -1
+     (nil))
+(insn 17 13 18 2 (set (reg/i:DI 0 ax)
+        (reg:DI 88 [ <retval> ])) LZ77.c:29 -1
+     (nil))
+(insn 18 17 0 2 (use (reg/i:DI 0 ax)) LZ77.c:29 -1
+     (nil))
+
+;; Function createMatchLZ77 (createMatchLZ77, funcdef_no=5, decl_uid=1852, cgraph_uid=5, symbol_order=5)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Merging block 4 into block 2...
+Merged blocks 2 and 4.
+Merged 2 and 4 without moving.
+Removing jump 18.
+Merging block 5 into block 2...
+Merged blocks 2 and 5.
+Merged 2 and 5 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 7 NOTE_INSN_DELETED)
+(note 7 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 7 4 2 (set (reg:SI 89)
+        (mem/c:SI (reg/f:SI 81 virtual-incoming-args) [5 distance+0 S4 A32])) LZ77.c:46 -1
+     (nil))
+(insn 4 2 3 2 (set (reg:SI 90)
+        (mem/c:SI (plus:SI (reg/f:SI 81 virtual-incoming-args)
+                (const_int 4 [0x4])) [5 length+0 S4 A32])) LZ77.c:46 -1
+     (nil))
+(insn 3 4 5 2 (set (mem/c:HI (plus:SI (reg/f:SI 82 virtual-stack-vars)
+                (const_int -20 [0xffffffffffffffec])) [5 distance+0 S2 A32])
+        (subreg:HI (reg:SI 89) 0)) LZ77.c:46 -1
+     (nil))
+(insn 5 3 6 2 (set (mem/c:HI (plus:SI (reg/f:SI 82 virtual-stack-vars)
+                (const_int -24 [0xffffffffffffffe8])) [5 length+0 S2 A32])
+        (subreg:HI (reg:SI 90) 0)) LZ77.c:46 -1
+     (nil))
+(note 6 5 9 2 NOTE_INSN_FUNCTION_BEG)
+(insn 9 6 10 2 (set (mem/c:SI (plus:SI (reg/f:SI 82 virtual-stack-vars)
+                (const_int -8 [0xfffffffffffffff8])) [2 LZ77_compressed.type+0 S4 A32])
+        (const_int 1 [0x1])) LZ77.c:47 -1
+     (nil))
+(insn 10 9 11 2 (set (reg:HI 91)
+        (mem/c:HI (plus:SI (reg/f:SI 82 virtual-stack-vars)
+                (const_int -20 [0xffffffffffffffec])) [5 distance+0 S2 A32])) LZ77.c:47 -1
+     (nil))
+(insn 11 10 12 2 (set (mem/c:HI (plus:SI (reg/f:SI 82 virtual-stack-vars)
+                (const_int -4 [0xfffffffffffffffc])) [0 LZ77_compressed.data.match.distance+0 S2 A32])
+        (reg:HI 91)) LZ77.c:47 -1
+     (nil))
+(insn 12 11 13 2 (set (reg:HI 92)
+        (mem/c:HI (plus:SI (reg/f:SI 82 virtual-stack-vars)
+                (const_int -24 [0xffffffffffffffe8])) [5 length+0 S2 A32])) LZ77.c:47 -1
+     (nil))
+(insn 13 12 14 2 (set (mem/c:HI (plus:SI (reg/f:SI 82 virtual-stack-vars)
+                (const_int -2 [0xfffffffffffffffe])) [0 LZ77_compressed.data.match.length+0 S2 A16])
+        (reg:HI 92)) LZ77.c:47 -1
+     (nil))
+(insn 14 13 17 2 (set (reg:DI 87 [ D.1893 ])
+        (mem/c:DI (plus:SI (reg/f:SI 82 virtual-stack-vars)
+                (const_int -8 [0xfffffffffffffff8])) [1 LZ77_compressed+0 S8 A32])) LZ77.c:55 -1
+     (nil))
+(insn 17 14 21 2 (set (reg:DI 88 [ <retval> ])
+        (reg:DI 87 [ D.1893 ])) LZ77.c:55 -1
+     (nil))
+(insn 21 17 22 2 (set (reg/i:DI 0 ax)
+        (reg:DI 88 [ <retval> ])) LZ77.c:56 -1
+     (nil))
+(insn 22 21 0 2 (use (reg/i:DI 0 ax)) LZ77.c:56 -1
+     (nil))
+
+;; Function initLZ77Buffer (initLZ77Buffer, funcdef_no=6, decl_uid=1854, cgraph_uid=6, symbol_order=6)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+
+;; Generating RTL for gimple basic block 6
+
+;; Generating RTL for gimple basic block 7
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Removing jump 47.
+Merging block 9 into block 8...
+Merged blocks 8 and 9.
+Merged 8 and 9 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 3 NOTE_INSN_DELETED)
+(note 3 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(note 2 3 5 2 NOTE_INSN_FUNCTION_BEG)
+(insn 5 2 6 2 (set (mem:SI (reg/f:SI 84 virtual-outgoing-args) [0  S4 A32])
+        (const_int 12 [0xc])) LZ77.c:71 -1
+     (nil))
+(call_insn 6 5 7 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:SI ("malloc") [flags 0x43]  <function_decl 074a9f80 malloc>) [0 __builtin_malloc S1 A8])
+            (const_int 4 [0x4]))) LZ77.c:71 -1
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:SI (use (mem:SI (reg/f:SI 84 virtual-outgoing-args) [0  S4 A32]))
+        (nil)))
+(insn 7 6 8 2 (set (reg/f:SI 93)
+        (reg:SI 0 ax)) LZ77.c:71 -1
+     (expr_list:REG_NOALIAS (reg/f:SI 93)
+        (nil)))
+(insn 8 7 9 2 (set (mem/f/c:SI (plus:SI (reg/f:SI 82 virtual-stack-vars)
+                (const_int -4 [0xfffffffffffffffc])) [6 buffer+0 S4 A32])
+        (reg/f:SI 93)) LZ77.c:71 -1
+     (nil))
+(insn 9 8 10 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/f/c:SI (plus:SI (reg/f:SI 82 virtual-stack-vars)
+                    (const_int -4 [0xfffffffffffffffc])) [6 buffer+0 S4 A32])
+            (const_int 0 [0]))) LZ77.c:72 -1
+     (nil))
+(jump_insn 10 9 11 2 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 15)
+            (pc))) LZ77.c:72 -1
+     (nil)
+ -> 15)
+(note 11 10 12 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 12 11 13 4 (set (reg/f:SI 87 [ _1 ])
+        (const_int 0 [0])) LZ77.c:73 -1
+     (nil))
+(jump_insn 13 12 14 4 (set (pc)
+        (label_ref 44)) LZ77.c:73 -1
+     (nil)
+ -> 44)
+(barrier 14 13 15)
+(code_label 15 14 16 5 6 "" [1 uses])
+(note 16 15 17 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 17 16 18 5 (set (reg/f:SI 94)
+        (mem/f/c:SI (plus:SI (reg/f:SI 82 virtual-stack-vars)
+                (const_int -4 [0xfffffffffffffffc])) [6 buffer+0 S4 A32])) LZ77.c:76 -1
+     (nil))
+(insn 18 17 19 5 (set (mem:SI (plus:SI (reg/f:SI 94)
+                (const_int 4 [0x4])) [7 buffer_5->size+0 S4 A32])
+        (const_int 0 [0])) LZ77.c:76 -1
+     (nil))
+(insn 19 18 20 5 (set (reg/f:SI 95)
+        (mem/f/c:SI (plus:SI (reg/f:SI 82 virtual-stack-vars)
+                (const_int -4 [0xfffffffffffffffc])) [6 buffer+0 S4 A32])) LZ77.c:77 -1
+     (nil))
+(insn 20 19 21 5 (set (mem:SI (plus:SI (reg/f:SI 95)
+                (const_int 8 [0x8])) [7 buffer_5->capacity+0 S4 A32])
+        (const_int 50 [0x32])) LZ77.c:77 -1
+     (nil))
+(insn 21 20 22 5 (set (reg/f:SI 96)
+        (mem/f/c:SI (plus:SI (reg/f:SI 82 virtual-stack-vars)
+                (const_int -4 [0xfffffffffffffffc])) [6 buffer+0 S4 A32])) LZ77.c:79 -1
+     (nil))
+(insn 22 21 23 5 (set (reg:SI 88 [ _9 ])
+        (mem:SI (plus:SI (reg/f:SI 96)
+                (const_int 8 [0x8])) [7 buffer_5->capacity+0 S4 A32])) LZ77.c:79 -1
+     (nil))
+(insn 23 22 24 5 (parallel [
+            (set (reg:SI 89 [ _10 ])
+                (ashift:SI (reg:SI 88 [ _9 ])
+                    (const_int 3 [0x3])))
+            (clobber (reg:CC 17 flags))
+        ]) LZ77.c:79 -1
+     (nil))
+(insn 24 23 25 5 (set (mem:SI (reg/f:SI 84 virtual-outgoing-args) [0  S4 A32])
+        (reg:SI 89 [ _10 ])) LZ77.c:79 -1
+     (nil))
+(call_insn 25 24 26 5 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:SI ("malloc") [flags 0x43]  <function_decl 074a9f80 malloc>) [0 __builtin_malloc S1 A8])
+            (const_int 4 [0x4]))) LZ77.c:79 -1
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:SI (use (mem:SI (reg/f:SI 84 virtual-outgoing-args) [0  S4 A32]))
+        (nil)))
+(insn 26 25 27 5 (set (reg/f:SI 97)
+        (reg:SI 0 ax)) LZ77.c:79 -1
+     (expr_list:REG_NOALIAS (reg/f:SI 97)
+        (nil)))
+(insn 27 26 28 5 (set (reg/f:SI 90 [ _12 ])
+        (reg/f:SI 97)) LZ77.c:79 -1
+     (nil))
+(insn 28 27 29 5 (set (reg/f:SI 98)
+        (mem/f/c:SI (plus:SI (reg/f:SI 82 virtual-stack-vars)
+                (const_int -4 [0xfffffffffffffffc])) [6 buffer+0 S4 A32])) LZ77.c:79 -1
+     (nil))
+(insn 29 28 30 5 (set (mem/f:SI (reg/f:SI 98) [9 buffer_5->tokens+0 S4 A32])
+        (reg/f:SI 90 [ _12 ])) LZ77.c:79 -1
+     (nil))
+(insn 30 29 31 5 (set (reg/f:SI 99)
+        (mem/f/c:SI (plus:SI (reg/f:SI 82 virtual-stack-vars)
+                (const_int -4 [0xfffffffffffffffc])) [6 buffer+0 S4 A32])) LZ77.c:80 -1
+     (nil))
+(insn 31 30 32 5 (set (reg/f:SI 91 [ _14 ])
+        (mem/f:SI (reg/f:SI 99) [9 buffer_5->tokens+0 S4 A32])) LZ77.c:80 -1
+     (nil))
+(insn 32 31 33 5 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:SI 91 [ _14 ])
+            (const_int 0 [0]))) LZ77.c:80 -1
+     (nil))
+(jump_insn 33 32 34 5 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 41)
+            (pc))) LZ77.c:80 -1
+     (nil)
+ -> 41)
+(note 34 33 35 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 35 34 36 6 (set (reg/f:SI 100)
+        (mem/f/c:SI (plus:SI (reg/f:SI 82 virtual-stack-vars)
+                (const_int -4 [0xfffffffffffffffc])) [6 buffer+0 S4 A32])) LZ77.c:81 -1
+     (nil))
+(insn 36 35 37 6 (set (mem:SI (reg/f:SI 84 virtual-outgoing-args) [0  S4 A32])
+        (reg/f:SI 100)) LZ77.c:81 -1
+     (nil))
+(call_insn 37 36 38 6 (call (mem:QI (symbol_ref:SI ("free") [flags 0x43]  <function_decl 074a7200 free>) [0 __builtin_free S1 A8])
+        (const_int 4 [0x4])) LZ77.c:81 -1
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:SI (use (mem/f:SI (reg/f:SI 84 virtual-outgoing-args) [0  S4 A32]))
+        (nil)))
+(insn 38 37 39 6 (set (reg/f:SI 87 [ _1 ])
+        (const_int 0 [0])) LZ77.c:82 -1
+     (nil))
+(jump_insn 39 38 40 6 (set (pc)
+        (label_ref 44)) LZ77.c:82 -1
+     (nil)
+ -> 44)
+(barrier 40 39 41)
+(code_label 41 40 42 7 8 "" [1 uses])
+(note 42 41 43 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 43 42 44 7 (set (reg/f:SI 87 [ _1 ])
+        (mem/f/c:SI (plus:SI (reg/f:SI 82 virtual-stack-vars)
+                (const_int -4 [0xfffffffffffffffc])) [6 buffer+0 S4 A32])) LZ77.c:85 -1
+     (nil))
+(code_label 44 43 45 8 7 "" [2 uses])
+(note 45 44 46 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 46 45 50 8 (set (reg/f:SI 92 [ <retval> ])
+        (reg/f:SI 87 [ _1 ])) -1
+     (nil))
+(insn 50 46 51 8 (set (reg/i:SI 0 ax)
+        (reg/f:SI 92 [ <retval> ])) LZ77.c:86 -1
+     (nil))
+(insn 51 50 0 8 (use (reg/i:SI 0 ax)) LZ77.c:86 -1
+     (nil))
+
+;; Function expandBuffer (expandBuffer, funcdef_no=7, decl_uid=1856, cgraph_uid=7, symbol_order=7)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Merging block 6 into block 5...
+Merged blocks 5 and 6.
+Merged 5 and 6 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 3 NOTE_INSN_DELETED)
+(note 3 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(note 2 3 5 2 NOTE_INSN_FUNCTION_BEG)
+(insn 5 2 6 2 (set (reg/f:SI 90)
+        (mem/f/c:SI (reg/f:SI 81 virtual-incoming-args) [6 buffer+0 S4 A32])) LZ77.c:100 -1
+     (nil))
+(insn 6 5 7 2 (set (reg:SI 87 [ _3 ])
+        (mem:SI (plus:SI (reg/f:SI 90)
+                (const_int 8 [0x8])) [7 buffer_2(D)->capacity+0 S4 A32])) LZ77.c:100 -1
+     (nil))
+(insn 7 6 8 2 (parallel [
+            (set (reg:SI 91)
+                (plus:SI (reg:SI 87 [ _3 ])
+                    (const_int 50 [0x32])))
+            (clobber (reg:CC 17 flags))
+        ]) LZ77.c:100 -1
+     (nil))
+(insn 8 7 9 2 (set (mem/c:SI (plus:SI (reg/f:SI 82 virtual-stack-vars)
+                (const_int -4 [0xfffffffffffffffc])) [7 new_capacity+0 S4 A32])
+        (reg:SI 91)) LZ77.c:100 -1
+     (nil))
+(insn 9 8 10 2 (set (reg:SI 92)
+        (mem/c:SI (plus:SI (reg/f:SI 82 virtual-stack-vars)
+                (const_int -4 [0xfffffffffffffffc])) [7 new_capacity+0 S4 A32])) LZ77.c:102 -1
+     (nil))
+(insn 10 9 11 2 (parallel [
+            (set (reg:SI 88 [ _5 ])
+                (ashift:SI (reg:SI 92)
+                    (const_int 3 [0x3])))
+            (clobber (reg:CC 17 flags))
+        ]) LZ77.c:102 -1
+     (expr_list:REG_EQUAL (ashift:SI (mem/c:SI (plus:SI (reg/f:SI 82 virtual-stack-vars)
+                    (const_int -4 [0xfffffffffffffffc])) [7 new_capacity+0 S4 A32])
+            (const_int 3 [0x3]))
+        (nil)))
+(insn 11 10 12 2 (set (reg/f:SI 93)
+        (mem/f/c:SI (reg/f:SI 81 virtual-incoming-args) [6 buffer+0 S4 A32])) LZ77.c:102 -1
+     (nil))
+(insn 12 11 13 2 (set (reg/f:SI 89 [ _6 ])
+        (mem/f:SI (reg/f:SI 93) [9 buffer_2(D)->tokens+0 S4 A32])) LZ77.c:102 -1
+     (nil))
+(insn 13 12 14 2 (set (mem:SI (plus:SI (reg/f:SI 84 virtual-outgoing-args)
+                (const_int 4 [0x4])) [0  S4 A32])
+        (reg:SI 88 [ _5 ])) LZ77.c:102 -1
+     (nil))
+(insn 14 13 15 2 (set (mem:SI (reg/f:SI 84 virtual-outgoing-args) [0  S4 A32])
+        (reg/f:SI 89 [ _6 ])) LZ77.c:102 -1
+     (nil))
+(call_insn 15 14 16 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:SI ("realloc") [flags 0x43]  <function_decl 074ab680 realloc>) [0 __builtin_realloc S1 A8])
+            (const_int 8 [0x8]))) LZ77.c:102 -1
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:SI (use (mem/f:SI (reg/f:SI 84 virtual-outgoing-args) [0  S4 A32]))
+        (expr_list:SI (use (mem:SI (plus:SI (reg/f:SI 84 virtual-outgoing-args)
+                        (const_int 4 [0x4])) [0  S4 A32]))
+            (nil))))
+(insn 16 15 17 2 (set (reg:SI 94)
+        (reg:SI 0 ax)) LZ77.c:102 -1
+     (nil))
+(insn 17 16 18 2 (set (mem/f/c:SI (plus:SI (reg/f:SI 82 virtual-stack-vars)
+                (const_int -8 [0xfffffffffffffff8])) [9 new_tokens+0 S4 A32])
+        (reg:SI 94)) LZ77.c:102 -1
+     (nil))
+(insn 18 17 19 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/f/c:SI (plus:SI (reg/f:SI 82 virtual-stack-vars)
+                    (const_int -8 [0xfffffffffffffff8])) [9 new_tokens+0 S4 A32])
+            (const_int 0 [0]))) LZ77.c:104 -1
+     (nil))
+(jump_insn 19 18 20 2 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 26)
+            (pc))) LZ77.c:104 -1
+     (nil)
+ -> 26)
+(note 20 19 21 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 21 20 22 4 (set (mem:SI (reg/f:SI 84 virtual-outgoing-args) [0  S4 A32])
+        (symbol_ref/f:SI ("*LC0") [flags 0x2]  <var_decl 0755b898 *LC0>)) LZ77.c:105 -1
+     (nil))
+(call_insn 22 21 23 4 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:SI ("perror") [flags 0x43]  <function_decl 07529600 perror>) [0 perror S1 A8])
+            (const_int 4 [0x4]))) LZ77.c:105 -1
+     (nil)
+    (expr_list:SI (use (mem/f:SI (reg/f:SI 84 virtual-outgoing-args) [0  S4 A32]))
+        (nil)))
+(insn 23 22 24 4 (set (mem:SI (reg/f:SI 84 virtual-outgoing-args) [0  S4 A32])
+        (const_int 1 [0x1])) LZ77.c:106 -1
+     (nil))
+(call_insn 24 23 25 4 (call (mem:QI (symbol_ref:SI ("exit") [flags 0x43]  <function_decl 074a4980 exit>) [0 __builtin_exit S1 A8])
+        (const_int 4 [0x4])) LZ77.c:106 -1
+     (expr_list:REG_NORETURN (const_int 0 [0])
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:SI (use (mem:SI (reg/f:SI 84 virtual-outgoing-args) [0  S4 A32]))
+        (nil)))
+(barrier 25 24 26)
+(code_label 26 25 27 5 10 "" [1 uses])
+(note 27 26 28 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 28 27 29 5 (set (reg/f:SI 95)
+        (mem/f/c:SI (reg/f:SI 81 virtual-incoming-args) [6 buffer+0 S4 A32])) LZ77.c:109 -1
+     (nil))
+(insn 29 28 30 5 (set (reg/f:SI 96)
+        (mem/f/c:SI (plus:SI (reg/f:SI 82 virtual-stack-vars)
+                (const_int -8 [0xfffffffffffffff8])) [9 new_tokens+0 S4 A32])) LZ77.c:109 -1
+     (nil))
+(insn 30 29 31 5 (set (mem/f:SI (reg/f:SI 95) [9 buffer_2(D)->tokens+0 S4 A32])
+        (reg/f:SI 96)) LZ77.c:109 -1
+     (nil))
+(insn 31 30 32 5 (set (reg/f:SI 97)
+        (mem/f/c:SI (reg/f:SI 81 virtual-incoming-args) [6 buffer+0 S4 A32])) LZ77.c:110 -1
+     (nil))
+(insn 32 31 33 5 (set (reg:SI 98)
+        (mem/c:SI (plus:SI (reg/f:SI 82 virtual-stack-vars)
+                (const_int -4 [0xfffffffffffffffc])) [7 new_capacity+0 S4 A32])) LZ77.c:110 -1
+     (nil))
+(insn 33 32 36 5 (set (mem:SI (plus:SI (reg/f:SI 97)
+                (const_int 8 [0x8])) [7 buffer_2(D)->capacity+0 S4 A32])
+        (reg:SI 98)) LZ77.c:110 -1
+     (nil))
+(insn 36 33 0 5 (const_int 0 [0]) LZ77.c:111 -1
+     (nil))
+
+;; Function appendToken (appendToken, funcdef_no=8, decl_uid=1859, cgraph_uid=8, symbol_order=8)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Merging block 6 into block 5...
+Merged blocks 5 and 6.
+Merged 5 and 6 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 3 NOTE_INSN_DELETED)
+(note 3 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(note 2 3 5 2 NOTE_INSN_FUNCTION_BEG)
+(insn 5 2 6 2 (set (reg/f:SI 95)
+        (mem/f/c:SI (reg/f:SI 81 virtual-incoming-args) [6 buffer+0 S4 A32])) LZ77.c:125 -1
+     (nil))
+(insn 6 5 7 2 (set (reg:SI 87 [ _4 ])
+        (mem:SI (plus:SI (reg/f:SI 95)
+                (const_int 4 [0x4])) [7 buffer_3(D)->size+0 S4 A32])) LZ77.c:125 -1
+     (nil))
+(insn 7 6 8 2 (set (reg/f:SI 96)
+        (mem/f/c:SI (reg/f:SI 81 virtual-incoming-args) [6 buffer+0 S4 A32])) LZ77.c:125 -1
+     (nil))
+(insn 8 7 9 2 (set (reg:SI 88 [ _5 ])
+        (mem:SI (plus:SI (reg/f:SI 96)
+                (const_int 8 [0x8])) [7 buffer_3(D)->capacity+0 S4 A32])) LZ77.c:125 -1
+     (nil))
+(insn 9 8 10 2 (set (reg:CC 17 flags)
+        (compare:CC (reg:SI 87 [ _4 ])
+            (reg:SI 88 [ _5 ]))) LZ77.c:125 -1
+     (nil))
+(jump_insn 10 9 11 2 (set (pc)
+        (if_then_else (ltu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 15)
+            (pc))) LZ77.c:125 -1
+     (nil)
+ -> 15)
+(note 11 10 12 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 12 11 13 4 (set (reg/f:SI 97)
+        (mem/f/c:SI (reg/f:SI 81 virtual-incoming-args) [6 buffer+0 S4 A32])) LZ77.c:126 -1
+     (nil))
+(insn 13 12 14 4 (set (mem:SI (reg/f:SI 84 virtual-outgoing-args) [0  S4 A32])
+        (reg/f:SI 97)) LZ77.c:126 -1
+     (nil))
+(call_insn 14 13 15 4 (call (mem:QI (symbol_ref:SI ("expandBuffer") [flags 0x3]  <function_decl 07529280 expandBuffer>) [0 expandBuffer S1 A8])
+        (const_int 4 [0x4])) LZ77.c:126 -1
+     (nil)
+    (expr_list:SI (use (mem/f:SI (reg/f:SI 84 virtual-outgoing-args) [0  S4 A32]))
+        (nil)))
+(code_label 15 14 16 5 12 "" [1 uses])
+(note 16 15 17 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 17 16 18 5 (set (reg/f:SI 98)
+        (mem/f/c:SI (reg/f:SI 81 virtual-incoming-args) [6 buffer+0 S4 A32])) LZ77.c:129 -1
+     (nil))
+(insn 18 17 19 5 (set (reg/f:SI 89 [ _7 ])
+        (mem/f:SI (reg/f:SI 98) [9 buffer_3(D)->tokens+0 S4 A32])) LZ77.c:129 -1
+     (nil))
+(insn 19 18 20 5 (set (reg/f:SI 99)
+        (mem/f/c:SI (reg/f:SI 81 virtual-incoming-args) [6 buffer+0 S4 A32])) LZ77.c:129 -1
+     (nil))
+(insn 20 19 21 5 (set (reg:SI 90 [ _8 ])
+        (mem:SI (plus:SI (reg/f:SI 99)
+                (const_int 4 [0x4])) [7 buffer_3(D)->size+0 S4 A32])) LZ77.c:129 -1
+     (nil))
+(insn 21 20 22 5 (parallel [
+            (set (reg:SI 91 [ _9 ])
+                (ashift:SI (reg:SI 90 [ _8 ])
+                    (const_int 3 [0x3])))
+            (clobber (reg:CC 17 flags))
+        ]) LZ77.c:129 -1
+     (nil))
+(insn 22 21 23 5 (parallel [
+            (set (reg/f:SI 92 [ _10 ])
+                (plus:SI (reg/f:SI 89 [ _7 ])
+                    (reg:SI 91 [ _9 ])))
+            (clobber (reg:CC 17 flags))
+        ]) LZ77.c:129 -1
+     (nil))
+(insn 23 22 24 5 (set (reg:DI 100)
+        (mem/c:DI (plus:SI (reg/f:SI 81 virtual-incoming-args)
+                (const_int 4 [0x4])) [1 token+0 S8 A32])) LZ77.c:129 -1
+     (nil))
+(insn 24 23 25 5 (set (mem:DI (reg/f:SI 92 [ _10 ]) [1 *_10+0 S8 A32])
+        (reg:DI 100)) LZ77.c:129 -1
+     (nil))
+(insn 25 24 26 5 (set (reg/f:SI 101)
+        (mem/f/c:SI (reg/f:SI 81 virtual-incoming-args) [6 buffer+0 S4 A32])) LZ77.c:130 -1
+     (nil))
+(insn 26 25 27 5 (set (reg:SI 93 [ _12 ])
+        (mem:SI (plus:SI (reg/f:SI 101)
+                (const_int 4 [0x4])) [7 buffer_3(D)->size+0 S4 A32])) LZ77.c:130 -1
+     (nil))
+(insn 27 26 28 5 (parallel [
+            (set (reg:SI 94 [ _13 ])
+                (plus:SI (reg:SI 93 [ _12 ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) LZ77.c:130 -1
+     (nil))
+(insn 28 27 29 5 (set (reg/f:SI 102)
+        (mem/f/c:SI (reg/f:SI 81 virtual-incoming-args) [6 buffer+0 S4 A32])) LZ77.c:130 -1
+     (nil))
+(insn 29 28 32 5 (set (mem:SI (plus:SI (reg/f:SI 102)
+                (const_int 4 [0x4])) [7 buffer_3(D)->size+0 S4 A32])
+        (reg:SI 94 [ _13 ])) LZ77.c:130 -1
+     (nil))
+(insn 32 29 0 5 (const_int 0 [0]) LZ77.c:131 -1
+     (nil))
+
+;; Function freeLZ77Buffer (freeLZ77Buffer, funcdef_no=9, decl_uid=1861, cgraph_uid=9, symbol_order=9)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+
+;; Generating RTL for gimple basic block 6
+
+;; Generating RTL for gimple basic block 7
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Forwarding edge 2->4 to 9 failed.
+Forwarding edge 2->4 to 9 failed.
+Redirecting jump 8 from 8 to 9.
+Merging block 8 into block 7...
+Merged blocks 7 and 8.
+Merged 7 and 8 without moving.
+
+
+try_optimize_cfg iteration 2
+
+Forwarding edge 2->4 to 9 failed.
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 3 NOTE_INSN_DELETED)
+(note 3 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(note 2 3 5 2 NOTE_INSN_FUNCTION_BEG)
+(insn 5 2 6 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/f/c:SI (reg/f:SI 81 virtual-incoming-args) [6 buffer+0 S4 A32])
+            (const_int 0 [0]))) LZ77.c:145 -1
+     (nil))
+(jump_insn 6 5 7 2 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 10)
+            (pc))) LZ77.c:145 -1
+     (nil)
+ -> 10)
+(note 7 6 8 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 8 7 9 4 (set (pc)
+        (label_ref:SI 30)) LZ77.c:145 565 {jump}
+     (nil)
+ -> 30)
+(barrier 9 8 10)
+(code_label 10 9 11 5 14 "" [1 uses])
+(note 11 10 12 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 12 11 13 5 (set (reg/f:SI 89)
+        (mem/f/c:SI (reg/f:SI 81 virtual-incoming-args) [6 buffer+0 S4 A32])) LZ77.c:147 -1
+     (nil))
+(insn 13 12 14 5 (set (reg/f:SI 87 [ _5 ])
+        (mem/f:SI (reg/f:SI 89) [9 buffer_3(D)->tokens+0 S4 A32])) LZ77.c:147 -1
+     (nil))
+(insn 14 13 15 5 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:SI 87 [ _5 ])
+            (const_int 0 [0]))) LZ77.c:147 -1
+     (nil))
+(jump_insn 15 14 16 5 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 23)
+            (pc))) LZ77.c:147 -1
+     (nil)
+ -> 23)
+(note 16 15 17 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 17 16 18 6 (set (reg/f:SI 90)
+        (mem/f/c:SI (reg/f:SI 81 virtual-incoming-args) [6 buffer+0 S4 A32])) LZ77.c:148 -1
+     (nil))
+(insn 18 17 19 6 (set (reg/f:SI 88 [ _6 ])
+        (mem/f:SI (reg/f:SI 90) [9 buffer_3(D)->tokens+0 S4 A32])) LZ77.c:148 -1
+     (nil))
+(insn 19 18 20 6 (set (mem:SI (reg/f:SI 84 virtual-outgoing-args) [0  S4 A32])
+        (reg/f:SI 88 [ _6 ])) LZ77.c:148 -1
+     (nil))
+(call_insn 20 19 21 6 (call (mem:QI (symbol_ref:SI ("free") [flags 0x43]  <function_decl 074a7200 free>) [0 __builtin_free S1 A8])
+        (const_int 4 [0x4])) LZ77.c:148 -1
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:SI (use (mem/f:SI (reg/f:SI 84 virtual-outgoing-args) [0  S4 A32]))
+        (nil)))
+(insn 21 20 22 6 (set (reg/f:SI 91)
+        (mem/f/c:SI (reg/f:SI 81 virtual-incoming-args) [6 buffer+0 S4 A32])) LZ77.c:149 -1
+     (nil))
+(insn 22 21 23 6 (set (mem/f:SI (reg/f:SI 91) [9 buffer_3(D)->tokens+0 S4 A32])
+        (const_int 0 [0])) LZ77.c:149 -1
+     (nil))
+(code_label 23 22 24 7 16 "" [1 uses])
+(note 24 23 25 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 25 24 26 7 (set (reg/f:SI 92)
+        (mem/f/c:SI (reg/f:SI 81 virtual-incoming-args) [6 buffer+0 S4 A32])) LZ77.c:152 -1
+     (nil))
+(insn 26 25 27 7 (set (mem:SI (reg/f:SI 84 virtual-outgoing-args) [0  S4 A32])
+        (reg/f:SI 92)) LZ77.c:152 -1
+     (nil))
+(call_insn 27 26 30 7 (call (mem:QI (symbol_ref:SI ("free") [flags 0x43]  <function_decl 074a7200 free>) [0 __builtin_free S1 A8])
+        (const_int 4 [0x4])) LZ77.c:152 -1
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:SI (use (mem/f:SI (reg/f:SI 84 virtual-outgoing-args) [0  S4 A32]))
+        (nil)))
+(code_label 30 27 31 9 13 "" [1 uses])
+(note 31 30 0 9 [bb 9] NOTE_INSN_BASIC_BLOCK)

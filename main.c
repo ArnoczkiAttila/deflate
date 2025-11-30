@@ -64,7 +64,7 @@ extern int main(const int argc, char** argv) {
             printHelp();
         }
     }
-
+    STATUS* status = NULL;
     if (strcmp(argv[1], "compress") == 0 || strcmp(argv[1], "-c") == 0 || strcmp(argv[1], "decompress") == 0 ||
         strcmp(argv[1], "-d") == 0) {
         if (argc == 2) {
@@ -72,11 +72,14 @@ extern int main(const int argc, char** argv) {
             printHelp();
         } else if (argc == 3) {
             if (strcmp(argv[1],"compress")==0 || strcmp(argv[1], "-c") == 0) {
-                compress(argv[2]);
+                status = compress(argv[2]);
             } else if (strcmp(argv[1],"decompress")==0 || strcmp(argv[1], "-d") == 0) {
-                decompress(argv[2]);
+                status = decompress(argv[2]);
             }
         }
+    }
+    if (status != NULL) {
+        free(status);
     }
     return 0;
 }

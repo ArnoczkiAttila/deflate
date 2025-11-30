@@ -2,8 +2,8 @@
 // Created by Attila on 11/19/2025.
 //
 
-#ifndef DEFLATE_BITWRITER_H
-#define DEFLATE_BITWRITER_H
+#ifndef DEFLATE_BIT_WRITER_H
+#define DEFLATE_BIT_WRITER_H
 
 #include <stdint.h>
 #include <stdio.h>
@@ -14,20 +14,26 @@ typedef struct {
     uint8_t byte;
     uint8_t currentPosition;
     size_t bufferSize;
-    uint16_t index;
+    size_t index;
     char* fileName;
-} BitWriter;
+} BIT_WRITER;
 
-BitWriter* initBitWriter(void);
+extern void copyFromBufferHistory(BIT_WRITER* bw, uint16_t distance, uint16_t length);
 
-void addData(BitWriter* bw, uint32_t value, uint8_t bitLength);
+extern BIT_WRITER* initBIT_WRITER(size_t bufferSize);
 
-void createFile(BitWriter* bw, char* fileName, char* extension);
+extern void addFastByte(BIT_WRITER* bw, uint8_t byte);
 
-void freeBitWriter(BitWriter* bw);
+extern void addBits(BIT_WRITER* bw, uint32_t value, uint8_t bitLength);
 
-extern void addBytesFromMSB(BitWriter* bw, uint32_t value, uint8_t bytes);
+extern void createFile(BIT_WRITER* bw, const char* fileName, const char* extension);
 
-extern void flush_bitstream_writer(BitWriter* bw);
+extern void freeBIT_WRITER(BIT_WRITER* bw);
 
-#endif //DEFLATE_BITWRITER_H
+extern void addBytes(BIT_WRITER* bw, uint32_t value, uint8_t bytes);
+
+extern void flushBitstreamWriter(BIT_WRITER* bw);
+
+extern void writeHuffmanCode(BIT_WRITER* bw, uint16_t code, uint8_t length);
+
+#endif //DEFLATE_BIT_WRITER_H

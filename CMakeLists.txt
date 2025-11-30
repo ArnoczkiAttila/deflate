@@ -24,6 +24,9 @@ add_executable(deflate main.c
         decompress.c
         bitreader.c
         bitreader.h
-        decompress.h)
+        decompress.h
+        status.c
+        debug.h
+        debug.c)
 
 #target_compile_options(deflate PRIVATE -Wall -Werror)

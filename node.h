@@ -1,6 +1,5 @@
 //
-// Created by Attila Arnóczki on 10/18/2025.
-// Node version 0.0.1
+// Created by Attila on 10/18/2025.
 //
 
 #ifndef HUFFMAN_NODE_H
@@ -21,14 +20,11 @@ typedef struct {
     Node** ppnArray;
 } MinHeap;
 
-extern void compressCodeLengths(
-    const uint8_t* all_lengths,
-    size_t count,
-    uint8_t* compressed_lengths, // Output buffer for RLE symbols (0-18)
-    uint16_t* cl_frequencies,    // Output array of size 19
-    uint8_t* extra_bits_values,  // Output buffer for RLE extra bit values
-    size_t* compressed_count     // Final count of symbols generated
-);
+extern void flattenTree(uint8_t* lengths, int num_symbols, int max_depth);
+
+extern void print_tree_visual(Node* node, int level, char* prefix);
+
+extern void compressCodeLengths(const uint8_t* all_lengths, size_t count, uint8_t* compressed_lengths, uint16_t* cl_frequencies, uint8_t* extra_bits_values, size_t* compressed_count);
 
 extern void findCodeLengthsInTree(Node* node, uint8_t* lengths, uint8_t depth);
 

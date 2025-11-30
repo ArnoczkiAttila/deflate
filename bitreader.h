@@ -10,14 +10,13 @@
 
 typedef struct {
     FILE *file;
-    uint8_t* buffer;
     uint8_t byte;
     uint8_t currentPosition;
-    size_t bufferSize;
-    uint16_t index;
-    char* fileName;
-} BIT_READER;
 
+    uint8_t *buffer;          // New: Memory buffer
+    size_t buffer_index;      // New: Index in buffer
+    size_t buffer_size;       // New: Size of valid data in buffer
+} BIT_READER;
 /**
  * Initializes the BIT_READER structure.
  * Opens the file and resets the bit-reading state.
@@ -46,11 +45,14 @@ uint32_t read_bits(BIT_READER *reader, int numBits);
  * Closes the file handle and performs cleanup.
  * @param reader Pointer to the BIT_READER structure.
  */
-void close_bit_reader(BIT_READER *reader);
+void freeBIT_READER(BIT_READER *reader);
 
 //void createFile(BIT_READER* bw, char* fileName, char* extension);
 
 bool process_gzip_header(BIT_READER *reader);
 
 extern uint16_t peek_bits(BIT_READER* reader, uint8_t n);
+
+
+
 #endif //DEFLATE_BITREADER_H

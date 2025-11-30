@@ -49,7 +49,12 @@ static const int LENGTH_EXTRA_BITS[] = {
  * (https://datatracker.ietf.org/doc/html/rfc1951#page-11)
  *
  * @param length The actual length between (3 and 258)
+ *
  * @return LengthCode struct which stores the length code, the required extra bits, and then the extra value in those extra bits,
+ *
+ * Maximum memory required:
+ *  - 32bit systems: 30 bytes
+ *  - 64bit systems: 60 bytes
  */
 extern LENGTH_CODE getLengthCode(int length) {
     LENGTH_CODE result = {0, 0, 0};

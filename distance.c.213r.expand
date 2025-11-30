@@ -1,0 +1,650 @@
+
+;; Function getDistanceCode (getDistanceCode, funcdef_no=10, decl_uid=1411, cgraph_uid=10, symbol_order=12)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+
+;; Generating RTL for gimple basic block 6
+
+;; Generating RTL for gimple basic block 7
+
+;; Generating RTL for gimple basic block 8
+
+;; Generating RTL for gimple basic block 9
+
+;; Generating RTL for gimple basic block 10
+
+;; Generating RTL for gimple basic block 11
+
+;; Generating RTL for gimple basic block 12
+
+;; Generating RTL for gimple basic block 13
+
+;; Generating RTL for gimple basic block 14
+
+;; Generating RTL for gimple basic block 15
+
+;; Generating RTL for gimple basic block 16
+
+;; Generating RTL for gimple basic block 17
+
+;; Generating RTL for gimple basic block 18
+
+;; Generating RTL for gimple basic block 19
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Redirecting jump 25 from 19 to 21.
+Redirecting jump 60 from 19 to 21.
+Redirecting jump 107 from 19 to 21.
+Redirecting jump 134 from 19 to 21.
+Merging block 19 into block 18...
+Merged blocks 18 and 19.
+Merged 18 and 19 without moving.
+Merging block 20 into block 18...
+Merged blocks 18 and 20.
+Merged 18 and 20 without moving.
+Removing jump 156.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 3 NOTE_INSN_DELETED)
+(note 3 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(note 2 3 5 2 NOTE_INSN_FUNCTION_BEG)
+(insn 5 2 6 2 (set (mem/c:HI (plus:SI (reg/f:SI 82 virtual-stack-vars)
+                (const_int -28 [0xffffffffffffffe4])) [3 result.usSymbolID+0 S2 A32])
+        (const_int 0 [0])) distance.c:43 -1
+     (nil))
+(insn 6 5 7 2 (set (mem/c:SI (plus:SI (reg/f:SI 82 virtual-stack-vars)
+                (const_int -24 [0xffffffffffffffe8])) [1 result.iExtraBits+0 S4 A32])
+        (const_int 0 [0])) distance.c:43 -1
+     (nil))
+(insn 7 6 8 2 (set (mem/c:SI (plus:SI (reg/f:SI 82 virtual-stack-vars)
+                (const_int -20 [0xffffffffffffffec])) [1 result.iExtraValue+0 S4 A32])
+        (const_int 0 [0])) distance.c:43 -1
+     (nil))
+(insn 8 7 9 2 (set (reg:CCNO 17 flags)
+        (compare:CCNO (mem/c:SI (plus:SI (reg/f:SI 81 virtual-incoming-args)
+                    (const_int 4 [0x4])) [1 distance+0 S4 A32])
+            (const_int 0 [0]))) distance.c:45 -1
+     (nil))
+(jump_insn 9 8 10 2 (set (pc)
+        (if_then_else (gt (reg:CCNO 17 flags)
+                (const_int 0 [0]))
+            (label_ref 27)
+            (pc))) distance.c:45 -1
+     (nil)
+ -> 27)
+(note 10 9 11 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 11 10 12 4 (set (reg:SI 95)
+        (mem/u/c:SI (symbol_ref:SI ("*__imp___iob") [flags 0x2002]  <var_decl 07500e70 D.1928>) [9  S4 A8])) distance.c:46 -1
+     (nil))
+(insn 12 11 13 4 (parallel [
+            (set (reg:SI 96)
+                (plus:SI (reg:SI 95)
+                    (const_int 64 [0x40])))
+            (clobber (reg:CC 17 flags))
+        ]) distance.c:46 -1
+     (nil))
+(insn 13 12 14 4 (set (mem:SI (plus:SI (reg/f:SI 84 virtual-outgoing-args)
+                (const_int 12 [0xc])) [0  S4 A32])
+        (reg:SI 96)) distance.c:46 -1
+     (nil))
+(insn 14 13 15 4 (set (mem:SI (plus:SI (reg/f:SI 84 virtual-outgoing-args)
+                (const_int 8 [0x8])) [0  S4 A32])
+        (const_int 36 [0x24])) distance.c:46 -1
+     (nil))
+(insn 15 14 16 4 (set (mem:SI (plus:SI (reg/f:SI 84 virtual-outgoing-args)
+                (const_int 4 [0x4])) [0  S4 A32])
+        (const_int 1 [0x1])) distance.c:46 -1
+     (nil))
+(insn 16 15 17 4 (set (mem:SI (reg/f:SI 84 virtual-outgoing-args) [0  S4 A32])
+        (symbol_ref/f:SI ("*LC0") [flags 0x2]  <var_decl 07500ec8 *LC0>)) distance.c:46 -1
+     (nil))
+(call_insn 17 16 18 4 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:SI ("fwrite") [flags 0x43]  <function_decl 77ead380 __builtin_fwrite>) [0 __builtin_fwrite S1 A8])
+            (const_int 16 [0x10]))) distance.c:46 -1
+     (nil)
+    (expr_list:SI (use (mem/f:SI (reg/f:SI 84 virtual-outgoing-args) [0  S4 A32]))
+        (expr_list:SI (use (mem:SI (plus:SI (reg/f:SI 84 virtual-outgoing-args)
+                        (const_int 4 [0x4])) [0  S4 A32]))
+            (expr_list:SI (use (mem:SI (plus:SI (reg/f:SI 84 virtual-outgoing-args)
+                            (const_int 8 [0x8])) [0  S4 A32]))
+                (expr_list:SI (use (mem/f:SI (plus:SI (reg/f:SI 84 virtual-outgoing-args)
+                                (const_int 12 [0xc])) [0  S4 A32]))
+                    (nil))))))
+(insn 18 17 19 4 (set (reg/f:SI 97)
+        (mem/f/c:SI (reg/f:SI 81 virtual-incoming-args) [4 .result_ptr+0 S4 A32])) distance.c:47 -1
+     (nil))
+(insn 19 18 20 4 (set (reg:SI 98)
+        (mem/c:SI (plus:SI (reg/f:SI 82 virtual-stack-vars)
+                (const_int -28 [0xffffffffffffffe4])) [2 result+0 S4 A32])) distance.c:47 -1
+     (nil))
+(insn 20 19 21 4 (set (mem/c:SI (reg/f:SI 97) [2 <retval>+0 S4 A32])
+        (reg:SI 98)) distance.c:47 -1
+     (nil))
+(insn 21 20 22 4 (set (reg:SI 99)
+        (mem/c:SI (plus:SI (reg/f:SI 82 virtual-stack-vars)
+                (const_int -24 [0xffffffffffffffe8])) [2 result+4 S4 A32])) distance.c:47 -1
+     (nil))
+(insn 22 21 23 4 (set (mem/c:SI (plus:SI (reg/f:SI 97)
+                (const_int 4 [0x4])) [2 <retval>+4 S4 A32])
+        (reg:SI 99)) distance.c:47 -1
+     (nil))
+(insn 23 22 24 4 (set (reg:SI 100)
+        (mem/c:SI (plus:SI (reg/f:SI 82 virtual-stack-vars)
+                (const_int -20 [0xffffffffffffffec])) [2 result+8 S4 A32])) distance.c:47 -1
+     (nil))
+(insn 24 23 25 4 (set (mem/c:SI (plus:SI (reg/f:SI 97)
+                (const_int 8 [0x8])) [2 <retval>+8 S4 A32])
+        (reg:SI 100)) distance.c:47 -1
+     (nil))
+(jump_insn 25 24 26 4 (set (pc)
+        (label_ref:SI 158)) distance.c:47 565 {jump}
+     (nil)
+ -> 158)
+(barrier 26 25 27)
+(code_label 27 26 28 5 2 "" [1 uses])
+(note 28 27 29 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 29 28 30 5 (set (reg:CCGC 17 flags)
+        (compare:CCGC (mem/c:SI (plus:SI (reg/f:SI 81 virtual-incoming-args)
+                    (const_int 4 [0x4])) [1 distance+0 S4 A32])
+            (const_int 32768 [0x8000]))) distance.c:49 -1
+     (nil))
+(jump_insn 30 29 31 5 (set (pc)
+        (if_then_else (le (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 41)
+            (pc))) distance.c:49 -1
+     (nil)
+ -> 41)
+(note 31 30 32 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 32 31 33 6 (set (mem:SI (plus:SI (reg/f:SI 84 virtual-outgoing-args)
+                (const_int 12 [0xc])) [0  S4 A32])
+        (const_int 32768 [0x8000])) distance.c:50 -1
+     (nil))
+(insn 33 32 34 6 (set (reg:SI 101)
+        (mem/c:SI (plus:SI (reg/f:SI 81 virtual-incoming-args)
+                (const_int 4 [0x4])) [1 distance+0 S4 A32])) distance.c:50 -1
+     (nil))
+(insn 34 33 35 6 (set (mem:SI (plus:SI (reg/f:SI 84 virtual-outgoing-args)
+                (const_int 8 [0x8])) [0  S4 A32])
+        (reg:SI 101)) distance.c:50 -1
+     (nil))
+(insn 35 34 36 6 (set (mem:SI (plus:SI (reg/f:SI 84 virtual-outgoing-args)
+                (const_int 4 [0x4])) [0  S4 A32])
+        (symbol_ref/f:SI ("*LC1") [flags 0x2]  <var_decl 07500f20 *LC1>)) distance.c:50 -1
+     (nil))
+(insn 36 35 37 6 (set (reg:SI 102)
+        (mem/u/c:SI (symbol_ref:SI ("*__imp___iob") [flags 0x2002]  <var_decl 07500e70 D.1928>) [9  S4 A8])) distance.c:50 -1
+     (nil))
+(insn 37 36 38 6 (parallel [
+            (set (reg:SI 103)
+                (plus:SI (reg:SI 102)
+                    (const_int 64 [0x40])))
+            (clobber (reg:CC 17 flags))
+        ]) distance.c:50 -1
+     (nil))
+(insn 38 37 39 6 (set (mem:SI (reg/f:SI 84 virtual-outgoing-args) [0  S4 A32])
+        (reg:SI 103)) distance.c:50 -1
+     (nil))
+(call_insn 39 38 40 6 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:SI ("fprintf") [flags 0x43]  <function_decl 77eacb00 fprintf>) [0 __builtin_fprintf S1 A8])
+            (const_int 16 [0x10]))) distance.c:50 -1
+     (nil)
+    (expr_list:SI (use (mem/f:SI (reg/f:SI 84 virtual-outgoing-args) [0  S4 A32]))
+        (expr_list:SI (use (mem/f:SI (plus:SI (reg/f:SI 84 virtual-outgoing-args)
+                        (const_int 4 [0x4])) [0  S4 A32]))
+            (expr_list:SI (use (mem:SI (plus:SI (reg/f:SI 84 virtual-outgoing-args)
+                            (const_int 8 [0x8])) [0  S4 A32]))
+                (expr_list:SI (use (mem:SI (plus:SI (reg/f:SI 84 virtual-outgoing-args)
+                                (const_int 12 [0xc])) [0  S4 A32]))
+                    (nil))))))
+(insn 40 39 41 6 (set (mem/c:SI (plus:SI (reg/f:SI 81 virtual-incoming-args)
+                (const_int 4 [0x4])) [1 distance+0 S4 A32])
+        (const_int 32768 [0x8000])) distance.c:51 -1
+     (nil))
+(code_label 41 40 42 7 4 "" [1 uses])
+(note 42 41 43 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 43 42 44 7 (set (reg:CCNO 17 flags)
+        (compare:CCNO (mem/c:SI (plus:SI (reg/f:SI 81 virtual-incoming-args)
+                    (const_int 4 [0x4])) [1 distance+0 S4 A32])
+            (const_int 0 [0]))) distance.c:54 -1
+     (nil))
+(jump_insn 44 43 45 7 (set (pc)
+        (if_then_else (le (reg:CCNO 17 flags)
+                (const_int 0 [0]))
+            (label_ref 62)
+            (pc))) distance.c:54 -1
+     (nil)
+ -> 62)
+(note 45 44 46 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 46 45 47 8 (set (reg:CCGC 17 flags)
+        (compare:CCGC (mem/c:SI (plus:SI (reg/f:SI 81 virtual-incoming-args)
+                    (const_int 4 [0x4])) [1 distance+0 S4 A32])
+            (const_int 4 [0x4]))) distance.c:54 -1
+     (nil))
+(jump_insn 47 46 48 8 (set (pc)
+        (if_then_else (gt (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 62)
+            (pc))) distance.c:54 -1
+     (nil)
+ -> 62)
+(note 48 47 49 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 49 48 50 9 (set (reg:SI 104)
+        (mem/c:SI (plus:SI (reg/f:SI 81 virtual-incoming-args)
+                (const_int 4 [0x4])) [1 distance+0 S4 A32])) distance.c:55 -1
+     (nil))
+(insn 50 49 51 9 (set (reg:HI 87 [ _14 ])
+        (subreg:HI (reg:SI 104) 0)) distance.c:55 -1
+     (nil))
+(insn 51 50 52 9 (parallel [
+            (set (reg:HI 88 [ _15 ])
+                (plus:HI (reg:HI 87 [ _14 ])
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) distance.c:55 -1
+     (nil))
+(insn 52 51 53 9 (set (mem/c:HI (plus:SI (reg/f:SI 82 virtual-stack-vars)
+                (const_int -28 [0xffffffffffffffe4])) [3 result.usSymbolID+0 S2 A32])
+        (reg:HI 88 [ _15 ])) distance.c:55 -1
+     (nil))
+(insn 53 52 54 9 (set (reg/f:SI 105)
+        (mem/f/c:SI (reg/f:SI 81 virtual-incoming-args) [4 .result_ptr+0 S4 A32])) distance.c:56 -1
+     (nil))
+(insn 54 53 55 9 (set (reg:SI 106)
+        (mem/c:SI (plus:SI (reg/f:SI 82 virtual-stack-vars)
+                (const_int -28 [0xffffffffffffffe4])) [2 result+0 S4 A32])) distance.c:56 -1
+     (nil))
+(insn 55 54 56 9 (set (mem/c:SI (reg/f:SI 105) [2 <retval>+0 S4 A32])
+        (reg:SI 106)) distance.c:56 -1
+     (nil))
+(insn 56 55 57 9 (set (reg:SI 107)
+        (mem/c:SI (plus:SI (reg/f:SI 82 virtual-stack-vars)
+                (const_int -24 [0xffffffffffffffe8])) [2 result+4 S4 A32])) distance.c:56 -1
+     (nil))
+(insn 57 56 58 9 (set (mem/c:SI (plus:SI (reg/f:SI 105)
+                (const_int 4 [0x4])) [2 <retval>+4 S4 A32])
+        (reg:SI 107)) distance.c:56 -1
+     (nil))
+(insn 58 57 59 9 (set (reg:SI 108)
+        (mem/c:SI (plus:SI (reg/f:SI 82 virtual-stack-vars)
+                (const_int -20 [0xffffffffffffffec])) [2 result+8 S4 A32])) distance.c:56 -1
+     (nil))
+(insn 59 58 60 9 (set (mem/c:SI (plus:SI (reg/f:SI 105)
+                (const_int 8 [0x8])) [2 <retval>+8 S4 A32])
+        (reg:SI 108)) distance.c:56 -1
+     (nil))
+(jump_insn 60 59 61 9 (set (pc)
+        (label_ref:SI 158)) distance.c:56 565 {jump}
+     (nil)
+ -> 158)
+(barrier 61 60 62)
+(code_label 62 61 63 10 5 "" [2 uses])
+(note 63 62 64 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 64 63 65 10 (set (mem/c:SI (plus:SI (reg/f:SI 82 virtual-stack-vars)
+                (const_int -4 [0xfffffffffffffffc])) [1 i+0 S4 A32])
+        (const_int 4 [0x4])) distance.c:59 -1
+     (nil))
+(jump_insn 65 64 66 10 (set (pc)
+        (label_ref 112)) distance.c:59 -1
+     (nil)
+ -> 112)
+(barrier 66 65 114)
+(code_label 114 66 67 11 8 "" [1 uses])
+(note 67 114 68 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 68 67 69 11 (set (reg:SI 109)
+        (mem/c:SI (plus:SI (reg/f:SI 82 virtual-stack-vars)
+                (const_int -4 [0xfffffffffffffffc])) [1 i+0 S4 A32])) distance.c:60 -1
+     (nil))
+(insn 69 68 70 11 (set (reg:SI 110)
+        (mem/u:SI (plus:SI (mult:SI (reg:SI 109)
+                    (const_int 4 [0x4]))
+                (symbol_ref:SI ("DISTANCE_BASE") [flags 0x2]  <var_decl 075000b0 DISTANCE_BASE>)) [1 DISTANCE_BASE S4 A32])) distance.c:60 -1
+     (nil))
+(insn 70 69 71 11 (set (mem/c:SI (plus:SI (reg/f:SI 82 virtual-stack-vars)
+                (const_int -8 [0xfffffffffffffff8])) [1 base+0 S4 A32])
+        (reg:SI 110)) distance.c:60 -1
+     (nil))
+(insn 71 70 72 11 (set (reg:SI 111)
+        (mem/c:SI (plus:SI (reg/f:SI 82 virtual-stack-vars)
+                (const_int -4 [0xfffffffffffffffc])) [1 i+0 S4 A32])) distance.c:61 -1
+     (nil))
+(insn 72 71 73 11 (set (reg:SI 112)
+        (mem/u:SI (plus:SI (mult:SI (reg:SI 111)
+                    (const_int 4 [0x4]))
+                (symbol_ref:SI ("DISTANCE_EXTRA_BITS") [flags 0x2]  <var_decl 07500108 DISTANCE_EXTRA_BITS>)) [1 DISTANCE_EXTRA_BITS S4 A32])) distance.c:61 -1
+     (nil))
+(insn 73 72 74 11 (set (mem/c:SI (plus:SI (reg/f:SI 82 virtual-stack-vars)
+                (const_int -12 [0xfffffffffffffff4])) [1 extra_bits+0 S4 A32])
+        (reg:SI 112)) distance.c:61 -1
+     (nil))
+(insn 74 73 75 11 (set (reg:SI 113)
+        (mem/c:SI (plus:SI (reg/f:SI 82 virtual-stack-vars)
+                (const_int -12 [0xfffffffffffffff4])) [1 extra_bits+0 S4 A32])) distance.c:65 -1
+     (nil))
+(insn 75 74 76 11 (set (reg:SI 114)
+        (const_int 1 [0x1])) distance.c:65 -1
+     (nil))
+(insn 76 75 77 11 (parallel [
+            (set (reg:SI 89 [ _21 ])
+                (ashift:SI (reg:SI 114)
+                    (subreg:QI (reg:SI 113) 0)))
+            (clobber (reg:CC 17 flags))
+        ]) distance.c:65 -1
+     (nil))
+(insn 77 76 81 11 (parallel [
+            (set (reg:SI 90 [ _22 ])
+                (plus:SI (reg:SI 89 [ _21 ])
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) distance.c:65 -1
+     (nil))
+(insn 81 77 82 11 (set (reg:SI 118)
+        (mem/c:SI (plus:SI (reg/f:SI 82 virtual-stack-vars)
+                (const_int -8 [0xfffffffffffffff8])) [1 base+0 S4 A32])) distance.c:65 -1
+     (nil))
+(insn 82 81 83 11 (parallel [
+            (set (reg:SI 117)
+                (plus:SI (reg:SI 90 [ _22 ])
+                    (reg:SI 118)))
+            (clobber (reg:CC 17 flags))
+        ]) distance.c:65 -1
+     (expr_list:REG_EQUAL (plus:SI (reg:SI 90 [ _22 ])
+            (mem/c:SI (plus:SI (reg/f:SI 82 virtual-stack-vars)
+                    (const_int -8 [0xfffffffffffffff8])) [1 base+0 S4 A32]))
+        (nil)))
+(insn 83 82 84 11 (set (mem/c:SI (plus:SI (reg/f:SI 82 virtual-stack-vars)
+                (const_int -16 [0xfffffffffffffff0])) [1 max_dist+0 S4 A32])
+        (reg:SI 117)) distance.c:65 -1
+     (nil))
+(insn 84 83 85 11 (set (reg:SI 119)
+        (mem/c:SI (plus:SI (reg/f:SI 81 virtual-incoming-args)
+                (const_int 4 [0x4])) [1 distance+0 S4 A32])) distance.c:67 -1
+     (nil))
+(insn 85 84 86 11 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:SI 119)
+            (mem/c:SI (plus:SI (reg/f:SI 82 virtual-stack-vars)
+                    (const_int -8 [0xfffffffffffffff8])) [1 base+0 S4 A32]))) distance.c:67 -1
+     (nil))
+(jump_insn 86 85 87 11 (set (pc)
+        (if_then_else (lt (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 109)
+            (pc))) distance.c:67 -1
+     (nil)
+ -> 109)
+(note 87 86 88 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn 88 87 89 12 (set (reg:SI 120)
+        (mem/c:SI (plus:SI (reg/f:SI 81 virtual-incoming-args)
+                (const_int 4 [0x4])) [1 distance+0 S4 A32])) distance.c:67 -1
+     (nil))
+(insn 89 88 90 12 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:SI 120)
+            (mem/c:SI (plus:SI (reg/f:SI 82 virtual-stack-vars)
+                    (const_int -16 [0xfffffffffffffff0])) [1 max_dist+0 S4 A32]))) distance.c:67 -1
+     (nil))
+(jump_insn 90 89 91 12 (set (pc)
+        (if_then_else (gt (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 109)
+            (pc))) distance.c:67 -1
+     (nil)
+ -> 109)
+(note 91 90 92 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(insn 92 91 93 13 (set (reg:SI 121)
+        (mem/c:SI (plus:SI (reg/f:SI 82 virtual-stack-vars)
+                (const_int -4 [0xfffffffffffffffc])) [1 i+0 S4 A32])) distance.c:68 -1
+     (nil))
+(insn 93 92 94 13 (set (reg:HI 91 [ _25 ])
+        (subreg:HI (reg:SI 121) 0)) distance.c:68 -1
+     (nil))
+(insn 94 93 95 13 (set (mem/c:HI (plus:SI (reg/f:SI 82 virtual-stack-vars)
+                (const_int -28 [0xffffffffffffffe4])) [3 result.usSymbolID+0 S2 A32])
+        (reg:HI 91 [ _25 ])) distance.c:68 -1
+     (nil))
+(insn 95 94 96 13 (set (reg:SI 122)
+        (mem/c:SI (plus:SI (reg/f:SI 82 virtual-stack-vars)
+                (const_int -12 [0xfffffffffffffff4])) [1 extra_bits+0 S4 A32])) distance.c:69 -1
+     (nil))
+(insn 96 95 97 13 (set (mem/c:SI (plus:SI (reg/f:SI 82 virtual-stack-vars)
+                (const_int -24 [0xffffffffffffffe8])) [1 result.iExtraBits+0 S4 A32])
+        (reg:SI 122)) distance.c:69 -1
+     (nil))
+(insn 97 96 98 13 (set (reg:SI 123)
+        (mem/c:SI (plus:SI (reg/f:SI 81 virtual-incoming-args)
+                (const_int 4 [0x4])) [1 distance+0 S4 A32])) distance.c:72 -1
+     (nil))
+(insn 98 97 99 13 (parallel [
+            (set (reg:SI 92 [ _28 ])
+                (minus:SI (reg:SI 123)
+                    (mem/c:SI (plus:SI (reg/f:SI 82 virtual-stack-vars)
+                            (const_int -8 [0xfffffffffffffff8])) [1 base+0 S4 A32])))
+            (clobber (reg:CC 17 flags))
+        ]) distance.c:72 -1
+     (expr_list:REG_EQUAL (minus:SI (mem/c:SI (plus:SI (reg/f:SI 81 virtual-incoming-args)
+                    (const_int 4 [0x4])) [1 distance+0 S4 A32])
+            (mem/c:SI (plus:SI (reg/f:SI 82 virtual-stack-vars)
+                    (const_int -8 [0xfffffffffffffff8])) [1 base+0 S4 A32]))
+        (nil)))
+(insn 99 98 100 13 (set (mem/c:SI (plus:SI (reg/f:SI 82 virtual-stack-vars)
+                (const_int -20 [0xffffffffffffffec])) [1 result.iExtraValue+0 S4 A32])
+        (reg:SI 92 [ _28 ])) distance.c:72 -1
+     (nil))
+(insn 100 99 101 13 (set (reg/f:SI 124)
+        (mem/f/c:SI (reg/f:SI 81 virtual-incoming-args) [4 .result_ptr+0 S4 A32])) distance.c:73 -1
+     (nil))
+(insn 101 100 102 13 (set (reg:SI 125)
+        (mem/c:SI (plus:SI (reg/f:SI 82 virtual-stack-vars)
+                (const_int -28 [0xffffffffffffffe4])) [2 result+0 S4 A32])) distance.c:73 -1
+     (nil))
+(insn 102 101 103 13 (set (mem/c:SI (reg/f:SI 124) [2 <retval>+0 S4 A32])
+        (reg:SI 125)) distance.c:73 -1
+     (nil))
+(insn 103 102 104 13 (set (reg:SI 126)
+        (mem/c:SI (plus:SI (reg/f:SI 82 virtual-stack-vars)
+                (const_int -24 [0xffffffffffffffe8])) [2 result+4 S4 A32])) distance.c:73 -1
+     (nil))
+(insn 104 103 105 13 (set (mem/c:SI (plus:SI (reg/f:SI 124)
+                (const_int 4 [0x4])) [2 <retval>+4 S4 A32])
+        (reg:SI 126)) distance.c:73 -1
+     (nil))
+(insn 105 104 106 13 (set (reg:SI 127)
+        (mem/c:SI (plus:SI (reg/f:SI 82 virtual-stack-vars)
+                (const_int -20 [0xffffffffffffffec])) [2 result+8 S4 A32])) distance.c:73 -1
+     (nil))
+(insn 106 105 107 13 (set (mem/c:SI (plus:SI (reg/f:SI 124)
+                (const_int 8 [0x8])) [2 <retval>+8 S4 A32])
+        (reg:SI 127)) distance.c:73 -1
+     (nil))
+(jump_insn 107 106 108 13 (set (pc)
+        (label_ref:SI 158)) distance.c:73 565 {jump}
+     (nil)
+ -> 158)
+(barrier 108 107 109)
+(code_label 109 108 110 14 7 "" [2 uses])
+(note 110 109 111 14 [bb 14] NOTE_INSN_BASIC_BLOCK)
+(insn 111 110 112 14 (parallel [
+            (set (mem/c:SI (plus:SI (reg/f:SI 82 virtual-stack-vars)
+                        (const_int -4 [0xfffffffffffffffc])) [1 i+0 S4 A32])
+                (plus:SI (mem/c:SI (plus:SI (reg/f:SI 82 virtual-stack-vars)
+                            (const_int -4 [0xfffffffffffffffc])) [1 i+0 S4 A32])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) distance.c:59 -1
+     (nil))
+(code_label 112 111 113 15 6 "" [1 uses])
+(note 113 112 115 15 [bb 15] NOTE_INSN_BASIC_BLOCK)
+(insn 115 113 116 15 (set (reg:CCGC 17 flags)
+        (compare:CCGC (mem/c:SI (plus:SI (reg/f:SI 82 virtual-stack-vars)
+                    (const_int -4 [0xfffffffffffffffc])) [1 i+0 S4 A32])
+            (const_int 29 [0x1d]))) distance.c:59 -1
+     (nil))
+(jump_insn 116 115 117 15 (set (pc)
+        (if_then_else (le (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 114)
+            (pc))) distance.c:59 -1
+     (nil)
+ -> 114)
+(note 117 116 118 16 [bb 16] NOTE_INSN_BASIC_BLOCK)
+(insn 118 117 119 16 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/c:SI (plus:SI (reg/f:SI 81 virtual-incoming-args)
+                    (const_int 4 [0x4])) [1 distance+0 S4 A32])
+            (const_int 32768 [0x8000]))) distance.c:77 -1
+     (nil))
+(jump_insn 119 118 120 16 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 136)
+            (pc))) distance.c:77 -1
+     (nil)
+ -> 136)
+(note 120 119 121 17 [bb 17] NOTE_INSN_BASIC_BLOCK)
+(insn 121 120 122 17 (set (mem/c:HI (plus:SI (reg/f:SI 82 virtual-stack-vars)
+                (const_int -28 [0xffffffffffffffe4])) [3 result.usSymbolID+0 S2 A32])
+        (const_int 29 [0x1d])) distance.c:78 -1
+     (nil))
+(insn 122 121 123 17 (set (mem/c:SI (plus:SI (reg/f:SI 82 virtual-stack-vars)
+                (const_int -24 [0xffffffffffffffe8])) [1 result.iExtraBits+0 S4 A32])
+        (const_int 13 [0xd])) distance.c:79 -1
+     (nil))
+(insn 123 122 124 17 (set (reg:SI 93 [ _33 ])
+        (const_int 24577 [0x6001])) distance.c:80 -1
+     (nil))
+(insn 124 123 125 17 (set (reg:SI 128)
+        (mem/c:SI (plus:SI (reg/f:SI 81 virtual-incoming-args)
+                (const_int 4 [0x4])) [1 distance+0 S4 A32])) distance.c:80 -1
+     (nil))
+(insn 125 124 126 17 (parallel [
+            (set (reg:SI 94 [ _34 ])
+                (minus:SI (reg:SI 128)
+                    (reg:SI 93 [ _33 ])))
+            (clobber (reg:CC 17 flags))
+        ]) distance.c:80 -1
+     (expr_list:REG_EQUAL (minus:SI (mem/c:SI (plus:SI (reg/f:SI 81 virtual-incoming-args)
+                    (const_int 4 [0x4])) [1 distance+0 S4 A32])
+            (reg:SI 93 [ _33 ]))
+        (nil)))
+(insn 126 125 127 17 (set (mem/c:SI (plus:SI (reg/f:SI 82 virtual-stack-vars)
+                (const_int -20 [0xffffffffffffffec])) [1 result.iExtraValue+0 S4 A32])
+        (reg:SI 94 [ _34 ])) distance.c:80 -1
+     (nil))
+(insn 127 126 128 17 (set (reg/f:SI 129)
+        (mem/f/c:SI (reg/f:SI 81 virtual-incoming-args) [4 .result_ptr+0 S4 A32])) distance.c:81 -1
+     (nil))
+(insn 128 127 129 17 (set (reg:SI 130)
+        (mem/c:SI (plus:SI (reg/f:SI 82 virtual-stack-vars)
+                (const_int -28 [0xffffffffffffffe4])) [2 result+0 S4 A32])) distance.c:81 -1
+     (nil))
+(insn 129 128 130 17 (set (mem/c:SI (reg/f:SI 129) [2 <retval>+0 S4 A32])
+        (reg:SI 130)) distance.c:81 -1
+     (nil))
+(insn 130 129 131 17 (set (reg:SI 131)
+        (mem/c:SI (plus:SI (reg/f:SI 82 virtual-stack-vars)
+                (const_int -24 [0xffffffffffffffe8])) [2 result+4 S4 A32])) distance.c:81 -1
+     (nil))
+(insn 131 130 132 17 (set (mem/c:SI (plus:SI (reg/f:SI 129)
+                (const_int 4 [0x4])) [2 <retval>+4 S4 A32])
+        (reg:SI 131)) distance.c:81 -1
+     (nil))
+(insn 132 131 133 17 (set (reg:SI 132)
+        (mem/c:SI (plus:SI (reg/f:SI 82 virtual-stack-vars)
+                (const_int -20 [0xffffffffffffffec])) [2 result+8 S4 A32])) distance.c:81 -1
+     (nil))
+(insn 133 132 134 17 (set (mem/c:SI (plus:SI (reg/f:SI 129)
+                (const_int 8 [0x8])) [2 <retval>+8 S4 A32])
+        (reg:SI 132)) distance.c:81 -1
+     (nil))
+(jump_insn 134 133 135 17 (set (pc)
+        (label_ref:SI 158)) distance.c:81 565 {jump}
+     (nil)
+ -> 158)
+(barrier 135 134 136)
+(code_label 136 135 137 18 9 "" [1 uses])
+(note 137 136 138 18 [bb 18] NOTE_INSN_BASIC_BLOCK)
+(insn 138 137 139 18 (set (reg:SI 133)
+        (mem/c:SI (plus:SI (reg/f:SI 81 virtual-incoming-args)
+                (const_int 4 [0x4])) [1 distance+0 S4 A32])) distance.c:84 -1
+     (nil))
+(insn 139 138 140 18 (set (mem:SI (plus:SI (reg/f:SI 84 virtual-outgoing-args)
+                (const_int 8 [0x8])) [0  S4 A32])
+        (reg:SI 133)) distance.c:84 -1
+     (nil))
+(insn 140 139 141 18 (set (mem:SI (plus:SI (reg/f:SI 84 virtual-outgoing-args)
+                (const_int 4 [0x4])) [0  S4 A32])
+        (symbol_ref/f:SI ("*LC2") [flags 0x2]  <var_decl 07500f78 *LC2>)) distance.c:84 -1
+     (nil))
+(insn 141 140 142 18 (set (reg:SI 134)
+        (mem/u/c:SI (symbol_ref:SI ("*__imp___iob") [flags 0x2002]  <var_decl 07500e70 D.1928>) [9  S4 A8])) distance.c:84 -1
+     (nil))
+(insn 142 141 143 18 (parallel [
+            (set (reg:SI 135)
+                (plus:SI (reg:SI 134)
+                    (const_int 64 [0x40])))
+            (clobber (reg:CC 17 flags))
+        ]) distance.c:84 -1
+     (nil))
+(insn 143 142 144 18 (set (mem:SI (reg/f:SI 84 virtual-outgoing-args) [0  S4 A32])
+        (reg:SI 135)) distance.c:84 -1
+     (nil))
+(call_insn 144 143 145 18 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:SI ("fprintf") [flags 0x43]  <function_decl 77eacb00 fprintf>) [0 __builtin_fprintf S1 A8])
+            (const_int 12 [0xc]))) distance.c:84 -1
+     (nil)
+    (expr_list:SI (use (mem/f:SI (reg/f:SI 84 virtual-outgoing-args) [0  S4 A32]))
+        (expr_list:SI (use (mem/f:SI (plus:SI (reg/f:SI 84 virtual-outgoing-args)
+                        (const_int 4 [0x4])) [0  S4 A32]))
+            (expr_list:SI (use (mem:SI (plus:SI (reg/f:SI 84 virtual-outgoing-args)
+                            (const_int 8 [0x8])) [0  S4 A32]))
+                (nil)))))
+(insn 145 144 146 18 (set (reg/f:SI 136)
+        (mem/f/c:SI (reg/f:SI 81 virtual-incoming-args) [4 .result_ptr+0 S4 A32])) distance.c:85 -1
+     (nil))
+(insn 146 145 147 18 (set (reg:SI 137)
+        (mem/c:SI (plus:SI (reg/f:SI 82 virtual-stack-vars)
+                (const_int -28 [0xffffffffffffffe4])) [2 result+0 S4 A32])) distance.c:85 -1
+     (nil))
+(insn 147 146 148 18 (set (mem/c:SI (reg/f:SI 136) [2 <retval>+0 S4 A32])
+        (reg:SI 137)) distance.c:85 -1
+     (nil))
+(insn 148 147 149 18 (set (reg:SI 138)
+        (mem/c:SI (plus:SI (reg/f:SI 82 virtual-stack-vars)
+                (const_int -24 [0xffffffffffffffe8])) [2 result+4 S4 A32])) distance.c:85 -1
+     (nil))
+(insn 149 148 150 18 (set (mem/c:SI (plus:SI (reg/f:SI 136)
+                (const_int 4 [0x4])) [2 <retval>+4 S4 A32])
+        (reg:SI 138)) distance.c:85 -1
+     (nil))
+(insn 150 149 151 18 (set (reg:SI 139)
+        (mem/c:SI (plus:SI (reg/f:SI 82 virtual-stack-vars)
+                (const_int -20 [0xffffffffffffffec])) [2 result+8 S4 A32])) distance.c:85 -1
+     (nil))
+(insn 151 150 158 18 (set (mem/c:SI (plus:SI (reg/f:SI 136)
+                (const_int 8 [0x8])) [2 <retval>+8 S4 A32])
+        (reg:SI 139)) distance.c:85 -1
+     (nil))
+(code_label 158 151 161 21 1 "" [4 uses])
+(note 161 158 159 21 [bb 21] NOTE_INSN_BASIC_BLOCK)
+(insn 159 161 160 21 (set (reg/i:SI 0 ax)
+        (mem/f/c:SI (reg/f:SI 81 virtual-incoming-args) [4 .result_ptr+0 S4 A32])) distance.c:86 -1
+     (nil))
+(insn 160 159 0 21 (use (reg/i:SI 0 ax)) distance.c:86 -1
+     (nil))

@@ -4,5 +4,5 @@
 
 #ifndef DEFLATE_DECOMPRESS_H
 #define DEFLATE_DECOMPRESS_H
-extern Status decompress(char* filename);
+extern STATUS* decompress(const char* filename);
 #endif //DEFLATE_DECOMPRESS_H

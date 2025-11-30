@@ -1,5 +1,5 @@
 //
-// Created by Rendszergazda on 11/16/2025.
+// Created by Attila on 11/16/2025.
 //
 #ifndef DEFLATE_LZ77_H
 #define DEFLATE_LZ77_H
@@ -48,61 +48,16 @@ typedef struct {
     size_t capacity;         ///< The total number of tokens the buffer can hold.
 } LZ77_buffer;
 
-/**
-* @brief Create Literal Struct for LZ77 compression
-*
-* The createLiteralLZ77 function allocates memory for one single LZ77_compresed struct
-* filled with enum LITERAL and the actual byte.
-*
-* @param byte The actual byte to be written into the file
-* @return LZ77_compressed* The location in memory. MUST BE FREED afterward!
-*/
-LZ77_compressed createLiteralLZ77(const uint8_t byte);
+extern LZ77_compressed createLiteralLZ77(uint8_t byte);
 
-/**
-* @brief Create MATCH Struct for LZ77 compression
-*
-* The createMatchLZ77 function allocates memory for one single LZ77_compresed struct
-* filled with enum MATCH and the actual distance / length pair.
-*
-* @param distance The distance from the last occurrence
-* @param length The length which specifies the length from last occurrence
-* @return LZ77_compressed* The location in memory. MUST BE FREED afterward!
-*/
-LZ77_compressed createMatchLZ77(const uint16_t distance, const uint16_t length);
+extern LZ77_compressed createMatchLZ77(uint16_t distance, uint16_t length);
 
+extern LZ77_buffer* initLZ77Buffer(void);
 
-// --- Buffer Management Functions ---
+extern void expandBuffer(LZ77_buffer* buffer);
 
-/**
- * @brief Initalizes the LZ77_buffer struct.
- *
- * Allocates initial memory for the token array.
- *
- * @return LZ77_buffer* The location in memory. MUST BE FREED afterward!
- */
-LZ77_buffer* initLZ77Buffer(void);
+extern void appendToken(LZ77_buffer* buffer, LZ77_compressed token);
 
-/**
- * @brief Expands the buffer capacity by EXPAND_BY tokens.
- *
- * @param buffer The buffer to expand.
- */
-void expandBuffer(LZ77_buffer* buffer);
-
-/**
- * @brief Appends a token to the buffer.
- *
- * @param buffer The buffer to append the token to.
- * @param token The LZ77_compressed token.
- */
-void appendToken(LZ77_buffer* buffer, LZ77_compressed token);
-
-/**
- * @brief Frees all dynamically allocated memory associated with the buffer.
- *
- * @param buffer The buffer structure to be freed.
- */
-void freeLZ77Buffer(LZ77_buffer* buffer);
+extern void freeLZ77Buffer(LZ77_buffer* buffer);
 
 #endif //DEFLATE_LZ77_H
